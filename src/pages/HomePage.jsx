@@ -24,7 +24,10 @@ export function HomePage({ onNavigate }) {
   return (
     <main id="main-content" className="home-page">
       <section className="home-hero" aria-labelledby="home-title">
-        <div className="home-hero__image-wrap">
+        <div
+          className="home-hero__image-wrap"
+          style={{ aspectRatio: `${heroIcon.images[0].width} / ${heroIcon.images[0].height}` }}
+        >
           <IconImage image={heroIcon.images[0]} title={heroIcon.title} mode="full" eager />
         </div>
         <div className="home-hero__content">

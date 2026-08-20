@@ -59,12 +59,13 @@ button {
 }
 
 .site-shell {
+  position: relative;
   min-height: 100vh;
   background: var(--ink);
 }
 
 .skip-link {
-  position: fixed;
+  position: absolute;
   z-index: 10;
   top: 0.75rem;
   left: 0.75rem;
@@ -186,7 +187,6 @@ button {
 
 .home-hero__image-wrap {
   display: grid;
-  min-height: min(68vw, 46rem);
   padding: clamp(1rem, 2vw, 2rem);
   border: 1px solid var(--line);
   background: var(--surface);
@@ -660,7 +660,6 @@ button {
 }
 
 .icon-gallery__trigger .icon-image {
-  aspect-ratio: 3 / 4;
   background: var(--ink);
 }
 
@@ -891,8 +890,7 @@ button {
   }
 
   .home-hero__image-wrap {
-    min-height: auto;
-    aspect-ratio: 2342 / 2685;
+    min-height: 0;
   }
 
   .home-hero h1 {

@@ -87,6 +87,7 @@ export function IconGallery({ images, title }) {
             className="icon-gallery__trigger"
             key={image.src}
             type="button"
+            style={{ aspectRatio: `${image.width} / ${image.height}` }}
             onClick={(event) => openImage(index, event.currentTarget)}
             aria-label={`Открыть полное изображение: ${image.alt || title}`}
           >

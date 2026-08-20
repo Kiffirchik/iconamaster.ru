@@ -9,7 +9,11 @@ export function IconImage({ image, title, mode = 'preview', eager = false }) {
       decoding="async"
       fetchPriority={eager ? 'high' : 'auto'}
       className={`icon-image icon-image--${mode}`}
-      style={{ objectFit: mode === 'full' ? 'contain' : image.fit, objectPosition: image.position }}
+      style={{
+        aspectRatio: `${image.width} / ${image.height}`,
+        objectFit: mode === 'full' ? 'contain' : image.fit,
+        objectPosition: image.position
+      }}
     />
   );
 }
