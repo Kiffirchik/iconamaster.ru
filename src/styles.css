@@ -179,15 +179,18 @@ button {
 
 .home-hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.98fr) minmax(22rem, 0.92fr);
-  gap: clamp(2rem, 6vw, 7rem);
-  align-items: center;
-  padding-block: clamp(3.5rem, 8vw, 7.5rem);
+  grid-template-columns: minmax(0, 0.75fr) minmax(22rem, 1.25fr);
+  gap: clamp(2rem, 4vw, 5rem);
+  align-items: start;
+  padding-block: clamp(2rem, 3vw, 2.5rem);
 }
 
 .home-hero__image-wrap {
   display: grid;
-  padding: clamp(1rem, 2vw, 2rem);
+  width: 100%;
+  max-width: 33rem;
+  justify-self: start;
+  padding: clamp(0.75rem, 1.2vw, 1.25rem);
   border: 1px solid var(--line);
   background: var(--surface);
 }
@@ -203,7 +206,7 @@ button {
 }
 
 .home-hero__content {
-  max-width: 42rem;
+  max-width: 48rem;
 }
 
 .eyebrow,
@@ -225,13 +228,13 @@ button {
 }
 
 .home-hero h1 {
-  max-width: 12ch;
-  font-size: clamp(2.8rem, 5vw, 5.4rem);
+  max-width: none;
+  font-size: clamp(2.8rem, 3.4vw, 3.8rem);
 }
 
 .home-hero__intro {
   max-width: 61ch;
-  margin: 1.75rem 0 2rem;
+  margin: 1.25rem 0 1.5rem;
   color: var(--muted);
 }
 
@@ -239,7 +242,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 1rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .button--quiet {
@@ -277,7 +280,7 @@ button {
 }
 
 .home-hero__trust {
-  margin: 1.5rem 0 0;
+  margin: 1rem 0 0;
   color: var(--gold);
   font-size: 0.9rem;
   letter-spacing: 0.08em;
