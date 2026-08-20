@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build && node scripts/prepare-sites-build.mjs",
     "preview": "vite preview",
-    "test": "node --test tests/unit/assets-manifest.test.mjs tests/unit/catalog.test.mjs tests/unit/contacts.test.mjs tests/unit/home-content.test.mjs tests/unit/routing.test.mjs",
+    "test": "node --test tests/unit/assets-manifest.test.mjs tests/unit/catalog.test.mjs tests/unit/contacts.test.mjs tests/unit/home-content.test.mjs tests/unit/routing.test.mjs tests/unit/shell-layout.test.mjs",
     "test:assets": "node scripts/verify-icon-assets.mjs",
     "test:sites": "node --test tests/sites-worker.test.mjs"
   },

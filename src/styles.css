@@ -265,7 +265,7 @@ button {
   }
 
   .site-header__inner {
-    position: relative;
+    flex-wrap: wrap;
     min-height: 4.75rem;
   }
 
@@ -281,12 +281,10 @@ button {
 
   .site-header__nav {
     display: none;
-    position: absolute;
-    z-index: 2;
-    top: 100%;
-    right: 0;
-    left: 0;
-    padding: 1rem;
+    position: static;
+    flex-basis: 100%;
+    width: 100%;
+    padding: 1rem 0;
     border-bottom: 1px solid var(--line);
     background: var(--surface-soft);
   }
