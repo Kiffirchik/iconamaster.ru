@@ -43,3 +43,16 @@ test('keeps the compact footer WhatsApp CTA at the shared 44px touch-target mini
     /\.consultation-links--compact \.button\s*\{[^}]*min-height:\s*2\.75rem;/s
   );
 });
+
+test('gives mobile secondary contact and navigation links 44px touch targets', async () => {
+  const styles = await source('styles.css');
+  const mobileStyles = styles.slice(
+    styles.indexOf('@media (max-width: 760px)'),
+    styles.indexOf('@media (max-width: 759px)')
+  );
+
+  assert.match(
+    mobileStyles,
+    /\.consultation-links__secondary,\s*\.icon-detail-page__navigation a,\s*\.icon-detail-page__contact-alternatives a,\s*\.site-footer__nav a\s*\{[^}]*display:\s*inline-flex;[^}]*align-items:\s*center;[^}]*min-height:\s*2\.75rem;/s
+  );
+});

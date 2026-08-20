@@ -866,6 +866,15 @@ button {
     flex-direction: column;
   }
 
+  .consultation-links__secondary,
+  .icon-detail-page__navigation a,
+  .icon-detail-page__contact-alternatives a,
+  .site-footer__nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+
   .icon-detail-page__actions .button {
     width: 100%;
   }
