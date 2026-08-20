@@ -6,6 +6,10 @@ export function filterIcons(items, filters) {
   );
 }
 
+export function getFilterOptions(items, key) {
+  return ['all', ...new Set(items.map((item) => item[key]))];
+}
+
 export function getNextIcon(items, slug) {
   const index = items.findIndex((item) => item.slug === slug);
   return items[(index + 1 + items.length) % items.length];

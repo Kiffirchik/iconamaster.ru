@@ -24,7 +24,7 @@ export function App() {
   if (route.name === 'home') {
     page = <HomePage onNavigate={navigate} />;
   } else if (route.name === 'collection') {
-    page = <CollectionPage />;
+    page = <CollectionPage onNavigate={navigate} />;
   } else if (route.name === 'icon') {
     page = <IconDetailPage icon={icons.find((icon) => icon.slug === route.slug)} />;
   } else {

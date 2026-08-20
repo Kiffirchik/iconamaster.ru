@@ -21,6 +21,7 @@ export function IconCard({ icon, onNavigate }) {
         <h3><a href={path} onClick={follow}>{icon.title}</a></h3>
         <p>{icon.technique}</p>
         <p>{icon.size}</p>
+        <p className="icon-card__price">{icon.price} · {icon.availability}</p>
         <a className="icon-card__more" href={path} onClick={follow}>Подробнее</a>
       </div>
     </article>
