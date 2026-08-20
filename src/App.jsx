@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { SiteFooter } from './components/SiteFooter.jsx';
 import { SiteHeader } from './components/SiteHeader.jsx';
 import { icons } from './data/icons.js';
+import { findIconBySlug } from './lib/catalog.js';
 import { navigate, parseRoute } from './lib/routing.js';
 import { CollectionPage } from './pages/CollectionPage.jsx';
 import { HomePage } from './pages/HomePage.jsx';
@@ -26,7 +27,7 @@ export function App() {
   } else if (route.name === 'collection') {
     page = <CollectionPage onNavigate={navigate} />;
   } else if (route.name === 'icon') {
-    page = <IconDetailPage icon={icons.find((icon) => icon.slug === route.slug)} />;
+    page = <IconDetailPage icon={findIconBySlug(icons, route.slug)} onNavigate={navigate} />;
   } else {
     page = (
       <main id="main-content" className="baseline-page not-found-page">

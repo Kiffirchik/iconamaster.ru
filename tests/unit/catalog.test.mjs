@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { icons } from '../../src/data/icons.js';
-import { filterIcons, getFilterOptions, getNextIcon } from '../../src/lib/catalog.js';
+import { filterIcons, findIconBySlug, getFilterOptions, getNextIcon } from '../../src/lib/catalog.js';
 
 test('filterIcons returns the verified temple icon for a type filter', () => {
   const result = filterIcons(icons, {
@@ -55,4 +55,14 @@ test('getFilterOptions prepends all and removes duplicate period values', () => 
 
 test('getNextIcon wraps from the final catalog record to the first', () => {
   assert.equal(getNextIcon(icons, icons.at(-1).slug).slug, icons[0].slug);
+});
+
+test('findIconBySlug returns the matching icon passport or null', () => {
+  assert.equal(findIconBySlug(icons, 'alexander-peresvet').price, '100 000 руб.');
+  assert.equal(findIconBySlug(icons, 'missing'), null);
+});
+
+test('catalog keeps complete original-image sets for detail galleries', () => {
+  assert.ok(findIconBySlug(icons, 'facade-george').images.length >= 5);
+  assert.equal(findIconBySlug(icons, 'sergius-appearance').images.length, 2);
 });

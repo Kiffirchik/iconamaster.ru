@@ -13,7 +13,10 @@ test('buildContactLinks includes a named icon in WhatsApp and email links', () =
 });
 
 test('buildContactLinks creates a personal-viewing message when requested', () => {
-  const links = buildContactLinks('Архистратиг Михаил', 'viewing');
+  const title = 'Преподобный Александр Пересвет';
+  const links = buildContactLinks(title, 'viewing');
 
   assert.match(decodeURIComponent(links.whatsapp), /личный просмотр/i);
+  assert.match(decodeURIComponent(links.whatsapp), new RegExp(title));
+  assert.match(decodeURIComponent(links.email), new RegExp(title));
 });
