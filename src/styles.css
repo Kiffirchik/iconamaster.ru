@@ -166,6 +166,240 @@ button {
   line-height: 1.04;
 }
 
+.home-page {
+  overflow: hidden;
+}
+
+.home-hero,
+.home-section {
+  width: var(--content);
+  margin-inline: auto;
+}
+
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.98fr) minmax(22rem, 0.92fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  align-items: center;
+  padding-block: clamp(3.5rem, 8vw, 7.5rem);
+}
+
+.home-hero__image-wrap {
+  display: grid;
+  min-height: min(68vw, 46rem);
+  padding: clamp(1rem, 2vw, 2rem);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.icon-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.icon-image--full {
+  filter: brightness(.98) contrast(1.04) saturate(.94);
+}
+
+.home-hero__content {
+  max-width: 42rem;
+}
+
+.eyebrow,
+.icon-card__period {
+  margin: 0 0 1rem;
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.home-hero h1,
+.home-section h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.home-hero h1 {
+  max-width: 12ch;
+  font-size: clamp(2.8rem, 5vw, 5.4rem);
+}
+
+.home-hero__intro {
+  max-width: 61ch;
+  margin: 1.75rem 0 2rem;
+  color: var(--muted);
+}
+
+.home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.button--quiet {
+  border-color: var(--line);
+  color: var(--alabaster);
+}
+
+.button--quiet:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.object-passport {
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.object-passport div {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.85fr) minmax(0, 1.4fr);
+  gap: 1rem;
+  padding-block: 0.7rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.object-passport dt {
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.object-passport dd {
+  margin: 0;
+}
+
+.home-hero__trust {
+  margin: 1.5rem 0 0;
+  color: var(--gold);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-section {
+  padding-block: clamp(3.5rem, 7vw, 6.5rem);
+  border-top: 1px solid var(--line);
+}
+
+.home-section__heading {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.7rem 2rem;
+  align-items: end;
+  margin-bottom: 2rem;
+}
+
+.home-section__heading .eyebrow,
+.home-section__heading h2 {
+  grid-column: 1;
+}
+
+.home-section__heading .eyebrow {
+  margin-bottom: 0;
+}
+
+.home-section__heading a {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  color: var(--gold);
+}
+
+.home-section h2 {
+  font-size: clamp(2.15rem, 3.7vw, 3.8rem);
+}
+
+.home-featured__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.icon-card {
+  display: grid;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.icon-card__image-link,
+.icon-card__image-frame {
+  display: block;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.icon-card__image-frame {
+  padding: 0.75rem;
+}
+
+.icon-card__content {
+  display: grid;
+  align-content: start;
+  gap: 0.65rem;
+  padding: 1.35rem;
+}
+
+.icon-card__content p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.icon-card__content h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.icon-card__more {
+  width: fit-content;
+  margin-top: 0.85rem;
+  color: var(--gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-copy-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 1.1fr);
+  gap: 1rem clamp(2rem, 6vw, 7rem);
+}
+
+.home-copy-section .eyebrow {
+  grid-column: 1;
+  margin: 0;
+}
+
+.home-copy-section h2 {
+  grid-column: 1;
+}
+
+.home-copy-section > p:not(.eyebrow),
+.home-copy-section .button {
+  grid-column: 2;
+}
+
+.home-copy-section > p:not(.eyebrow) {
+  max-width: 60ch;
+  margin: 0;
+  color: var(--muted);
+}
+
+.home-copy-section .button {
+  width: fit-content;
+  margin-top: 0.75rem;
+}
+
 .not-found-page {
   gap: 1rem;
 }
@@ -257,6 +491,10 @@ button {
     gap: 0.85rem;
     font-size: 0.94rem;
   }
+
+  .home-hero {
+    gap: 2.5rem;
+  }
 }
 
 @media (max-width: 760px) {
@@ -309,6 +547,50 @@ button {
   .baseline-page {
     min-height: 20rem;
     padding-block: 4rem;
+  }
+
+  .home-hero,
+  .home-copy-section {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero {
+    gap: 2rem;
+    padding-block: 2rem 4rem;
+  }
+
+  .home-hero__image-wrap {
+    min-height: auto;
+    aspect-ratio: 2342 / 2685;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(2.55rem, 12vw, 4rem);
+  }
+
+  .object-passport div {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .home-section__heading {
+    grid-template-columns: 1fr;
+  }
+
+  .home-section__heading a {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .home-featured__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-copy-section .eyebrow,
+  .home-copy-section h2,
+  .home-copy-section > p:not(.eyebrow),
+  .home-copy-section .button {
+    grid-column: 1;
   }
 
   .site-footer__inner {

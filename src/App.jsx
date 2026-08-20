@@ -22,7 +22,7 @@ export function App() {
 
   let page;
   if (route.name === 'home') {
-    page = <HomePage />;
+    page = <HomePage onNavigate={navigate} />;
   } else if (route.name === 'collection') {
     page = <CollectionPage />;
   } else if (route.name === 'icon') {
