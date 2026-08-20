@@ -34,3 +34,12 @@ test('keeps only the hero eager and avoids fixed page overlays', async () => {
   assert.match(home, /<IconImage[^>]*mode="full" eager\s*\/>/);
   assert.doesNotMatch(styles, /position:\s*fixed/);
 });
+
+test('keeps the compact footer WhatsApp CTA at the shared 44px touch-target minimum', async () => {
+  const styles = await source('styles.css');
+
+  assert.match(
+    styles,
+    /\.consultation-links--compact \.button\s*\{[^}]*min-height:\s*2\.75rem;/s
+  );
+});
