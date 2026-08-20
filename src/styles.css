@@ -795,6 +795,54 @@ button {
   }
 }
 
+@media (min-width: 761px) and (max-width: 1008px) {
+  .site-header__inner {
+    flex-wrap: wrap;
+    min-height: 4.75rem;
+  }
+
+  .site-header__brand {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    max-width: 13.5rem;
+  }
+
+  .site-header__menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .site-header__nav {
+    display: none;
+    position: static;
+    flex-basis: 100%;
+    min-width: 0;
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface-soft);
+  }
+
+  .site-header__nav.is-open {
+    display: grid;
+    justify-items: start;
+    gap: 0.25rem;
+  }
+
+  .site-header__nav a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 2.75rem;
+  }
+
+  .site-header__consultation {
+    margin-top: 0.5rem;
+  }
+}
+
 @media (max-width: 760px) {
   :root {
     --content: calc(100vw - 32px);

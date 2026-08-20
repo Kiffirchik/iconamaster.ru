@@ -16,7 +16,7 @@ export function SiteHeader({ onNavigate }) {
     const closeOnEscape = (event) => {
       if (event.key === 'Escape') setIsOpen(false);
     };
-    const mediaQuery = window.matchMedia('(min-width: 761px)');
+    const mediaQuery = window.matchMedia('(min-width: 1009px)');
     const closeOnDesktop = (event) => {
       if (event.matches) setIsOpen(false);
     };
