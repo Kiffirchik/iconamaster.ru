@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { IconImage } from './IconImage.jsx';
+import { clampGalleryIndex } from '../lib/gallery.js';
 
 export function IconGallery({ images, title }) {
   const dialogRef = useRef(null);
@@ -7,7 +8,12 @@ export function IconGallery({ images, title }) {
   const restoreFocusRef = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const activeImage = images[activeIndex];
+  const displayedIndex = clampGalleryIndex(activeIndex, images.length);
+  const activeImage = images[displayedIndex];
+
+  useEffect(() => {
+    setActiveIndex((index) => clampGalleryIndex(index, images.length));
+  }, [images]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -41,14 +47,35 @@ export function IconGallery({ images, title }) {
   }
 
   function moveImage(offset) {
-    setActiveIndex((index) => (index + offset + images.length) % images.length);
+    setActiveIndex((index) => (clampGalleryIndex(index, images.length) + offset + images.length) % images.length);
   }
 
-  function handleDialogClose() {
+  function finishClose() {
     setIsOpen(false);
     if (restoreFocusRef.current) {
       triggerRef.current?.focus();
       restoreFocusRef.current = false;
+    }
+  }
+
+  function closeDialog() {
+    const dialog = dialogRef.current;
+    if (dialog?.open) {
+      dialog.close();
+      return;
+    }
+    finishClose();
+  }
+
+  function handleCancel(event) {
+    event.preventDefault();
+    closeDialog();
+  }
+
+  function handleDialogKeyDown(event) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeDialog();
     }
   }
 
@@ -72,14 +99,16 @@ export function IconGallery({ images, title }) {
         className="icon-gallery__dialog"
         ref={dialogRef}
         aria-label="Полное изображение иконы"
-        onClose={handleDialogClose}
+        onClose={finishClose}
+        onCancel={handleCancel}
+        onKeyDownCapture={handleDialogKeyDown}
       >
         <div className="icon-gallery__dialog-content">
           <div className="icon-gallery__dialog-actions">
             <button type="button" onClick={() => moveImage(-1)} disabled={images.length < 2}>
               Предыдущее изображение
             </button>
-            <button className="icon-gallery__close" type="button" onClick={() => dialogRef.current?.close()}>
+            <button className="icon-gallery__close" type="button" onClick={closeDialog}>
               Закрыть
             </button>
             <button type="button" onClick={() => moveImage(1)} disabled={images.length < 2}>
@@ -88,7 +117,7 @@ export function IconGallery({ images, title }) {
           </div>
           <IconImage image={activeImage} title={title} mode="full" />
           <p className="icon-gallery__count" aria-live="polite">
-            Изображение {activeIndex + 1} из {images.length}
+            Изображение {displayedIndex + 1} из {images.length}
           </p>
         </div>
       </dialog>
