@@ -21,7 +21,8 @@ export function CollectionPage({ onNavigate }) {
         <h1 id="collection-title">Иконы в наличии</h1>
         <p>Собрание произведений мастерской и проверенных икон для личного просмотра и консультации.</p>
       </section>
-      <section className="collection-page__catalog" aria-label="Каталог икон">
+      <section className="collection-page__catalog" aria-labelledby="collection-catalog-title">
+        <h2 id="collection-catalog-title" className="collection-page__catalog-title">Каталог икон</h2>
         <CatalogFilters
           items={icons}
           filters={filters}
