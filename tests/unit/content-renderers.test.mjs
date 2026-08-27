@@ -25,6 +25,22 @@ async function rendererModules(context) {
   return { ...sections, ...video, ...articles, ...videoPage, ...contacts };
 }
 
+function renderAfterImageError(ImageComponent, props) {
+  const imageComponent = ImageComponent(props);
+  const updater = {
+    enqueueSetState(instance, update) {
+      const nextState = typeof update === 'function' ? update(instance.state, instance.props) : update;
+      instance.state = { ...instance.state, ...nextState };
+    }
+  };
+  const instance = new imageComponent.type(imageComponent.props, undefined, updater);
+  const image = instance.render();
+
+  assert.equal(image.type, 'img');
+  image.props.onError();
+  return instance.render();
+}
+
 test('ContentSections renders only structured text, image and gallery data', async (context) => {
   const { ContentSections } = await rendererModules(context);
   const markup = renderToStaticMarkup(createElement(ContentSections, {
@@ -54,6 +70,20 @@ test('VideoEmbed defers iframe markup and produces a non-autoplay provider URL',
   assert.doesNotMatch(markup, /<iframe/);
   assert.equal(videoEmbedUrl({ provider: 'youtube', id: 'y10sw1KIOqQ' }), 'https://www.youtube-nocookie.com/embed/y10sw1KIOqQ?autoplay=0');
   assert.equal(videoEmbedUrl({ provider: 'unknown', id: 'unsafe' }), null);
+});
+
+test('article card cover becomes null after a runtime image error', async (context) => {
+  const { ArticleCover } = await rendererModules(context);
+  const image = { src: '/assets/articles/missing.jpg', alt: 'Статья', width: 1200, height: 800 };
+
+  assert.equal(renderAfterImageError(ArticleCover, { image }), null);
+});
+
+test('video thumbnail becomes null after a runtime image error', async (context) => {
+  const { VideoThumbnail } = await rendererModules(context);
+  const image = { src: '/assets/video/missing.jpg', alt: 'Видео', width: 1280, height: 720 };
+
+  assert.equal(renderAfterImageError(VideoThumbnail, { image }), null);
 });
 
 test('article and video indexes remain usable with empty collections', async (context) => {

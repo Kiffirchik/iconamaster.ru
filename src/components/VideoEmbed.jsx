@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FailureAwareImage } from './FailureAwareImage.jsx';
 
 export function videoEmbedUrl(video) {
   if (!video?.id) return null;
@@ -6,6 +7,10 @@ export function videoEmbedUrl(video) {
   if (video.provider === 'youtube') return `https://www.youtube-nocookie.com/embed/${id}?autoplay=0`;
   if (video.provider === 'vimeo') return `https://player.vimeo.com/video/${id}?autoplay=0`;
   return null;
+}
+
+export function VideoThumbnail({ image }) {
+  return <FailureAwareImage image={image} alt="" />;
 }
 
 export function VideoEmbed({ video }) {
@@ -29,16 +34,7 @@ export function VideoEmbed({ video }) {
         </div>
       ) : (
         <button className="video-embed__trigger" type="button" onClick={() => setIsActive(true)}>
-          {video.image?.src ? (
-            <img
-              src={video.image.src}
-              alt=""
-              width={video.image.width}
-              height={video.image.height}
-              loading="lazy"
-              decoding="async"
-            />
-          ) : null}
+          <VideoThumbnail image={video.image} />
           <span>Смотреть видео</span>
         </button>
       )}

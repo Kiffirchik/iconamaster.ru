@@ -1,7 +1,13 @@
+import { FailureAwareImage } from '../components/FailureAwareImage.jsx';
+
 function follow(event, path, onNavigate) {
   if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
   event.preventDefault();
   onNavigate(path);
+}
+
+export function ArticleCover({ image }) {
+  return <FailureAwareImage image={image} />;
 }
 
 export function ArticlesPage({ articles = [], onNavigate }) {
@@ -20,9 +26,7 @@ export function ArticlesPage({ articles = [], onNavigate }) {
             const image = article.image || article.cover;
             return (
               <article className="article-card" key={article.slug}>
-                {image?.src ? (
-                  <img src={image.src} alt={image.alt || ''} width={image.width} height={image.height} loading="lazy" decoding="async" />
-                ) : null}
+                <ArticleCover image={image} />
                 <div className="article-card__content">
                   <h2><a href={`/articles/${article.slug}`} onClick={(event) => follow(event, `/articles/${article.slug}`, onNavigate)}>{article.title}</a></h2>
                   {article.summary || article.intro || article.excerpt ? <p>{article.summary || article.intro || article.excerpt}</p> : null}
