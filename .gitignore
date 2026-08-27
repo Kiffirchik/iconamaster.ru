@@ -3,3 +3,4 @@ dist/
 .vite/
 .turbo/
 .DS_Store
+/tmp/migration-inventory.json
