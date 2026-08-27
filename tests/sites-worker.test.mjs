@@ -18,7 +18,7 @@ test("serves existing static assets without a fallback", async () => {
   assert.deepEqual(calls, ["/assets/app.js"]);
 });
 
-test("falls back to index.html for an unknown app route", async () => {
+test("falls back to the app shell for an unknown app route", async () => {
   const calls = [];
   const response = await worker.fetch(
     new Request("https://example.test/flow/step-two?source=share", {
@@ -29,8 +29,8 @@ test("falls back to index.html for an unknown app route", async () => {
         fetch: async (request) => {
           const url = new URL(request.url);
           calls.push(url.pathname + url.search);
-          return new Response(url.pathname === "/index.html" ? "app" : "missing", {
-            status: url.pathname === "/index.html" ? 200 : 404,
+          return new Response(url.pathname === "/" ? "app" : "missing", {
+            status: url.pathname === "/" ? 200 : 404,
           });
         },
       },
@@ -38,10 +38,10 @@ test("falls back to index.html for an unknown app route", async () => {
   );
 
   assert.equal(response.status, 200);
-  assert.deepEqual(calls, ["/flow/step-two?source=share", "/index.html"]);
+  assert.deepEqual(calls, ["/flow/step-two?source=share", "/"]);
 });
 
-test("keeps a direct app route when static assets would redirect it to root", async () => {
+test("serves the app shell from root when static assets redirect an app route", async () => {
   const response = await worker.fetch(
     new Request("https://example.test/collection", {
       headers: { accept: "text/html" },
@@ -50,7 +50,7 @@ test("keeps a direct app route when static assets would redirect it to root", as
       ASSETS: {
         fetch: async (request) => {
           const pathname = new URL(request.url).pathname;
-          if (pathname === "/index.html") {
+          if (pathname === "/") {
             return new Response("app shell", { status: 200 });
           }
 

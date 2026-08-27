@@ -17,9 +17,9 @@ export default {
       return response;
     }
 
-    const indexUrl = new URL(request.url);
-    indexUrl.pathname = "/index.html";
-    indexUrl.search = "";
-    return env.ASSETS.fetch(new Request(indexUrl, request));
+    const appShellUrl = new URL(request.url);
+    appShellUrl.pathname = "/";
+    appShellUrl.search = "";
+    return env.ASSETS.fetch(new Request(appShellUrl, request));
   },
 };
