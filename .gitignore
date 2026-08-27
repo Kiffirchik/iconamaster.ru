@@ -5,3 +5,4 @@ dist/
 .DS_Store
 /tmp/migration-inventory.json
 /tmp/icon-migration-run.json
+/tmp/editorial-migration-run.json

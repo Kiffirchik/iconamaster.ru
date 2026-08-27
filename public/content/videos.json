@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "provider": "youtube",
+    "id": "y10sw1KIOqQ",
+    "title": "Мастерская и иконопись",
+    "description": "Посмотрите материалы о работе московской иконописной мастерской. Видео запускаются только после нажатия.",
+    "autoplay": false,
+    "published": true,
+    "sourceUrl": "https://iconamaster.cargo.site/VIDEO"
+  },
+  {
+    "provider": "vimeo",
+    "id": "353365425",
+    "title": "Работа мастерской",
+    "description": "Посмотрите материалы о работе московской иконописной мастерской. Видео запускаются только после нажатия.",
+    "autoplay": false,
+    "published": true,
+    "sourceUrl": "https://iconamaster.cargo.site/VIDEO"
+  }
+]

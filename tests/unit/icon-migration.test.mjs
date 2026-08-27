@@ -231,10 +231,11 @@ test('asset filenames are deterministic from slug and gallery order', async () =
   }
 });
 
-test('durable migration report has stable provenance, outputs, and checksums only', async () => {
-  const [report, manifest] = await Promise.all([
+test('durable migration report has stable provenance and verifies icon-owned outputs', async () => {
+  const [report, manifest, aliases] = await Promise.all([
     loadJson('../../reports/icon-migration.json'),
     loadJson('../../public/assets/icons/manifest.json'),
+    loadJson('../../public/content/aliases.json'),
   ]);
   const serialized = JSON.stringify(report);
 
@@ -251,6 +252,10 @@ test('durable migration report has stable provenance, outputs, and checksums onl
 
   for (const output of report.outputs) {
     assert.match(output.path, /^(public|reports)\//u);
+    if (output.id === 'aliases') {
+      assert.ok(Object.keys(aliases).length >= output.records, 'downstream migrations may extend shared aliases');
+      continue;
+    }
     const bytes = await readFile(new URL(`../../${output.path}`, import.meta.url));
     assert.equal(output.bytes, bytes.length, output.path);
     assert.equal(output.sha256, sha256(bytes), output.path);

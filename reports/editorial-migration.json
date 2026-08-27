@@ -1,0 +1,3191 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "siteUrl": "https://iconamaster.cargo.site",
+    "archiveName": "pre-optimized-publish-20260818",
+    "inventorySchemaVersion": 2
+  },
+  "outputs": [
+    {
+      "id": "pages",
+      "path": "public/content/pages.json",
+      "records": 7,
+      "bytes": 44413,
+      "sha256": "cc19e034add9c4dda0872be75cdf655765002a5ef78d4919ec66fab8f4b876c9"
+    },
+    {
+      "id": "articles",
+      "path": "public/content/articles.json",
+      "records": 8,
+      "bytes": 174524,
+      "sha256": "72be9b91db5a295b19a62342faf87f65bef2a3e5b4fddd2193cf2660b7183be4"
+    },
+    {
+      "id": "videos",
+      "path": "public/content/videos.json",
+      "records": 2,
+      "bytes": 870,
+      "sha256": "3bfe9cd82745fa32894cafe6d98cb766b3d00cb419463c4ed163d4490ffab344"
+    },
+    {
+      "id": "contacts",
+      "path": "public/content/contacts.json",
+      "records": 1,
+      "bytes": 153,
+      "sha256": "25a529076334462fee79de674ccaaa995623a72f067fe7fa41b570502ce24951"
+    },
+    {
+      "id": "aliases",
+      "path": "public/content/aliases.json",
+      "records": 78,
+      "bytes": 5109,
+      "sha256": "1644d90012f148b1aa9d953b47c600e73d721c8dd178c4175e8a56a84f37c82e"
+    }
+  ],
+  "summary": {
+    "records": {
+      "pages": 7,
+      "articles": 8,
+      "videos": 2,
+      "contacts": 1
+    },
+    "aliases": 78,
+    "editorialAliases": 23,
+    "relevantImageSources": 171,
+    "assetFiles": 171,
+    "assetBytes": 146498667,
+    "omittedImageSources": 0,
+    "omittedBlocks": 1,
+    "repairedNavigationParagraphs": 8,
+    "unresolvedMojibakeMarkers": 0
+  },
+  "encoding": {
+    "policy": "Repair only recognized UTF-8-as-Windows-1251 mojibake sequences; preserve all other source wording.",
+    "repairedMarkers": 7812,
+    "records": [
+      {
+        "ownerType": "page",
+        "ownerSlug": "workshop",
+        "sourceMarkers": 636,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      },
+      {
+        "ownerType": "page",
+        "ownerSlug": "excursions",
+        "sourceMarkers": 1193,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      },
+      {
+        "ownerType": "page",
+        "ownerSlug": "measure-icon",
+        "sourceMarkers": 1324,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      },
+      {
+        "ownerType": "page",
+        "ownerSlug": "restoration",
+        "sourceMarkers": 1936,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      },
+      {
+        "ownerType": "page",
+        "ownerSlug": "kiots",
+        "sourceMarkers": 0,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      },
+      {
+        "ownerType": "page",
+        "ownerSlug": "oklads",
+        "sourceMarkers": 1681,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      },
+      {
+        "ownerType": "page",
+        "ownerSlug": "iconostases",
+        "sourceMarkers": 1042,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      },
+      {
+        "ownerType": "article",
+        "ownerSlug": "gorbunov-icons-kholuy",
+        "sourceMarkers": 0,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      },
+      {
+        "ownerType": "article",
+        "ownerSlug": "kineshma-icon-painting",
+        "sourceMarkers": 0,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      },
+      {
+        "ownerType": "article",
+        "ownerSlug": "panteleimon-monastery-icons",
+        "sourceMarkers": 0,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      },
+      {
+        "ownerType": "article",
+        "ownerSlug": "theotokos-russkaya",
+        "sourceMarkers": 0,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      },
+      {
+        "ownerType": "article",
+        "ownerSlug": "pavlovo-na-oke",
+        "sourceMarkers": 0,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      },
+      {
+        "ownerType": "article",
+        "ownerSlug": "history-of-icon-oklads",
+        "sourceMarkers": 0,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      },
+      {
+        "ownerType": "article",
+        "ownerSlug": "icon-painting-canon",
+        "sourceMarkers": 0,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      },
+      {
+        "ownerType": "article",
+        "ownerSlug": "guslitsa",
+        "sourceMarkers": 0,
+        "unresolvedMarkers": 0,
+        "unresolvedSamples": []
+      }
+    ],
+    "unresolved": []
+  },
+  "mediaPolicy": "Only relevant original URLs and image data embedded in the archived editorial body are copied. Bytes are never decoded, resized, or re-encoded.",
+  "assets": [
+    {
+      "ownerType": "page",
+      "ownerSlug": "excursions",
+      "order": 1,
+      "src": "/assets/pages/excursions.jpg",
+      "width": 4032,
+      "height": 3024,
+      "bytes": 3331531,
+      "sha256": "f4e3d96281a907c54af62a21ddb913348536bf208e3d90d994bde72cf7cb2844",
+      "sourceRef": "https://freight.cargo.site/t/original/i/3745172a1a0aa27e1c322862b6937e61e16dfec7c0ef3039ca22f9e024ca8823/FullSizeRender-4.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "excursions",
+      "order": 2,
+      "src": "/assets/pages/excursions-2.jpg",
+      "width": 4032,
+      "height": 3024,
+      "bytes": 3697622,
+      "sha256": "5db4985e6dc672a2e6173f89309395d2338d9649ba977e7a0378d6a8e55c4841",
+      "sourceRef": "https://freight.cargo.site/t/original/i/89785541133f8f1649a47326395cc8bb9159b1127847425aea8220e26e3e6bf5/FullSizeRender-9.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "excursions",
+      "order": 3,
+      "src": "/assets/pages/excursions-3.jpg",
+      "width": 4032,
+      "height": 3024,
+      "bytes": 3304781,
+      "sha256": "835351dd8fc22b571fb63cfd9e01673454be22ca217e9aaef003bd3c3ae2cd11",
+      "sourceRef": "https://freight.cargo.site/t/original/i/2c129c4f515c72229d85abd92fc3d5e25e8cfb2ae0852214e97f10e79f06b69c/FullSizeRender-7.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "excursions",
+      "order": 4,
+      "src": "/assets/pages/excursions-4.jpg",
+      "width": 3888,
+      "height": 1254,
+      "bytes": 3324026,
+      "sha256": "f970a234059236f64ba899e14e809a70b32030aa941d01a4754ba2c3d6e3928f",
+      "sourceRef": "https://freight.cargo.site/t/original/i/8d1878126ea843717f944f5e28b1236c25c3a066656bc24cd2e71bbc82d32bd0/------.-.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "excursions",
+      "order": 5,
+      "src": "/assets/pages/excursions-5.jpg",
+      "width": 892,
+      "height": 556,
+      "bytes": 192435,
+      "sha256": "90ec209632e0cf47dc4ac48c3a7b306701d80b4d7b74663139e6a8ab98c322f3",
+      "sourceRef": "https://freight.cargo.site/t/original/i/09ed6ea8c54ed8d5456a8e358189a60b3dcb186d4db8dcea009f0b87d83a65d8/--.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "excursions",
+      "order": 6,
+      "src": "/assets/pages/excursions-6.jpg",
+      "width": 1920,
+      "height": 2560,
+      "bytes": 2334013,
+      "sha256": "dd073622d5f34188029fc4ba21894ac42f52f7d584082d05cb69ff8def1ee84f",
+      "sourceRef": "https://freight.cargo.site/t/original/i/b5ce0528b4c2fa92801117740fe9a3cd914ab0539db24d5e2a2f53e56a1ab88d/IMG_20161024_134933.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "excursions",
+      "order": 7,
+      "src": "/assets/pages/excursions-7.jpg",
+      "width": 4276,
+      "height": 4316,
+      "bytes": 4500403,
+      "sha256": "63542af7dd3517f8559df423c2c3bcb24bf6b256f293093d1273aac6a88c5583",
+      "sourceRef": "https://freight.cargo.site/t/original/i/e8d468f192610fce23b6ab132c23e8e05aa1d70eee614df76d6ca760986d9839/----.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "measure-icon",
+      "order": 1,
+      "src": "/assets/pages/measure-icon.jpg",
+      "width": 1553,
+      "height": 3587,
+      "bytes": 709440,
+      "sha256": "2e33a38c46d8af8001e385c9ca173b1b7fee3dc2d52a20e7cc958de00782f6f4",
+      "sourceRef": "https://freight.cargo.site/t/original/i/b5b87dbbb0f053181b0890f559d27e8cfd3f17f6b3130c7bb1cda35838e79508/1.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "measure-icon",
+      "order": 2,
+      "src": "/assets/pages/measure-icon-2.jpg",
+      "width": 280,
+      "height": 580,
+      "bytes": 31433,
+      "sha256": "88d522754295bdd6f7d069d7a2b18b8bcf4a24edb39de132830ff1e828062f6b",
+      "sourceRef": "https://freight.cargo.site/t/original/i/2ba0aa65217199e5265e256819177c1411f157ffee83e0a77a570505ee263437/4.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "measure-icon",
+      "order": 3,
+      "src": "/assets/pages/measure-icon-3.jpg",
+      "width": 383,
+      "height": 822,
+      "bytes": 144648,
+      "sha256": "aba77af8daa9efc2aeccc685bf14a6851a0a3c43044de70b2efc759d92f934ce",
+      "sourceRef": "https://freight.cargo.site/t/original/i/0add5d7d202faf9168b84d02650916799c87e146bd016373fa54a55a786e4cc5/---.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "measure-icon",
+      "order": 4,
+      "src": "/assets/pages/measure-icon-4.jpg",
+      "width": 528,
+      "height": 1061,
+      "bytes": 413250,
+      "sha256": "0833e4b4a7c7b802361e1f051ca6dbf452635e67472b28ac113502a5d2fdec21",
+      "sourceRef": "https://freight.cargo.site/t/original/i/06d9f323fbe1f5358721be2493d99533bbd314ae029314dff3feb832dfc53188/-----52--25--iconamaster.ru.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "measure-icon",
+      "order": 5,
+      "src": "/assets/pages/measure-icon-5.jpg",
+      "width": 1513,
+      "height": 3181,
+      "bytes": 2178997,
+      "sha256": "d0d30f33b3d9d0c8d0ad8076c9c953ffb38bb09405be0d9ecdddd7875bed5482",
+      "sourceRef": "https://freight.cargo.site/t/original/i/49622d5490e254ca9c210f23f5e4b1481f928917d5564373b412307e1ced709f/--.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "measure-icon",
+      "order": 6,
+      "src": "/assets/pages/measure-icon-6.jpg",
+      "width": 1760,
+      "height": 3540,
+      "bytes": 5502170,
+      "sha256": "51e855d678d8e1f6c07eda9eba1147fce2a311c4c1060a51e1c2b18683995c6b",
+      "sourceRef": "https://freight.cargo.site/t/original/i/c7e212435b62bdadca40f6a63e0ca8db8656e930fb7c5c19dfae7023c0d9a6a9/---iconamaster.ru.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "measure-icon",
+      "order": 7,
+      "src": "/assets/pages/measure-icon-7.jpg",
+      "width": 1504,
+      "height": 3114,
+      "bytes": 1710359,
+      "sha256": "dfcda09cf0375d640f26886288438f51e038af1071a31c3e3278743b4c2855db",
+      "sourceRef": "https://freight.cargo.site/t/original/i/8c8dcd22529a785f641e901871ecfd014e88265cd7d41817abe75ea5c7144803/---.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "measure-icon",
+      "order": 8,
+      "src": "/assets/pages/measure-icon-8.jpg",
+      "width": 404,
+      "height": 888,
+      "bytes": 163844,
+      "sha256": "9ee67d00d167ea948e044ded6a7b19803c2f4c134067c66177b03554b47d5625",
+      "sourceRef": "https://freight.cargo.site/t/original/i/0b52dad919ddb917ee85ab180ed93516322ebb7d9e71719c2de7eb579b09974d/_----52--25.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "restoration",
+      "order": 1,
+      "src": "/assets/pages/restoration.jpg",
+      "width": 1440,
+      "height": 904,
+      "bytes": 418276,
+      "sha256": "f53a549836b2073dab5c60179134c541da511b489a36fd88312967464a9360ce",
+      "sourceRef": "https://freight.cargo.site/t/original/i/574b76635797598838c150868edd6ec9b0ac3294fb71e2690a686629a13c33fd/WhatsApp-Image-2019-08-21-at-17.48.57.jpeg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "restoration",
+      "order": 2,
+      "src": "/assets/pages/restoration-2.jpg",
+      "width": 847,
+      "height": 507,
+      "bytes": 191468,
+      "sha256": "77b56cd449f2f0c2b1096c90514cbfef9e65c13c0381c31a5fd881939aeee65f",
+      "sourceRef": "https://freight.cargo.site/t/original/i/791a7149a31d1c2b167970bc37d7178f9989a39cbe1c0b29f894b0097a73d2e9/--------.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "restoration",
+      "order": 3,
+      "src": "/assets/pages/restoration-3.jpg",
+      "width": 4776,
+      "height": 3021,
+      "bytes": 3465718,
+      "sha256": "45ba5e1e67803f723a842d2645c550e33a6158c95315281298bff22b4ede8b00",
+      "sourceRef": "https://freight.cargo.site/t/original/i/e5a9d8c350a81779e3bbc241e19e8731d14483e1675b3cc8b5ee3a654ac992e7/----19-.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "restoration",
+      "order": 4,
+      "src": "/assets/pages/restoration-4.jpg",
+      "width": 5000,
+      "height": 2982,
+      "bytes": 3703281,
+      "sha256": "d852f515484068e8e3bc362f1134d5678fe93564b137816d9358fec1c00637fc",
+      "sourceRef": "https://freight.cargo.site/t/original/i/a4387c31827143551e47ecbcdf402ae2fbc77d6b6bb6111c3fa3073d947d6857/------iconamaster.ru.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "restoration",
+      "order": 5,
+      "src": "/assets/pages/restoration-5.jpg",
+      "width": 1269,
+      "height": 732,
+      "bytes": 596920,
+      "sha256": "9d4cacc379c9164ffef43aed96b26b061e2fb0f78dc69a3960cec9cb368024c2",
+      "sourceRef": "https://freight.cargo.site/t/original/i/a5acd26eb10bc16082242b537fec23394ef270180e19d9ce63844871ab2a0cd1/-----.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "restoration",
+      "order": 6,
+      "src": "/assets/pages/restoration-6.jpg",
+      "width": 1278,
+      "height": 326,
+      "bytes": 227520,
+      "sha256": "fb3d59de39fb8ba7171c951a20c00831ec3c69a8f1c42bb4b82411849109e53f",
+      "sourceRef": "https://freight.cargo.site/t/original/i/13344ea5526f30f48f06a38f80aae81c99ca9d90e0c8fe73960d42e1b49f32aa/-----.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "restoration",
+      "order": 7,
+      "src": "/assets/pages/restoration-7.jpg",
+      "width": 5304,
+      "height": 3224,
+      "bytes": 5724400,
+      "sha256": "2081c9c86abe0f8d0957e794a68fddc14fdd90d81002b87bd61679dee10e03cf",
+      "sourceRef": "https://freight.cargo.site/t/original/i/2d0a8c664680bbfaf0dd00e010e2e0bf802cda9edfef4467f03c5efe05c24f49/------.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "restoration",
+      "order": 8,
+      "src": "/assets/pages/restoration-8.jpg",
+      "width": 4500,
+      "height": 2670,
+      "bytes": 1998563,
+      "sha256": "c974c1eadad1d60c71a49a79d1854c1c27b22e9c00f85bc768dc24aa4e025097",
+      "sourceRef": "https://freight.cargo.site/t/original/i/9658b3ca1ef6be5ee20932d15b87cbfdd3e01d019bfa4f7d8b0d5095efbd0583/3.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "restoration",
+      "order": 9,
+      "src": "/assets/pages/restoration-9.png",
+      "width": 1243,
+      "height": 799,
+      "bytes": 2025780,
+      "sha256": "2e80c549dca96de4df9835fcef04f534713c42a2950beadfc0d225a3da338b3a",
+      "sourceRef": "https://iconamaster.cargo.site/RESTAVRATIY#embedded-image-9",
+      "provenance": "local-archive-data-url",
+      "evidence": [
+        "rendered-local-page-content"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "restoration",
+      "order": 10,
+      "src": "/assets/pages/restoration-10.jpg",
+      "width": 1533,
+      "height": 796,
+      "bytes": 605094,
+      "sha256": "81b839768084249a99d5c54404225fdff2ab71d36281bd0b5e6186842f01b8ae",
+      "sourceRef": "https://freight.cargo.site/t/original/i/faa56fc159b1a4882992cd8f190e09534cfd1e430520f7ab7e86823621b2a5b5/-----..jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "restoration",
+      "order": 11,
+      "src": "/assets/pages/restoration-11.jpg",
+      "width": 1474,
+      "height": 797,
+      "bytes": 327461,
+      "sha256": "e95c0d7c35137cbba584286b7ddf693951cde2b30b14aaafcf5efdeaa928c1ef",
+      "sourceRef": "https://freight.cargo.site/t/original/i/64adba2dd61c88cfd56dd3e5efa1d27c4a1253fc3d76823d7166d98ce1ff12e7/-----.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "restoration",
+      "order": 12,
+      "src": "/assets/pages/restoration-12.jpg",
+      "width": 400,
+      "height": 600,
+      "bytes": 111677,
+      "sha256": "c90117e3f25935a09f80d7c056cb71cd811e6fad04be653e2b57a8be192b52df",
+      "sourceRef": "https://freight.cargo.site/t/original/i/8c2e1aab4558e962e23627b117de259320a84a8e5833f4d5c6a56db07aaa4ec0/mojka-nastennyh-rospisej.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "restoration",
+      "order": 13,
+      "src": "/assets/pages/restoration-13.jpg",
+      "width": 888,
+      "height": 592,
+      "bytes": 175464,
+      "sha256": "c38cb66683deecc76d78f421e823cc8708e04f5a2cbb712b3db68155200f0124",
+      "sourceRef": "https://freight.cargo.site/t/original/i/271f26151bb36899331c7ffa442196d84ddb27c3ba8edc7d5ddf2ec0ded5096e/------2011-.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 1,
+      "src": "/assets/pages/kiots.jpg",
+      "width": 700,
+      "height": 786,
+      "bytes": 309512,
+      "sha256": "7ecb4809486acd87c768a74c7b2ba3ff4d5f30c312098cc14f2cbe135ef51868",
+      "sourceRef": "https://freight.cargo.site/t/original/i/c7f578761ea992e528716bfd9bcb85cce5a0426d9c43bd705329d117c9a8a9b6/bogorodica-zivonosnyj-istocnik-2.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 2,
+      "src": "/assets/pages/kiots-2.jpg",
+      "width": 592,
+      "height": 888,
+      "bytes": 270607,
+      "sha256": "cfd5caf367ec94fc06bfbebefe3b5fbf040fee9d60b2dc7b90fbb02e2b175096",
+      "sourceRef": "https://freight.cargo.site/t/original/i/9e4f6f040254b36a68869da9181af960f6c0d9464e6e0ca91b5cea9b3213fbb9/bogorodica-vladimirskaa-19-vek-v.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 3,
+      "src": "/assets/pages/kiots-3.jpg",
+      "width": 2048,
+      "height": 1536,
+      "bytes": 1490243,
+      "sha256": "50303517002163224db7c549c8511261dc3234dedd2044b5f8cff2baf2c1cb31",
+      "sourceRef": "https://freight.cargo.site/t/original/i/9d978a161f584501ea90f1e6749faf43afc95b0a81ee4efbe8ae074f88ea3a34/ikonostas-pocaevskogo-hrama-v-mi.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 4,
+      "src": "/assets/pages/kiots-4.jpg",
+      "width": 720,
+      "height": 1280,
+      "bytes": 140253,
+      "sha256": "d6235cc22d3b518dceb7ee403d569ae729c9960a0e9e036882ce74cb5e5741ed",
+      "sourceRef": "https://freight.cargo.site/t/original/i/8d7872ff7f8c8151f325bd5d604d1a738d2298f7339f1792bf12e62eeca79b7b/stasidia-igumenskaa-inter.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 5,
+      "src": "/assets/pages/kiots-5.jpg",
+      "width": 592,
+      "height": 888,
+      "bytes": 235968,
+      "sha256": "ec6cb98d932f4bcbdd61bdeedb1bcf77ce37adc2d8b33a21c4e7113a646e4efd",
+      "sourceRef": "https://freight.cargo.site/t/original/i/1bcafa51244505240a272691723035cf4d6337964823fe9349608ddd4dcd4d16/img-20190627-wa0041.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 6,
+      "src": "/assets/pages/kiots-6.jpg",
+      "width": 1280,
+      "height": 992,
+      "bytes": 409278,
+      "sha256": "3072fb106b1937b8d33c0ae6af781ad6a7ed78aed81abc0d0b07dccf0e9c7e23",
+      "sourceRef": "https://freight.cargo.site/t/original/i/877a059309770ee12cfe772bcce4c951ef8de233c6acb4e0ed1d83d9d8cbb495/img-20190523-wa0017.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 7,
+      "src": "/assets/pages/kiots-7.jpg",
+      "width": 280,
+      "height": 306,
+      "bytes": 36912,
+      "sha256": "cd278a7a36c8e10e31180c2fcb4d87b33736a94e729ced982d1789de2ca82a18",
+      "sourceRef": "https://freight.cargo.site/t/original/i/84102951ccd961b2997b114f7844adbd26dfdb2b5c0629bd25eb60d4aac9098f/ki11.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 8,
+      "src": "/assets/pages/kiots-8.jpg",
+      "width": 280,
+      "height": 628,
+      "bytes": 56796,
+      "sha256": "deb5ffaf387baf96016eb6c2ea0e509e472f06b594028d35895d1b668a6a4126",
+      "sourceRef": "https://freight.cargo.site/t/original/i/611ee618887bed34b02797e890ec52cc3b7d108c93a80e1a6e3408ea6f152951/ki4.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 9,
+      "src": "/assets/pages/kiots-9.jpg",
+      "width": 1412,
+      "height": 3217,
+      "bytes": 729484,
+      "sha256": "1e57c89eff7b65e9e56e531a452a2a7538eed0e99605620e8628b7365e9aa07b",
+      "sourceRef": "https://freight.cargo.site/t/original/i/338910ec40c1e94fad8db272ec2cd6ad49116feaccc720cd724d8d35591d8781/trojnoj-reznoj-kiot.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 10,
+      "src": "/assets/pages/kiots-10.jpg",
+      "width": 2484,
+      "height": 2362,
+      "bytes": 748895,
+      "sha256": "2679a875a22222772331402ab8cc8ddff3946aa9971bf664dbb3c6d959150aa5",
+      "sourceRef": "https://freight.cargo.site/t/original/i/60de6a5171cb89770956a84c025955fafdb9b8eb4c5be32adae6514bb92938fb/kiot-profilnyj-dubovyj-massivnyj.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 11,
+      "src": "/assets/pages/kiots-11.jpg",
+      "width": 592,
+      "height": 888,
+      "bytes": 212058,
+      "sha256": "38459e2511370499fe3b7e83de02aeca75d1bd6630e1ad3a3a3f411d7cf48efd",
+      "sourceRef": "https://freight.cargo.site/t/original/i/67ce6da68b7aa947d64c9b0b85a4a50303e697c01eb80f3d637ec919a298a0a4/reznoj-napolnyj-kiot-inter.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 12,
+      "src": "/assets/pages/kiots-12.jpg",
+      "width": 639,
+      "height": 1175,
+      "bytes": 515601,
+      "sha256": "b8cc4d55a67a064a56a3c95e44de4f58e11bcdc8c974ea6e3a3f60f36680045a",
+      "sourceRef": "https://freight.cargo.site/t/original/i/13bdeebae085aa608a13f10b706fbcc02fbc2fdcc3d8db38d39e9d98252bc908/kiot-iz-aleksevskogo-podvora.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 13,
+      "src": "/assets/pages/kiots-13.jpg",
+      "width": 388,
+      "height": 818,
+      "bytes": 194689,
+      "sha256": "8222bf222d0ee0a9a80333ecaaaa52ff84e47123bd5c378838555b3d2a4eb441",
+      "sourceRef": "https://freight.cargo.site/t/original/i/f07badf330c1f2494cd80221158db8e7855700f285cb061ef34bb47501ca7c44/kiot-bolsoj-napolnyj-v-gorkah-in.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 14,
+      "src": "/assets/pages/kiots-14.jpg",
+      "width": 505,
+      "height": 873,
+      "bytes": 198814,
+      "sha256": "0a45223da4d7f797858f585ec4cb9c69fc7076992207d0dea7d3cc3de893ce71",
+      "sourceRef": "https://freight.cargo.site/t/original/i/a25db34dacd777ca0d9000d9ee15289cde693aae2adeedb3e60ce61bc93acab7/raspisnoj-dubovyj-kiot-vid-s-bok.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "kiots",
+      "order": 15,
+      "src": "/assets/pages/kiots-15.jpg",
+      "width": 549,
+      "height": 1280,
+      "bytes": 472641,
+      "sha256": "ebf2b3adff75d809bed9f755b2c3becd20368917b039932074aaf03d0c210731",
+      "sourceRef": "https://freight.cargo.site/t/original/i/568d7e1a2cafa8a4444b51ecd50d1c838ee709da21eeffea95ccaa6e226fc19e/reznoj-kiot-s-pozolotoj.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "oklads",
+      "order": 1,
+      "src": "/assets/pages/oklads.jpg",
+      "width": 605,
+      "height": 813,
+      "bytes": 383984,
+      "sha256": "ef94026e17dff5d5477d38e1648c41ff7c427ff92bcd9e35ec00c90572dcb72d",
+      "sourceRef": "https://freight.cargo.site/t/original/i/e23e750326102c37bebdd48eea0f71936342fdc445e2966991e385e846dc3c4d/bogorodica-ierusalimskaa-v-oklad.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "oklads",
+      "order": 2,
+      "src": "/assets/pages/oklads-2.jpg",
+      "width": 664,
+      "height": 861,
+      "bytes": 222511,
+      "sha256": "4c8a1e3790026f3217bf533b52bdab5f3eb681908aa5de5628cbf44b0d4aa3ba",
+      "sourceRef": "https://freight.cargo.site/t/original/i/ccfa257d625801161b1ab99f8a84fa0b5a4c0a46188a686e74a482a8947c5788/dsc8754.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "oklads",
+      "order": 3,
+      "src": "/assets/pages/oklads-3.jpg",
+      "width": 613,
+      "height": 773,
+      "bytes": 221775,
+      "sha256": "ff41731e5e403ff76a2d6a27b1514d5e0ff720aefe5092e3d9b6e530b93a5aec",
+      "sourceRef": "https://freight.cargo.site/t/original/i/07a1d16ea0c4bd36a5769b77fc01d9e49007a27a92d5f61b2d8c760673e0aca6/pr2.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "oklads",
+      "order": 4,
+      "src": "/assets/pages/oklads-4.jpg",
+      "width": 706,
+      "height": 807,
+      "bytes": 341503,
+      "sha256": "af7bc7e2c90e7ea8e7555445a45e70d47db2255ac653333664e5cb102cb585b4",
+      "sourceRef": "https://freight.cargo.site/t/original/i/22b0dcaff5d79be181e564b2e8022cdefb17256d00155f4a26ea577ddabeda4d/spas.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "oklads",
+      "order": 5,
+      "src": "/assets/pages/oklads-5.jpg",
+      "width": 687,
+      "height": 787,
+      "bytes": 314115,
+      "sha256": "5299a694e8fc5a6178defd05ce53b48a64cb38ec7373e953a1f1ed89b5aa054d",
+      "sourceRef": "https://freight.cargo.site/t/original/i/6e599f121b1130b375eed40dbcb8abe0b4e181dbe3d42d382c1dab5e74e3e3ea/pr2-2.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "oklads",
+      "order": 6,
+      "src": "/assets/pages/oklads-6.jpg",
+      "width": 855,
+      "height": 604,
+      "bytes": 288498,
+      "sha256": "37c344e758cf2ad1f45d7c1baf029a139693ffa2c868cffe6a92b880b8266284",
+      "sourceRef": "https://freight.cargo.site/t/original/i/44cc47bacf4a31a53ee95214a5bdd7b9014bf63429e184afe02d100b19fb7d50/18-ikona-spas-vsederzitel-v-drag.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "oklads",
+      "order": 7,
+      "src": "/assets/pages/oklads-7.jpg",
+      "width": 588,
+      "height": 714,
+      "bytes": 271845,
+      "sha256": "522fcf148d246a456d2a6ffd2d16f688b5586ff2e11abb967e0abcb8d91c0aee",
+      "sourceRef": "https://freight.cargo.site/t/original/i/89d6cd9c22c959fe97789157a160c6386cc9ca1a9a89ce3612eef9f60f6c3400/i27.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "oklads",
+      "order": 8,
+      "src": "/assets/pages/oklads-8.png",
+      "width": 214,
+      "height": 319,
+      "bytes": 176518,
+      "sha256": "fd13a7ca7df31c525c02c82191d15a51e4c1a751f6abc5c1273dc568ebf3918f",
+      "sourceRef": "https://iconamaster.cargo.site/OKLADY#embedded-image-8",
+      "provenance": "local-archive-data-url",
+      "evidence": [
+        "rendered-local-page-content"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "oklads",
+      "order": 9,
+      "src": "/assets/pages/oklads-9.png",
+      "width": 214,
+      "height": 320,
+      "bytes": 169483,
+      "sha256": "dd325be5b56fe63c0c50771721ff84373cd80753fcaa162879380fff385fc327",
+      "sourceRef": "https://iconamaster.cargo.site/OKLADY#embedded-image-9",
+      "provenance": "local-archive-data-url",
+      "evidence": [
+        "rendered-local-page-content"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "oklads",
+      "order": 10,
+      "src": "/assets/pages/oklads-10.png",
+      "width": 297,
+      "height": 348,
+      "bytes": 310932,
+      "sha256": "486f2048acf9f4ef3787c038992d665065cb5c1efea89f106a790d7cd994fbc1",
+      "sourceRef": "https://iconamaster.cargo.site/OKLADY#embedded-image-10",
+      "provenance": "local-archive-data-url",
+      "evidence": [
+        "rendered-local-page-content"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "oklads",
+      "order": 11,
+      "src": "/assets/pages/oklads-11.png",
+      "width": 308,
+      "height": 345,
+      "bytes": 337452,
+      "sha256": "b90f06706159d43bce01817f60be6cd5e92a32223ffe7fa80579b675a0558a87",
+      "sourceRef": "https://iconamaster.cargo.site/OKLADY#embedded-image-11",
+      "provenance": "local-archive-data-url",
+      "evidence": [
+        "rendered-local-page-content"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "oklads",
+      "order": 12,
+      "src": "/assets/pages/oklads-12.png",
+      "width": 296,
+      "height": 322,
+      "bytes": 298868,
+      "sha256": "bed5c20c43e0fc298ac662dd5e8fb5dd6067cd84659de5bb8b09ef460eab943d",
+      "sourceRef": "https://iconamaster.cargo.site/OKLADY#embedded-image-12",
+      "provenance": "local-archive-data-url",
+      "evidence": [
+        "rendered-local-page-content"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "oklads",
+      "order": 13,
+      "src": "/assets/pages/oklads-13.png",
+      "width": 214,
+      "height": 320,
+      "bytes": 207069,
+      "sha256": "55a657e3532dda1977d780f32d728d596d15dbefc44dba91b09a9d43855e6d7b",
+      "sourceRef": "https://iconamaster.cargo.site/OKLADY#embedded-image-13",
+      "provenance": "local-archive-data-url",
+      "evidence": [
+        "rendered-local-page-content"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "oklads",
+      "order": 14,
+      "src": "/assets/pages/oklads-14.jpg",
+      "width": 632,
+      "height": 872,
+      "bytes": 324351,
+      "sha256": "56f4b6728e9f35502155b093227aac0f60090a95ed950686ab314a4b66897747",
+      "sourceRef": "https://freight.cargo.site/t/original/i/e0925d213711465348c5c9125723451118f8e11187092feaf9efa36d8f355bcd/krest.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 1,
+      "src": "/assets/pages/iconostases.jpg",
+      "width": 855,
+      "height": 604,
+      "bytes": 289015,
+      "sha256": "f27a466bbdaa01001857536f0fc8489af453ae03df72121ae215ac930ef1ee89",
+      "sourceRef": "https://freight.cargo.site/t/original/i/e40fba035340ba1dd88796923aeb43da5fb1fd893aa1cd6fa2eb28153f3d8dd5/55-inter.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 2,
+      "src": "/assets/pages/iconostases-2.jpg",
+      "width": 1536,
+      "height": 2048,
+      "bytes": 533059,
+      "sha256": "5022c0ebb101f045077524a817cc77404e2f88537a3c4e9400c79a5f1bf93d1e",
+      "sourceRef": "https://freight.cargo.site/t/original/i/baf54221779ccfec43dc9d7b90fb101647b766f84189156b2855a420904a6628/007----.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 3,
+      "src": "/assets/pages/iconostases-3.jpg",
+      "width": 2048,
+      "height": 1536,
+      "bytes": 1443287,
+      "sha256": "66cbc3ace7d4e05e637a6e33d26156f0183bd91d2596aebd5342d4ec33f6624d",
+      "sourceRef": "https://freight.cargo.site/t/original/i/b9419e50528a61d66d22ee62ee64521daf36cd4ae0a14ec1268a45f62d61b01f/003-------.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 4,
+      "src": "/assets/pages/iconostases-4.jpg",
+      "width": 855,
+      "height": 604,
+      "bytes": 329158,
+      "sha256": "17f85a9f92deff9d234996afc5006d404e1db15cdfb1b852d67ce9f5ddfbfa5b",
+      "sourceRef": "https://freight.cargo.site/t/original/i/3b67181d3e1ada2c477931f930fab6b15f7c8f5219fcde4e3f975407086c6227/5-inter.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 5,
+      "src": "/assets/pages/iconostases-5.jpg",
+      "width": 2048,
+      "height": 1536,
+      "bytes": 1493132,
+      "sha256": "c5c77a407f6c588345417494a3d527e2bb2179bccaa0afab643c6285b30d6219",
+      "sourceRef": "https://freight.cargo.site/t/original/i/8847ca905d2617d4b1cb34e718051bcd606b3423a5c7269f897dee801bd3ada5/005---.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 6,
+      "src": "/assets/pages/iconostases-6.jpg",
+      "width": 2048,
+      "height": 1536,
+      "bytes": 1483331,
+      "sha256": "70fc36d1d56cae5d31332e88ba53df4e05744363bcfe15e68a3a5ee4408b17a4",
+      "sourceRef": "https://freight.cargo.site/t/original/i/07f826eb3d1a41fb0109423792ee3868b5d841eda515aca48916411bc6b1613d/053-------.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 7,
+      "src": "/assets/pages/iconostases-7.jpg",
+      "width": 280,
+      "height": 410,
+      "bytes": 29320,
+      "sha256": "b79a166a9d53e003180d1e64fee9715956d4e03fa6c9052a5ea54096c6a020a1",
+      "sourceRef": "https://freight.cargo.site/t/original/i/19282dca6cad793ff303910b65eae51be620c6c4dba7cd1c5c8e0e270663a457/medium_ik4.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 8,
+      "src": "/assets/pages/iconostases-8.jpg",
+      "width": 1536,
+      "height": 2048,
+      "bytes": 581879,
+      "sha256": "772409a1996b966020122c3f385f55a92f2fbbc155601416266847f52006ae6e",
+      "sourceRef": "https://freight.cargo.site/t/original/i/108e5bba3211f0f8177e4ec48569e201482f7557359dc30e895e758b1be3b9cc/022-ikonostas-pridela-fedora-str.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 9,
+      "src": "/assets/pages/iconostases-9.jpg",
+      "width": 2048,
+      "height": 1536,
+      "bytes": 423472,
+      "sha256": "fab93d7c6360509580770629df332daba24136807df9696fcbdd21c88fdc4405",
+      "sourceRef": "https://freight.cargo.site/t/original/i/415705fab2072be33d30b7ea142280ecd93159cc7cb7b98cfc97cb58e91f683d/061----2002.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 10,
+      "src": "/assets/pages/iconostases-10.jpg",
+      "width": 1536,
+      "height": 2048,
+      "bytes": 656746,
+      "sha256": "0c197d016a373e084c201a93c8a642ffc6d4ddad6c9b5c7439099fc7d69a68f2",
+      "sourceRef": "https://freight.cargo.site/t/original/i/24af8a169938a3a1758dc572ecdc1fa1672ff3aa0f576b51eb3a2fb08ed25629/015------.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 11,
+      "src": "/assets/pages/iconostases-11.jpg",
+      "width": 1727,
+      "height": 1535,
+      "bytes": 446239,
+      "sha256": "07aeaa27ef32cd9c965e07a27daa613454399fbd9f5239165ce90b5890c7ab5d",
+      "sourceRef": "https://freight.cargo.site/t/original/i/ca6528d348c4b212c311256ea155686fe36147739951feb38fccaa11016c8cf2/036-------2004.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 12,
+      "src": "/assets/pages/iconostases-12.jpg",
+      "width": 2048,
+      "height": 1536,
+      "bytes": 1499669,
+      "sha256": "d0f953ef41a664360a0527dee7076877758a9f8afec2e3c7563f09c577f7cd8d",
+      "sourceRef": "https://freight.cargo.site/t/original/i/eab6d13eb39c5851e46070d089e20523ccdfc91d6232426e55285cfeb41d23e4/150------2003.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 13,
+      "src": "/assets/pages/iconostases-13.jpg",
+      "width": 1814,
+      "height": 1441,
+      "bytes": 557278,
+      "sha256": "212ed9bde83757f00456e8d762f9c0375db3f9cc320a237e460308730c7daf0a",
+      "sourceRef": "https://freight.cargo.site/t/original/i/f527bfd175a0dedaea53c5163b52b9603759d0f25abef0ac4838970566c43374/161---2005..jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 14,
+      "src": "/assets/pages/iconostases-14.jpg",
+      "width": 2048,
+      "height": 1536,
+      "bytes": 1421862,
+      "sha256": "a389136951836d636ceb00e258fc97efab37414bb7145605fef9644cff4d0958",
+      "sourceRef": "https://freight.cargo.site/t/original/i/d578b3eca86828c3041c629629a6141610875aa9a753f551c28425482d030e95/074-----2005.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 15,
+      "src": "/assets/pages/iconostases-15.jpg",
+      "width": 2048,
+      "height": 1536,
+      "bytes": 724364,
+      "sha256": "2aa93582f6b4b727c3ea84dbb02e9fec123a63712ef27606fa03bf2639c47c0e",
+      "sourceRef": "https://freight.cargo.site/t/original/i/b305bf1eba1d013c95dc4135fe8418a4bef25cac98db7c2269df9be42d82b446/153-----.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 16,
+      "src": "/assets/pages/iconostases-16.jpg",
+      "width": 2048,
+      "height": 1536,
+      "bytes": 1334142,
+      "sha256": "84e2d41a667f06cb7ffdbd22a9bf94a60c51f73d2dfc99192f29dff69bc26c00",
+      "sourceRef": "https://freight.cargo.site/t/original/i/c0af70366908670227eb218110fbb6863b066fd6f5778d2dd800146de1b0a54d/080-------2002.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "iconostases",
+      "order": 17,
+      "src": "/assets/pages/iconostases-17.jpg",
+      "width": 1280,
+      "height": 905,
+      "bytes": 377292,
+      "sha256": "8939de563145cba5afcb5c38146576a63577831e25c800f61c463cbd8f044c0f",
+      "sourceRef": "https://freight.cargo.site/t/original/i/7dab9bea05558f5f0de4d5a16aed4e0abea7e3f0516e56a2f603d09081b3f7a1/img-20190627-wa0006.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "gorbunov-icons-kholuy",
+      "order": 1,
+      "src": "/assets/articles/gorbunov-icons-kholuy.jpg",
+      "width": 1000,
+      "height": 1000,
+      "bytes": 246730,
+      "sha256": "10532522d0748ff27bda6fb21f5f3deda7f24256551d951768d73fa031835f5e",
+      "sourceRef": "https://freight.cargo.site/t/original/i/493bea60b57037ad0f369372c5c0021e0da00d6f37984ade4bae0293c8378576/5.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "gorbunov-icons-kholuy",
+      "order": 2,
+      "src": "/assets/articles/gorbunov-icons-kholuy-2.jpg",
+      "width": 527,
+      "height": 600,
+      "bytes": 68870,
+      "sha256": "cd50f75a24589bd2474e12057f7f5529966bfb93a465544d1456c11140b33124",
+      "sourceRef": "https://freight.cargo.site/t/original/i/0f901929a43b28e0c0c89488df4bb3f25987d1658efae3f31a12d0aad94f5ffc/6.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "gorbunov-icons-kholuy",
+      "order": 3,
+      "src": "/assets/articles/gorbunov-icons-kholuy-3.png",
+      "width": 684,
+      "height": 906,
+      "bytes": 1639822,
+      "sha256": "a20f3c32425060c3e6352485c4ddf167130c25313ae853150e52a204b746d021",
+      "sourceRef": "https://freight.cargo.site/t/original/i/9d86763b22d6829a9523c4e4053e63b5b83effee7806fb77f36e962cbede36b4/-.--.--18-.-.png",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "gorbunov-icons-kholuy",
+      "order": 4,
+      "src": "/assets/articles/gorbunov-icons-kholuy-4.png",
+      "width": 831,
+      "height": 1059,
+      "bytes": 2360281,
+      "sha256": "06a6a6bbb092b1b958789c00e393c522c0976aaef87bae0ad63e279958c5f102",
+      "sourceRef": "https://freight.cargo.site/t/original/i/3743ed8d4979aa6b43bbfb7f5208e098a88c2a7b32ff2ba272223a6bb6794198/-----.-----19-.png",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "gorbunov-icons-kholuy",
+      "order": 5,
+      "src": "/assets/articles/gorbunov-icons-kholuy-5.jpg",
+      "width": 951,
+      "height": 1189,
+      "bytes": 396119,
+      "sha256": "974a8b5c1b7c859c7256bcdfdf45383678e3734cd0fece18b9986c8a80608cc4",
+      "sourceRef": "https://freight.cargo.site/t/original/i/97cdfb2719c3cb1374405a468e6123a2912f1f4abbc27e03652f1fb2cd3ed5d6/--.--.-1784-.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "gorbunov-icons-kholuy",
+      "order": 6,
+      "src": "/assets/articles/gorbunov-icons-kholuy-6.jpg",
+      "width": 1598,
+      "height": 332,
+      "bytes": 83256,
+      "sha256": "dbeabe721a3433b80f6cb73cc202e619a09bc660cf19b35dc29e5bc76ac176f3",
+      "sourceRef": "https://freight.cargo.site/t/original/i/effa4a19415d0d2fafc9cbd3718572221410fa115e9fc11bcd99bff2b27fb0a7/4.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "gorbunov-icons-kholuy",
+      "order": 7,
+      "src": "/assets/articles/gorbunov-icons-kholuy-7.jpg",
+      "width": 1936,
+      "height": 1338,
+      "bytes": 621153,
+      "sha256": "161026803f5745e99816b31d89e8a0f3cd19b368132c0d20dda3ca081bcd0544",
+      "sourceRef": "https://freight.cargo.site/t/original/i/64a8e48f4573f9e9b5cff0b0417129f8ae5604e156ae2285931eae86396f4945/----.--.--1784-.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "kineshma-icon-painting",
+      "order": 1,
+      "src": "/assets/articles/kineshma-icon-painting.jpg",
+      "width": 1167,
+      "height": 1515,
+      "bytes": 704595,
+      "sha256": "ef87a4e8ed798a50778d62a576585e2caa615a8df40af2ed8fbb45e96ca35582",
+      "sourceRef": "https://freight.cargo.site/t/original/i/a7ae5bf312e6bd71ff7885a9aef754480cd7f67a1fb3d6c9f0930bc1254050d2/scale_2400-3.jpeg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "kineshma-icon-painting",
+      "order": 2,
+      "src": "/assets/articles/kineshma-icon-painting-2.jpg",
+      "width": 1200,
+      "height": 1600,
+      "bytes": 587477,
+      "sha256": "ac914528868288340a0f940af4dc0413bf95d6532afca2bb77af8f0f4a6b0d3c",
+      "sourceRef": "https://freight.cargo.site/t/original/i/d581ee546c47f4a7db9ff64fbc9cb2cf0a73bc26a1d3cc4a67255767c29862e7/scale_2400-2.jpeg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "kineshma-icon-painting",
+      "order": 3,
+      "src": "/assets/articles/kineshma-icon-painting-3.jpg",
+      "width": 1143,
+      "height": 1385,
+      "bytes": 916700,
+      "sha256": "dfc46c10c77fa8ac3c864d8db4ef90fbee7cf3c25023d80eecb75c206ed90078",
+      "sourceRef": "https://freight.cargo.site/t/original/i/42c454faa9ce19b8674ba690feb5d7196bdf063fe6e9cc2f5d66e0e914064bc9/scale_2400-1.jpeg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "kineshma-icon-painting",
+      "order": 4,
+      "src": "/assets/articles/kineshma-icon-painting-4.jpg",
+      "width": 1034,
+      "height": 1132,
+      "bytes": 356515,
+      "sha256": "f2ab047e5586569bcb70f81198b1871965b9ac78f8991a9604cfc52825aca093",
+      "sourceRef": "https://freight.cargo.site/t/original/i/452f6c52e55f77c139828cf7ec5e8447d2d1c0d4acb2fdac8cac713e64834890/scale_2400.jpeg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "panteleimon-monastery-icons",
+      "order": 1,
+      "src": "/assets/articles/panteleimon-monastery-icons.jpg",
+      "width": 657,
+      "height": 1024,
+      "bytes": 121946,
+      "sha256": "76ff3be6c970ee80cd13be08cbf5f2382a7718648c3f89863f3a5e857e581568",
+      "sourceRef": "https://freight.cargo.site/t/original/i/2bb5fd5d4c777bb975c1bdb8fa17e3486617327e915057c08e3ee1666001da47/KVb88NgNiSI.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "panteleimon-monastery-icons",
+      "order": 2,
+      "src": "/assets/articles/panteleimon-monastery-icons-2.jpg",
+      "width": 586,
+      "height": 768,
+      "bytes": 110669,
+      "sha256": "637bafa276e69756d56cc5fbfa82762a93c50762efaf7cdd46a68406a25e08ef",
+      "sourceRef": "https://freight.cargo.site/t/original/i/f3e99b536eb02073c534104c5a7806241cf55eedc71972d2c560d5decca9eb93/6925c15870f312287b4f9d38d34a4e14.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "panteleimon-monastery-icons",
+      "order": 3,
+      "src": "/assets/articles/panteleimon-monastery-icons-3.jpg",
+      "width": 735,
+      "height": 450,
+      "bytes": 58605,
+      "sha256": "6a35855d91434ba02e306540a3f8e41efb22ee6db705548cc83b9ee49349245a",
+      "sourceRef": "https://freight.cargo.site/t/original/i/9bedf83215d1b2b43b7c177649701c8d88344658b8200f4d1860f87ece0223ad/dfc2c5d590e24c57d6d8ecb2bc86e22e-1.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "panteleimon-monastery-icons",
+      "order": 4,
+      "src": "/assets/articles/panteleimon-monastery-icons-4.jpg",
+      "width": 900,
+      "height": 1248,
+      "bytes": 570645,
+      "sha256": "51dad67e06a1e8567771fe291f445381cda10ebefebf42f8707cde23c228c1d7",
+      "sourceRef": "https://freight.cargo.site/t/original/i/5483eec8f34b9b10a008a6d6bf4adf7c44d947bfb33301192e4b963117dd51f2/---------1903.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "panteleimon-monastery-icons",
+      "order": 5,
+      "src": "/assets/articles/panteleimon-monastery-icons-5.jpg",
+      "width": 606,
+      "height": 827,
+      "bytes": 604900,
+      "sha256": "7686d0d20b7d6546437e9aafd4bd70f28805775c28dc6467ff3d5e921d4a9967",
+      "sourceRef": "https://freight.cargo.site/t/original/i/f09ae0d740bdd907a2a646ead4884fd743fb16864f141d80f74d8d9e649da862/--.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "theotokos-russkaya",
+      "order": 1,
+      "src": "/assets/articles/theotokos-russkaya.jpg",
+      "width": 781,
+      "height": 1200,
+      "bytes": 266359,
+      "sha256": "533f00d3ef5bd83c900712d75a49f9de05bd414f87bc5a48538f4051e6446103",
+      "sourceRef": "https://freight.cargo.site/t/original/i/8a6c7b5482165120b759c16e3994116126d53db544249390485640db38df5564/6.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "theotokos-russkaya",
+      "order": 2,
+      "src": "/assets/articles/theotokos-russkaya-2.jpg",
+      "width": 962,
+      "height": 1200,
+      "bytes": 302731,
+      "sha256": "47d2db51192bae6279713ed94dee4bb8570113e3142d8fd7f69e6b53723bdf5d",
+      "sourceRef": "https://freight.cargo.site/t/original/i/718670b157cae8b78471c83ee58777c5bd4b28f727c7feff576edb9774833847/5.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "theotokos-russkaya",
+      "order": 3,
+      "src": "/assets/articles/theotokos-russkaya-3.jpg",
+      "width": 1024,
+      "height": 768,
+      "bytes": 90981,
+      "sha256": "5583311a7f86296b8d03f823a8cb06f0d6eafde41d8ef13f942bf8fade77bd1f",
+      "sourceRef": "https://freight.cargo.site/t/original/i/cc50b5d6fad58b478ddc8c32109776de6db14144a4dffa8b689f0808f5e2dc3d/4.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "theotokos-russkaya",
+      "order": 4,
+      "src": "/assets/articles/theotokos-russkaya-4.jpg",
+      "width": 887,
+      "height": 1200,
+      "bytes": 301346,
+      "sha256": "5a0fafcbee4d803c214e8cfe0a337127a009568059e879933508be8c1ba31023",
+      "sourceRef": "https://freight.cargo.site/t/original/i/fc5fc082e51de340e35baced766c4a03a667f1a7086ca22303e471e2b15a4b9b/3.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "theotokos-russkaya",
+      "order": 5,
+      "src": "/assets/articles/theotokos-russkaya-5.jpg",
+      "width": 500,
+      "height": 783,
+      "bytes": 50002,
+      "sha256": "ea0f73b2938591b33a5b9da33dd680fc183e4c1b2ca9642f955dcdab8bc6d014",
+      "sourceRef": "https://freight.cargo.site/t/original/i/722a06f4a8a1383f11c93771d2e70c4fd862dea3ab2d4d5c420fd1f733373695/1.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "theotokos-russkaya",
+      "order": 6,
+      "src": "/assets/articles/theotokos-russkaya-6.jpg",
+      "width": 887,
+      "height": 346,
+      "bytes": 46239,
+      "sha256": "3b04da6e8fcff174a5c8210f49641946894d4d7955e30eb79b65f6d3c6b87bb1",
+      "sourceRef": "https://freight.cargo.site/t/original/i/63f29b740c4fef4bf9eb062cfb2352296ad92c0715eae4c56a7149a9c5590af7/2.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "pavlovo-na-oke",
+      "order": 1,
+      "src": "/assets/articles/pavlovo-na-oke.jpg",
+      "width": 1057,
+      "height": 1200,
+      "bytes": 377831,
+      "sha256": "7659b47a525324f974a39be91f6278c368acb7bd40b61bf13fe86404b250a247",
+      "sourceRef": "https://freight.cargo.site/t/original/i/4da5266efacebe730b0d3b85ea1dfda29820fbb2739a9ea3c06b97060c5c48d3/------.--18-.-..jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "pavlovo-na-oke",
+      "order": 2,
+      "src": "/assets/articles/pavlovo-na-oke-2.jpg",
+      "width": 977,
+      "height": 1200,
+      "bytes": 607207,
+      "sha256": "5104df333b2c1a63c2146f5c51843f764fde7d94987c00be3626a3b095305ea4",
+      "sourceRef": "https://freight.cargo.site/t/original/i/cfe29b7e7d8b46885a0c42e3ce58c7a1dc679fa6305350af12990227a3a5cce1/1706_11.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "pavlovo-na-oke",
+      "order": 3,
+      "src": "/assets/articles/pavlovo-na-oke-3.jpg",
+      "width": 1123,
+      "height": 1357,
+      "bytes": 499244,
+      "sha256": "1d50b7979abe2953826628d651ee74b77e60a8dd7e056ef01c95e95359e74565",
+      "sourceRef": "https://freight.cargo.site/t/original/i/5be9aaee94ebf7702b45a3b81b0a6122c8b8e1040326c3d9db0d7917cfb2007d/.---.-1788-.---.-35.5--29--------.jpeg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "pavlovo-na-oke",
+      "order": 4,
+      "src": "/assets/articles/pavlovo-na-oke-4.jpg",
+      "width": 967,
+      "height": 1200,
+      "bytes": 765570,
+      "sha256": "261e806decd4d03a281f5940ee231369237320e67d57427b1095d7861bf0d787",
+      "sourceRef": "https://freight.cargo.site/t/original/i/c8e33208da821b9877ac40aa3239f13b86a036d2b46a60fc3e105d4f34f12cb7/--.---.---XVIII-.-55.3--45.2---.-.-----.jpeg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "pavlovo-na-oke",
+      "order": 5,
+      "src": "/assets/articles/pavlovo-na-oke-5.jpg",
+      "width": 1028,
+      "height": 1367,
+      "bytes": 368170,
+      "sha256": "95cb07ebe10f11baf77ecd3d662236880ed788effba96497cb79b7982e36db14",
+      "sourceRef": "https://freight.cargo.site/t/original/i/eb7818dc74b2ccecf492916b7b16cc64a7af1b9a01db00e2fd0d5f000ae9fd76/---.jpeg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "pavlovo-na-oke",
+      "order": 6,
+      "src": "/assets/articles/pavlovo-na-oke-6.jpg",
+      "width": 1066,
+      "height": 1380,
+      "bytes": 454122,
+      "sha256": "55b86f3575e91e68d57d18da2e22bee10e2bea74217af3f6a3a0d2d0910567fb",
+      "sourceRef": "https://freight.cargo.site/t/original/i/901cb82007266267ffd6cda740a2024bf8a3f8a8bbbb93a18af3be9141b3fbb4/-...--.----.jpeg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "pavlovo-na-oke",
+      "order": 7,
+      "src": "/assets/articles/pavlovo-na-oke-7.jpg",
+      "width": 1071,
+      "height": 1286,
+      "bytes": 460806,
+      "sha256": "c1328895ad48b6d9f5a2ac377f6bd9048774a9d24f2ecc640d5f71819a0dab48",
+      "sourceRef": "https://freight.cargo.site/t/original/i/3e0f254645f6cd78071e4fe68977432407306d162ab97f6e6e96c4c967de3df8/----.jpeg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 1,
+      "src": "/assets/articles/history-of-icon-oklads.jpg",
+      "width": 850,
+      "height": 1351,
+      "bytes": 439561,
+      "sha256": "e5b3920b00f99bff59918bc69c365517685671222dc82f3851e060aa63c1360f",
+      "sourceRef": "https://freight.cargo.site/t/original/i/3ed46b11fcf3946bcfa815793dfc253fe1bc7c71e3a954b70e8c20a203896f85/---------.---XI-..jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 2,
+      "src": "/assets/articles/history-of-icon-oklads-2.jpg",
+      "width": 491,
+      "height": 610,
+      "bytes": 153421,
+      "sha256": "edee2614d7f99111636a5d845ca8713473c7c04be15ee43254905834948cba08",
+      "sourceRef": "https://freight.cargo.site/t/original/i/5c147d1c005fc2bd85b1b569e1121348ca193c1164bfa788c83a379133620c26/1.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 3,
+      "src": "/assets/articles/history-of-icon-oklads-3.jpg",
+      "width": 4000,
+      "height": 3000,
+      "bytes": 9459585,
+      "sha256": "693afdaa13f09bda58dad6fff44376575471d6f6989320f2a3e8b1aaa7b5d206",
+      "sourceRef": "https://freight.cargo.site/t/original/i/9f7b4c89fcadc3208a467682db0a8f55b605a03d001b83b2174bc6df5b84971a/20220615_163409.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 4,
+      "src": "/assets/articles/history-of-icon-oklads-4.jpg",
+      "width": 4000,
+      "height": 3000,
+      "bytes": 9591807,
+      "sha256": "2bcc4559896d2d50ff94e05826909f7ae0ad902153a01ba2ed1b775a6c4e59db",
+      "sourceRef": "https://freight.cargo.site/t/original/i/fc514b88a10308be7b7abd74bef0f0debe5b776dc47beaa98137da1d634e1551/20220615_163254.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 5,
+      "src": "/assets/articles/history-of-icon-oklads-5.jpg",
+      "width": 2040,
+      "height": 3230,
+      "bytes": 2649085,
+      "sha256": "441e202fe4e12e5066b4b5b826ae3206a3eefc4c171df4e59bce6f6377e0bc98",
+      "sourceRef": "https://freight.cargo.site/t/original/i/a5ec92d0fb7a1bb363b8baad546ceb89b86422dcf68d118c64222b70bebf0191/IMG_3996.JPG",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 6,
+      "src": "/assets/articles/history-of-icon-oklads-6.jpg",
+      "width": 4000,
+      "height": 3000,
+      "bytes": 8848453,
+      "sha256": "11849c0257a6ad4365afda93cee5dafe2c026413ade81fc49b25ce26f65556a1",
+      "sourceRef": "https://freight.cargo.site/t/original/i/1053fe5e2e35a099e564bb2da6b0ff5e609df54d4ac36257e81f25373805781b/20220615_163740.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 7,
+      "src": "/assets/articles/history-of-icon-oklads-7.jpg",
+      "width": 4000,
+      "height": 3000,
+      "bytes": 8939728,
+      "sha256": "531e95338e408466219c859812092c2af39110216690ed67ae6f11eeb3165d22",
+      "sourceRef": "https://freight.cargo.site/t/original/i/f74ccaa153c485c41358dffd616ec60cbab7686685e7b2c125ca4a7f0c949bde/20220615_163745.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 8,
+      "src": "/assets/articles/history-of-icon-oklads-8.jpg",
+      "width": 498,
+      "height": 610,
+      "bytes": 131955,
+      "sha256": "d11d1329af6d92c8378383fe1bf14e33865d36e6de326d924dccc023679832e8",
+      "sourceRef": "https://freight.cargo.site/t/original/i/011183ef027a747ccac217b6ab102779af22795cadc90b7f73b3c7d436d8d1c0/2.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 9,
+      "src": "/assets/articles/history-of-icon-oklads-9.jpg",
+      "width": 529,
+      "height": 610,
+      "bytes": 244774,
+      "sha256": "43c3d44606661768418b377b9e5acccae0ec078627664067da6c07f132578847",
+      "sourceRef": "https://freight.cargo.site/t/original/i/c154e7922a8fd7c6b1b4c69b3d7b4b847c5d98c09c9914ba1f42a46332181c37/3.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 10,
+      "src": "/assets/articles/history-of-icon-oklads-10.jpg",
+      "width": 492,
+      "height": 610,
+      "bytes": 150294,
+      "sha256": "3ed4bd4cb4f52cc0802ccaebb496ec22f8acdef336da8a93007a45de6a3dd93a",
+      "sourceRef": "https://freight.cargo.site/t/original/i/4c3f4a6be87e2bb1c0a6836d51620e1c64e7e3584ff57e30633e1b9036e8f56a/4.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 11,
+      "src": "/assets/articles/history-of-icon-oklads-11.jpg",
+      "width": 517,
+      "height": 597,
+      "bytes": 151923,
+      "sha256": "57cd966119e0117efb30cd785c8e2f096129901975fa8ff230a3e99057c64050",
+      "sourceRef": "https://freight.cargo.site/t/original/i/bbc4fd21efdd2b6ad11de55644fa8b3920530308441cb5284c5f0673b0a5d22d/5.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 12,
+      "src": "/assets/articles/history-of-icon-oklads-12.jpg",
+      "width": 478,
+      "height": 610,
+      "bytes": 179577,
+      "sha256": "0191c900a8ea23fc9af531dea97e2c524effaf35f6a6ca72768984f4ee9073fc",
+      "sourceRef": "https://freight.cargo.site/t/original/i/87872b537e80e8764f807ac03b58ab8d6299a42a59c6124f5b6bbc94250bbd99/6.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 13,
+      "src": "/assets/articles/history-of-icon-oklads-13.jpg",
+      "width": 491,
+      "height": 610,
+      "bytes": 167426,
+      "sha256": "3f21fcadc5a6cb685142192ebfefec6f8ea1c55a5c7fc5dd7a66659ac20621da",
+      "sourceRef": "https://freight.cargo.site/t/original/i/e6921a3576ae30ee8b16d4081079ba77ca59da322565d31cb4560ac54af8c0c1/7.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 14,
+      "src": "/assets/articles/history-of-icon-oklads-14.jpg",
+      "width": 526,
+      "height": 610,
+      "bytes": 176468,
+      "sha256": "5f4ba7eef3550a62c60eb97cc6d60b1558e4de59f736df19aab665df07a625f9",
+      "sourceRef": "https://freight.cargo.site/t/original/i/e4451a677eb2c40f68ff9176db34610da69362230a150407365dcae882c7144d/8.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 15,
+      "src": "/assets/articles/history-of-icon-oklads-15.jpg",
+      "width": 533,
+      "height": 610,
+      "bytes": 192121,
+      "sha256": "70b837d576d2e6d8dddbed04c147d70f6e2f7dee892ef1e694414c624aee3a47",
+      "sourceRef": "https://freight.cargo.site/t/original/i/38fb8305863c426c6021312ed243ca036ab4c59fdecc977a4e6b9b2477e6a774/9.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 16,
+      "src": "/assets/articles/history-of-icon-oklads-16.jpg",
+      "width": 508,
+      "height": 610,
+      "bytes": 136757,
+      "sha256": "26db596625779eea6d42c9c2aab398c886422bb3e3d786c6d0efa7089c584975",
+      "sourceRef": "https://freight.cargo.site/t/original/i/b5469fbf6eb7a074a2ad3be2d78948fb96d57c372fb08e997e86bc63dc86f6c8/10.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 17,
+      "src": "/assets/articles/history-of-icon-oklads-17.jpg",
+      "width": 514,
+      "height": 610,
+      "bytes": 140222,
+      "sha256": "6f8f73b9a5224beeebfe9f1a2b0741641f5b7ed5e6a03b48443a9ebd477572e9",
+      "sourceRef": "https://freight.cargo.site/t/original/i/759de905625311dc5918c5f9941d57811b0a1918ffa8ecb4f7cd5c16701a8d68/11.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 18,
+      "src": "/assets/articles/history-of-icon-oklads-18.jpg",
+      "width": 541,
+      "height": 610,
+      "bytes": 147226,
+      "sha256": "af9ca06d46fd9f9371e84b3926acd9e25430bbe4092de92ecb0d60e9b65c4168",
+      "sourceRef": "https://freight.cargo.site/t/original/i/ea9f6b92f691742232814245a4fcc059419d8ecfaf7a82055979b244c995c91f/12.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 19,
+      "src": "/assets/articles/history-of-icon-oklads-19.jpg",
+      "width": 516,
+      "height": 610,
+      "bytes": 174013,
+      "sha256": "478b4d9630efc20949ad3463a72c04d0badd9f937d4043aede9f952852dc1f29",
+      "sourceRef": "https://freight.cargo.site/t/original/i/dfed7490809a786be6a3bf124a93198717cf1d30243ec1f56da1466f73c4028f/13.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 20,
+      "src": "/assets/articles/history-of-icon-oklads-20.jpg",
+      "width": 538,
+      "height": 610,
+      "bytes": 168476,
+      "sha256": "ba8c41338c8c6f68512107f21a506cafa1b04aadc44cd7a3250ddcb8c392edc7",
+      "sourceRef": "https://freight.cargo.site/t/original/i/c26d2b0807cadc61869eba307bd0ee10dd0278edf31f246d3b62980a2b46677b/14.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 21,
+      "src": "/assets/articles/history-of-icon-oklads-21.jpg",
+      "width": 472,
+      "height": 610,
+      "bytes": 151414,
+      "sha256": "2f8d2a5054b599c9333a3ebfbf5f6ec9ccf78afaf8240b1cce04621b4d28db0f",
+      "sourceRef": "https://freight.cargo.site/t/original/i/c3877304150cb762b863732e4382a86e9aa38795a0993396b052dceb8292a1f0/15.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 22,
+      "src": "/assets/articles/history-of-icon-oklads-22.jpg",
+      "width": 434,
+      "height": 610,
+      "bytes": 140453,
+      "sha256": "89f9cf46cd521590208dda8da98fd3e1940d7129253d2a37880ada6dbbbf6a9d",
+      "sourceRef": "https://freight.cargo.site/t/original/i/880f7f5ab12292e74e02f445ae3e870e6b0ae57d699115b9ae60b281dcb583d3/16.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 23,
+      "src": "/assets/articles/history-of-icon-oklads-23.jpg",
+      "width": 521,
+      "height": 610,
+      "bytes": 170848,
+      "sha256": "d0dd71de3bca006fc3abba608e29b0d37e739306bee454bde634d8ec3405c969",
+      "sourceRef": "https://freight.cargo.site/t/original/i/0051934116fd24afd4033e1b9fc6fc50349e0a0fe1d3da48f836fad677283cac/17.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 24,
+      "src": "/assets/articles/history-of-icon-oklads-24.jpg",
+      "width": 508,
+      "height": 610,
+      "bytes": 159704,
+      "sha256": "619e1334f168249fff1f99097fe269a00a174b84f9c5dac2e61c3b13cf206381",
+      "sourceRef": "https://freight.cargo.site/t/original/i/058e1af1e7479f5d7617018989bff4dbed0fb71a63b19d226332bb2060a57478/18.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 25,
+      "src": "/assets/articles/history-of-icon-oklads-25.jpg",
+      "width": 545,
+      "height": 606,
+      "bytes": 175085,
+      "sha256": "2e3ff055f87eaf1d5ca1858efcc29feb20a879dbcd2af5cc834b4c84eaf1b3a3",
+      "sourceRef": "https://freight.cargo.site/t/original/i/68e1ba7f831b52da5fcfd4c7230d00f1bea18c7d8fb07e21e5c5adeba06cc2e2/19.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 26,
+      "src": "/assets/articles/history-of-icon-oklads-26.jpg",
+      "width": 524,
+      "height": 605,
+      "bytes": 164512,
+      "sha256": "a87a615c876c993e19af4ae9b29a834fd4b4212fa81b3f340472531c828ac2ed",
+      "sourceRef": "https://freight.cargo.site/t/original/i/2866db5eab708a866296120d8d9c943c42419688c9e389a3b51605055d9ea18a/20.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 27,
+      "src": "/assets/articles/history-of-icon-oklads-27.jpg",
+      "width": 515,
+      "height": 610,
+      "bytes": 176456,
+      "sha256": "1542ea41ff91d8f3d6564406d13137d05a2498e7a14bc416c8030474415d29cf",
+      "sourceRef": "https://freight.cargo.site/t/original/i/e3dcd03c90c93c986280c91c078d1eeaadf53f3b6b4f62bd02f827699bc3f67e/21.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 28,
+      "src": "/assets/articles/history-of-icon-oklads-28.jpg",
+      "width": 496,
+      "height": 610,
+      "bytes": 151419,
+      "sha256": "4d4ec7757d8996c978a37188d612e8c371a593a7d15cee358e96c579c7f551f8",
+      "sourceRef": "https://freight.cargo.site/t/original/i/e96e6c023df8b8ccc5c6b75fbe2cff388a9452706cece1c1f4992aadbf0d9c6c/22.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 29,
+      "src": "/assets/articles/history-of-icon-oklads-29.jpg",
+      "width": 490,
+      "height": 610,
+      "bytes": 175964,
+      "sha256": "8e08c55af17c580caf08a95123441cb535627222cf68340f8967a4b4776afa54",
+      "sourceRef": "https://freight.cargo.site/t/original/i/ff10c24fbc22c7f5172773c573d6028102f6bbd06fa34a775b2bd46c4de4d2a7/23.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 30,
+      "src": "/assets/articles/history-of-icon-oklads-30.jpg",
+      "width": 525,
+      "height": 610,
+      "bytes": 181005,
+      "sha256": "10e68e5fdb324a99f0fe3336b6b906f6524822b593b7840d95dce8fb98ae074a",
+      "sourceRef": "https://freight.cargo.site/t/original/i/6e278e772c4b741ba646d8c44cbbcd1655318b0b33c0ae3fc4114d5877de11b9/24.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 31,
+      "src": "/assets/articles/history-of-icon-oklads-31.jpg",
+      "width": 521,
+      "height": 610,
+      "bytes": 187746,
+      "sha256": "cbed980f93b6bd2d46f64f8d5c9ee8121e75e738c9f1ea268c126a942c0c78bf",
+      "sourceRef": "https://freight.cargo.site/t/original/i/e5472f27b3f8e7474609a684ee6fa3af8685fc2a16157bbf8110221359e2ea17/25.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 32,
+      "src": "/assets/articles/history-of-icon-oklads-32.jpg",
+      "width": 519,
+      "height": 610,
+      "bytes": 170892,
+      "sha256": "6ef916be2e6b7890f2006fa9bfd36acd57fc1edf62e005eefc9ef395c708dd5d",
+      "sourceRef": "https://freight.cargo.site/t/original/i/f217f06a23ad99f3d7ffd319ad110e85c5473f9f73454886b9e1fd768aacf058/26.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 33,
+      "src": "/assets/articles/history-of-icon-oklads-33.jpg",
+      "width": 484,
+      "height": 610,
+      "bytes": 137012,
+      "sha256": "c11253d05d6fa6fb9e67b7a1d1f4ae53c4aabb3abbe5c0038e55e4a917515147",
+      "sourceRef": "https://freight.cargo.site/t/original/i/93bb55c0ac6f3ebe97f63717b9c68ed08e8843d35f5c176c92b9261008a9abdf/27.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 34,
+      "src": "/assets/articles/history-of-icon-oklads-34.jpg",
+      "width": 535,
+      "height": 610,
+      "bytes": 181196,
+      "sha256": "3a0ca750592cc5a4aa65259555989102fc55fce8e16ebf958e50219cdb27b898",
+      "sourceRef": "https://freight.cargo.site/t/original/i/fc1637a77b4fe787b31851cf8b3fcc69c6d941bdf70bfd6fd1676b3eed1bc09d/28.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 35,
+      "src": "/assets/articles/history-of-icon-oklads-35.jpg",
+      "width": 531,
+      "height": 610,
+      "bytes": 193943,
+      "sha256": "88c437376372f8b595af139b989c94d573d118e9207345529cd9093d17c091dd",
+      "sourceRef": "https://freight.cargo.site/t/original/i/c6fa1c6454728c48fd5403a4bd92ba312d81b2ab60aa2072d5e052bcf815d59a/29.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 36,
+      "src": "/assets/articles/history-of-icon-oklads-36.jpg",
+      "width": 512,
+      "height": 610,
+      "bytes": 144684,
+      "sha256": "1412252eca596770609e5389d0d8504c9112252bef280a4b0c738e483a84e567",
+      "sourceRef": "https://freight.cargo.site/t/original/i/886f9b1f3789712ef690c0a8eff46e784372650247cb67b9024e10db8c605302/30.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 37,
+      "src": "/assets/articles/history-of-icon-oklads-37.jpg",
+      "width": 517,
+      "height": 610,
+      "bytes": 169093,
+      "sha256": "909ecbba21e96c4be1cab31c7da0d9278d135d2ad3636d2ca775d1240a1fafad",
+      "sourceRef": "https://freight.cargo.site/t/original/i/af0b9c388753927f100e0e07e3d79bbc455ea6588675ba9f948ea1de0d52c9b5/31.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 38,
+      "src": "/assets/articles/history-of-icon-oklads-38.jpg",
+      "width": 516,
+      "height": 610,
+      "bytes": 171679,
+      "sha256": "fced81df73fca3cf52dfbc7148ea14e6bb0b8f53c95a23d96967be1785e584ca",
+      "sourceRef": "https://freight.cargo.site/t/original/i/2dc3189f00becd2035c49c5aafd392e9c8341659cf76fb9d0cb9c6863a3226c4/32.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 39,
+      "src": "/assets/articles/history-of-icon-oklads-39.jpg",
+      "width": 506,
+      "height": 576,
+      "bytes": 173578,
+      "sha256": "4b2b183669137217b75c0ac8bb41967ee4f242971a62b7d4f1e60f5cab853c66",
+      "sourceRef": "https://freight.cargo.site/t/original/i/41c775272e460e8fe5ddc06347b3f86e75de15a41529e527f878acbbeba75588/nevskiy1.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 40,
+      "src": "/assets/articles/history-of-icon-oklads-40.jpg",
+      "width": 527,
+      "height": 610,
+      "bytes": 186872,
+      "sha256": "3fcc2a1b0dcb7c8a63d489e96431b7033658ef3774bebfee4bc5a4f667c73737",
+      "sourceRef": "https://freight.cargo.site/t/original/i/d57d2b8f25908e21e3659786cadfd17163da228cc360be7c7e5cc54fb3177dee/33.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 41,
+      "src": "/assets/articles/history-of-icon-oklads-41.jpg",
+      "width": 529,
+      "height": 610,
+      "bytes": 173999,
+      "sha256": "73d5915865fd9994aaa931f39d37ebd891a4b28c66d52de5f67a7e3c7bf78523",
+      "sourceRef": "https://freight.cargo.site/t/original/i/d200870befc899029a4a8dd9bb70fb7dbdfdcf02506752d1dd92cba1abb6352e/34.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 42,
+      "src": "/assets/articles/history-of-icon-oklads-42.jpg",
+      "width": 520,
+      "height": 610,
+      "bytes": 183933,
+      "sha256": "ce48fd4615694ebd253e5fe848c7bd30dfb13114533232d2e5386f565b5f1d13",
+      "sourceRef": "https://freight.cargo.site/t/original/i/ace45e45e39503eef763795533a2be68824303ecbffc0992021310c0a072aed2/35.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 43,
+      "src": "/assets/articles/history-of-icon-oklads-43.jpg",
+      "width": 491,
+      "height": 610,
+      "bytes": 177128,
+      "sha256": "617458b7fd2a1bffcd94e022c8453bde8b02f42f214cf7cdfb4f43470b685f1e",
+      "sourceRef": "https://freight.cargo.site/t/original/i/481332eff7f5c7119e7bf606bd33ba82cd2fa03cef3292bea3c6ef0f6bd3dae2/36.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 44,
+      "src": "/assets/articles/history-of-icon-oklads-44.jpg",
+      "width": 534,
+      "height": 610,
+      "bytes": 176509,
+      "sha256": "8d209f61878104bb31dcea375af01a196907427897861b8f5ec225695d01a0a7",
+      "sourceRef": "https://freight.cargo.site/t/original/i/e7676528408bad2053281d33e56208dd44dd430baa517faf6f57131850a58c85/37.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 45,
+      "src": "/assets/articles/history-of-icon-oklads-45.jpg",
+      "width": 494,
+      "height": 610,
+      "bytes": 102914,
+      "sha256": "2bf2700d48811018e3ce67098532f7073878bf9bd3bc3d6f85838b0e8db75f02",
+      "sourceRef": "https://freight.cargo.site/t/original/i/b9d086512cfffb5b033c6e443dd5b9b6bd94f8e1d8d7e4b8ee7e9ff5ac4d77f4/40.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 46,
+      "src": "/assets/articles/history-of-icon-oklads-46.jpg",
+      "width": 521,
+      "height": 610,
+      "bytes": 168279,
+      "sha256": "ee26f3098b3542b85d5e6c542c567e6850b6a5766b33463da23cb15269a67ce4",
+      "sourceRef": "https://freight.cargo.site/t/original/i/f95de76e9db5a21c9311c60a6eff5730b99ddb5fe91e981193fd95934b5c215e/38.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 47,
+      "src": "/assets/articles/history-of-icon-oklads-47.jpg",
+      "width": 588,
+      "height": 824,
+      "bytes": 140113,
+      "sha256": "4f496319a5ceff6248b19cde8a593053a2a612433d78792557cfbeb44712358c",
+      "sourceRef": "https://freight.cargo.site/t/original/i/e392305a28d9e4103a19bac62b9b6b80417ced9749d4f8abcb9b06211ac46794/40055085.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "order": 48,
+      "src": "/assets/articles/history-of-icon-oklads-48.jpg",
+      "width": 502,
+      "height": 610,
+      "bytes": 149208,
+      "sha256": "e8892c48264e63aa98310f8cf0939a670378f9e929b1bf4733faed8c74f8a9f7",
+      "sourceRef": "https://freight.cargo.site/t/original/i/83a67ea0e9cf6853fbd44b6cf691c2565275b66c5c288750f4ed90f886375f88/39.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-canon",
+      "order": 1,
+      "src": "/assets/articles/icon-painting-canon.jpg",
+      "width": 1200,
+      "height": 800,
+      "bytes": 194668,
+      "sha256": "2e6682720c0701417707af1694a34009181a987e16be65c95b2727861c64f721",
+      "sourceRef": "https://freight.cargo.site/t/original/i/16c6e90c5c344d1f09e69f1b30939eecb05417c62fd331e9d20c89dfaf4c843b/3.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-canon",
+      "order": 2,
+      "src": "/assets/articles/icon-painting-canon-2.jpg",
+      "width": 973,
+      "height": 1200,
+      "bytes": 345450,
+      "sha256": "c7ebdc0d7416e15e9d6bc56ffe52983a02274573cf4c3b5e6547d269cdae71ba",
+      "sourceRef": "https://freight.cargo.site/t/original/i/f39229e9ec5fd298594e46c51fc4a643462500e80775a51a232564758589450a/4.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-canon",
+      "order": 3,
+      "src": "/assets/articles/icon-painting-canon-3.jpg",
+      "width": 600,
+      "height": 337,
+      "bytes": 64010,
+      "sha256": "648e3899986f936dd5a8fa7a76b46ff3a078a4fa6213a01e3a7dc8f354c5f210",
+      "sourceRef": "https://freight.cargo.site/t/original/i/1374755d162cb22ebf218ccff41284947bdace1e4ddea4231488b637c5f03607/5.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-canon",
+      "order": 4,
+      "src": "/assets/articles/icon-painting-canon-4.jpg",
+      "width": 578,
+      "height": 1095,
+      "bytes": 223436,
+      "sha256": "9128e6fb386e2ba910159d866c77b272f9df3428dabbab4d7162083d40a502ce",
+      "sourceRef": "https://freight.cargo.site/t/original/i/d93dd32e13fbe90e45a07db42f5516c0227871d1a3f115e7463696a9868dffe5/6.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-canon",
+      "order": 5,
+      "src": "/assets/articles/icon-painting-canon-5.jpg",
+      "width": 630,
+      "height": 466,
+      "bytes": 105980,
+      "sha256": "0f442b752f8c4dc662fbd42c7a3e4840bd420d248e4844dd4f57ad30fedde16c",
+      "sourceRef": "https://freight.cargo.site/t/original/i/18ffd7e18a79b7d96e839c6017c8b7fdfa9a6656e646dacdbfce11d783e361d5/7.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-canon",
+      "order": 6,
+      "src": "/assets/articles/icon-painting-canon-6.jpg",
+      "width": 1200,
+      "height": 406,
+      "bytes": 156857,
+      "sha256": "672d01c46213be0698431d0c6a9c6a1ddfb6962793539ca6403035a3d083c6d9",
+      "sourceRef": "https://freight.cargo.site/t/original/i/ac547ac8ce2aa3551f66d593a290c475e3e2157b61a76134e61ca784881d86a8/8.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-canon",
+      "order": 7,
+      "src": "/assets/articles/icon-painting-canon-7.jpg",
+      "width": 1200,
+      "height": 800,
+      "bytes": 190285,
+      "sha256": "337acb7ea6431eb3c10a1e81b5bfa226bd85ca92ca33a5a11a820ffb166b974d",
+      "sourceRef": "https://freight.cargo.site/t/original/i/4bcb4cb0ad44bcdd0ef65826547b44fec133916055156fb1b74a7e3a8e600500/1.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-canon",
+      "order": 8,
+      "src": "/assets/articles/icon-painting-canon-8.jpg",
+      "width": 882,
+      "height": 1200,
+      "bytes": 219763,
+      "sha256": "beb88fe40a1407344b89c1fb71b6e44fec9bf0836f8fecfa7ed41e7841a1b0bb",
+      "sourceRef": "https://freight.cargo.site/t/original/i/5b6b7ed6cbdddf8f546465ce58809f76d6191c49e249f0f598cdb6f2b46b26a1/2.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "guslitsa",
+      "order": 1,
+      "src": "/assets/articles/guslitsa.png",
+      "width": 1201,
+      "height": 900,
+      "bytes": 2880029,
+      "sha256": "ba5322c6c14b7d3b1335e998284661367da6a3e4ca207f8acf930d3eaeaa1553",
+      "sourceRef": "https://freight.cargo.site/t/original/i/28bd343295cf7d6053a75424bfdffb70d45b3b62eb4693d606d39b9d26341146/2.png",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "guslitsa",
+      "order": 2,
+      "src": "/assets/articles/guslitsa-2.png",
+      "width": 738,
+      "height": 466,
+      "bytes": 983451,
+      "sha256": "dd91066e42d0ae1b255d9c8397d397e38d085ec94ca01495605907ef877bd1e3",
+      "sourceRef": "https://freight.cargo.site/t/original/i/e80f31c5eb24014ec9b4a8caa2e5ea73eec4ff9fe5a236a56d0feb31a79f82e4/1.png",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "guslitsa",
+      "order": 3,
+      "src": "/assets/articles/guslitsa-3.jpg",
+      "width": 1108,
+      "height": 1365,
+      "bytes": 464433,
+      "sha256": "dc507284207bcee2339f804ed67e5ce622b2f81549100c2cfd92884cca5a47aa",
+      "sourceRef": "https://freight.cargo.site/t/original/i/73dd07b47761d710d4dbb88c425997de5ada5e9fd849c1648d82ce25a2bb19da/287--2.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "guslitsa",
+      "order": 4,
+      "src": "/assets/articles/guslitsa-4.jpg",
+      "width": 1306,
+      "height": 1600,
+      "bytes": 475198,
+      "sha256": "9df06e18527033bee401cb63a91dc2ecb838a31ece15c53ecb78512a9ff7bd65",
+      "sourceRef": "https://freight.cargo.site/t/original/i/cf93fb7ae245d957621010ced08ecf6802e6746bd9b61358da1db9d425a064d7/.jpeg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "guslitsa",
+      "order": 5,
+      "src": "/assets/articles/guslitsa-5.jpg",
+      "width": 1338,
+      "height": 1600,
+      "bytes": 488751,
+      "sha256": "316520d7b29141bed280576393b8ddae55480557c186856204b4a8319f42beee",
+      "sourceRef": "https://freight.cargo.site/t/original/i/19b18f3af26a5198dcec280a89b4cb01eb26af922c13dec9eabea85f606893eb/-3.jpeg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "guslitsa",
+      "order": 6,
+      "src": "/assets/articles/guslitsa-6.jpg",
+      "width": 863,
+      "height": 974,
+      "bytes": 356982,
+      "sha256": "d6f2449adc20fadbaf4857e171e645a426bed7262a02addd05e0d5a0f0e95bce",
+      "sourceRef": "https://freight.cargo.site/t/original/i/cd16c8ba41a90cc3159cfb5999f898b3823c08056dcadd98a37e024bfe12a19c/3.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "guslitsa",
+      "order": 7,
+      "src": "/assets/articles/guslitsa-7.jpg",
+      "width": 1206,
+      "height": 1383,
+      "bytes": 538597,
+      "sha256": "03742e3d778cebc9138b72a508dcefeb9e0a1101a1875833864d14fcbc61f133",
+      "sourceRef": "https://freight.cargo.site/t/original/i/9d63f4ff844a7676bf7619e542ed1858cae6f7f8af3e04d04fb04c2b9c5105c0/-2.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "guslitsa",
+      "order": 8,
+      "src": "/assets/articles/guslitsa-8.jpg",
+      "width": 2228,
+      "height": 2616,
+      "bytes": 1610726,
+      "sha256": "ef72b1f4b0b2ad4a38182a4d7e3850fc11e5f0caf31932aff775be35286e2938",
+      "sourceRef": "https://freight.cargo.site/t/original/i/0c1aff03856c7f6c07c4444f25c8c319ff99f41b13a5551f857539db4ab7f19b/.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "guslitsa",
+      "order": 9,
+      "src": "/assets/articles/guslitsa-9.jpg",
+      "width": 947,
+      "height": 1600,
+      "bytes": 395652,
+      "sha256": "7afcb60009cb5a3c7f7ab1cc651e508e4aef3aeb29af09c086dcdd715296b667",
+      "sourceRef": "https://freight.cargo.site/t/original/i/bc98bfedfe1221db44164049d9bddb6e22e1188fefebe31145c91fca1d52b0ae/-2.jpeg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "guslitsa",
+      "order": 10,
+      "src": "/assets/articles/guslitsa-10.jpg",
+      "width": 1200,
+      "height": 1600,
+      "bytes": 537244,
+      "sha256": "770f80c97fdd9b07442b7a8d80aba0f74909cb8ab50508cec680064fc54acb4b",
+      "sourceRef": "https://freight.cargo.site/t/original/i/3ac8d1bb488623147d665d4623ce91d026ffff993ddfcafe69621635e9fe0fd5/-4.jpeg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "guslitsa",
+      "order": 11,
+      "src": "/assets/articles/guslitsa-11.jpg",
+      "width": 835,
+      "height": 1281,
+      "bytes": 558126,
+      "sha256": "d6d7cd1580f6543a2c3057f0a712bed871cb35f2cb84c5dfb9458a9f5c272528",
+      "sourceRef": "https://freight.cargo.site/t/original/i/7d719b7dc61c59b448aff2e5ce9fab0e2cc9c2b1ca68b54a0ded7cadf970b370/4.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "guslitsa",
+      "order": 12,
+      "src": "/assets/articles/guslitsa-12.jpg",
+      "width": 563,
+      "height": 667,
+      "bytes": 167154,
+      "sha256": "0a533715308dea692d676e48e8b3bd272782dda5825e376c7dc1c1501d5f8da1",
+      "sourceRef": "https://freight.cargo.site/t/original/i/b2001630c3b88896a5869154ef7a25ad52dbb0f87da016d4764112816f4c8a81/5.jpg",
+      "provenance": "cargo-original-url",
+      "evidence": [
+        "cargo-scaffolding-content",
+        "cargo-scaffolding-images",
+        "local-page-html"
+      ]
+    }
+  ],
+  "omittedMedia": [],
+  "omittedBlocks": [
+    {
+      "ownerType": "page",
+      "ownerSlug": "excursions",
+      "blockType": "iframe",
+      "count": 1,
+      "reason": "external-video-migrated-to-videos"
+    }
+  ],
+  "technicalDebrisRemoved": [
+    {
+      "ownerType": "page",
+      "ownerSlug": "workshop",
+      "kind": "legacy-navigation-paragraphs",
+      "count": 8
+    },
+    {
+      "ownerType": "page",
+      "ownerSlug": "excursions",
+      "kind": "legacy-iframe",
+      "count": 1
+    }
+  ],
+  "aliases": [
+    {
+      "legacyPath": "/MOSKOVSKAY-IKONOPISNAY-MASTERSKAY",
+      "canonicalPath": "/workshop"
+    },
+    {
+      "legacyPath": "/about",
+      "canonicalPath": "/workshop"
+    },
+    {
+      "legacyPath": "/iconamaster",
+      "canonicalPath": "/workshop"
+    },
+    {
+      "legacyPath": "/EKSKURSIY-PO-MASTERSKOI",
+      "canonicalPath": "/excursions"
+    },
+    {
+      "legacyPath": "/excursion",
+      "canonicalPath": "/excursions"
+    },
+    {
+      "legacyPath": "/MERNAY-IKONA",
+      "canonicalPath": "/measure-icon"
+    },
+    {
+      "legacyPath": "/mernaya_ikona",
+      "canonicalPath": "/measure-icon"
+    },
+    {
+      "legacyPath": "/RESTAVRATIY",
+      "canonicalPath": "/restoration"
+    },
+    {
+      "legacyPath": "/moika_nastennoi_rospisi",
+      "canonicalPath": "/restoration"
+    },
+    {
+      "legacyPath": "/KIOTY-I-REZ-BA",
+      "canonicalPath": "/kiots"
+    },
+    {
+      "legacyPath": "/kiot",
+      "canonicalPath": "/kiots"
+    },
+    {
+      "legacyPath": "/OKLADY",
+      "canonicalPath": "/oklads"
+    },
+    {
+      "legacyPath": "/oklad",
+      "canonicalPath": "/oklads"
+    },
+    {
+      "legacyPath": "/IKONOSTASY",
+      "canonicalPath": "/iconostases"
+    },
+    {
+      "legacyPath": "/iconostas",
+      "canonicalPath": "/iconostases"
+    },
+    {
+      "legacyPath": "/PIS-MA-GORBUNOVYK-IKONY-SELA-KOLUI",
+      "canonicalPath": "/articles/gorbunov-icons-kholuy"
+    },
+    {
+      "legacyPath": "/KINESMA-STARYI-IKONOPISNYI-TENTR-STAROOBRYDCESTVA",
+      "canonicalPath": "/articles/kineshma-icon-painting"
+    },
+    {
+      "legacyPath": "/IKONY-RUSSKOGO-PANTELEIMONOVA-MONASTYRY",
+      "canonicalPath": "/articles/panteleimon-monastery-icons"
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-RUSSKAY-ILI-VZBRANNAY-VOEVODA-1",
+      "canonicalPath": "/articles/theotokos-russkaya"
+    },
+    {
+      "legacyPath": "/PAVLOVO-NA-OKE-STAROOBRYDCESKII-IKONOPISNYI-TENTR",
+      "canonicalPath": "/articles/pavlovo-na-oke"
+    },
+    {
+      "legacyPath": "/ISTORIY-RAZVITIY-I-STILI-OKLADOV-IKON",
+      "canonicalPath": "/articles/history-of-icon-oklads"
+    },
+    {
+      "legacyPath": "/IKONOPISNYI-KANON-KAK-MESTO-DUKOVNOI-BRANI",
+      "canonicalPath": "/articles/icon-painting-canon"
+    },
+    {
+      "legacyPath": "/GUSLITA-ODIN-IZ-KRUPNEISIK-STAROOBRYDCESKIK-TENTROV-KNIGOPISANIY-I",
+      "canonicalPath": "/articles/guslitsa"
+    }
+  ],
+  "excludedArticleCandidates": [
+    {
+      "legacyPath": "/IKONY-V-OKLADAK-TRADITIY-I-ISTORIY",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONY-V-OKLADAK-TRADITIY-I-ISTORIY",
+      "title": "Иконы в окладах. Традиция и история.",
+      "decision": "excluded-by-controller-ruling",
+      "evidence": {
+        "localPath": "IKONY-V-OKLADAK-TRADITIY-I-ISTORIY/index.html",
+        "mediaCount": 0,
+        "issues": [
+          "No media URL found in the local page"
+        ]
+      }
+    }
+  ],
+  "records": [
+    {
+      "kind": "page",
+      "slug": "workshop",
+      "title": "Московская иконописная мастерская",
+      "sourceUrl": "https://iconamaster.cargo.site/MOSKOVSKAY-IKONOPISNAY-MASTERSKAY",
+      "sections": 1,
+      "media": 0
+    },
+    {
+      "kind": "page",
+      "slug": "excursions",
+      "title": "Экскурсия по мастерской",
+      "sourceUrl": "https://iconamaster.cargo.site/EKSKURSIY-PO-MASTERSKOI",
+      "sections": 3,
+      "media": 8
+    },
+    {
+      "kind": "page",
+      "slug": "measure-icon",
+      "title": "Мерная икона",
+      "sourceUrl": "https://iconamaster.cargo.site/MERNAY-IKONA",
+      "sections": 2,
+      "media": 8
+    },
+    {
+      "kind": "page",
+      "slug": "restoration",
+      "title": "Реставрация",
+      "sourceUrl": "https://iconamaster.cargo.site/RESTAVRATIY",
+      "sections": 10,
+      "media": 13
+    },
+    {
+      "kind": "page",
+      "slug": "kiots",
+      "title": "Киоты и резьба",
+      "sourceUrl": "https://iconamaster.cargo.site/KIOTY-I-REZ-BA",
+      "sections": 5,
+      "media": 15
+    },
+    {
+      "kind": "page",
+      "slug": "oklads",
+      "title": "Оклады",
+      "sourceUrl": "https://iconamaster.cargo.site/OKLADY",
+      "sections": 16,
+      "media": 14
+    },
+    {
+      "kind": "page",
+      "slug": "iconostases",
+      "title": "Иконостасы",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONOSTASY",
+      "sections": 12,
+      "media": 18
+    },
+    {
+      "kind": "article",
+      "slug": "gorbunov-icons-kholuy",
+      "title": "Иконы Горбуновых из села Холуя",
+      "sourceUrl": "https://iconamaster.cargo.site/PIS-MA-GORBUNOVYK-IKONY-SELA-KOLUI",
+      "sections": 15,
+      "media": 7
+    },
+    {
+      "kind": "article",
+      "slug": "kineshma-icon-painting",
+      "title": "Кинешма — иконописный центр старообрядчества",
+      "sourceUrl": "https://iconamaster.cargo.site/KINESMA-STARYI-IKONOPISNYI-TENTR-STAROOBRYDCESTVA",
+      "sections": 9,
+      "media": 4
+    },
+    {
+      "kind": "article",
+      "slug": "panteleimon-monastery-icons",
+      "title": "Иконы Русского Пантелеймонова монастыря",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONY-RUSSKOGO-PANTELEIMONOVA-MONASTYRY",
+      "sections": 11,
+      "media": 5
+    },
+    {
+      "kind": "article",
+      "slug": "theotokos-russkaya",
+      "title": "Икона Богородицы Русская / Взбранная Воевода",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-RUSSKAY-ILI-VZBRANNAY-VOEVODA-1",
+      "sections": 13,
+      "media": 6
+    },
+    {
+      "kind": "article",
+      "slug": "pavlovo-na-oke",
+      "title": "Павлово-на-Оке — старообрядческий иконописный центр",
+      "sourceUrl": "https://iconamaster.cargo.site/PAVLOVO-NA-OKE-STAROOBRYDCESKII-IKONOPISNYI-TENTR",
+      "sections": 15,
+      "media": 7
+    },
+    {
+      "kind": "article",
+      "slug": "history-of-icon-oklads",
+      "title": "История развития и стили окладов икон",
+      "sourceUrl": "https://iconamaster.cargo.site/ISTORIY-RAZVITIY-I-STILI-OKLADOV-IKON",
+      "sections": 92,
+      "media": 48
+    },
+    {
+      "kind": "article",
+      "slug": "icon-painting-canon",
+      "title": "Иконописный канон как место духовной брани",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONOPISNYI-KANON-KAK-MESTO-DUKOVNOI-BRANI",
+      "sections": 17,
+      "media": 8
+    },
+    {
+      "kind": "article",
+      "slug": "guslitsa",
+      "title": "Гуслица",
+      "sourceUrl": "https://iconamaster.cargo.site/GUSLITA-ODIN-IZ-KRUPNEISIK-STAROOBRYDCESKIK-TENTROV-KNIGOPISANIY-I",
+      "sections": 24,
+      "media": 12
+    }
+  ]
+}
