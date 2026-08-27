@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { createReadStream } from 'node:fs';
-import { lstat, readFile, readdir } from 'node:fs/promises';
+import { lstat, readFile, readdir, realpath } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -8,6 +8,12 @@ import { publicRecoverySources, verifiedSources } from './icon-sources.mjs';
 import { legacyIconMap } from './data/legacy-icon-map.mjs';
 
 const sorted = (values) => [...values].sort();
+const compareCodeUnits = (left, right) => (left < right ? -1 : left > right ? 1 : 0);
+
+function isContained(root, candidate) {
+  const relative = path.relative(root, candidate);
+  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+}
 
 async function sha256File(file) {
   const hash = createHash('sha256');
@@ -19,12 +25,35 @@ export async function verifyIconAssetSet({ assetDirectory, manifest, allowedOwne
   const errors = [];
   if (!Array.isArray(manifest)) return ['icon manifest must be an array'];
 
+  let rootMetadata;
+  try {
+    rootMetadata = await lstat(assetDirectory);
+  } catch {
+    return ['icon asset root must be a real directory'];
+  }
+  if (rootMetadata.isSymbolicLink() || !rootMetadata.isDirectory()) {
+    return ['icon asset root must be a real directory'];
+  }
+  const rootRealPath = await realpath(assetDirectory);
+
   const manifestFiles = new Set();
   const manifestSources = new Set();
-  const entries = await readdir(assetDirectory, { withFileTypes: true });
-  const diskFiles = new Set(entries.filter((entry) => entry.isFile() && entry.name !== 'manifest.json').map(({ name }) => name));
+  const entries = (await readdir(assetDirectory, { withFileTypes: true }))
+    .sort((left, right) => compareCodeUnits(left.name, right.name));
+  const diskFiles = new Set();
   for (const entry of entries) {
-    if (!entry.isFile()) errors.push(`icon asset directory contains a non-file: ${entry.name}`);
+    const absolute = path.join(assetDirectory, entry.name);
+    const metadata = await lstat(absolute);
+    if (metadata.isSymbolicLink() || !metadata.isFile()) {
+      errors.push(`icon asset directory contains a non-file: ${entry.name}`);
+      continue;
+    }
+    const resolved = await realpath(absolute);
+    if (!isContained(rootRealPath, resolved)) {
+      errors.push(`icon asset resolves outside asset root: ${entry.name}`);
+      continue;
+    }
+    if (entry.name !== 'manifest.json') diskFiles.add(entry.name);
   }
 
   for (const asset of manifest) {
@@ -148,6 +177,33 @@ function validateContentOwnership(icons, manifest, errors) {
 export async function verifyIconAssetProject(projectRoot = new URL('../', import.meta.url)) {
   const projectDirectory = projectRoot instanceof URL ? fileURLToPath(projectRoot) : path.resolve(projectRoot);
   const assetDirectory = path.join(projectDirectory, 'public', 'assets', 'icons');
+  let rootMetadata;
+  try {
+    rootMetadata = await lstat(assetDirectory);
+  } catch {
+    rootMetadata = null;
+  }
+  if (!rootMetadata?.isDirectory() || rootMetadata.isSymbolicLink()) {
+    return {
+      errors: ['icon asset root must be a real directory'],
+      summary: { assets: 0, bytes: 0, independentOwners: 0 },
+    };
+  }
+  const rootRealPath = await realpath(assetDirectory);
+  const manifestPath = path.join(assetDirectory, 'manifest.json');
+  let manifestMetadata;
+  try {
+    manifestMetadata = await lstat(manifestPath);
+  } catch {
+    manifestMetadata = null;
+  }
+  if (!manifestMetadata?.isFile() || manifestMetadata.isSymbolicLink()
+    || !isContained(rootRealPath, await realpath(manifestPath))) {
+    return {
+      errors: ['icon asset manifest must be a real contained file'],
+      summary: { assets: 0, bytes: 0, independentOwners: 0 },
+    };
+  }
   const [manifest, inventory, icons] = await Promise.all([
     readFile(path.join(assetDirectory, 'manifest.json'), 'utf8').then(JSON.parse),
     readFile(path.join(projectDirectory, 'tests', 'fixtures', 'migration', 'icon-inventory.json'), 'utf8').then(JSON.parse),
@@ -178,7 +234,7 @@ export async function verifyIconAssetProject(projectRoot = new URL('../', import
 const invokedDirectly = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 if (invokedDirectly) {
   try {
-    const result = await verifyIconAssetProject();
+    const result = await verifyIconAssetProject(process.argv[2] ?? new URL('../', import.meta.url));
     if (result.errors.length > 0) {
       console.error(`icon asset verification failed with ${result.errors.length} error(s):`);
       for (const error of result.errors) console.error(`- ${error}`);

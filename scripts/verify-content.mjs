@@ -1,3 +1,5 @@
+import { createHash } from 'node:crypto';
+import { createReadStream } from 'node:fs';
 import { lstat, readFile, readdir, realpath } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -23,9 +25,62 @@ const STATIC_ALIASES = {
 const EXCLUDED_ARTICLE_PATH = '/IKONY-V-OKLADAK-TRADITIY-I-ISTORIY';
 const RAW_HTML = /<(?:\/?[A-Za-z][^>]*|!DOCTYPE[^>]*)>/iu;
 const EXECUTABLE_TEXT = /(?:javascript\s*:|\bon[a-z]+\s*=)/iu;
+const PAGE_FIELDS = new Set(['id', 'slug', 'title', 'published', 'order', 'sourceUrl', 'sections']);
+const ARTICLE_FIELDS = new Set([...PAGE_FIELDS, 'summary', 'image']);
+const VIDEO_FIELDS = new Set(['provider', 'id', 'title', 'description', 'autoplay', 'published', 'sourceUrl']);
+const CONTACT_FIELDS = new Set(['whatsapp', 'phone', 'email', 'sourceUrl']);
+const BLOCK_CONTAINER_FIELDS = ['children', 'sections', 'blocks', 'items'];
 
 const sorted = (values) => [...values].sort();
+const compareCodeUnits = (left, right) => (left < right ? -1 : left > right ? 1 : 0);
 const ownerKey = (type, slug) => `${type}:${slug}`;
+const isPlainObject = (value) => Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+
+function validateKnownFields(record, fields, label, errors) {
+  if (!isPlainObject(record)) {
+    errors.push(`${label} must be an object`);
+    return false;
+  }
+  for (const field of sorted(Object.keys(record))) {
+    if (!fields.has(field)) errors.push(`${label} contains unknown field ${field}`);
+  }
+  return true;
+}
+
+function validateNonEmptyString(record, field, label, errors) {
+  if (typeof record?.[field] !== 'string' || !record[field].trim()) {
+    errors.push(`${label} field ${field} must be a non-empty string`);
+  }
+}
+
+function isCanonicalSourceUrl(value) {
+  if (typeof value !== 'string') return false;
+  try {
+    const source = new URL(value);
+    return source.protocol === 'https:'
+      && source.hostname === 'iconamaster.cargo.site'
+      && source.username === ''
+      && source.password === ''
+      && source.port === ''
+      && source.search === ''
+      && source.hash === '';
+  } catch {
+    return false;
+  }
+}
+
+function validatePublicationRecord(record, fields, label, errors) {
+  if (!validateKnownFields(record, fields, label, errors)) return false;
+  for (const field of ['id', 'slug', 'title']) validateNonEmptyString(record, field, label, errors);
+  if (typeof record.published !== 'boolean') errors.push(`${label} field published must be a boolean`);
+  if (!Number.isInteger(record.order) || record.order <= 0) {
+    errors.push(`${label} field order must be a positive integer`);
+  }
+  if (!isCanonicalSourceUrl(record.sourceUrl)) {
+    errors.push(`${label} field sourceUrl must be an HTTPS iconamaster.cargo.site URL`);
+  }
+  return true;
+}
 
 function decodedAssetPath(value) {
   if (typeof value !== 'string' || !value.startsWith('/assets/') || value.startsWith('//')) return null;
@@ -63,15 +118,20 @@ export function resolvePublicAssetPath(publicDirectory, assetUrl) {
 }
 
 function validateImage(image, label, assetFiles, errors, referencedFiles, missingLabel = label) {
-  if (!image || typeof image !== 'object' || Array.isArray(image)) return false;
+  if (!isPlainObject(image)) {
+    errors.push(`${label} must be an object`);
+    return { structurallyValid: false, valid: false };
+  }
   let usable = true;
+  let exists = false;
   const source = decodedAssetPath(image.src);
   if (!source) {
     errors.push(`${label} has invalid asset path ${image.src ?? '<missing>'}`);
     usable = false;
   } else {
     referencedFiles.add(source);
-    if (!assetFiles.has(source)) errors.push(`${missingLabel} references missing ${source}`);
+    exists = assetFiles.has(source);
+    if (!exists) errors.push(`${missingLabel} references missing ${source}`);
   }
   if (typeof image.alt !== 'string' || !image.alt.trim()) {
     errors.push(`${label} requires non-empty alt text`);
@@ -81,7 +141,7 @@ function validateImage(image, label, assetFiles, errors, referencedFiles, missin
     errors.push(`${label} has invalid dimensions ${image.width ?? '<missing>'}x${image.height ?? '<missing>'}`);
     usable = false;
   }
-  return usable;
+  return { structurallyValid: usable, valid: usable && exists };
 }
 
 function validateBlocks(sections, label, assetFiles, errors, referencedFiles) {
@@ -91,42 +151,62 @@ function validateBlocks(sections, label, assetFiles, errors, referencedFiles) {
   }
 
   const seen = new WeakSet();
-  const visit = (value) => {
-    if (Array.isArray(value)) {
-      for (const item of value) visit(item);
+  const visit = (value, location) => {
+    if (!isPlainObject(value)) {
+      errors.push(`${label} contains malformed block at ${location}`);
       return;
     }
-    if (!value || typeof value !== 'object' || seen.has(value)) return;
+    if (seen.has(value)) return;
     seen.add(value);
-
-    if (Object.hasOwn(value, 'type')) {
-      if (value.type === 'text') {
-        const hasHeading = typeof value.heading === 'string' && Boolean(value.heading.trim());
-        const hasParagraph = Array.isArray(value.paragraphs)
-          && value.paragraphs.some((paragraph) => typeof paragraph === 'string' && Boolean(paragraph.trim()));
-        if (!hasHeading && !hasParagraph) errors.push(`${label} contains an empty text block`);
-      } else if (value.type === 'image') {
-        if (!value.image) {
-          errors.push(`${label} contains an empty image block`);
-        } else {
-          validateImage(value.image, `${label} image block`, assetFiles, errors, referencedFiles);
-        }
-      } else if (value.type === 'gallery') {
-        if (!Array.isArray(value.images) || value.images.length === 0) {
-          errors.push(`${label} contains an empty gallery block`);
-        } else {
-          value.images.forEach((image, index) => {
-            validateImage(image, `${label} gallery image ${index + 1}`, assetFiles, errors, referencedFiles);
-          });
-        }
-      } else {
-        errors.push(`${label} contains unsupported block type ${value.type ?? '<missing>'}`);
-      }
+    if (!Object.hasOwn(value, 'type') || typeof value.type !== 'string' || !value.type.trim()) {
+      errors.push(`${label} contains untyped block at ${location}`);
+      return;
     }
 
-    for (const nested of Object.values(value)) visit(nested);
+    if (value.type === 'text') {
+      const hasHeading = typeof value.heading === 'string' && Boolean(value.heading.trim());
+      const paragraphsValid = Array.isArray(value.paragraphs)
+        && value.paragraphs.every((paragraph) => typeof paragraph === 'string');
+      const hasParagraph = paragraphsValid && value.paragraphs.some((paragraph) => Boolean(paragraph.trim()));
+      if (value.heading !== undefined && typeof value.heading !== 'string') {
+        errors.push(`${label} text block heading must be a string`);
+      }
+      if (!paragraphsValid) errors.push(`${label} text block paragraphs must be an array of strings`);
+      if (!hasHeading && !hasParagraph) errors.push(`${label} contains an empty text block`);
+    } else if (value.type === 'image') {
+      if (value.image == null) {
+        errors.push(`${label} contains an empty image block`);
+      } else {
+        validateImage(value.image, `${label} image block`, assetFiles, errors, referencedFiles);
+      }
+    } else if (value.type === 'gallery') {
+      if (!Array.isArray(value.images) || value.images.length === 0) {
+        errors.push(`${label} contains an empty gallery block`);
+        errors.push(`${label} contains a gallery without a valid image`);
+      } else {
+        const images = value.images.map((image, index) => validateImage(
+          image,
+          `${label} gallery image ${index + 1}`,
+          assetFiles,
+          errors,
+          referencedFiles,
+        ));
+        if (!images.some(({ valid }) => valid)) errors.push(`${label} contains a gallery without a valid image`);
+      }
+    } else {
+      errors.push(`${label} contains unsupported block type ${value.type ?? '<missing>'}`);
+    }
+
+    for (const field of BLOCK_CONTAINER_FIELDS) {
+      if (!Object.hasOwn(value, field)) continue;
+      if (!Array.isArray(value[field])) {
+        errors.push(`${label} block container ${location}.${field} must be an array`);
+        continue;
+      }
+      value[field].forEach((child, index) => visit(child, `${location}.${field}[${index}]`));
+    }
   };
-  visit(sections);
+  sections.forEach((section, index) => visit(section, `sections[${index}]`));
 }
 
 function containsPolicyViolation(value, predicate, seen = new WeakSet()) {
@@ -175,6 +255,22 @@ function isRootRelativeRoute(value) {
   }
 }
 
+function normalizedRoutePath(value) {
+  const decoded = decodeURI(value || '/');
+  return decoded !== '/' && decoded.endsWith('/') ? decoded.slice(0, -1) : decoded;
+}
+
+function canonicalRoutePath(route) {
+  if (route.name === 'home') return '/';
+  if (['collection', 'articles', 'video', 'contacts'].includes(route.name)) return `/${route.name}`;
+  if (route.name === 'icon') return `/icons/${route.slug}`;
+  if (route.name === 'article') return `/articles/${route.slug}`;
+  if (route.name === 'page') return route.canonicalPath;
+  return null;
+}
+
+const sameRoute = (left, right) => JSON.stringify(left) === JSON.stringify(right);
+
 function validateAliases(bundle, errors) {
   const aliases = bundle?.aliases;
   if (!aliases || typeof aliases !== 'object' || Array.isArray(aliases)) {
@@ -220,21 +316,47 @@ function validateAliases(bundle, errors) {
       errors.push(`alias ${alias} target must be root-relative: ${target}`);
       continue;
     }
+    let normalizedAlias;
+    try {
+      normalizedAlias = normalizedRoutePath(alias);
+    } catch {
+      errors.push(`alias path must be root-relative: ${alias}`);
+      continue;
+    }
+    if (alias !== normalizedAlias) errors.push(`alias path must use its exact normalized form: ${alias}`);
+
+    let keyRoute;
+    try {
+      keyRoute = parseRoute(alias, {});
+    } catch {
+      errors.push(`alias path must be root-relative: ${alias}`);
+      continue;
+    }
+    if (keyRoute.name !== 'not-found') errors.push(`alias key collides with canonical route: ${alias}`);
     if (loopMembers.has(alias)) continue;
     if (Object.hasOwn(aliases, target)) {
-      errors.push(`alias ${alias} target must be canonical: ${target}`);
-      continue;
+      errors.push(`alias ${alias} uses unsupported alias chain through ${target}`);
     }
 
     let route;
+    let runtimeRoute;
+    let runtimeTargetRoute;
     try {
       route = parseRoute(target, {});
-      parseRoute(alias, aliases);
+      runtimeRoute = parseRoute(alias, aliases);
+      runtimeTargetRoute = parseRoute(target, aliases);
     } catch {
       errors.push(`alias ${alias} has malformed target ${target}`);
       continue;
     }
     if (route.name === 'not-found') errors.push(`alias ${alias} has unrecognized target ${target}`);
+    const canonicalTarget = canonicalRoutePath(route);
+    if (canonicalTarget && target !== canonicalTarget) {
+      errors.push(`alias ${alias} target must use exact canonical form ${canonicalTarget}`);
+    }
+    if (!sameRoute(runtimeRoute, runtimeTargetRoute)) {
+      errors.push(`alias ${alias} runtime route does not match target route ${target}`);
+    }
     if (route.name === 'icon' && !iconSlugs.has(route.slug)) errors.push(`alias ${alias} targets missing icon ${route.slug}`);
     if (route.name === 'article' && !articleSlugs.has(route.slug)) errors.push(`alias ${alias} targets missing article ${route.slug}`);
     if (route.name === 'page' && !pageSlugs.has(route.slug)) errors.push(`alias ${alias} targets missing page ${route.slug}`);
@@ -251,6 +373,20 @@ function validateExpectedSet(label, actualValues, expectedValues, errors) {
   }
   for (const value of sorted(actual)) {
     if (!expected.has(value)) errors.push(`${label} contract has unexpected ${noun}${value}`);
+  }
+  if (label !== 'videos') return;
+  if (actualValues.length !== expectedValues.length) {
+    errors.push(`videos contract expected ${expectedValues.length} records but found ${actualValues.length}`);
+  }
+  const counts = (values) => values.reduce((map, value) => map.set(value, (map.get(value) ?? 0) + 1), new Map());
+  const actualCounts = counts(actualValues);
+  const expectedCounts = counts(expectedValues);
+  for (const value of sorted(new Set([...actualCounts.keys(), ...expectedCounts.keys()]))) {
+    const actualCount = actualCounts.get(value) ?? 0;
+    const expectedCount = expectedCounts.get(value) ?? 0;
+    if (actualCount !== expectedCount && actualCount > 1) {
+      errors.push(`videos contract has ${actualCount} copies of ${value}; expected ${expectedCount}`);
+    }
   }
 }
 
@@ -308,6 +444,13 @@ export function verifyContent(bundle, assetFiles = new Set(), options = {}) {
   validateDuplicateSlugs(safeBundle.pages, 'pages', errors);
   validateDuplicateSlugs(safeBundle.articles, 'articles', errors);
 
+  const seenVideos = new Set();
+  for (const video of safeBundle.videos) {
+    const identity = `${video?.provider ?? '<missing>'}:${video?.id ?? '<missing>'}`;
+    if (seenVideos.has(identity)) errors.push(`duplicate video ${identity}`);
+    seenVideos.add(identity);
+  }
+
   for (const icon of safeBundle.icons) {
     const images = Array.isArray(icon?.images) ? icon.images : [];
     const usability = images.map((image, index) => validateImage(
@@ -318,27 +461,50 @@ export function verifyContent(bundle, assetFiles = new Set(), options = {}) {
       referencedFiles,
       `${icon.published ? 'published ' : ''}icon ${icon.slug}`,
     ));
-    if (icon?.published && !usability.some(Boolean)) errors.push(`published icon ${icon.slug} has no usable images`);
+    if (icon?.published && !usability.some(({ structurallyValid }) => structurallyValid)) {
+      errors.push(`published icon ${icon.slug} has no usable images`);
+    }
     validateOwnerPolicies(icon, `icon ${icon.slug}`, errors);
   }
 
   for (const [kind, records] of [['page', safeBundle.pages], ['article', safeBundle.articles]]) {
     for (const record of records) {
-      const label = `${kind} ${record.slug}`;
-      if (kind === 'article' && record.image) {
-        validateImage(record.image, `${label} cover`, assetFiles, errors, referencedFiles);
+      const label = `${kind} ${record?.slug ?? '<missing>'}`;
+      validatePublicationRecord(record, kind === 'page' ? PAGE_FIELDS : ARTICLE_FIELDS, label, errors);
+      if (kind === 'article') {
+        validateNonEmptyString(record, 'summary', label, errors);
+        if (!isPlainObject(record?.image)) {
+          errors.push(`${label} field image must be an image object`);
+        } else {
+          validateImage(record.image, `${label} cover`, assetFiles, errors, referencedFiles);
+        }
       }
-      validateBlocks(record.sections, label, assetFiles, errors, referencedFiles);
+      validateBlocks(record?.sections, label, assetFiles, errors, referencedFiles);
       validateOwnerPolicies(record, label, errors);
     }
   }
 
   for (const video of safeBundle.videos) {
-    const label = `video ${video.provider ?? '<missing>'}:${video.id ?? '<missing>'}`;
+    const label = `video ${video?.provider ?? '<missing>'}:${video?.id ?? '<missing>'}`;
+    if (!validateKnownFields(video, VIDEO_FIELDS, label, errors)) continue;
+    if (!['youtube', 'vimeo'].includes(video.provider)) errors.push(`${label} field provider is unsupported`);
+    const idValid = video.provider === 'youtube'
+      ? typeof video.id === 'string' && /^[A-Za-z0-9_-]{11}$/u.test(video.id)
+      : video.provider === 'vimeo' && typeof video.id === 'string' && /^\d+$/u.test(video.id);
+    if (!idValid) errors.push(`${label} field id is invalid for provider ${video.provider ?? '<missing>'}`);
+    for (const field of ['title', 'description']) validateNonEmptyString(video, field, label, errors);
     if (video.autoplay !== false) errors.push(`${label} must set autoplay to false`);
+    if (typeof video.published !== 'boolean') errors.push(`${label} field published must be a boolean`);
+    if (!isCanonicalSourceUrl(video.sourceUrl)) {
+      errors.push(`${label} field sourceUrl must be an HTTPS iconamaster.cargo.site URL`);
+    }
     validateOwnerPolicies(video, label, errors);
   }
 
+  validateKnownFields(bundle?.contacts, CONTACT_FIELDS, 'contacts', errors);
+  if (!isCanonicalSourceUrl(bundle?.contacts?.sourceUrl)) {
+    errors.push('contacts field sourceUrl must be an HTTPS iconamaster.cargo.site URL');
+  }
   for (const [key, expected] of Object.entries(CANONICAL_CONTACTS)) {
     if (bundle?.contacts?.[key] !== expected) errors.push(`contacts.${key} must be ${expected}`);
   }
@@ -369,21 +535,142 @@ async function readJson(file) {
   return JSON.parse(await readFile(file, 'utf8'));
 }
 
+async function sha256File(file) {
+  const hash = createHash('sha256');
+  for await (const chunk of createReadStream(file)) hash.update(chunk);
+  return hash.digest('hex');
+}
+
+async function validateDirectoryRoot(directory, label, errors) {
+  try {
+    const metadata = await lstat(directory);
+    if (metadata.isSymbolicLink() || !metadata.isDirectory()) {
+      errors.push(`${label} must be a real directory`);
+      return null;
+    }
+    return await realpath(directory);
+  } catch (error) {
+    errors.push(`${label} is unavailable: ${error.code ?? error.message}`);
+    return null;
+  }
+}
+
+function isContained(root, candidate) {
+  const relative = path.relative(root, candidate);
+  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+}
+
+export async function inspectContentDirectory(directory, errors) {
+  const rootRealPath = await validateDirectoryRoot(directory, 'content root', errors);
+  if (!rootRealPath) return [];
+  const files = [];
+  const entries = (await readdir(directory, { withFileTypes: true }))
+    .sort((left, right) => compareCodeUnits(left.name, right.name));
+  for (const entry of entries) {
+    const absolute = path.join(directory, entry.name);
+    const metadata = await lstat(absolute);
+    if (metadata.isSymbolicLink()) {
+      errors.push(`content directory contains a symbolic link: ${entry.name}`);
+      continue;
+    }
+    if (!metadata.isFile()) {
+      errors.push(`content directory contains a non-file: ${entry.name}`);
+      continue;
+    }
+    const resolved = await realpath(absolute);
+    if (!isContained(rootRealPath, resolved)) {
+      errors.push(`content file resolves outside content root: ${entry.name}`);
+      continue;
+    }
+    if (entry.name.endsWith('.json')) files.push(entry.name);
+    else errors.push(`content directory contains an unsupported file: ${entry.name}`);
+  }
+  return files;
+}
+
+async function inspectAssetDirectoryRoot(directory, errors) {
+  const rootRealPath = await validateDirectoryRoot(directory, 'asset root', errors);
+  if (!rootRealPath) return;
+  const expectedDirectories = new Set(['articles', 'icons', 'pages']);
+  const entries = (await readdir(directory, { withFileTypes: true }))
+    .sort((left, right) => compareCodeUnits(left.name, right.name));
+  for (const entry of entries) {
+    const absolute = path.join(directory, entry.name);
+    const metadata = await lstat(absolute);
+    if (metadata.isSymbolicLink()) {
+      errors.push(`asset directory contains a symbolic link: ${entry.name}`);
+      continue;
+    }
+    if (!metadata.isDirectory()) {
+      errors.push(`asset directory contains a non-directory: ${entry.name}`);
+      continue;
+    }
+    const resolved = await realpath(absolute);
+    if (!isContained(rootRealPath, resolved)) {
+      errors.push(`asset directory entry resolves outside asset root: ${entry.name}`);
+      continue;
+    }
+    if (!expectedDirectories.has(entry.name)) errors.push(`asset directory contains unexpected root: ${entry.name}`);
+  }
+}
+
+export async function verifyEditorialAssetFiles({ publicDirectory, editorialReport }) {
+  const errors = [];
+  const publicRealPath = await validateDirectoryRoot(publicDirectory, 'public root', errors);
+  if (!publicRealPath) return errors;
+  const assets = [...(editorialReport?.assets ?? []), ...(editorialReport?.coverAssets ?? [])]
+    .sort((left, right) => compareCodeUnits(left.src ?? '', right.src ?? ''));
+  for (const asset of assets) {
+    let absolute;
+    try {
+      absolute = resolvePublicAssetPath(publicDirectory, asset.src);
+    } catch {
+      errors.push(`editorial asset has invalid path: ${asset.src ?? '<missing>'}`);
+      continue;
+    }
+    let metadata;
+    try {
+      metadata = await lstat(absolute);
+    } catch {
+      errors.push(`editorial asset is missing: ${asset.src}`);
+      continue;
+    }
+    if (metadata.isSymbolicLink() || !metadata.isFile()) {
+      errors.push(`editorial asset is not a regular file: ${asset.src}`);
+      continue;
+    }
+    const resolved = await realpath(absolute);
+    if (!isContained(publicRealPath, resolved)) {
+      errors.push(`editorial asset resolves outside public root: ${asset.src}`);
+      continue;
+    }
+    if (metadata.size !== asset.bytes) errors.push(`editorial asset byte count mismatch: ${asset.src}`);
+    if (await sha256File(absolute) !== asset.sha256) errors.push(`editorial asset checksum mismatch: ${asset.src}`);
+  }
+  return errors;
+}
+
 async function collectFiles(directory, publicDirectory, errors) {
   const files = new Set();
   const publicRealPath = await realpath(publicDirectory);
+  const directoryRealPath = await validateDirectoryRoot(directory, `asset root ${directory}`, errors);
+  if (!directoryRealPath || !isContained(publicRealPath, directoryRealPath)) {
+    if (directoryRealPath) errors.push(`asset root resolves outside public: ${directory}`);
+    return files;
+  }
   const walk = async (current) => {
-    const entries = (await readdir(current, { withFileTypes: true })).sort((left, right) => (
-      left.name < right.name ? -1 : left.name > right.name ? 1 : 0
-    ));
+    const entries = (await readdir(current, { withFileTypes: true }))
+      .sort((left, right) => compareCodeUnits(left.name, right.name));
     for (const entry of entries) {
       const absolute = path.join(current, entry.name);
-      if (entry.isSymbolicLink()) {
+      const metadata = await lstat(absolute);
+      if (metadata.isSymbolicLink()) {
         errors.push(`asset inventory contains a symbolic link: ${absolute}`);
-      } else if (entry.isDirectory()) {
-        await walk(absolute);
+      } else if (metadata.isDirectory()) {
+        const resolved = await realpath(absolute);
+        if (!isContained(publicRealPath, resolved)) errors.push(`asset resolves outside public: ${absolute}`);
+        else await walk(absolute);
       } else {
-        const metadata = await lstat(absolute);
         if (!metadata.isFile()) {
           errors.push(`asset inventory contains a non-file: ${absolute}`);
           continue;
@@ -492,15 +779,23 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
   const contentDirectory = path.join(publicDirectory, 'content');
   const errors = [];
 
+  const contentFiles = await inspectContentDirectory(contentDirectory, errors);
+  if (!contentFiles.includes('manifest.json')) {
+    errors.push('content manifest is missing or unsafe');
+    return {
+      errors,
+      summary: {
+        icons: 0, publishedIcons: 0, pages: 0, articles: 0, videos: 0, aliases: 0,
+        referencedAssets: 0, ownedAssets: 0,
+      },
+    };
+  }
   const manifest = await readJson(path.join(contentDirectory, 'manifest.json'));
   if (manifest.version !== 1) errors.push('content manifest version must be 1');
   const manifestKeys = Object.keys(manifest.files ?? {});
   if (JSON.stringify(sorted(manifestKeys)) !== JSON.stringify(sorted(CONTENT_DOCUMENTS))) {
     errors.push('content manifest must name exactly icons, pages, articles, videos, contacts, and aliases');
   }
-  const contentFiles = (await readdir(contentDirectory, { withFileTypes: true }))
-    .filter((entry) => entry.isFile() && entry.name.endsWith('.json'))
-    .map(({ name }) => name);
   const declaredFiles = Object.values(manifest.files ?? {});
   for (const file of declaredFiles) {
     if (typeof file !== 'string' || path.basename(file) !== file || !file.endsWith('.json')) {
@@ -518,7 +813,9 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
   const documents = {};
   for (const key of CONTENT_DOCUMENTS) {
     const file = manifest.files?.[key];
-    if (typeof file === 'string' && path.basename(file) === file) documents[key] = await readJson(path.join(contentDirectory, file));
+    if (typeof file === 'string' && path.basename(file) === file && contentFiles.includes(file)) {
+      documents[key] = await readJson(path.join(contentDirectory, file));
+    }
   }
   const bundle = { version: manifest.version, ...documents };
 
@@ -530,8 +827,10 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
   ]);
   validateSourceOwnershipFixture(editorialReport, sourceFixture, errors);
   const ownedFiles = validateOwnedMetadata(iconManifest, editorialReport, coverFixture, errors);
+  errors.push(...await verifyEditorialAssetFiles({ publicDirectory, editorialReport }));
 
   const diskFiles = new Set();
+  await inspectAssetDirectoryRoot(path.join(publicDirectory, 'assets'), errors);
   for (const directory of ['icons', 'pages', 'articles']) {
     const files = await collectFiles(path.join(publicDirectory, 'assets', directory), publicDirectory, errors);
     for (const file of files) diskFiles.add(file);
@@ -579,7 +878,7 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
 const invokedDirectly = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 if (invokedDirectly) {
   try {
-    const result = await verifyProject();
+    const result = await verifyProject(process.argv[2] ?? new URL('../', import.meta.url));
     if (result.errors.length > 0) {
       console.error(`content integrity failed with ${result.errors.length} error(s):`);
       for (const error of result.errors) console.error(`- ${error}`);
