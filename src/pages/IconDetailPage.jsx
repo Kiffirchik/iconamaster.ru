@@ -28,6 +28,11 @@ export function IconDetailPage({ icon, icons, onNavigate }) {
   const catalogIcons = publishedIcons({ icons });
   const nextIcon = catalogIcons.length > 0 ? getNextIcon(catalogIcons, icon.slug) : null;
   const visiblePassportFields = passportFields.filter(([, key]) => String(icon[key] || '').trim());
+  const eyebrow = [icon.type, icon.period]
+    .map((value) => String(value || '').trim())
+    .filter(Boolean)
+    .join(' · ');
+  const price = String(icon.price || '').trim() || 'Цена по запросу';
 
   function navigateTo(event, path) {
     if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -40,9 +45,9 @@ export function IconDetailPage({ icon, icons, onNavigate }) {
       <div className="icon-detail-page__layout">
         <IconGallery images={icon.images ?? []} title={icon.title} />
         <article className="icon-detail-page__content">
-          <p className="eyebrow">{[icon.type, icon.period].filter(Boolean).join(' · ')}</p>
+          {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
           <h1>{icon.title}</h1>
-          <p className="icon-detail-page__price">{icon.price || 'Цена по запросу'}</p>
+          <p className="icon-detail-page__price">{price}</p>
           {String(icon.description || '').trim() ? <p className="icon-detail-page__description">{icon.description}</p> : null}
 
           {visiblePassportFields.length > 0 ? <section aria-labelledby="passport-title">

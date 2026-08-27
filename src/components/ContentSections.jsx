@@ -6,10 +6,14 @@ export function ContentSections({ sections = [] }) {
     <div className="content-sections">
       {renderableSections(sections).map((section, index) => {
         if (section.type === 'text') {
-          const paragraphs = (section.paragraphs ?? []).filter((paragraph) => typeof paragraph === 'string' && paragraph.trim());
+          const heading = typeof section.heading === 'string' ? section.heading.trim() : '';
+          const paragraphs = (section.paragraphs ?? [])
+            .filter((paragraph) => typeof paragraph === 'string')
+            .map((paragraph) => paragraph.trim())
+            .filter(Boolean);
           return (
             <section className="content-section content-section--text" key={`text-${index}`}>
-              {section.heading ? <h2>{section.heading}</h2> : null}
+              {heading ? <h2>{heading}</h2> : null}
               {paragraphs.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
             </section>
           );

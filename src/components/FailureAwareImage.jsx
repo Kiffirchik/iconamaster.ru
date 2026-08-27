@@ -1,16 +1,25 @@
 import { Component } from 'react';
 
 export class FailureAwareImage extends Component {
-  state = { failed: false };
+  state = { failedSource: null };
 
   handleError = (event) => {
-    this.setState({ failed: true });
-    this.props.onError?.(event);
+    const failedSource = this.props.image?.src ?? null;
+    this.setState({ failedSource });
+    this.props.onError?.(event, failedSource);
   };
 
   render() {
-    const { image, alt, onError, children, ...attributes } = this.props;
-    if (this.state.failed || !image?.src) return null;
+    const {
+      image,
+      alt,
+      onError,
+      children,
+      loading = 'lazy',
+      decoding = 'async',
+      ...attributes
+    } = this.props;
+    if (!image?.src || this.state.failedSource === image.src) return null;
 
     const renderedImage = (
       <img
@@ -19,8 +28,8 @@ export class FailureAwareImage extends Component {
         alt={alt ?? image.alt ?? ''}
         width={image.width}
         height={image.height}
-        loading="lazy"
-        decoding="async"
+        loading={loading}
+        decoding={decoding}
         onError={this.handleError}
       />
     );

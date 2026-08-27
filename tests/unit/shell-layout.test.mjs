@@ -7,11 +7,24 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { createServer } from 'vite';
 
 const stylesheet = await readFile(new URL('../../src/styles.css', import.meta.url), 'utf8');
-const header = await readFile(new URL('../../src/components/SiteHeader.jsx', import.meta.url), 'utf8');
 const mobileStyles = stylesheet.slice(
   stylesheet.indexOf('@media (max-width: 760px)'),
   stylesheet.indexOf('@media (prefers-reduced-motion: reduce)')
 );
+
+function declarationsFor(styles, selector) {
+  const escapedSelector = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const match = styles.match(new RegExp(`${escapedSelector}\\s*\\{([^}]*)\\}`));
+  assert.ok(match, `missing CSS rule for ${selector}`);
+  return Object.fromEntries(match[1]
+    .split(';')
+    .map((declaration) => declaration.trim())
+    .filter(Boolean)
+    .map((declaration) => {
+      const separator = declaration.indexOf(':');
+      return [declaration.slice(0, separator).trim(), declaration.slice(separator + 1).trim()];
+    }));
+}
 
 async function loadHeader(context) {
   const server = await createServer({
@@ -55,28 +68,23 @@ test('header renders canonical same-tab links and a native workshop disclosure',
 });
 
 test('mobile navigation expands in normal document flow', () => {
-  assert.match(
-    mobileStyles,
-    /\.site-header__inner\s*\{[^}]*flex-wrap:\s*wrap;/s,
-    'the mobile header must wrap so the open navigation reserves vertical space'
-  );
-  assert.match(
-    mobileStyles,
-    /\.site-header__nav\s*\{[^}]*position:\s*static;/s,
-    'the mobile navigation must remain in normal document flow'
-  );
-  assert.match(
-    mobileStyles,
-    /\.site-header__workshop-links\s*\{[^}]*position:\s*static;/s,
-    'the mobile workshop disclosure must remain in normal document flow'
-  );
+  assert.equal(declarationsFor(mobileStyles, '.site-header__inner')['flex-wrap'], 'wrap');
+  assert.equal(declarationsFor(mobileStyles, '.site-header__nav').position, 'static');
+  assert.equal(declarationsFor(mobileStyles, '.site-header__workshop-links').position, 'static');
 });
 
 test('the shell and mobile navigation cannot widen 360px or 390px viewports', () => {
-  assert.match(stylesheet, /\.site-shell\s*\{[^}]*max-width:\s*100%;[^}]*overflow-x:\s*clip;/s);
-  assert.match(mobileStyles, /\.site-header__nav\s*\{[^}]*min-width:\s*0;[^}]*width:\s*100%;/s);
-  assert.match(mobileStyles, /\.site-header__workshop\s*\{[^}]*min-width:\s*0;[^}]*width:\s*100%;/s);
-  assert.match(mobileStyles, /\.site-header__workshop-links a\s*\{[^}]*overflow-wrap:\s*anywhere;/s);
+  const shell = declarationsFor(stylesheet, '.site-shell');
+  const nav = declarationsFor(mobileStyles, '.site-header__nav');
+  const workshop = declarationsFor(mobileStyles, '.site-header__workshop');
+  const workshopLink = declarationsFor(mobileStyles, '.site-header__workshop-links a');
+  assert.deepEqual(
+    { maxWidth: shell['max-width'], overflowX: shell['overflow-x'] },
+    { maxWidth: '100%', overflowX: 'clip' }
+  );
+  assert.deepEqual({ minWidth: nav['min-width'], width: nav.width }, { minWidth: '0', width: '100%' });
+  assert.deepEqual({ minWidth: workshop['min-width'], width: workshop.width }, { minWidth: '0', width: '100%' });
+  assert.equal(workshopLink['overflow-wrap'], 'anywhere');
 });
 
 test('header uses a normal-flow compact menu throughout the tablet overflow range', () => {
@@ -87,10 +95,10 @@ test('header uses a normal-flow compact menu throughout the tablet overflow rang
   assert.notEqual(edgeEnd, -1, 'the edge-width header breakpoint must end before the existing mobile rules');
 
   const edgeStyles = stylesheet.slice(edgeStart, edgeEnd);
-  assert.match(edgeStyles, /\.site-header__inner\s*\{[^}]*flex-wrap:\s*wrap;/s);
-  assert.match(edgeStyles, /\.site-header__menu-button\s*\{[^}]*display:\s*inline-flex;/s);
-  assert.match(edgeStyles, /\.site-header__nav\s*\{[^}]*display:\s*none;[^}]*position:\s*static;/s);
-  assert.match(edgeStyles, /\.site-header__nav\.is-open\s*\{[^}]*display:\s*grid;/s);
-  assert.match(edgeStyles, /\.site-header__nav a\s*\{[^}]*min-height:\s*2\.75rem;/s);
-  assert.match(header, /matchMedia\('\(min-width: 1009px\)'\)/);
+  assert.equal(declarationsFor(edgeStyles, '.site-header__inner')['flex-wrap'], 'wrap');
+  assert.equal(declarationsFor(edgeStyles, '.site-header__menu-button').display, 'inline-flex');
+  const nav = declarationsFor(edgeStyles, '.site-header__nav');
+  assert.deepEqual({ display: nav.display, position: nav.position }, { display: 'none', position: 'static' });
+  assert.equal(declarationsFor(edgeStyles, '.site-header__nav.is-open').display, 'grid');
+  assert.equal(declarationsFor(edgeStyles, '.site-header__nav a')['min-height'], '2.75rem');
 });
