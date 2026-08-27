@@ -15,12 +15,47 @@ const iconsPath = path.join(contentDirectory, 'icons.json');
 const aliasesPath = path.join(contentDirectory, 'aliases.json');
 const manifestPath = path.join(assetDirectory, 'manifest.json');
 const reportPath = path.join(reportDirectory, 'icon-migration.json');
+const runLogPath = path.join(projectDirectory, 'tmp', 'icon-migration-run.json');
 
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const sortedUnique = (values) => [...new Set(values)].sort();
 const json = (value) => `${JSON.stringify(value, null, 2)}\n`;
 
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
+
+export const handleAssetFailure = ({ candidate, recoveryRequired, legacyPath, error }) => {
+  if (candidate.verified || !recoveryRequired) throw error;
+  return {
+    legacyPath,
+    sourceUrl: candidate.sourceUrl,
+    outcome: 'unavailable',
+    error: error.message,
+  };
+};
+
+export const migrateCandidates = async ({
+  candidates,
+  recoveryRequired,
+  legacyPath,
+  migrateCandidate,
+}) => {
+  const migratedAssets = [];
+  const assetFailures = [];
+  const attempts = [];
+
+  for (const [candidateIndex, candidate] of candidates.entries()) {
+    try {
+      const migrated = await migrateCandidate(candidate, candidateIndex);
+      migratedAssets.push(migrated);
+      attempts.push(migrated.attempt);
+    } catch (error) {
+      const failure = handleAssetFailure({ candidate, recoveryRequired, legacyPath, error });
+      assetFailures.push(failure);
+      attempts.push(failure);
+    }
+  }
+  return { migratedAssets, assetFailures, attempts };
+};
 
 const argument = (name) => {
   const index = process.argv.indexOf(name);
@@ -60,6 +95,15 @@ const validateInputs = async (sourceDirectory, inventory) => {
     const missing = inventoryPaths.filter((sourcePath) => !mappedPaths.includes(sourcePath));
     const extra = mappedPaths.filter((legacyPath) => !inventoryPaths.includes(legacyPath));
     throw new Error(`Unaccounted catalog links; missing=${missing.join(',')} extra=${extra.join(',')}`);
+  }
+
+  const recoveryRequiredPaths = inventory.icons
+    .filter(({ mediaRecovery }) => mediaRecovery === 'required-public-or-cargo')
+    .map(({ sourcePath }) => sourcePath)
+    .sort();
+  const pinnedRecoveryPaths = publicRecoverySources.map(({ legacyPath }) => legacyPath).sort();
+  if (JSON.stringify(recoveryRequiredPaths) !== JSON.stringify(pinnedRecoveryPaths)) {
+    throw new Error('Inventory recovery-required paths do not match pinned public recovery sources');
   }
 
   for (const icon of inventory.icons) {
@@ -336,12 +380,14 @@ const main = async () => {
 
   await mkdir(assetDirectory, { recursive: true });
   await mkdir(reportDirectory, { recursive: true });
+  await mkdir(path.dirname(runLogPath), { recursive: true });
   const icons = [];
   const manifest = [];
   const assetFailures = [];
 
   for (const [orderIndex, mapping] of legacyIconMap.entries()) {
     const source = inventoryByPath.get(mapping.legacyPath);
+    const recoveryRequired = source.mediaRecovery === 'required-public-or-cargo';
     const previousIcon = existingIconsBySlug.get(mapping.slug);
     const recoverySource = publicRecoverySources.find(({ legacyPath }) => legacyPath === mapping.legacyPath);
     const recovery = recoveryByPath.get(mapping.legacyPath);
@@ -362,30 +408,22 @@ const main = async () => {
       ...(recoverySource?.originals ?? []),
     ]);
 
-    const migratedAssets = [];
-    for (const [candidateIndex, candidate] of candidates.entries()) {
-      try {
-        const migrated = await migrateAsset({
+    const candidateMigration = await migrateCandidates({
+      candidates,
+      recoveryRequired,
+      legacyPath: mapping.legacyPath,
+      migrateCandidate: (candidate, candidateIndex) => migrateAsset({
           candidate,
           candidateIndex,
           mapping,
           source,
           previousIcon,
           existingManifestByUrl,
-        });
-        migratedAssets.push(migrated);
-        if (recovery) recovery.originalAttempts.push(migrated.attempt);
-      } catch (error) {
-        const failure = {
-          legacyPath: mapping.legacyPath,
-          sourceUrl: candidate.sourceUrl,
-          outcome: 'unavailable',
-          error: error.message,
-        };
-        assetFailures.push(failure);
-        if (recovery) recovery.originalAttempts.push(failure);
-      }
-    }
+        }),
+    });
+    const { migratedAssets } = candidateMigration;
+    assetFailures.push(...candidateMigration.assetFailures);
+    if (recovery) recovery.originalAttempts.push(...candidateMigration.attempts);
 
     const images = migratedAssets.map(({ image }) => image);
     manifest.push(...migratedAssets.map(({ manifest: asset }) => asset));
@@ -423,13 +461,39 @@ const main = async () => {
   for (const recovery of recoveryByPath.values()) {
     recovery.published = !unpublishedRecords.some(({ legacyPath }) => legacyPath === recovery.legacyPath);
   }
+  const iconsJson = json(icons);
+  const aliasesJson = json(aliases);
+  const manifestJson = json(manifest);
+  const output = (id, relativePath, serialized, records) => ({
+    id,
+    path: relativePath,
+    records,
+    bytes: Buffer.byteLength(serialized),
+    sha256: sha256(Buffer.from(serialized)),
+  });
+  const durableRecoveries = publicRecoverySources.map((source) => {
+    const icon = icons.find(({ sourceUrl }) => new URL(sourceUrl).pathname === source.legacyPath);
+    return {
+      legacyPath: source.legacyPath,
+      pinnedOriginals: source.originals,
+      published: icon.published,
+      assetFiles: manifest
+        .filter(({ legacyPath }) => legacyPath === source.legacyPath)
+        .map(({ file }) => file),
+    };
+  });
   const report = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     source: {
-      archive: sourceDirectory,
-      inventory: inventoryPath,
+      siteUrl: inventory.source.siteUrl,
+      archiveName: inventory.source.archiveName,
       inventorySchemaVersion: inventory.schemaVersion,
     },
+    outputs: [
+      output('icons', 'public/content/icons.json', iconsJson, icons.length),
+      output('aliases', 'public/content/aliases.json', aliasesJson, Object.keys(aliases).length),
+      output('asset-manifest', 'public/assets/icons/manifest.json', manifestJson, manifest.length),
+    ],
     summary: {
       mappedRecords: icons.length,
       uniqueSlugs: new Set(icons.map(({ slug }) => slug)).size,
@@ -439,13 +503,12 @@ const main = async () => {
       assetBytes: manifest.reduce((total, asset) => total + asset.bytes, 0),
       recoveredRequiredRecords: [...recoveryByPath.values()].filter(({ published }) => published).length,
       unresolvedRecoveryRecords: [...recoveryByPath.values()].filter(({ published }) => !published).length,
-      assetFailures: assetFailures.length,
     },
     checksumPolicy: 'Every local original is copied or downloaded without decoding or re-encoding, then recorded with its byte length and SHA-256 digest.',
     thumbnailPolicy: 'Catalog thumbnail URLs are evidence only. Migration uses Cargo t/original endpoints or page-proven original URLs and never stores thumbnail bytes as originals.',
-    recoveryAttempts: [...recoveryByPath.values()],
-    assetFailures,
+    recoveries: durableRecoveries,
     unpublishedRecords,
+    assets: manifest,
     records: icons.map(({ slug, title, published, sourceUrl, images }) => ({
       legacyPath: new URL(sourceUrl).pathname,
       slug,
@@ -455,18 +518,31 @@ const main = async () => {
       assetFiles: images.map(({ src }) => path.basename(src)),
     })),
   };
+  const runLog = {
+    schemaVersion: 1,
+    source: {
+      archive: sourceDirectory,
+      inventory: inventoryPath,
+    },
+    recoveryAttempts: [...recoveryByPath.values()],
+    assetFailures,
+  };
 
   await Promise.all([
-    writeFile(iconsPath, json(icons), 'utf8'),
-    writeFile(aliasesPath, json(aliases), 'utf8'),
-    writeFile(manifestPath, json(manifest), 'utf8'),
+    writeFile(iconsPath, iconsJson, 'utf8'),
+    writeFile(aliasesPath, aliasesJson, 'utf8'),
+    writeFile(manifestPath, manifestJson, 'utf8'),
     writeFile(reportPath, json(report), 'utf8'),
+    writeFile(runLogPath, json(runLog), 'utf8'),
   ]);
   console.log(JSON.stringify(report.summary, null, 2));
   console.log(`Migration report written to ${reportPath}`);
+  console.log(`Live migration diagnostics written to ${runLogPath}`);
 };
 
-main().catch((error) => {
-  console.error(error.stack ?? error.message);
-  process.exitCode = 1;
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch((error) => {
+    console.error(error.stack ?? error.message);
+    process.exitCode = 1;
+  });
+}
