@@ -8,12 +8,14 @@ export function IconGallery({ images, title }) {
   const restoreFocusRef = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const displayedIndex = clampGalleryIndex(activeIndex, images.length);
-  const activeImage = images[displayedIndex];
+  const [failedSources, setFailedSources] = useState(() => new Set());
+  const visibleImages = images.filter((image) => image?.src && !failedSources.has(image.src));
+  const displayedIndex = clampGalleryIndex(activeIndex, visibleImages.length);
+  const activeImage = visibleImages[displayedIndex];
 
   useEffect(() => {
-    setActiveIndex((index) => clampGalleryIndex(index, images.length));
-  }, [images]);
+    setActiveIndex((index) => clampGalleryIndex(index, visibleImages.length));
+  }, [visibleImages.length]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -47,7 +49,14 @@ export function IconGallery({ images, title }) {
   }
 
   function moveImage(offset) {
-    setActiveIndex((index) => (clampGalleryIndex(index, images.length) + offset + images.length) % images.length);
+    if (visibleImages.length < 2) return;
+    setActiveIndex((index) => (
+      clampGalleryIndex(index, visibleImages.length) + offset + visibleImages.length
+    ) % visibleImages.length);
+  }
+
+  function removeFailedImage(src) {
+    setFailedSources((current) => new Set([...current, src]));
   }
 
   function finishClose() {
@@ -79,20 +88,31 @@ export function IconGallery({ images, title }) {
     }
   }
 
+  if (visibleImages.length === 0) return null;
+
   return (
     <section className="icon-gallery" aria-label={`Галерея: ${title}`}>
       <div className="icon-gallery__grid">
-        {images.map((image, index) => (
-          <button
-            className="icon-gallery__trigger"
+        {visibleImages.map((image, index) => (
+          <IconImage
+            image={image}
+            title={title}
+            mode="full"
             key={image.src}
-            type="button"
-            style={{ aspectRatio: `${image.width} / ${image.height}` }}
-            onClick={(event) => openImage(index, event.currentTarget)}
-            aria-label={`Открыть полное изображение: ${image.alt || title}`}
+            onError={() => removeFailedImage(image.src)}
           >
-            <IconImage image={image} title={title} mode="full" />
-          </button>
+            {(renderedImage) => (
+              <button
+                className="icon-gallery__trigger"
+                type="button"
+                style={{ aspectRatio: `${image.width} / ${image.height}` }}
+                onClick={(event) => openImage(index, event.currentTarget)}
+                aria-label={`Открыть полное изображение: ${image.alt || title}`}
+              >
+                {renderedImage}
+              </button>
+            )}
+          </IconImage>
         ))}
       </div>
 
@@ -106,19 +126,19 @@ export function IconGallery({ images, title }) {
       >
         <div className="icon-gallery__dialog-content">
           <div className="icon-gallery__dialog-actions">
-            <button type="button" onClick={() => moveImage(-1)} disabled={images.length < 2}>
+            <button type="button" onClick={() => moveImage(-1)} disabled={visibleImages.length < 2}>
               Предыдущее изображение
             </button>
             <button className="icon-gallery__close" type="button" onClick={closeDialog}>
               Закрыть
             </button>
-            <button type="button" onClick={() => moveImage(1)} disabled={images.length < 2}>
+            <button type="button" onClick={() => moveImage(1)} disabled={visibleImages.length < 2}>
               Следующее изображение
             </button>
           </div>
-          <IconImage image={activeImage} title={title} mode="full" />
+          <IconImage image={activeImage} title={title} mode="full" onError={() => removeFailedImage(activeImage.src)} />
           <p className="icon-gallery__count" aria-live="polite">
-            Изображение {displayedIndex + 1} из {images.length}
+            Изображение {displayedIndex + 1} из {visibleImages.length}
           </p>
         </div>
       </dialog>

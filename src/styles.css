@@ -60,7 +60,9 @@ button {
 
 .site-shell {
   position: relative;
+  max-width: 100%;
   min-height: 100vh;
+  overflow-x: clip;
   background: var(--ink);
 }
 
@@ -116,14 +118,62 @@ button {
 }
 
 .site-header__nav a,
+.site-header__workshop summary,
 .site-footer__nav a {
   color: var(--muted);
 }
 
 .site-header__nav a:hover,
+.site-header__workshop summary:hover,
 .site-footer__nav a:hover,
 .consultation-links__secondary:hover {
   color: var(--alabaster);
+}
+
+.site-header__workshop {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.site-header__workshop summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.site-header__workshop summary::-webkit-details-marker {
+  display: none;
+}
+
+.site-header__workshop summary::after {
+  margin-left: 0.4rem;
+  color: var(--gold);
+  content: "⌄";
+}
+
+.site-header__workshop[open] summary {
+  color: var(--alabaster);
+}
+
+.site-header__workshop-links {
+  position: absolute;
+  z-index: 4;
+  top: calc(100% + 0.7rem);
+  left: -1rem;
+  display: grid;
+  width: min(19rem, calc(100vw - 2rem));
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--line);
+  background: var(--surface-soft);
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.28);
+}
+
+.site-header__workshop-links a {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
 }
 
 .site-header__consultation,
@@ -207,6 +257,10 @@ button {
 
 .home-hero__content {
   max-width: 48rem;
+}
+
+.home-hero__content:only-child {
+  grid-column: 1 / -1;
 }
 
 .eyebrow,
@@ -1039,6 +1093,24 @@ button {
     background: var(--surface-soft);
   }
 
+  .site-header__workshop {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .site-header__workshop summary {
+    width: 100%;
+  }
+
+  .site-header__workshop-links {
+    position: static;
+    width: 100%;
+    padding: 0 0 0 1rem;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
   .site-header__nav.is-open {
     display: grid;
     justify-items: start;
@@ -1089,10 +1161,33 @@ button {
     display: none;
     position: static;
     flex-basis: 100%;
+    min-width: 0;
     width: 100%;
     padding: 1rem 0;
     border-bottom: 1px solid var(--line);
     background: var(--surface-soft);
+  }
+
+  .site-header__workshop {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .site-header__workshop summary {
+    width: 100%;
+  }
+
+  .site-header__workshop-links {
+    position: static;
+    width: 100%;
+    padding: 0 0 0 1rem;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .site-header__workshop-links a {
+    overflow-wrap: anywhere;
   }
 
   .site-header__nav.is-open {
@@ -1167,7 +1262,8 @@ button {
 
   .icon-detail-page__actions,
   .icon-detail-page__contact-alternatives,
-  .icon-detail-page__navigation {
+  .icon-detail-page__navigation,
+  .icon-detail-page__consultation .consultation-links {
     align-items: stretch;
     flex-direction: column;
   }
@@ -1181,7 +1277,8 @@ button {
     min-height: 2.75rem;
   }
 
-  .icon-detail-page__actions .button {
+  .icon-detail-page__actions .button,
+  .icon-detail-page__consultation .button {
     width: 100%;
   }
 

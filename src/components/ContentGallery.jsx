@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FailureAwareImage } from './FailureAwareImage.jsx';
 
 export function ContentGallery({ images = [], single = false }) {
   const [failedSources, setFailedSources] = useState(() => new Set());
@@ -13,18 +14,18 @@ export function ContentGallery({ images = [], single = false }) {
   return (
     <div className={`content-gallery${single ? ' content-gallery--single' : ''}`}>
       {visibleImages.map((image, index) => (
-        <figure className="content-gallery__item" key={`${image.src}-${index}`}>
-          <img
-            src={image.src}
-            alt={image.alt || ''}
-            width={image.width}
-            height={image.height}
-            loading="lazy"
-            decoding="async"
-            onError={() => removeFailedImage(image.src)}
-          />
-          {image.caption ? <figcaption>{image.caption}</figcaption> : null}
-        </figure>
+        <FailureAwareImage
+          image={image}
+          key={`${image.src}-${index}`}
+          onError={() => removeFailedImage(image.src)}
+        >
+          {(renderedImage) => (
+            <figure className="content-gallery__item">
+              {renderedImage}
+              {image.caption ? <figcaption>{image.caption}</figcaption> : null}
+            </figure>
+          )}
+        </FailureAwareImage>
       ))}
     </div>
   );

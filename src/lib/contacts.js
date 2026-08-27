@@ -1,7 +1,7 @@
-const PHONE = '79166554595';
-const EMAIL = 'iconamaster@yandex.ru';
-
-export function buildContactLinks(iconTitle, intent = 'consultation') {
+export function buildContactLinks(contacts = {}, iconTitle, intent = 'consultation') {
+  const whatsapp = String(contacts.whatsapp || '').replace(/\D/g, '');
+  const phone = String(contacts.phone || '').replace(/\D/g, '');
+  const email = String(contacts.email || '').trim();
   const viewing = intent === 'viewing';
   const subject = viewing
     ? `Личный просмотр${iconTitle ? ` иконы «${iconTitle}»` : ' икон мастерской'}`
@@ -13,8 +13,8 @@ export function buildContactLinks(iconTitle, intent = 'consultation') {
       : 'Здравствуйте! Хочу получить консультацию об иконах мастерской.';
 
   return {
-    whatsapp: `https://wa.me/${PHONE}?text=${encodeURIComponent(body)}`,
-    phone: `tel:+${PHONE}`,
-    email: `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    whatsapp: whatsapp ? `https://wa.me/${whatsapp}?text=${encodeURIComponent(body)}` : null,
+    phone: phone ? `tel:+${phone}` : null,
+    email: email ? `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}` : null
   };
 }

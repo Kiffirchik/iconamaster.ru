@@ -1,6 +1,7 @@
+import { ConsultationLinks } from '../components/ConsultationLinks.jsx';
 import { IconGallery } from '../components/IconGallery.jsx';
+import { publishedIcons } from '../content/schema.js';
 import { getNextIcon } from '../lib/catalog.js';
-import { buildContactLinks } from '../lib/contacts.js';
 
 const passportFields = [
   ['Датировка', 'period'],
@@ -24,59 +25,49 @@ export function IconDetailPage({ icon, icons, onNavigate }) {
     );
   }
 
-  const consultation = buildContactLinks(icon.title);
-  const viewing = buildContactLinks(icon.title, 'viewing');
-  const nextIcon = getNextIcon(icons, icon.slug);
+  const catalogIcons = publishedIcons({ icons });
+  const nextIcon = catalogIcons.length > 0 ? getNextIcon(catalogIcons, icon.slug) : null;
+  const visiblePassportFields = passportFields.filter(([, key]) => String(icon[key] || '').trim());
 
   function navigateTo(event, path) {
+    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
-    onNavigate(path);
+    onNavigate?.(path);
   }
 
   return (
     <main id="main-content" className="icon-detail-page">
       <div className="icon-detail-page__layout">
-        <IconGallery images={icon.images} title={icon.title} />
+        <IconGallery images={icon.images ?? []} title={icon.title} />
         <article className="icon-detail-page__content">
-          <p className="eyebrow">{icon.type} · {icon.period}</p>
+          <p className="eyebrow">{[icon.type, icon.period].filter(Boolean).join(' · ')}</p>
           <h1>{icon.title}</h1>
-          <p className="icon-detail-page__price">{icon.price}</p>
-          <p className="icon-detail-page__description">{icon.description}</p>
+          <p className="icon-detail-page__price">{icon.price || 'Цена по запросу'}</p>
+          {String(icon.description || '').trim() ? <p className="icon-detail-page__description">{icon.description}</p> : null}
 
-          <section aria-labelledby="passport-title">
+          {visiblePassportFields.length > 0 ? <section aria-labelledby="passport-title">
             <h2 id="passport-title">Паспорт предмета</h2>
             <dl className="object-passport">
-              {passportFields.map(([label, key]) => (
+              {visiblePassportFields.map(([label, key]) => (
                 <div key={key}>
                   <dt>{label}</dt>
                   <dd>{icon[key]}</dd>
                 </div>
               ))}
             </dl>
-          </section>
+          </section> : null}
 
           <nav className="icon-detail-page__navigation" aria-label="Навигация по коллекции">
-            <a href="/collection" onClick={(event) => navigateTo(event, '/collection')}>← В коллекцию</a>
-            <a href={`/icons/${nextIcon.slug}`} onClick={(event) => navigateTo(event, `/icons/${nextIcon.slug}`)}>
+            <a href="/collection" onClick={(event) => navigateTo(event, '/collection')}>← В каталог</a>
+            {nextIcon ? <a href={`/icons/${nextIcon.slug}`} onClick={(event) => navigateTo(event, `/icons/${nextIcon.slug}`)}>
               Следующая икона →
-            </a>
+            </a> : null}
           </nav>
 
           <section className="icon-detail-page__consultation" aria-labelledby="consultation-title">
             <h2 id="consultation-title">Консультация и личный просмотр</h2>
             <p>Уточним состояние, историю предмета и удобное время для знакомства с иконой.</p>
-            <div className="icon-detail-page__actions">
-              <a className="button button--primary" href={consultation.whatsapp} target="_blank" rel="noreferrer">
-                Получить консультацию об иконе
-              </a>
-              <a className="button button--quiet" href={viewing.whatsapp} target="_blank" rel="noreferrer">
-                Назначить личный просмотр
-              </a>
-            </div>
-            <div className="icon-detail-page__contact-alternatives">
-              <a href={consultation.phone}>Позвонить: +7 916 655-45-95</a>
-              <a href={consultation.email}>Написать на email</a>
-            </div>
+            <ConsultationLinks iconTitle={icon.title} includeViewing />
           </section>
         </article>
       </div>

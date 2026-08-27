@@ -3,7 +3,8 @@ import test from 'node:test';
 import { buildContactLinks } from '../../src/lib/contacts.js';
 
 test('buildContactLinks includes a named icon in WhatsApp and email links', () => {
-  const links = buildContactLinks('Архистратиг Михаил');
+  const contacts = { whatsapp: '79166554595', phone: '+79166554595', email: 'iconamaster@yandex.ru' };
+  const links = buildContactLinks(contacts, 'Архистратиг Михаил');
 
   assert.match(links.whatsapp, /^https:\/\/wa\.me\/79166554595\?text=/);
   assert.match(decodeURIComponent(links.whatsapp), /Архистратиг Михаил/);
@@ -14,7 +15,8 @@ test('buildContactLinks includes a named icon in WhatsApp and email links', () =
 
 test('buildContactLinks creates a personal-viewing message when requested', () => {
   const title = 'Преподобный Александр Пересвет';
-  const links = buildContactLinks(title, 'viewing');
+  const contacts = { whatsapp: '79166554595', phone: '+79166554595', email: 'iconamaster@yandex.ru' };
+  const links = buildContactLinks(contacts, title, 'viewing');
 
   assert.match(decodeURIComponent(links.whatsapp), /личный просмотр/i);
   assert.match(decodeURIComponent(links.whatsapp), new RegExp(title));

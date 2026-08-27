@@ -61,6 +61,19 @@ function AppContent() {
     return () => window.removeEventListener('popstate', updateRoute);
   }, [bundle?.aliases]);
 
+  return (
+    <AppView
+      status={status}
+      bundle={bundle}
+      error={error}
+      retry={retry}
+      route={route}
+      onNavigate={navigate}
+    />
+  );
+}
+
+export function AppView({ status, bundle, error, retry, route, onNavigate }) {
   let page = (
     <main id="main-content" className="baseline-page" role="status">
       <p>Загружаем коллекцию…</p>
@@ -70,20 +83,20 @@ function AppContent() {
     page = (
       <main id="main-content" className="baseline-page">
         <h1>Не удалось загрузить коллекцию</h1>
-        <p>{error.message}</p>
+        <p>{error?.message}</p>
         <button type="button" className="button button--quiet" onClick={retry}>Повторить</button>
       </main>
     );
   } else if (status === 'ready') {
-    page = renderReadyRoute(route, bundle, navigate);
+    page = renderReadyRoute(route, bundle, onNavigate);
   }
 
   return (
     <div className="site-shell">
       <a className="skip-link" href="#main-content">Перейти к содержанию</a>
-      <SiteHeader onNavigate={navigate} />
+      <SiteHeader onNavigate={onNavigate} />
       {page}
-      <SiteFooter onNavigate={navigate} />
+      <SiteFooter onNavigate={onNavigate} />
     </div>
   );
 }

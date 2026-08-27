@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CatalogFilters } from '../components/CatalogFilters.jsx';
 import { IconCard } from '../components/IconCard.jsx';
+import { publishedIcons } from '../content/schema.js';
 import { filterIcons } from '../lib/catalog.js';
 
 const initialFilters = {
@@ -9,9 +10,10 @@ const initialFilters = {
   availability: 'all'
 };
 
-export function CollectionPage({ icons, onNavigate }) {
+export function CollectionPage({ icons = [], onNavigate }) {
   const [filters, setFilters] = useState(initialFilters);
-  const filteredIcons = filterIcons(icons, filters);
+  const catalogIcons = publishedIcons({ icons });
+  const filteredIcons = filterIcons(catalogIcons, filters);
 
   return (
     <main id="main-content" className="collection-page">
@@ -23,7 +25,7 @@ export function CollectionPage({ icons, onNavigate }) {
       <section className="collection-page__catalog" aria-labelledby="collection-catalog-title">
         <h2 id="collection-catalog-title" className="collection-page__catalog-title">Каталог икон</h2>
         <CatalogFilters
-          items={icons}
+          items={catalogIcons}
           filters={filters}
           onChange={(nextFilter) => setFilters((current) => ({ ...current, ...nextFilter }))}
           onReset={() => setFilters(initialFilters)}

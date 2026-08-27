@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 
-const navigation = [
-  ['Коллекция', '/collection'],
-  ['На заказ', '/#atelier'],
-  ['Реставрация', '/#restoration'],
-  ['Мастерская', '/#atelier'],
-  ['Исследования', '/#research'],
-  ['Контакты', '/#contact']
+const workshopNavigation = [
+  ['Экскурсии по мастерской', '/excursions'],
+  ['Мерная икона', '/measure-icon'],
+  ['Киоты и резьба', '/kiots'],
+  ['Оклады на иконы', '/oklads'],
+  ['Иконостасы', '/iconostases']
 ];
 
 export function SiteHeader({ onNavigate }) {
@@ -35,7 +34,7 @@ export function SiteHeader({ onNavigate }) {
     }
 
     event.preventDefault();
-    onNavigate(path);
+    onNavigate?.(path);
     setIsOpen(false);
   }
 
@@ -55,14 +54,30 @@ export function SiteHeader({ onNavigate }) {
           {isOpen ? 'Закрыть' : 'Меню'}
         </button>
         <nav id="site-navigation" className={`site-header__nav${isOpen ? ' is-open' : ''}`} aria-label="Основная навигация">
-          {navigation.map(([label, path]) => (
+          {[
+            ['Главная', '/'],
+            ['Иконы в наличии', '/collection']
+          ].map(([label, path]) => (
             <a key={path + label} href={path} onClick={(event) => follow(event, path)}>
               {label}
             </a>
           ))}
-          <a className="site-header__consultation" href="/#contact" onClick={(event) => follow(event, '/#contact')}>
-            Запросить консультацию
-          </a>
+          <details className="site-header__workshop">
+            <summary>Мастерская</summary>
+            <div className="site-header__workshop-links">
+              {workshopNavigation.map(([label, path]) => (
+                <a key={path} href={path} onClick={(event) => follow(event, path)}>{label}</a>
+              ))}
+            </div>
+          </details>
+          {[
+            ['Реставрация', '/restoration'],
+            ['Статьи', '/articles'],
+            ['Видео', '/video'],
+            ['Контакты', '/contacts']
+          ].map(([label, path]) => (
+            <a key={path} href={path} onClick={(event) => follow(event, path)}>{label}</a>
+          ))}
         </nav>
       </div>
     </header>

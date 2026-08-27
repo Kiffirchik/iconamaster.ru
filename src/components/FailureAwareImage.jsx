@@ -9,10 +9,10 @@ export class FailureAwareImage extends Component {
   };
 
   render() {
-    const { image, alt, onError, ...attributes } = this.props;
+    const { image, alt, onError, children, ...attributes } = this.props;
     if (this.state.failed || !image?.src) return null;
 
-    return (
+    const renderedImage = (
       <img
         {...attributes}
         src={image.src}
@@ -24,5 +24,7 @@ export class FailureAwareImage extends Component {
         onError={this.handleError}
       />
     );
+
+    return typeof children === 'function' ? children(renderedImage) : renderedImage;
   }
 }

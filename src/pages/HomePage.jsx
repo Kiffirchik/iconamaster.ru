@@ -1,5 +1,6 @@
 import { IconCard } from '../components/IconCard.jsx';
 import { IconImage } from '../components/IconImage.jsx';
+import { publishedIcons } from '../content/schema.js';
 import { homeContent } from '../data/home-content.js';
 
 const passportLabels = [
@@ -10,41 +11,50 @@ const passportLabels = [
   ['Экспертное заключение', 'expertise']
 ];
 
-export function HomePage({ icons, onNavigate }) {
-  const heroIcon = icons.find((icon) => icon.slug === 'archangel-michael');
-  const featuredIcons = homeContent.featuredSlugs.map((slug) => icons.find((icon) => icon.slug === slug));
+export function HomePage({ icons = [], onNavigate }) {
+  const catalogIcons = publishedIcons({ icons });
+  const heroIcon = catalogIcons.find((icon) => icon.slug === 'archangel-michael') ?? catalogIcons[0] ?? null;
+  const featuredIcons = homeContent.featuredSlugs
+    .map((slug) => catalogIcons.find((icon) => icon.slug === slug))
+    .filter(Boolean);
 
   function follow(event, path) {
     if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
-    onNavigate(path);
+    onNavigate?.(path);
   }
 
   return (
     <main id="main-content" className="home-page">
       <section className="home-hero" aria-labelledby="home-title">
-        <div
-          className="home-hero__image-wrap"
-          style={{ aspectRatio: `${heroIcon.images[0].width} / ${heroIcon.images[0].height}` }}
-        >
-          <IconImage image={heroIcon.images[0]} title={heroIcon.title} mode="full" eager />
-        </div>
+        {heroIcon ? (
+          <IconImage image={heroIcon.images[0]} title={heroIcon.title} mode="full" eager>
+            {(renderedImage) => (
+              <div
+                className="home-hero__image-wrap"
+                style={{ aspectRatio: `${heroIcon.images[0].width} / ${heroIcon.images[0].height}` }}
+              >
+                {renderedImage}
+              </div>
+            )}
+          </IconImage>
+        ) : null}
         <div className="home-hero__content">
           <p className="eyebrow">{homeContent.eyebrow}</p>
           <h1 id="home-title">{homeContent.headline}</h1>
           <p className="home-hero__intro">{homeContent.materials}</p>
           <div className="home-hero__actions">
             <a className="button button--primary" href="/collection" onClick={(event) => follow(event, '/collection')}>Открыть коллекцию</a>
-            <a className="button button--quiet" href="/#contact" onClick={(event) => follow(event, '/#contact')}>Назначить личный просмотр</a>
+            <a className="button button--quiet" href="/contacts" onClick={(event) => follow(event, '/contacts')}>Назначить личный просмотр</a>
           </div>
-          <dl className="object-passport">
-            {passportLabels.map(([label, key]) => (
+          {heroIcon ? <dl className="object-passport">
+            {passportLabels.filter(([, key]) => String(heroIcon[key] || '').trim()).map(([label, key]) => (
               <div key={key}>
                 <dt>{label}</dt>
                 <dd>{heroIcon[key]}</dd>
               </div>
             ))}
-          </dl>
+          </dl> : null}
           <p className="home-hero__trust">Мастерская работает с {homeContent.established} года</p>
         </div>
       </section>
@@ -76,7 +86,7 @@ export function HomePage({ icons, onNavigate }) {
         <p className="eyebrow">Мастерская говорит о ремесле</p>
         <h2 id="research-title">{homeContent.research.title}</h2>
         <p>{homeContent.research.text}</p>
-        <a className="button button--quiet" href="https://iconamaster.ru/STAT-I/" target="_blank" rel="noreferrer">Открыть статьи и исследования</a>
+        <a className="button button--quiet" href="/articles" onClick={(event) => follow(event, '/articles')}>Открыть статьи и исследования</a>
       </section>
     </main>
   );

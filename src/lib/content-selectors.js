@@ -9,7 +9,13 @@ export function renderableSections(sections = []) {
   return sections.filter((section) => {
     if (section?.type === 'image') return Boolean(section.image?.src);
     if (section?.type === 'gallery') return section.images?.some((image) => image?.src);
-    if (section?.type === 'text') return Boolean(section.heading || section.paragraphs?.length);
+    if (section?.type === 'text') {
+      const hasHeading = typeof section.heading === 'string' && Boolean(section.heading.trim());
+      const hasParagraph = section.paragraphs?.some(
+        (paragraph) => typeof paragraph === 'string' && Boolean(paragraph.trim())
+      );
+      return hasHeading || hasParagraph;
+    }
     return false;
   });
 }

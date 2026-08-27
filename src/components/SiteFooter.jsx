@@ -1,10 +1,12 @@
 import { ConsultationLinks } from './ConsultationLinks.jsx';
 
 const sections = [
-  ['Коллекция', '/collection'],
-  ['Мастерская', '/#atelier'],
-  ['Исследования', '/#research'],
-  ['Контакты', '/#contact']
+  ['Главная', '/'],
+  ['Иконы в наличии', '/collection'],
+  ['Реставрация', '/restoration'],
+  ['Статьи', '/articles'],
+  ['Видео', '/video'],
+  ['Контакты', '/contacts']
 ];
 
 export function SiteFooter({ onNavigate }) {
@@ -14,7 +16,7 @@ export function SiteFooter({ onNavigate }) {
     }
 
     event.preventDefault();
-    onNavigate(path);
+    onNavigate?.(path);
   }
 
   return (
