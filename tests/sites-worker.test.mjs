@@ -41,6 +41,33 @@ test("falls back to index.html for an unknown app route", async () => {
   assert.deepEqual(calls, ["/flow/step-two?source=share", "/index.html"]);
 });
 
+test("keeps a direct app route when static assets would redirect it to root", async () => {
+  const response = await worker.fetch(
+    new Request("https://example.test/collection", {
+      headers: { accept: "text/html" },
+    }),
+    {
+      ASSETS: {
+        fetch: async (request) => {
+          const pathname = new URL(request.url).pathname;
+          if (pathname === "/index.html") {
+            return new Response("app shell", { status: 200 });
+          }
+
+          return new Response(null, {
+            status: 307,
+            headers: { location: "/" },
+          });
+        },
+      },
+    },
+  );
+
+  assert.equal(response.status, 200);
+  assert.equal(await response.text(), "app shell");
+  assert.equal(response.headers.get("location"), null);
+});
+
 test("does not turn missing API or write requests into the app shell", async () => {
   for (const request of [
     new Request("https://example.test/api/missing", { headers: { accept: "application/json" } }),
