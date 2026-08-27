@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import { navigate, parseRoute } from '../../src/lib/routing.js';
+
+const aliases = JSON.parse(await readFile(new URL('../../public/content/aliases.json', import.meta.url), 'utf8'));
 
 function installBrowserGlobals() {
   const names = ['history', 'window', 'document', 'PopStateEvent'];
@@ -69,17 +72,50 @@ function installBrowserGlobals() {
   };
 }
 
-test('parseRoute recognizes the three prototype route shapes', () => {
-  assert.deepEqual(parseRoute('/'), { name: 'home' });
-  assert.deepEqual(parseRoute('/collection'), { name: 'collection' });
-  assert.deepEqual(parseRoute('/icons/alexander-peresvet'), {
-    name: 'icon',
-    slug: 'alexander-peresvet'
-  });
+test('parseRoute recognizes every canonical route shape', () => {
+  const cases = [
+    ['/', { name: 'home' }],
+    ['/collection/', { name: 'collection' }],
+    ['/icons/alexander-peresvet', { name: 'icon', slug: 'alexander-peresvet' }],
+    ['/articles', { name: 'articles' }],
+    ['/articles/guslitsa', { name: 'article', slug: 'guslitsa' }],
+    ['/video', { name: 'video' }],
+    ['/contacts', { name: 'contacts' }],
+    ['/workshop', { name: 'page', slug: 'workshop', canonicalPath: '/workshop' }],
+    ['/excursions', { name: 'page', slug: 'excursions', canonicalPath: '/excursions' }],
+    ['/measure-icon', { name: 'page', slug: 'measure-icon', canonicalPath: '/measure-icon' }],
+    ['/restoration', { name: 'page', slug: 'restoration', canonicalPath: '/restoration' }],
+    ['/kiots', { name: 'page', slug: 'kiots', canonicalPath: '/kiots' }],
+    ['/oklads', { name: 'page', slug: 'oklads', canonicalPath: '/oklads' }],
+    ['/iconostases', { name: 'page', slug: 'iconostases', canonicalPath: '/iconostases' }]
+  ];
+
+  for (const [path, expected] of cases) {
+    assert.deepEqual(parseRoute(path, aliases), expected, path);
+  }
 });
 
-test('parseRoute removes one trailing slash and rejects unknown paths', () => {
-  assert.deepEqual(parseRoute('/collection/'), { name: 'collection' });
+test('parseRoute resolves each supported legacy page alias after trailing-slash normalization', () => {
+  const cases = [
+    ['/IKONY', { name: 'collection' }],
+    ['/IKONY-V-NALICIE', { name: 'collection' }],
+    ['/EKSKURSIY-PO-MASTERSKOI', { name: 'page', slug: 'excursions', canonicalPath: '/excursions' }],
+    ['/MERNAY-IKONA', { name: 'page', slug: 'measure-icon', canonicalPath: '/measure-icon' }],
+    ['/RESTAVRATIY/', { name: 'page', slug: 'restoration', canonicalPath: '/restoration' }],
+    ['/KIOTY-I-REZ-BA', { name: 'page', slug: 'kiots', canonicalPath: '/kiots' }],
+    ['/OKLADY', { name: 'page', slug: 'oklads', canonicalPath: '/oklads' }],
+    ['/IKONOSTASY', { name: 'page', slug: 'iconostases', canonicalPath: '/iconostases' }],
+    ['/STAT-I', { name: 'articles' }],
+    ['/VIDEO', { name: 'video' }],
+    ['/KONTAKTY', { name: 'contacts' }]
+  ];
+
+  for (const [path, expected] of cases) {
+    assert.deepEqual(parseRoute(path, aliases), expected, path);
+  }
+});
+
+test('parseRoute rejects unknown paths', () => {
   assert.deepEqual(parseRoute('/missing'), { name: 'not-found' });
 });
 

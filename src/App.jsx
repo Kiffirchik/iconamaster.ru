@@ -8,8 +8,8 @@ import { CollectionPage } from './pages/CollectionPage.jsx';
 import { HomePage } from './pages/HomePage.jsx';
 import { IconDetailPage } from './pages/IconDetailPage.jsx';
 
-function getRoute() {
-  return parseRoute(window.location.pathname);
+function getRoute(aliases) {
+  return parseRoute(window.location.pathname, aliases);
 }
 
 function AppContent() {
@@ -17,10 +17,11 @@ function AppContent() {
   const { status, bundle, error, retry } = useContent();
 
   useEffect(() => {
-    const updateRoute = () => setRoute(getRoute());
+    const updateRoute = () => setRoute(getRoute(bundle?.aliases));
+    updateRoute();
     window.addEventListener('popstate', updateRoute);
     return () => window.removeEventListener('popstate', updateRoute);
-  }, []);
+  }, [bundle?.aliases]);
 
   let page = (
     <main id="main-content" className="baseline-page" role="status">

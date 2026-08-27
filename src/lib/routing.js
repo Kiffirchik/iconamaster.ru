@@ -1,11 +1,26 @@
-export function parseRoute(pathname) {
-  const path = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+function normalizePath(pathname) {
+  const decoded = decodeURI(pathname || '/');
+  return decoded !== '/' && decoded.endsWith('/') ? decoded.slice(0, -1) : decoded;
+}
 
-  if (path === '') return { name: 'home' };
-  if (path === '/collection') return { name: 'collection' };
+export function parseRoute(pathname, aliases = {}) {
+  const requestedPath = normalizePath(pathname);
+  const canonicalPath = aliases[requestedPath] ?? requestedPath;
 
-  const iconMatch = path.match(/^\/icons\/([^/]+)$/);
-  if (iconMatch) return { name: 'icon', slug: iconMatch[1] };
+  if (canonicalPath === '/') return { name: 'home' };
+  if (canonicalPath === '/collection') return { name: 'collection' };
+  if (canonicalPath === '/articles') return { name: 'articles' };
+  if (canonicalPath === '/video') return { name: 'video' };
+  if (canonicalPath === '/contacts') return { name: 'contacts' };
+
+  const icon = canonicalPath.match(/^\/icons\/([^/]+)$/);
+  if (icon) return { name: 'icon', slug: icon[1] };
+
+  const article = canonicalPath.match(/^\/articles\/([^/]+)$/);
+  if (article) return { name: 'article', slug: article[1] };
+
+  const page = canonicalPath.match(/^\/(workshop|excursions|measure-icon|restoration|kiots|oklads|iconostases)$/);
+  if (page) return { name: 'page', slug: page[1], canonicalPath };
 
   return { name: 'not-found' };
 }
