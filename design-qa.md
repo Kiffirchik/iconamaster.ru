@@ -14,8 +14,9 @@ No changes were made to the production domain `iconamaster.ru`.
 
 - Approved visual direction: `C:\Users\user\.codex\generated_images\019fec29-67ec-7ff3-9884-3c8cc048e433\exec-f20c3f02-cb65-4f66-a8be-01f9b47fa03d.png`.
 - Exact immutable source used for the homepage icon: `public/assets/icons/archangel-michael.jpg`.
-- Public desktop QA capture: `C:\Users\user\.codex\visualizations\2026\08\10\019fec29-67ec-7ff3-9884-3c8cc048e433\iconamaster-public-home-final.png`.
-- Public mobile-menu QA capture: `C:\Users\user\.codex\visualizations\2026\08\10\019fec29-67ec-7ff3-9884-3c8cc048e433\iconamaster-public-mobile-menu-v7.png`.
+- Public desktop QA capture (1425 × 990 raster): `C:\Users\user\.codex\visualizations\2026\08\10\019fec29-67ec-7ff3-9884-3c8cc048e433\iconamaster-public-home-final.png`.
+- Approved-reference/final same-viewport comparison (two 1425 × 990 panels): `C:\Users\user\.codex\visualizations\2026\08\10\019fec29-67ec-7ff3-9884-3c8cc048e433\iconamaster-reference-final-same-viewport.png`.
+- Public mobile-menu documentary capture (375 × 812 effective browser content area): `C:\Users\user\.codex\visualizations\2026\08\10\019fec29-67ec-7ff3-9884-3c8cc048e433\iconamaster-public-mobile-menu-v7.png`.
 
 ## Tested screens and viewports
 
@@ -25,6 +26,15 @@ No changes were made to the production domain `iconamaster.ru`.
 - Mobile menu normal-flow expansion, Escape close, and focus restoration.
 - Gallery dialog open/close, body scroll lock, Escape, and trigger focus restoration.
 - Video activation with no iframe before a click and `autoplay=0` after a click.
+
+The in-app browser reserves part of its requested width for browser chrome/scrollbar in raster captures: the mobile screenshot above is 375 px wide. The 390/360 assertions come from the viewport manager plus DOM measurements (`clientWidth`, `scrollWidth`, header/main rectangles), not from that screenshot's pixel width.
+
+## Same-viewport reference comparison
+
+- The approved reference was resized with `fit: contain` onto a 1425 × 990 dark canvas; no crop or content edit was applied.
+- The final public desktop capture is 1425 × 990.
+- The side-by-side comparison uses those two exact panel dimensions and shows the retained composition: icon-left/passport-right hero, restrained dark surface, warm gold accents, two-line headline, and the beginning of the collection below the fold.
+- Differences from the concept are deliberate source-fidelity decisions: no invented exhibition background, no generated monogram, and no rewriting of icon content/passport facts.
 
 ## Visual and responsive findings
 
@@ -51,7 +61,7 @@ The repository retains the verified originals. The temporary Sites delivery snap
 - Content gate — 50 published icons, 7 pages, 8 articles, 2 videos, 78 aliases, 258 owned local assets.
 - Asset gate — 79 independently owned originals, 79,585,655 bytes, verified by streaming SHA-256.
 - `npm run build` — 56 modules transformed; client and server artifacts generated.
-- `npm run test:sites` — 5 passed, 0 failed.
+- `npm run test:sites` — 6 passed, 0 failed, including behavior of the packaged `dist/server/index.js`.
 - Public console errors — none.
 
 ## Remaining P3 polish only

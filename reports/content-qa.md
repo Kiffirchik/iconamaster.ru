@@ -29,16 +29,27 @@ All required records are published, all structured blocks are non-empty, and no 
 
 ## Local route matrix
 
-The following representative routes were checked at 1440 × 1000, 1024 × 768, 390 × 844, and 360 × 844:
+Every route below was checked at 1440 × 1000, 1024 × 768, 390 × 844, and 360 × 844:
 
-| Route family | Representative routes | Result |
-| --- | --- | --- |
-| Home/catalog | `/`, `/collection` | PASS |
-| Icon details | multi-image and single-image records | PASS |
-| Workshop pages | all seven service pages | PASS |
-| Editorial | index and long article | PASS |
-| Video/contact | `/video`, `/contacts` | PASS |
-| Compatibility | legacy alias and unknown route | PASS |
+| Route | 1440 | 1024 | 390 | 360 |
+| --- | --- | --- | --- | --- |
+| `/` | PASS | PASS | PASS | PASS |
+| `/collection` | PASS | PASS | PASS | PASS |
+| `/icons/facade-george` (multi-image) | PASS | PASS | PASS | PASS |
+| `/icons/bogolyubskaya-with-saints` (single-image) | PASS | PASS | PASS | PASS |
+| `/workshop` | PASS | PASS | PASS | PASS |
+| `/excursions` | PASS | PASS | PASS | PASS |
+| `/measure-icon` | PASS | PASS | PASS | PASS |
+| `/restoration` | PASS | PASS | PASS | PASS |
+| `/kiots` | PASS | PASS | PASS | PASS |
+| `/oklads` | PASS | PASS | PASS | PASS |
+| `/iconostases` | PASS | PASS | PASS | PASS |
+| `/articles` | PASS | PASS | PASS | PASS |
+| `/articles/gorbunov-icons-kholuy` | PASS | PASS | PASS | PASS |
+| `/video` | PASS | PASS | PASS | PASS |
+| `/contacts` | PASS | PASS | PASS | PASS |
+| `/EKSKURSIY-PO-MASTERSKOI` | PASS | PASS | PASS | PASS |
+| `/does-not-exist` | PASS | PASS | PASS | PASS |
 
 Total: 68 route/viewport combinations passed with:
 
@@ -101,6 +112,15 @@ The first public smoke test showed every direct route returning the homepage. In
 
 The final public route matrix passed.
 
+### Correction record
+
+| Finding | Correction | Verification evidence |
+| --- | --- | --- |
+| Direct Sites routes returned `307` and landed on `/`. | Added redirect-aware SPA fallback in `worker/index.js`; the shell is fetched from the root asset while the requested browser path is preserved. | Red/green worker regression: observed `307 !== 200`, then 5/5 Sites tests passed. Working commits `136bb42` and `aa09a72`. |
+| Saved Sites versions still contained the old worker. | Added an explicit successful `npm run build` before packaging and inspected `dist/server/index.js` inside the archive. | Public Sites version 7 preserved every tested direct path and heading. Release source `8387046`. |
+| Source repository transfer exceeded the practical upload window. | Created a separate delivery source snapshot with non-cropping JPEG derivatives while retaining verified originals in the working branch. | JPEG delivery bytes reduced from 205.21 MiB to 71.22 MiB; public archive 86,855,680 bytes; public image checks passed. |
+| The packaging gate checked only file existence. | Added a behavior test importing `dist/server/index.js` and exercising a direct app route. | Mutation to stale `/index.html` fallback failed with `307 !== 200`; rebuild restored 6/6 Sites tests. |
+
 ## Final verification
 
 `npm run verify` passed after the final worker change:
@@ -108,8 +128,8 @@ The final public route matrix passed.
 - 114 unit/integration tests passed;
 - content and asset integrity gates passed;
 - production Vite build passed;
-- 5 Sites worker/packaging tests passed.
+- 6 Sites worker/packaging tests passed.
 
-No Task 10 source corrections were required after the final public verification.
+After the final public verification, no further source correction was required.
 
 final result: passed

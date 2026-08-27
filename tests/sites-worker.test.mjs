@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { access } from "node:fs/promises";
 import test from "node:test";
+import packagedWorker from "../dist/server/index.js";
 import worker from "../worker/index.js";
 
 test("serves existing static assets without a fallback", async () => {
@@ -65,6 +66,33 @@ test("serves the app shell from root when static assets redirect an app route", 
 
   assert.equal(response.status, 200);
   assert.equal(await response.text(), "app shell");
+  assert.equal(response.headers.get("location"), null);
+});
+
+test("the packaged worker preserves a direct app route", async () => {
+  const response = await packagedWorker.fetch(
+    new Request("https://example.test/collection", {
+      headers: { accept: "text/html" },
+    }),
+    {
+      ASSETS: {
+        fetch: async (request) => {
+          const pathname = new URL(request.url).pathname;
+          if (pathname === "/") {
+            return new Response("packaged app shell", { status: 200 });
+          }
+
+          return new Response(null, {
+            status: 307,
+            headers: { location: "/" },
+          });
+        },
+      },
+    },
+  );
+
+  assert.equal(response.status, 200);
+  assert.equal(await response.text(), "packaged app shell");
   assert.equal(response.headers.get("location"), null);
 });
 
