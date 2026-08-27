@@ -35,6 +35,20 @@ test('rejects a published icon without an image', () => {
   assert.match(validateContentBundle(bundle).errors.join('\n'), /published icon example has no images/);
 });
 
+test('returns validation errors for a non-array icons collection', () => {
+  const bundle = structuredClone(validBundle);
+  bundle.icons = {};
+  assert.deepEqual(validateContentBundle(bundle), {
+    ok: false,
+    errors: ['icons must be an array']
+  });
+});
+
+test('publishedIcons returns an empty array for missing or non-array icons', () => {
+  assert.deepEqual(publishedIcons(), []);
+  assert.deepEqual(publishedIcons({ icons: {} }), []);
+});
+
 test('publishedIcons sorts records and excludes unpublished records', () => {
   const bundle = structuredClone(validBundle);
   bundle.icons.push({ ...bundle.icons[0], id: 'icon-2', slug: 'hidden', published: false, order: 1 });

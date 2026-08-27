@@ -7,7 +7,7 @@ export function validateContentBundle(bundle) {
     if (!Array.isArray(bundle?.[key])) errors.push(`${key} must be an array`);
   }
   const slugs = new Set();
-  for (const icon of bundle?.icons ?? []) {
+  for (const icon of Array.isArray(bundle?.icons) ? bundle.icons : []) {
     if (!icon.slug) errors.push('icon slug is required');
     if (slugs.has(icon.slug)) errors.push(`duplicate icon slug ${icon.slug}`);
     slugs.add(icon.slug);
@@ -24,7 +24,7 @@ export function validateContentBundle(bundle) {
 }
 
 export function publishedIcons(bundle) {
-  return (bundle.icons ?? [])
+  return (Array.isArray(bundle?.icons) ? bundle.icons : [])
     .filter((icon) => icon.published && icon.images?.length)
     .toSorted((left, right) => left.order - right.order);
 }
