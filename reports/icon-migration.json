@@ -10,15 +10,15 @@
       "id": "icons",
       "path": "public/content/icons.json",
       "records": 50,
-      "bytes": 54419,
-      "sha256": "188ad33f2181e1a7189a6e68539167822d31f4655d468ddc5255e364f0620d93"
+      "bytes": 54454,
+      "sha256": "bf5672d7d5be27b4c858584e4744eeede6422f81ab133ee95f9f9e9a29548fde"
     },
     {
       "id": "aliases",
       "path": "public/content/aliases.json",
-      "records": 61,
-      "bytes": 4127,
-      "sha256": "a5b29d698fa6edf911e68335c578c7711e14f134a2efe38849b2193482ed6c47"
+      "records": 78,
+      "bytes": 5109,
+      "sha256": "20909e6845bb557b68129fbe5b22efaf0635a3bd9026135b8fa1186f10d74339"
     },
     {
       "id": "asset-manifest",
@@ -1511,7 +1511,7 @@
     {
       "legacyPath": "/IKONA-BOGRODITY-RADOST-VSEK-SKORBYSIK-V-STARINNOM-ZOLOCENOM-OKLADE",
       "slug": "joy-of-all-who-sorrow-gilded-oklad",
-      "title": "Икона Богродицы Радость всех скорбящих в старинном золоченом окладе",
+      "title": "Икона Богородицы Радость всех скорбящих в старинном золоченом окладе",
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGRODITY-RADOST-VSEK-SKORBYSIK-V-STARINNOM-ZOLOCENOM-OKLADE",
       "published": true,
       "assetFiles": [
@@ -1531,7 +1531,7 @@
     {
       "legacyPath": "/IKONA-CUDO-AKISTRATIGA-MIKAILA",
       "slug": "archangel-michael",
-      "title": "Икона чудо Ахистратига Михаила.",
+      "title": "Икона чудо Архистратига Михаила.",
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-AKISTRATIGA-MIKAILA",
       "published": true,
       "assetFiles": [
@@ -1574,7 +1574,7 @@
     {
       "legacyPath": "/IKONA-DVUNADESYTYE-PRAZDNIKII-VOSKRESENIE-KRISTOVO",
       "slug": "twelve-feasts-and-resurrection",
-      "title": "Икона Двунадесятые праздникии Воскресение Христово.",
+      "title": "Икона Двунадесятые праздники Воскресение Христово.",
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-DVUNADESYTYE-PRAZDNIKII-VOSKRESENIE-KRISTOVO",
       "published": true,
       "assetFiles": [
@@ -1731,7 +1731,7 @@
     {
       "legacyPath": "/IKONA-SPAS-VSEDERZITEL-V-STARINOM-LATUNNOM-OKLADE",
       "slug": "christ-pantocrator-brass-oklad",
-      "title": "Икона Спас Вседержитель в старином латунном окладе",
+      "title": "Икона Спас Вседержитель в старинном латунном окладе",
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-V-STARINOM-LATUNNOM-OKLADE",
       "published": true,
       "assetFiles": [

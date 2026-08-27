@@ -51,6 +51,10 @@ test('publishedIcons returns an empty array for missing or non-array icons', () 
 
 test('publishedIcons sorts records and excludes unpublished records', () => {
   const bundle = structuredClone(validBundle);
-  bundle.icons.push({ ...bundle.icons[0], id: 'icon-2', slug: 'hidden', published: false, order: 1 });
-  assert.deepEqual(publishedIcons(bundle).map(({ slug }) => slug), ['example']);
+  bundle.icons.push(
+    { ...bundle.icons[0], id: 'icon-2', slug: 'later', order: 30 },
+    { ...bundle.icons[0], id: 'icon-3', slug: 'earlier', order: 5 },
+    { ...bundle.icons[0], id: 'icon-4', slug: 'hidden', published: false, order: 1 }
+  );
+  assert.deepEqual(publishedIcons(bundle).map(({ slug }) => slug), ['earlier', 'example', 'later']);
 });

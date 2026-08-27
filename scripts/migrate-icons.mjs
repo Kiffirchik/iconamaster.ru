@@ -20,6 +20,13 @@ const runLogPath = path.join(projectDirectory, 'tmp', 'icon-migration-run.json')
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const sortedUnique = (values) => [...new Set(values)].sort();
 const json = (value) => `${JSON.stringify(value, null, 2)}\n`;
+const compareCodeUnits = (left, right) => (left < right ? -1 : left > right ? 1 : 0);
+const correctedTitles = new Map([
+  ['joy-of-all-who-sorrow-gilded-oklad', 'Икона Богородицы Радость всех скорбящих в старинном золоченом окладе'],
+  ['archangel-michael', 'Икона чудо Архистратига Михаила.'],
+  ['twelve-feasts-and-resurrection', 'Икона Двунадесятые праздники Воскресение Христово.'],
+  ['christ-pantocrator-brass-oklad', 'Икона Спас Вседержитель в старинном латунном окладе'],
+]);
 
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
 
@@ -274,7 +281,15 @@ const fetchOriginal = async (sourceUrl) => {
   return { bytes, contentType, resolvedUrl: response.url };
 };
 
-const migrateAsset = async ({ candidate, candidateIndex, mapping, source, previousIcon, existingManifestByUrl }) => {
+const migrateAsset = async ({
+  candidate,
+  candidateIndex,
+  mapping,
+  source,
+  titleCorrected,
+  previousIcon,
+  existingManifestByUrl,
+}) => {
   const reused = await readReusableAsset(candidate, existingManifestByUrl, mapping.legacyPath);
   let bytes;
   let dimensions;
@@ -304,9 +319,10 @@ const migrateAsset = async ({ candidate, candidateIndex, mapping, source, previo
   if (!reuse || previous.file !== file) await writeFile(path.join(assetDirectory, file), bytes);
 
   const oldImage = previousIcon?.images?.find(({ src }) => src === `/assets/icons/${file}`);
-  const alt = oldImage?.alt ?? (candidateIndex === 0
+  const generatedAlt = candidateIndex === 0
     ? `${source.title}, полный вид`
-    : `${source.title}, дополнительный вид ${candidateIndex}`);
+    : `${source.title}, дополнительный вид ${candidateIndex}`;
+  const alt = titleCorrected ? generatedAlt : (oldImage?.alt ?? generatedAlt);
   const position = mapping.previewPosition ?? oldImage?.position ?? previousIcon?.previewPosition ?? '50% 50%';
   const manifest = {
     id,
@@ -387,6 +403,9 @@ const main = async () => {
 
   for (const [orderIndex, mapping] of legacyIconMap.entries()) {
     const source = inventoryByPath.get(mapping.legacyPath);
+    const correctedTitle = correctedTitles.get(mapping.slug) ?? source.title;
+    const migratedSource = correctedTitle === source.title ? source : { ...source, title: correctedTitle };
+    const titleCorrected = migratedSource !== source;
     const recoveryRequired = source.mediaRecovery === 'required-public-or-cargo';
     const previousIcon = existingIconsBySlug.get(mapping.slug);
     const recoverySource = publicRecoverySources.find(({ legacyPath }) => legacyPath === mapping.legacyPath);
@@ -416,7 +435,8 @@ const main = async () => {
           candidate,
           candidateIndex,
           mapping,
-          source,
+          source: migratedSource,
+          titleCorrected,
           previousIcon,
           existingManifestByUrl,
         }),
@@ -433,7 +453,7 @@ const main = async () => {
     icons.push({
       id: previousIcon?.id ?? mapping.slug,
       slug: mapping.slug,
-      title: source.title,
+      title: migratedSource.title,
       published: Boolean(mapping.published && images.length > 0),
       ...retained,
       price: previousIcon?.price ?? null,
@@ -450,7 +470,7 @@ const main = async () => {
   const aliases = Object.fromEntries(Object.entries({
     ...existingAliases,
     ...Object.fromEntries(legacyIconMap.map(({ legacyPath, slug }) => [legacyPath, `/icons/${slug}`])),
-  }).sort(([left], [right]) => left.localeCompare(right)));
+  }).sort(([left], [right]) => compareCodeUnits(left, right)));
   manifest.sort((left, right) => left.id.localeCompare(right.id));
 
   const unpublishedRecords = icons.filter(({ published }) => !published).map((icon) => ({

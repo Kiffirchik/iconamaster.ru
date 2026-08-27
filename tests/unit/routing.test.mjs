@@ -119,6 +119,12 @@ test('parseRoute rejects unknown paths', () => {
   assert.deepEqual(parseRoute('/missing'), { name: 'not-found' });
 });
 
+test('parseRoute rejects malformed percent encoding without throwing', () => {
+  for (const path of ['/%', '/%E0%A4%A']) {
+    assert.deepEqual(parseRoute(path, aliases), { name: 'not-found' }, path);
+  }
+});
+
 test('navigate resets to the top for a path without a hash', () => {
   const browser = installBrowserGlobals();
 

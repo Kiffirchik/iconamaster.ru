@@ -1,10 +1,15 @@
 function normalizePath(pathname) {
-  const decoded = decodeURI(pathname || '/');
-  return decoded !== '/' && decoded.endsWith('/') ? decoded.slice(0, -1) : decoded;
+  try {
+    const decoded = decodeURI(pathname || '/');
+    return decoded !== '/' && decoded.endsWith('/') ? decoded.slice(0, -1) : decoded;
+  } catch {
+    return null;
+  }
 }
 
 export function parseRoute(pathname, aliases = {}) {
   const requestedPath = normalizePath(pathname);
+  if (requestedPath === null) return { name: 'not-found' };
   const canonicalPath = aliases[requestedPath] ?? requestedPath;
 
   if (canonicalPath === '/') return { name: 'home' };

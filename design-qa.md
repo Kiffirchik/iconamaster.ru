@@ -57,7 +57,7 @@ The repository retains the verified originals. The temporary Sites delivery snap
 
 ## Automated verification
 
-- `npm test` — 114 passed, 0 failed.
+- `npm test` — 116 passed, 0 failed.
 - Content gate — 50 published icons, 7 pages, 8 articles, 2 videos, 78 aliases, 258 owned local assets.
 - Asset gate — 79 independently owned originals, 79,585,655 bytes, verified by streaming SHA-256.
 - `npm run build` — 56 modules transformed; client and server artifacts generated.

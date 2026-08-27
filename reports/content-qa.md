@@ -9,9 +9,9 @@ This report covers the complete data-backed premium prototype and its temporary 
 Public preview:
 
 - https://iconamaster-premium-preview.deniskalachinov.chatgpt.site/
-- Sites version: 7
-- Public release source: `8387046468d34d7d4eea9a8972fea834d3d86e4f`
-- Working implementation head before this report: `aa09a72`
+- Sites version: 8
+- Public release source: `0905de39799de55c79bb0a36cf2bc98930463e3f`
+- Working implementation baseline for the final correction wave: `98de9d4`
 
 ## Content contract
 
@@ -76,6 +76,8 @@ Direct navigation on Sites was verified after correcting the worker fallback and
 
 Observed public navigation times in the signed browser session were approximately 0.9–2.7 seconds after deployment. These are smoke-test observations, not a controlled Lighthouse benchmark.
 
+Sites version 8 was additionally smoke-tested on `/`, `/collection`, `/icons/joy-of-all-who-sorrow-gilded-oklad`, `/icons/archangel-michael`, and `/video`. Corrected titles rendered on both reviewed icon details; all five routes had zero broken visible images, zero horizontal overflow, and zero pre-activation iframes. The corrected icon detail also passed at the 390 px requested mobile viewport (375 px effective client width), including normal-flow menu expansion.
+
 ## Interaction and accessibility
 
 - Mobile menu expands in document flow; header bottom equals main top and the page does not widen.
@@ -117,19 +119,20 @@ The final public route matrix passed.
 | Finding | Correction | Verification evidence |
 | --- | --- | --- |
 | Direct Sites routes returned `307` and landed on `/`. | Added redirect-aware SPA fallback in `worker/index.js`; the shell is fetched from the root asset while the requested browser path is preserved. | Red/green worker regression: observed `307 !== 200`, then 5/5 Sites tests passed. Working commits `136bb42` and `aa09a72`. |
-| Saved Sites versions still contained the old worker. | Added an explicit successful `npm run build` before packaging and inspected `dist/server/index.js` inside the archive. | Public Sites version 7 preserved every tested direct path and heading. Release source `8387046`. |
+| Saved Sites versions still contained the old worker. | Added an explicit successful `npm run build` before packaging and inspected `dist/server/index.js` inside the archive. | Public Sites version 8 preserved every tested direct path and heading. Release source `0905de3`. |
 | Source repository transfer exceeded the practical upload window. | Created a separate delivery source snapshot with non-cropping JPEG derivatives while retaining verified originals in the working branch. | JPEG delivery bytes reduced from 205.21 MiB to 71.22 MiB; public archive 86,855,680 bytes; public image checks passed. |
 | The packaging gate checked only file existence. | Added a behavior test importing `dist/server/index.js` and exercising a direct app route. | Mutation to stale `/index.html` fallback failed with `307 !== 200`; rebuild restored 6/6 Sites tests. |
+| Final whole-branch review found malformed URL crashes, vacuous order coverage, and four published title typos. | Malformed encoded paths now resolve to not-found; the order test uses three published records in non-sorted insertion order; four slug-scoped typo-only corrections regenerate titles and alts while preserving raw source inventory. | Targeted 21/21 tests passed, then the complete 116-test suite and all integrity/build gates passed; Sites version 8 rendered the corrected titles. |
 
 ## Final verification
 
-`npm run verify` passed after the final worker change:
+`npm run verify` passed after the final correction wave:
 
-- 114 unit/integration tests passed;
+- 116 unit/integration tests passed;
 - content and asset integrity gates passed;
 - production Vite build passed;
 - 6 Sites worker/packaging tests passed.
 
-After the final public verification, no further source correction was required.
+After the Sites version 8 public verification, no further source correction was required.
 
 final result: passed

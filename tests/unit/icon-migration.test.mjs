@@ -10,6 +10,12 @@ const loadJson = async (relativePath) => JSON.parse(await readFile(
 ));
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const sorted = (values) => [...values].sort();
+const correctedTitles = {
+  'joy-of-all-who-sorrow-gilded-oklad': 'Икона Богородицы Радость всех скорбящих в старинном золоченом окладе',
+  'archangel-michael': 'Икона чудо Архистратига Михаила.',
+  'twelve-feasts-and-resurrection': 'Икона Двунадесятые праздники Воскресение Христово.',
+  'christ-pantocrator-brass-oklad': 'Икона Спас Вседержитель в старинном латунном окладе'
+};
 
 const recoveryRequiredPaths = [
   '/IKONA-BOGORODITY-PETROVSKAY-V-REZNOM-KIOTE',
@@ -123,9 +129,20 @@ test('tracked inventory fixture accounts for all source titles, paths, and alias
   for (const source of inventory.icons) {
     const icon = iconsBySourceUrl.get(source.sourceUrl);
     assert.ok(icon, source.sourcePath);
-    assert.equal(icon.title, source.title);
+    assert.equal(icon.title, correctedTitles[icon.slug] ?? source.title);
     assert.equal(aliases[source.sourcePath], `/icons/${icon.slug}`);
     assert.match(aliases[source.sourcePath], /^\//);
+  }
+});
+
+test('published typo corrections update canonical titles and every generated image alt', async () => {
+  const icons = await loadJson('../../public/content/icons.json');
+  for (const [slug, expectedTitle] of Object.entries(correctedTitles)) {
+    const icon = icons.find((record) => record.slug === slug);
+    assert.ok(icon, slug);
+    assert.equal(icon.title, expectedTitle, slug);
+    assert.ok(icon.images.length > 0, slug);
+    for (const image of icon.images) assert.ok(image.alt.startsWith(expectedTitle), `${slug}: ${image.alt}`);
   }
 });
 
