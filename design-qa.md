@@ -1,45 +1,64 @@
 # Iconamaster premium prototype — final design QA
 
-Date: 2026-08-20
+Date: 2026-08-27
+
+## Result
+
+The premium prototype matches the approved dark museum-like direction, preserves the source iconography, and is temporarily published at:
+
+- https://iconamaster-premium-preview.deniskalachinov.chatgpt.site/
+
+No changes were made to the production domain `iconamaster.ru`.
 
 ## Sources
 
-- Approved visual direction: `C:\Users\user\.codex\generated_images\019fec29-67ec-7ff3-9884-3c8cc048e433\exec-f20c3f02-cb65-4f66-a8be-01f9b47fa03d.png` (1487 × 1058).
-- User-provided Archangel reference: `C:\Users\user\AppData\Local\Temp\codex-clipboard-f00f591d-c8ae-41e7-a9f3-4329841854e0.png` (463 × 546).
-- Exact immutable Cargo original used by the prototype: `public/assets/icons/archangel-michael.jpg` (2342 × 2685).
-- Homepage comparison: `C:\Users\user\Documents\ChatGPT\Iconamaster\qa-output\comparison-home-after.png`.
-- Original-versus-rendered icon comparison: `C:\Users\user\Documents\ChatGPT\Iconamaster\qa-output\comparison-icon.png`.
+- Approved visual direction: `C:\Users\user\.codex\generated_images\019fec29-67ec-7ff3-9884-3c8cc048e433\exec-f20c3f02-cb65-4f66-a8be-01f9b47fa03d.png`.
+- Exact immutable source used for the homepage icon: `public/assets/icons/archangel-michael.jpg`.
+- Public desktop QA capture: `C:\Users\user\.codex\visualizations\2026\08\10\019fec29-67ec-7ff3-9884-3c8cc048e433\iconamaster-public-home-final.png`.
+- Public mobile-menu QA capture: `C:\Users\user\.codex\visualizations\2026\08\10\019fec29-67ec-7ff3-9884-3c8cc048e433\iconamaster-public-mobile-menu-v7.png`.
 
 ## Tested screens and viewports
 
-- `/`, `/collection`, and `/icons/archangel-michael` at 1440 × 1024, 1024 × 768, and 390 × 844.
-- All six icon detail routes for loaded originals, `contain` rendering, consultation links, absolute collection/next navigation, and no horizontal overflow.
-- Header edge widths: 760, 761, 780, 800, 820, 900, 1008, 1009, and 1024 px.
-- Mobile menu, filters, empty/reset state, dialog previous/next wrap, Escape, focus restoration, and body scroll lock.
+- Local route matrix: 17 representative routes at 1440, 1024, 390, and 360 px — 68 combinations passed.
+- Public desktop routes: `/`, `/collection`, one multi-image icon detail, one long article, `/video`, and a legacy uppercase alias.
+- Public mobile routes at 390 and 360 px: homepage, collection, icon detail, long article, and video.
+- Mobile menu normal-flow expansion, Escape close, and focus restoration.
+- Gallery dialog open/close, body scroll lock, Escape, and trigger focus restoration.
+- Video activation with no iframe before a click and `autoplay=0` after a click.
 
-## Visual comparison and resolved findings
+## Visual and responsive findings
 
-- P2 resolved — the initial desktop hero was substantially taller than the approved composition: the title wrapped to four lines, the icon started too low, and “Новые поступления” disappeared below the first viewport. The final grid gives more width to the text, keeps the title to two lines at 1440 px, moves the icon upward, and reveals the next section in the first screen.
-- P2 resolved — desktop navigation overflowed between 761 and 820 px. The normal-flow compact menu now covers 761–1008 px; desktop navigation resumes at 1009 px. Controller measurements show zero document and header overflow at every tested edge width.
-- P2 resolved — all reviewed mobile controls and text links now provide at least a 44 × 44 px interactive area without overlaying content.
-- P2 resolved — collection semantics now follow `h1 → h2 → h3`, with the catalog section labeled by its visible `h2`.
-- P1 resolved — a retained gallery index could blank the next single-image icon route. The index is now clamped/reset on image-set changes.
-- The rendered Archangel preserves the exact original figures, inscriptions, painted field, frame, and proportions. Full images use `object-fit: contain`; no bitmap edit, generated replacement, or sacred-content crop was introduced. Only the approved CSS tonal adjustment remains: `brightness(.98) contrast(1.04) saturate(.94)`.
+- The desktop hero keeps the approved two-line headline, icon on the left, passport on the right, and the next section visible in the first viewport.
+- The exact icon figures, inscriptions, painted field, frame, and proportions are preserved. No generated replacement or sacred-content edit is used.
+- Full icon images use contained rendering. The incidental light border remains where removing it could crop the physical frame.
+- The compact navigation covers the tablet overflow range. Desktop and mobile checks found no horizontal overflow or header/content overlap.
+- Mobile navigation expands in normal document flow and does not cover the page content.
+- All reviewed internal navigation remains in the same tab.
+
+## Delivery-image optimization
+
+The repository retains the verified originals. The temporary Sites delivery snapshot uses non-cropping derivatives:
+
+- 247 JPEG files optimized from 205.21 MiB to 71.22 MiB.
+- Icons: maximum 1800 × 1800, JPEG quality 88, 4:4:4 chroma.
+- Editorial/page images: maximum 1920 × 1920, JPEG quality 82, 4:4:4 chroma.
+- Resizing uses `fit: inside` with no enlargement and no crop.
+- Published Sites archive: 86,855,680 bytes.
 
 ## Automated verification
 
-- `npm test` — 26 passed, 0 failed.
-- `npm run test:assets` — 11 immutable original assets verified by SHA-256.
-- `npm run build` — passed; client and server artifacts generated.
-- `npm run test:sites` — 4 passed, 0 failed.
-- Required package outputs exist: `dist/client/index.html`, `dist/server/index.js`, and `dist/.openai/hosting.json`.
-- `git diff --check` — clean.
+- `npm test` — 114 passed, 0 failed.
+- Content gate — 50 published icons, 7 pages, 8 articles, 2 videos, 78 aliases, 258 owned local assets.
+- Asset gate — 79 independently owned originals, 79,585,655 bytes, verified by streaming SHA-256.
+- `npm run build` — 56 modules transformed; client and server artifacts generated.
+- `npm run test:sites` — 5 passed, 0 failed.
+- Public console errors — none.
 
 ## Remaining P3 polish only
 
-- The approved concept includes an atmospheric exhibition-space background and a decorative monogram that do not exist among the approved source assets. The prototype intentionally uses a restrained dark museum surface instead of inventing or altering visible assets.
-- The exact Cargo photograph retains its incidental light border around the physical frame. It is preserved because removing it more aggressively could crop the frame; a future source-photo reshoot would be preferable to destructive CSS cropping.
+- The approved concept includes an atmospheric exhibition-space background and decorative monogram that are not present in approved source assets. The implementation intentionally uses a restrained dark surface instead of inventing visible source material.
+- A future professional reshoot would improve photographs that contain incidental background or borders more safely than aggressive CSS cropping.
 
-No P0–P2 visual, interaction, accessibility, asset-integrity, responsive, or packaging findings remain. The prototype remains local and has not been deployed.
+No P0–P2 visual, interaction, accessibility, asset-integrity, responsive, routing, or packaging findings remain.
 
 final result: passed
