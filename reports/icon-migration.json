@@ -1,0 +1,893 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "archive": "C:\\Users\\user\\Documents\\ChatGPT\\Iconamaster\\backups\\pre-optimized-publish-20260818",
+    "inventory": "C:\\Users\\user\\Documents\\ChatGPT\\Iconamaster\\.worktrees\\iconamaster-premium-prototype\\premium-prototype\\tmp\\migration-inventory.json",
+    "inventorySchemaVersion": 2
+  },
+  "summary": {
+    "mappedRecords": 50,
+    "uniqueSlugs": 50,
+    "publishedRecords": 50,
+    "unpublishedRecords": 0,
+    "assetFiles": 79,
+    "assetBytes": 79585655,
+    "recoveredRequiredRecords": 7,
+    "unresolvedRecoveryRecords": 0,
+    "assetFailures": 0
+  },
+  "checksumPolicy": "Every local original is copied or downloaded without decoding or re-encoding, then recorded with its byte length and SHA-256 digest.",
+  "thumbnailPolicy": "Catalog thumbnail URLs are evidence only. Migration uses Cargo t/original endpoints or page-proven original URLs and never stores thumbnail bytes as originals.",
+  "recoveryAttempts": [
+    {
+      "legacyPath": "/IKONA-BOGORODITY-PETROVSKAY-V-REZNOM-KIOTE",
+      "provenOriginalUrls": [
+        "https://freight.cargo.site/t/original/i/2b4b177ef89c16c6c1a272fba0d95e80155a8ab3640f16e1d539339bcf85daef/_DSC0422.JPG"
+      ],
+      "pageAttempts": [
+        {
+          "legacyPath": "/IKONA-BOGORODITY-PETROVSKAY-V-REZNOM-KIOTE",
+          "pageUrl": "https://iconamaster.ru/IKONA-BOGORODITY-PETROVSKAY-V-REZNOM-KIOTE/",
+          "resolvedUrl": "https://iconamaster.ru/IKONA-BOGORODITY-PETROVSKAY-V-REZNOM-KIOTE/",
+          "status": 200,
+          "contentType": "text/html",
+          "outcome": "no-originals-found",
+          "embeddedError": "Unterminated ScaffoldingData script",
+          "originalUrls": []
+        },
+        {
+          "legacyPath": "/IKONA-BOGORODITY-PETROVSKAY-V-REZNOM-KIOTE",
+          "pageUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-PETROVSKAY-V-REZNOM-KIOTE",
+          "resolvedUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-PETROVSKAY-V-REZNOM-KIOTE",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "outcome": "originals-found",
+          "originalUrls": [
+            "https://freight.cargo.site/t/original/i/2b4b177ef89c16c6c1a272fba0d95e80155a8ab3640f16e1d539339bcf85daef/_DSC0422.JPG"
+          ]
+        }
+      ],
+      "originalAttempts": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/2b4b177ef89c16c6c1a272fba0d95e80155a8ab3640f16e1d539339bcf85daef/_DSC0422.JPG",
+          "resolvedUrl": "https://freight.cargo.site/t/original/i/2b4b177ef89c16c6c1a272fba0d95e80155a8ab3640f16e1d539339bcf85daef/_DSC0422.JPG",
+          "outcome": "reused-verified-bytes",
+          "file": "theotokos-petrovskaya-carved-kiot.jpg",
+          "bytes": 4099416,
+          "sha256": "fa28b80195e7ae5e888aac80e455860403f6487cd17f91601143a76a03f33fe2"
+        }
+      ],
+      "recoveredAssets": [
+        "theotokos-petrovskaya-carved-kiot.jpg"
+      ],
+      "published": true
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-RUSSKAY",
+      "provenOriginalUrls": [
+        "https://freight.cargo.site/t/original/i/41303344c5de6e61256acfc743035a50a54bfdb9115656230749dfa33dea285f/12.jpg"
+      ],
+      "pageAttempts": [
+        {
+          "legacyPath": "/IKONA-BOGORODITY-RUSSKAY",
+          "pageUrl": "https://iconamaster.ru/IKONA-BOGORODITY-RUSSKAY/",
+          "resolvedUrl": "https://iconamaster.ru/IKONA-BOGORODITY-RUSSKAY/",
+          "status": 200,
+          "contentType": "text/html",
+          "outcome": "no-originals-found",
+          "embeddedError": "Bad Unicode escape in JSON at position 42369",
+          "originalUrls": []
+        },
+        {
+          "legacyPath": "/IKONA-BOGORODITY-RUSSKAY",
+          "pageUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-RUSSKAY",
+          "resolvedUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-RUSSKAY",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "outcome": "originals-found",
+          "originalUrls": [
+            "https://freight.cargo.site/t/original/i/41303344c5de6e61256acfc743035a50a54bfdb9115656230749dfa33dea285f/12.jpg"
+          ]
+        }
+      ],
+      "originalAttempts": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/41303344c5de6e61256acfc743035a50a54bfdb9115656230749dfa33dea285f/12.jpg",
+          "resolvedUrl": "https://freight.cargo.site/t/original/i/41303344c5de6e61256acfc743035a50a54bfdb9115656230749dfa33dea285f/12.jpg",
+          "outcome": "reused-verified-bytes",
+          "file": "theotokos-russkaya.jpg",
+          "bytes": 67683,
+          "sha256": "080415f97b11fb040d83b5e7ed7db50e04a0c7ec4d145503fb510c316db459f1"
+        }
+      ],
+      "recoveredAssets": [
+        "theotokos-russkaya.jpg"
+      ],
+      "published": true
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-TREK-RADOSTEI",
+      "provenOriginalUrls": [
+        "https://freight.cargo.site/t/original/i/7e710eae3dc602fad17c2411758b963958813d73d555254620f7877591d773b6/9.jpg"
+      ],
+      "pageAttempts": [
+        {
+          "legacyPath": "/IKONA-BOGORODITY-TREK-RADOSTEI",
+          "pageUrl": "https://iconamaster.ru/IKONA-BOGORODITY-TREK-RADOSTEI/",
+          "resolvedUrl": "https://iconamaster.ru/IKONA-BOGORODITY-TREK-RADOSTEI/",
+          "status": 200,
+          "contentType": "text/html",
+          "outcome": "no-originals-found",
+          "embeddedError": "Unterminated ScaffoldingData script",
+          "originalUrls": []
+        },
+        {
+          "legacyPath": "/IKONA-BOGORODITY-TREK-RADOSTEI",
+          "pageUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-TREK-RADOSTEI",
+          "resolvedUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-TREK-RADOSTEI",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "outcome": "originals-found",
+          "originalUrls": [
+            "https://freight.cargo.site/t/original/i/7e710eae3dc602fad17c2411758b963958813d73d555254620f7877591d773b6/9.jpg"
+          ]
+        }
+      ],
+      "originalAttempts": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/7e710eae3dc602fad17c2411758b963958813d73d555254620f7877591d773b6/9.jpg",
+          "resolvedUrl": "https://freight.cargo.site/t/original/i/7e710eae3dc602fad17c2411758b963958813d73d555254620f7877591d773b6/9.jpg",
+          "outcome": "reused-verified-bytes",
+          "file": "theotokos-three-joys.jpg",
+          "bytes": 91926,
+          "sha256": "c376999d22ca32a5a737138348d97fa478f1e7403fc72c519470815b5fb39448"
+        }
+      ],
+      "recoveredAssets": [
+        "theotokos-three-joys.jpg"
+      ],
+      "published": true
+    },
+    {
+      "legacyPath": "/IKONA-CUDO-AKISTRATIGA-MIKAILA",
+      "provenOriginalUrls": [
+        "https://freight.cargo.site/t/original/i/249b1e99699258460e768a3e8ec571cb539cfdf37f7dd09081a28cc5a88088e3/---2117------.JPG",
+        "https://freight.cargo.site/t/original/i/fb479c998c0dae189cdbf29ba8e6b0f5948536ac5083ab9873d31db4b9d561d8/_DSC9146.JPG",
+        "https://freight.cargo.site/t/original/i/8fad7b16eab7085982aef13e931609d36143181ad5c73e11542b81e82cf01839/21.jpg"
+      ],
+      "pageAttempts": [
+        {
+          "legacyPath": "/IKONA-CUDO-AKISTRATIGA-MIKAILA",
+          "pageUrl": "https://iconamaster.ru/IKONA-CUDO-AKISTRATIGA-MIKAILA/",
+          "resolvedUrl": "https://iconamaster.ru/IKONA-CUDO-AKISTRATIGA-MIKAILA/",
+          "status": 404,
+          "contentType": "text/html; charset=iso-8859-1",
+          "outcome": "unavailable",
+          "originalUrls": []
+        },
+        {
+          "legacyPath": "/IKONA-CUDO-AKISTRATIGA-MIKAILA",
+          "pageUrl": "https://iconamaster.cargo.site/IKONA-CUDO-AKISTRATIGA-MIKAILA",
+          "resolvedUrl": "https://iconamaster.cargo.site/IKONA-CUDO-AKISTRATIGA-MIKAILA",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "outcome": "originals-found",
+          "originalUrls": [
+            "https://freight.cargo.site/t/original/i/249b1e99699258460e768a3e8ec571cb539cfdf37f7dd09081a28cc5a88088e3/---2117------.JPG",
+            "https://freight.cargo.site/t/original/i/fb479c998c0dae189cdbf29ba8e6b0f5948536ac5083ab9873d31db4b9d561d8/_DSC9146.JPG"
+          ]
+        }
+      ],
+      "originalAttempts": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/e8b1c0a63f13a6d9ce58148213497635407338802c06e246f5a61c35dea111b9/_DSC9152.JPG",
+          "resolvedUrl": "https://freight.cargo.site/t/original/i/e8b1c0a63f13a6d9ce58148213497635407338802c06e246f5a61c35dea111b9/_DSC9152.JPG",
+          "outcome": "reused-verified-bytes",
+          "file": "archangel-michael.jpg",
+          "bytes": 3123827,
+          "sha256": "49dafda6e6371ed3d5febefd16aea0deb47c20b2849b8e6ab921b17f43e21ae6"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/249b1e99699258460e768a3e8ec571cb539cfdf37f7dd09081a28cc5a88088e3/---2117------.JPG",
+          "resolvedUrl": "https://freight.cargo.site/t/original/i/249b1e99699258460e768a3e8ec571cb539cfdf37f7dd09081a28cc5a88088e3/---2117------.JPG",
+          "outcome": "reused-verified-bytes",
+          "file": "archangel-michael-2.jpg",
+          "bytes": 1242892,
+          "sha256": "47622954e509e1692bc6b329dcbd1b3089cc332f396c0c32e76b29ff9be15957"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/fb479c998c0dae189cdbf29ba8e6b0f5948536ac5083ab9873d31db4b9d561d8/_DSC9146.JPG",
+          "resolvedUrl": "https://freight.cargo.site/t/original/i/fb479c998c0dae189cdbf29ba8e6b0f5948536ac5083ab9873d31db4b9d561d8/_DSC9146.JPG",
+          "outcome": "reused-verified-bytes",
+          "file": "archangel-michael-3.jpg",
+          "bytes": 4720406,
+          "sha256": "0c966821f5d2317db1140ee20288f0aa1bdf0ee607e74491710089313a99efac"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/8fad7b16eab7085982aef13e931609d36143181ad5c73e11542b81e82cf01839/21.jpg",
+          "resolvedUrl": "https://freight.cargo.site/t/original/i/8fad7b16eab7085982aef13e931609d36143181ad5c73e11542b81e82cf01839/21.jpg",
+          "outcome": "reused-verified-bytes",
+          "file": "archangel-michael-4.jpg",
+          "bytes": 91984,
+          "sha256": "80b5b6eecec190bf3f48091c70a5d3b4044d4544af25666446076309dc8f671a"
+        }
+      ],
+      "recoveredAssets": [
+        "archangel-michael.jpg",
+        "archangel-michael-2.jpg",
+        "archangel-michael-3.jpg",
+        "archangel-michael-4.jpg"
+      ],
+      "published": true
+    },
+    {
+      "legacyPath": "/IKONA-PREPODOBNYE-ZOSIMA-I-SAVVATII-SOLOVETKIE",
+      "provenOriginalUrls": [
+        "https://freight.cargo.site/t/original/i/2acdd2d25913daa13779c6014ea817c52ac300fe0c9c12ee2c1c970a17a2594b/27.jpg"
+      ],
+      "pageAttempts": [
+        {
+          "legacyPath": "/IKONA-PREPODOBNYE-ZOSIMA-I-SAVVATII-SOLOVETKIE",
+          "pageUrl": "https://iconamaster.ru/IKONA-PREPODOBNYE-ZOSIMA-I-SAVVATII-SOLOVETKIE/",
+          "resolvedUrl": "https://iconamaster.ru/IKONA-PREPODOBNYE-ZOSIMA-I-SAVVATII-SOLOVETKIE/",
+          "status": 404,
+          "contentType": "text/html; charset=iso-8859-1",
+          "outcome": "unavailable",
+          "originalUrls": []
+        },
+        {
+          "legacyPath": "/IKONA-PREPODOBNYE-ZOSIMA-I-SAVVATII-SOLOVETKIE",
+          "pageUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNYE-ZOSIMA-I-SAVVATII-SOLOVETKIE",
+          "resolvedUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNYE-ZOSIMA-I-SAVVATII-SOLOVETKIE",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "outcome": "originals-found",
+          "originalUrls": [
+            "https://freight.cargo.site/t/original/i/2acdd2d25913daa13779c6014ea817c52ac300fe0c9c12ee2c1c970a17a2594b/27.jpg"
+          ]
+        }
+      ],
+      "originalAttempts": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/2acdd2d25913daa13779c6014ea817c52ac300fe0c9c12ee2c1c970a17a2594b/27.jpg",
+          "resolvedUrl": "https://freight.cargo.site/t/original/i/2acdd2d25913daa13779c6014ea817c52ac300fe0c9c12ee2c1c970a17a2594b/27.jpg",
+          "outcome": "reused-verified-bytes",
+          "file": "zosima-and-savvaty-solovetsky.jpg",
+          "bytes": 88417,
+          "sha256": "6a4f16d6639646eb521e7161a9d1e09d807ecbcdbe8217086b121a81c821ead1"
+        }
+      ],
+      "recoveredAssets": [
+        "zosima-and-savvaty-solovetsky.jpg"
+      ],
+      "published": true
+    },
+    {
+      "legacyPath": "/IKONA-SPAS-VSEDERZITEL-V-DRAGOTENNOM-OKLADE-S-FARFOROVYMI-VSTAVKAMI-I",
+      "provenOriginalUrls": [
+        "https://freight.cargo.site/t/original/i/69e2e054b8c1a3b707ff2e49f69aa79139b446694d3391f3ef496bdf52d3da5c/16.jpg"
+      ],
+      "pageAttempts": [
+        {
+          "legacyPath": "/IKONA-SPAS-VSEDERZITEL-V-DRAGOTENNOM-OKLADE-S-FARFOROVYMI-VSTAVKAMI-I",
+          "pageUrl": "https://iconamaster.ru/IKONA-SPAS-VSEDERZITEL-V-DRAGOTENNOM-OKLADE-S-FARFOROVYMI-VSTAVKAMI-I/",
+          "resolvedUrl": "https://iconamaster.ru/IKONA-SPAS-VSEDERZITEL-V-DRAGOTENNOM-OKLADE-S-FARFOROVYMI-VSTAVKAMI-I/",
+          "status": 404,
+          "contentType": "text/html; charset=iso-8859-1",
+          "outcome": "unavailable",
+          "originalUrls": []
+        },
+        {
+          "legacyPath": "/IKONA-SPAS-VSEDERZITEL-V-DRAGOTENNOM-OKLADE-S-FARFOROVYMI-VSTAVKAMI-I",
+          "pageUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-V-DRAGOTENNOM-OKLADE-S-FARFOROVYMI-VSTAVKAMI-I",
+          "resolvedUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-V-DRAGOTENNOM-OKLADE-S-FARFOROVYMI-VSTAVKAMI-I",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "outcome": "originals-found",
+          "originalUrls": [
+            "https://freight.cargo.site/t/original/i/69e2e054b8c1a3b707ff2e49f69aa79139b446694d3391f3ef496bdf52d3da5c/16.jpg"
+          ]
+        }
+      ],
+      "originalAttempts": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/69e2e054b8c1a3b707ff2e49f69aa79139b446694d3391f3ef496bdf52d3da5c/16.jpg",
+          "resolvedUrl": "https://freight.cargo.site/t/original/i/69e2e054b8c1a3b707ff2e49f69aa79139b446694d3391f3ef496bdf52d3da5c/16.jpg",
+          "outcome": "reused-verified-bytes",
+          "file": "christ-pantocrator-precious-oklad.jpg",
+          "bytes": 88483,
+          "sha256": "c56678ae1c524f99eef17da33f6049efb5ab2e01e113990c405148674ab6def7"
+        }
+      ],
+      "recoveredAssets": [
+        "christ-pantocrator-precious-oklad.jpg"
+      ],
+      "published": true
+    },
+    {
+      "legacyPath": "/IKONA-SVYTOI-KNYZ-VLADISLAV-CESSKII",
+      "provenOriginalUrls": [
+        "https://freight.cargo.site/t/original/i/5d3deb5d1b9a831ac98893fb87ff27cf7221889f0d761e6de79629dc2ae11782/40----3127.jpg",
+        "https://freight.cargo.site/t/original/i/091c547c4dc11269c17d24e50e4c3cb43e0f3793719726175f91ce758436ee18/24.jpg"
+      ],
+      "pageAttempts": [
+        {
+          "legacyPath": "/IKONA-SVYTOI-KNYZ-VLADISLAV-CESSKII",
+          "pageUrl": "https://iconamaster.ru/IKONA-SVYTOI-KNYZ-VLADISLAV-CESSKII/",
+          "resolvedUrl": "https://iconamaster.ru/IKONA-SVYTOI-KNYZ-VLADISLAV-CESSKII/",
+          "status": 404,
+          "contentType": "text/html; charset=iso-8859-1",
+          "outcome": "unavailable",
+          "originalUrls": []
+        },
+        {
+          "legacyPath": "/IKONA-SVYTOI-KNYZ-VLADISLAV-CESSKII",
+          "pageUrl": "https://iconamaster.cargo.site/IKONA-SVYTOI-KNYZ-VLADISLAV-CESSKII",
+          "resolvedUrl": "https://iconamaster.cargo.site/IKONA-SVYTOI-KNYZ-VLADISLAV-CESSKII",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "outcome": "originals-found",
+          "originalUrls": [
+            "https://freight.cargo.site/t/original/i/5d3deb5d1b9a831ac98893fb87ff27cf7221889f0d761e6de79629dc2ae11782/40----3127.jpg"
+          ]
+        }
+      ],
+      "originalAttempts": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/5d3deb5d1b9a831ac98893fb87ff27cf7221889f0d761e6de79629dc2ae11782/40----3127.jpg",
+          "resolvedUrl": "https://freight.cargo.site/t/original/i/5d3deb5d1b9a831ac98893fb87ff27cf7221889f0d761e6de79629dc2ae11782/40----3127.jpg",
+          "outcome": "reused-verified-bytes",
+          "file": "prince-vladislav-czech.jpg",
+          "bytes": 438747,
+          "sha256": "1d772490a1cc2a2c511ea3a8fb25e8282abe0a6e836a95b7b4e65eaf4a45f117"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/091c547c4dc11269c17d24e50e4c3cb43e0f3793719726175f91ce758436ee18/24.jpg",
+          "resolvedUrl": "https://freight.cargo.site/t/original/i/091c547c4dc11269c17d24e50e4c3cb43e0f3793719726175f91ce758436ee18/24.jpg",
+          "outcome": "reused-verified-bytes",
+          "file": "prince-vladislav-czech-2.jpg",
+          "bytes": 84335,
+          "sha256": "08070f0c98178c3beaca4a2f899183912de3c8ccb92de36d7439bc1890834d83"
+        }
+      ],
+      "recoveredAssets": [
+        "prince-vladislav-czech.jpg",
+        "prince-vladislav-czech-2.jpg"
+      ],
+      "published": true
+    }
+  ],
+  "assetFailures": [],
+  "unpublishedRecords": [],
+  "records": [
+    {
+      "legacyPath": "/FASADNAY-IKONA-CUDO-GEORGIY-O-ZMIE",
+      "slug": "facade-george",
+      "title": "Фасадная икона Чудо Георгия о змие.",
+      "sourceUrl": "https://iconamaster.cargo.site/FASADNAY-IKONA-CUDO-GEORGIY-O-ZMIE",
+      "published": true,
+      "assetFiles": [
+        "facade-george.jpg",
+        "facade-george-2.jpg",
+        "facade-george-3.jpg",
+        "facade-george-4.jpg",
+        "facade-george-5.jpg",
+        "facade-george-6.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-APOKALIPSIS",
+      "slug": "apocalypse",
+      "title": "Икона Апокалипсис.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-APOKALIPSIS",
+      "published": true,
+      "assetFiles": [
+        "apocalypse.jpg",
+        "apocalypse-2.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-APOKALIPSIS-ILI-VIDENIE-IOANNA-BOGOSLOVA-PROSTAVLENIY-PECATI",
+      "slug": "apocalypse-vision-of-john",
+      "title": "Икона Апокалипсис или видение Иоанна Богослова проставления печати антихриста.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-APOKALIPSIS-ILI-VIDENIE-IOANNA-BOGOSLOVA-PROSTAVLENIY-PECATI",
+      "published": true,
+      "assetFiles": [
+        "apocalypse-vision-of-john.jpg",
+        "apocalypse-vision-of-john-2.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BLAGOVERNYI-TAR-IOANN-VASIL-EVIC-GROZNYI",
+      "slug": "tsar-ivan-the-terrible",
+      "title": "Икона благоверный царь Иоанн Васильевич Грозный.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BLAGOVERNYI-TAR-IOANN-VASIL-EVIC-GROZNYI",
+      "published": true,
+      "assetFiles": [
+        "tsar-ivan-the-terrible.jpg",
+        "tsar-ivan-the-terrible-2.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITA-BOGOLYBSKAY-S-PREDSTOYSIMI-SVYTYMI",
+      "slug": "bogolyubskaya-with-saints",
+      "title": "Икона Богородица Боголюбская с предстоящими святыми.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITA-BOGOLYBSKAY-S-PREDSTOYSIMI-SVYTYMI",
+      "published": true,
+      "assetFiles": [
+        "bogolyubskaya-with-saints.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITA-VSEK-SKORBYSIK-RADOST-MOSKOVSKII-IZVOD",
+      "slug": "joy-of-all-who-sorrow-moscow",
+      "title": "Икона Богородица всех скорбящих радость (московский извод).",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITA-VSEK-SKORBYSIK-RADOST-MOSKOVSKII-IZVOD",
+      "published": true,
+      "assetFiles": [
+        "joy-of-all-who-sorrow-moscow.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-FEDOROVSKAY",
+      "slug": "theotokos-feodorovskaya",
+      "title": "Икона Богородицы Федоровская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-FEDOROVSKAY",
+      "published": true,
+      "assetFiles": [
+        "theotokos-feodorovskaya.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-KAZANSKAY",
+      "slug": "theotokos-kazanskaya",
+      "title": "Икона Богородицы Казанская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KAZANSKAY",
+      "published": true,
+      "assetFiles": [
+        "theotokos-kazanskaya.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-MUROMSKAY",
+      "slug": "theotokos-muromskaya",
+      "title": "Икона Богородицы Муромская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-MUROMSKAY",
+      "published": true,
+      "assetFiles": [
+        "theotokos-muromskaya.jpg",
+        "theotokos-muromskaya-2.jpg",
+        "theotokos-muromskaya-3.jpeg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-PETROVSKAY-V-REZNOM-KIOTE",
+      "slug": "theotokos-petrovskaya-carved-kiot",
+      "title": "Икона Богородицы Петровская в резном киоте..",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-PETROVSKAY-V-REZNOM-KIOTE",
+      "published": true,
+      "assetFiles": [
+        "theotokos-petrovskaya-carved-kiot.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-RUSSKAY",
+      "slug": "theotokos-russkaya",
+      "title": "Икона Богородицы Русская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-RUSSKAY",
+      "published": true,
+      "assetFiles": [
+        "theotokos-russkaya.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-TELITEL-NITA",
+      "slug": "theotokos-healer",
+      "title": "Икона Богородицы Целительница.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-TELITEL-NITA",
+      "published": true,
+      "assetFiles": [
+        "theotokos-healer.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-TREK-RADOSTEI",
+      "slug": "theotokos-three-joys",
+      "title": "Икона Богородицы Трех Радостей.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-TREK-RADOSTEI",
+      "published": true,
+      "assetFiles": [
+        "theotokos-three-joys.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-VZYGRANIE-MLADENTA",
+      "slug": "theotokos-vzygranie-mladentsa",
+      "title": "Икона Богородицы Взыграние младенца.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-VZYGRANIE-MLADENTA",
+      "published": true,
+      "assetFiles": [
+        "theotokos-vzygranie-mladentsa.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-ZNAMENIE-V-DUBOVOM-KIOTE",
+      "slug": "theotokos-znamenie-oak-kiot",
+      "title": "Икона Богородицы Знамение в дубовом киоте.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-ZNAMENIE-V-DUBOVOM-KIOTE",
+      "published": true,
+      "assetFiles": [
+        "theotokos-znamenie-oak-kiot.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGRODITY-RADOST-VSEK-SKORBYSIK-V-STARINNOM-ZOLOCENOM-OKLADE",
+      "slug": "joy-of-all-who-sorrow-gilded-oklad",
+      "title": "Икона Богродицы Радость всех скорбящих в старинном золоченом окладе",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGRODITY-RADOST-VSEK-SKORBYSIK-V-STARINNOM-ZOLOCENOM-OKLADE",
+      "published": true,
+      "assetFiles": [
+        "joy-of-all-who-sorrow-gilded-oklad.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BORIS-I-GLEB-SVYTYE-STRASTOTERPTY",
+      "slug": "boris-and-gleb",
+      "title": "Икона Борис и Глеб, святые страстотерпцы.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BORIS-I-GLEB-SVYTYE-STRASTOTERPTY",
+      "published": true,
+      "assetFiles": [
+        "boris-and-gleb.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-CUDO-AKISTRATIGA-MIKAILA",
+      "slug": "archangel-michael",
+      "title": "Икона чудо Ахистратига Михаила.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-AKISTRATIGA-MIKAILA",
+      "published": true,
+      "assetFiles": [
+        "archangel-michael.jpg",
+        "archangel-michael-2.jpg",
+        "archangel-michael-3.jpg",
+        "archangel-michael-4.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-CUDO-GEORGIY-O-ZMIE",
+      "slug": "miracle-of-george",
+      "title": "Икона Чудо Георгия о змие.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE",
+      "published": true,
+      "assetFiles": [
+        "miracle-of-george.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-CUDO-SV-GEORGIY-O-ZMIE",
+      "slug": "miracle-of-saint-george",
+      "title": "Икона Чудо св. Георгия о змие.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-SV-GEORGIY-O-ZMIE",
+      "published": true,
+      "assetFiles": [
+        "miracle-of-saint-george.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-CUDO-SVYTOGO-GEORGIY-O-ZMIE",
+      "slug": "miracle-of-saint-george-variant",
+      "title": "Икона Чудо Святого Георгия о змие.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-SVYTOGO-GEORGIY-O-ZMIE",
+      "published": true,
+      "assetFiles": [
+        "miracle-of-saint-george-variant.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-DVUNADESYTYE-PRAZDNIKII-VOSKRESENIE-KRISTOVO",
+      "slug": "twelve-feasts-and-resurrection",
+      "title": "Икона Двунадесятые праздникии Воскресение Христово.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-DVUNADESYTYE-PRAZDNIKII-VOSKRESENIE-KRISTOVO",
+      "published": true,
+      "assetFiles": [
+        "twelve-feasts-and-resurrection.jpg",
+        "twelve-feasts-and-resurrection-2.jpg",
+        "twelve-feasts-and-resurrection-3.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-NIKITA-BESOGON",
+      "slug": "nikita-besogon",
+      "title": "Икона Никита Бесогон.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-NIKITA-BESOGON",
+      "published": true,
+      "assetFiles": [
+        "nikita-besogon.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-NIKOLAI-CUDOTVORET",
+      "slug": "saint-nicholas",
+      "title": "Икона Николай Чудотворец.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-NIKOLAI-CUDOTVORET",
+      "published": true,
+      "assetFiles": [
+        "saint-nicholas.jpg",
+        "saint-nicholas-2.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-NIKOLAI-CUDOTVORET-V-ZITII",
+      "slug": "saint-nicholas-with-life",
+      "title": "Икона Николай чудотворец в житии.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-NIKOLAI-CUDOTVORET-V-ZITII",
+      "published": true,
+      "assetFiles": [
+        "saint-nicholas-with-life.jpg",
+        "saint-nicholas-with-life-2.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-PREPODOBNYE-ZOSIMA-I-SAVVATII-SOLOVETKIE",
+      "slug": "zosima-and-savvaty-solovetsky",
+      "title": "Икона Преподобные Зосима и Савватий Соловецкие.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNYE-ZOSIMA-I-SAVVATII-SOLOVETKIE",
+      "published": true,
+      "assetFiles": [
+        "zosima-and-savvaty-solovetsky.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-PREPODOBNYI-ALEKSANDR-PERESVET",
+      "slug": "alexander-peresvet",
+      "title": "Икона преподобный Александр Пересвет.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNYI-ALEKSANDR-PERESVET",
+      "published": true,
+      "assetFiles": [
+        "alexander-peresvet.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-PRESVYTAY-TROITA",
+      "slug": "holy-trinity",
+      "title": "Икона Пресвятая Троица.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PRESVYTAY-TROITA",
+      "published": true,
+      "assetFiles": [
+        "holy-trinity.jpg",
+        "holy-trinity-2.jpg",
+        "holy-trinity-3.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-ROZDESTVO-PRESVYTOI-BOGORODITY",
+      "slug": "nativity-of-the-theotokos",
+      "title": "Икона Рождество Пресвятой Богородицы.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-ROZDESTVO-PRESVYTOI-BOGORODITY",
+      "published": true,
+      "assetFiles": [
+        "nativity-of-the-theotokos.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SERGII-RADONEZSKII",
+      "slug": "sergius-of-radonezh",
+      "title": "Икона Сергий Радонежский.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SERGII-RADONEZSKII",
+      "published": true,
+      "assetFiles": [
+        "sergius-of-radonezh.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SOBOR-IZBRANNYK-SVYTYK",
+      "slug": "synaxis-of-selected-saints",
+      "title": "Икона Собор избранных святых.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SOBOR-IZBRANNYK-SVYTYK",
+      "published": true,
+      "assetFiles": [
+        "synaxis-of-selected-saints.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SPAS-VSEDERZITEL",
+      "slug": "christ-pantocrator",
+      "title": "Икона Спас Вседержитель.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL",
+      "published": true,
+      "assetFiles": [
+        "christ-pantocrator.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SPAS-VSEDERZITEL-3",
+      "slug": "christ-pantocrator-3",
+      "title": "Икона Спас Вседержитель.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-3",
+      "published": true,
+      "assetFiles": [
+        "christ-pantocrator-3.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SPAS-VSEDERZITEL-4",
+      "slug": "christ-pantocrator-4",
+      "title": "Икона Спас Вседержитель.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-4",
+      "published": true,
+      "assetFiles": [
+        "christ-pantocrator-4.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SPAS-VSEDERZITEL-V-DRAGOTENNOM-OKLADE-S-FARFOROVYMI-VSTAVKAMI-I",
+      "slug": "christ-pantocrator-precious-oklad",
+      "title": "Икона Спас Вседержитель в драгоценном окладе с фарфоровыми вставками и в резном киоте.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-V-DRAGOTENNOM-OKLADE-S-FARFOROVYMI-VSTAVKAMI-I",
+      "published": true,
+      "assetFiles": [
+        "christ-pantocrator-precious-oklad.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SPAS-VSEDERZITEL-V-FARFOROVOM-OKLADE-I-REZNOM-KIOTE",
+      "slug": "christ-pantocrator-porcelain-oklad",
+      "title": "Икона Спас Вседержитель в фарфоровом окладе и резном киоте.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-V-FARFOROVOM-OKLADE-I-REZNOM-KIOTE",
+      "published": true,
+      "assetFiles": [
+        "christ-pantocrator-porcelain-oklad.jpg",
+        "christ-pantocrator-porcelain-oklad-2.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SPAS-VSEDERZITEL-V-STARINOM-LATUNNOM-OKLADE",
+      "slug": "christ-pantocrator-brass-oklad",
+      "title": "Икона Спас Вседержитель в старином латунном окладе",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-V-STARINOM-LATUNNOM-OKLADE",
+      "published": true,
+      "assetFiles": [
+        "christ-pantocrator-brass-oklad.jpg",
+        "christ-pantocrator-brass-oklad-2.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SRETENIE-KRISTOVO",
+      "slug": "sretenie",
+      "title": "Икона Сретение Христово.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SRETENIE-KRISTOVO",
+      "published": true,
+      "assetFiles": [
+        "sretenie.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SVYTOI-KNYZ-VLADISLAV-CESSKII",
+      "slug": "prince-vladislav-czech",
+      "title": "Икона Святой князь Владислав Чешский.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SVYTOI-KNYZ-VLADISLAV-CESSKII",
+      "published": true,
+      "assetFiles": [
+        "prince-vladislav-czech.jpg",
+        "prince-vladislav-czech-2.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SVYTOI-NIKOLAI-CUDOTVORET",
+      "slug": "saint-nicholas-wonderworker",
+      "title": "Икона Святой Николай Чудотворец.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SVYTOI-NIKOLAI-CUDOTVORET",
+      "published": true,
+      "assetFiles": [
+        "saint-nicholas-wonderworker.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SVYTYK-PETRA-I-FEVRONII-MUROMSKIK",
+      "slug": "peter-and-fevronia-of-murom",
+      "title": "Икона святых Петра и Февронии Муромских.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SVYTYK-PETRA-I-FEVRONII-MUROMSKIK",
+      "published": true,
+      "assetFiles": [
+        "peter-and-fevronia-of-murom.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONY-NA-SVAD-BU",
+      "slug": "wedding-icons",
+      "title": "Иконы на свадьбу.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONY-NA-SVAD-BU",
+      "published": true,
+      "assetFiles": [
+        "wedding-icons.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/KIOT-SKLADEN",
+      "slug": "folding-kiot",
+      "title": "Киот-складень.",
+      "sourceUrl": "https://iconamaster.cargo.site/KIOT-SKLADEN",
+      "published": true,
+      "assetFiles": [
+        "folding-kiot.jpg",
+        "folding-kiot-2.jpg",
+        "folding-kiot-3.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/KRAMOVAY-IKONA-PETR-I-PAVEL",
+      "slug": "temple-icon-peter-and-paul",
+      "title": "Храмовая икона Петр и Павел.",
+      "sourceUrl": "https://iconamaster.cargo.site/KRAMOVAY-IKONA-PETR-I-PAVEL",
+      "published": true,
+      "assetFiles": [
+        "temple-icon-peter-and-paul.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/KRAMOVAY-IKONA-VOSKRESENIE-KRISTOVO",
+      "slug": "resurrection",
+      "title": "Храмовая икона Воскресение Христово.",
+      "sourceUrl": "https://iconamaster.cargo.site/KRAMOVAY-IKONA-VOSKRESENIE-KRISTOVO",
+      "published": true,
+      "assetFiles": [
+        "resurrection.jpg",
+        "resurrection-2.jpg",
+        "resurrection-3.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/STARINNAY-IKONA-BOGORODITA-KUPINA-NEOPALIMAY",
+      "slug": "antique-theotokos-burning-bush",
+      "title": "Старинная икона Богородица Купина Неопалимая.",
+      "sourceUrl": "https://iconamaster.cargo.site/STARINNAY-IKONA-BOGORODITA-KUPINA-NEOPALIMAY",
+      "published": true,
+      "assetFiles": [
+        "antique-theotokos-burning-bush.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/STARINNAY-IKONA-BOGORODITA-VLADIMIRSKAY",
+      "slug": "antique-theotokos-vladimirskaya",
+      "title": "Старинная икона Богородица Владимирская.",
+      "sourceUrl": "https://iconamaster.cargo.site/STARINNAY-IKONA-BOGORODITA-VLADIMIRSKAY",
+      "published": true,
+      "assetFiles": [
+        "antique-theotokos-vladimirskaya.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/STARINNAY-IKONA-NIKOLAY-CUDOTVORTA",
+      "slug": "antique-saint-nicholas",
+      "title": "Старинная Икона Николая Чудотворца.",
+      "sourceUrl": "https://iconamaster.cargo.site/STARINNAY-IKONA-NIKOLAY-CUDOTVORTA",
+      "published": true,
+      "assetFiles": [
+        "antique-saint-nicholas.jpg",
+        "antique-saint-nicholas-2.jpg",
+        "antique-saint-nicholas-3.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/STARINNAY-IKONA-ROZDESTVO-KRISTOVO-17-VEK",
+      "slug": "nativity-of-christ-17th-century",
+      "title": "Старинная икона Рождество Христово.17 век.",
+      "sourceUrl": "https://iconamaster.cargo.site/STARINNAY-IKONA-ROZDESTVO-KRISTOVO-17-VEK",
+      "published": true,
+      "assetFiles": [
+        "nativity-of-christ-17th-century.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/YVLENIE-BOGORODITY-SERGIY-RADONEZSKOMU-RUBEZ-18-19-VEK-ANALOI",
+      "slug": "sergius-appearance",
+      "title": "Явление Богородицы сергию Радонежскому, рубеж 18-19 век, аналой.",
+      "sourceUrl": "https://iconamaster.cargo.site/YVLENIE-BOGORODITY-SERGIY-RADONEZSKOMU-RUBEZ-18-19-VEK-ANALOI",
+      "published": true,
+      "assetFiles": [
+        "sergius-appearance.jpg",
+        "sergius-appearance-2.jpg"
+      ]
+    }
+  ]
+}
