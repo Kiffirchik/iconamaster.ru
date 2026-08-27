@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
 import test from 'node:test';
+import { fileURLToPath } from 'node:url';
 
 const json = async (relativePath) => JSON.parse(
   await readFile(new URL(relativePath, import.meta.url), 'utf8'),
@@ -41,6 +44,7 @@ const expectedArticlePaths = [
 
 const excludedArticlePath = '/IKONY-V-OKLADAK-TRADITIY-I-ISTORIY';
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
+const ownerKey = ({ ownerType, ownerSlug }) => `${ownerType}:${ownerSlug}`;
 
 const recordPath = ({ sourceUrl }) => new URL(sourceUrl).pathname;
 
@@ -49,6 +53,18 @@ const imagesIn = (record) => record.sections.flatMap((section) => (
     : section.type === 'gallery' ? section.images
       : []
 ));
+
+const relativeFiles = async (directory, prefix = '') => {
+  const directoryPath = directory instanceof URL ? fileURLToPath(directory) : directory;
+  const entries = await readdir(directoryPath, { withFileTypes: true });
+  const nested = await Promise.all(entries.map(async (entry) => {
+    const relativePath = prefix ? `${prefix}/${entry.name}` : entry.name;
+    return entry.isDirectory()
+      ? relativeFiles(path.join(directoryPath, entry.name), relativePath)
+      : [relativePath];
+  }));
+  return nested.flat().toSorted();
+};
 
 test('editorial migration contains exactly the agreed records and contact policy', async () => {
   const [pages, articles, videos, contacts] = await Promise.all([
@@ -105,6 +121,22 @@ test('every approved source path has a root-relative same-tab alias', async () =
   }
 });
 
+test('legacy aliases use exact locale-independent code-unit ordering', async () => {
+  const { sortEntriesByCodeUnit } = await import('../../scripts/migrate-editorial-content.mjs');
+  const aliases = await json('../../public/content/aliases.json');
+
+  assert.equal(typeof sortEntriesByCodeUnit, 'function');
+  assert.deepEqual(sortEntriesByCodeUnit([
+    ['/я', 6],
+    ['/Z', 1],
+    ['/a', 2],
+    ['/Я', 5],
+    ['/Е', 4],
+    ['/Ё', 3],
+  ]).map(([key]) => key), ['/Z', '/a', '/Ё', '/Е', '/Я', '/я']);
+  assert.deepEqual(Object.keys(aliases), Object.keys(aliases).toSorted());
+});
+
 test('pages and articles contain only non-empty ordered structured blocks', async () => {
   const { countMojibakeMarkers } = await import('../../scripts/migrate-editorial-content.mjs');
   const [pages, articles] = await Promise.all([
@@ -142,36 +174,213 @@ test('pages and articles contain only non-empty ordered structured blocks', asyn
   assert.ok(imagesIn(kiots).length > 0);
 });
 
-test('every migrated editorial image has local bytes and durable provenance', async () => {
+test('frozen source ownership fixture matches content, report and original files bijectively', async () => {
+  const { validateSourceOwnershipFixture } = await import('../../scripts/migrate-editorial-content.mjs');
+  const fixtureUrl = new URL('../fixtures/migration/editorial-source-assets.json', import.meta.url);
+  const [pages, articles, report, fixtureBytes] = await Promise.all([
+    json('../../public/content/pages.json'),
+    json('../../public/content/articles.json'),
+    json('../../reports/editorial-migration.json'),
+    readFile(fixtureUrl),
+  ]);
+  const fixture = JSON.parse(fixtureBytes);
+  const records = [
+    ...pages.map((record) => ({ ownerType: 'page', ownerSlug: record.slug, record })),
+    ...articles.map((record) => ({ ownerType: 'article', ownerSlug: record.slug, record })),
+  ];
+  const recordsByOwner = new Map(records.map((entry) => [ownerKey(entry), entry.record]));
+  const assetsByOwner = new Map(fixture.records.map((entry) => [ownerKey(entry), []]));
+  const assetsBySrc = new Map(report.assets.map((asset) => [asset.src, asset]));
+
+  assert.equal(typeof validateSourceOwnershipFixture, 'function');
+  assert.deepEqual(report.sourceAssetFixture, {
+    path: 'tests/fixtures/migration/editorial-source-assets.json',
+    schemaVersion: 1,
+    sha256: sha256(fixtureBytes),
+  });
+  assert.deepEqual(fixture.records.map(ownerKey), records.map(ownerKey));
+
+  assert.equal(new Set(report.assets.map(({ src }) => src)).size, report.assets.length);
+  assert.equal(report.summary.relevantImageSources, 171);
+  assert.equal(report.assets.length + report.summary.omittedImageSources, 171);
+  for (const asset of report.assets) {
+    const owned = assetsByOwner.get(ownerKey(asset));
+    assert.ok(owned, `unknown report owner ${ownerKey(asset)}`);
+    owned.push(asset);
+    assert.ok(asset.sourceRef);
+    assert.ok(asset.provenance);
+    assert.match(asset.sha256, /^[a-f0-9]{64}$/);
+
+    const bytes = await readFile(new URL(`../../public${asset.src}`, import.meta.url));
+    assert.equal(asset.bytes, bytes.length, asset.src);
+    assert.equal(asset.sha256, sha256(bytes), asset.src);
+  }
+
+  for (const expected of fixture.records) {
+    const key = ownerKey(expected);
+    const record = recordsByOwner.get(key);
+    const assets = assetsByOwner.get(key).toSorted((left, right) => left.order - right.order);
+    assert.ok(record, `missing content owner ${key}`);
+    assert.deepEqual(assets.map(({ order }) => order), expected.sha256.map((_, index) => index + 1), key);
+    assert.deepEqual(assets.map(({ sha256: checksum }) => checksum), expected.sha256, key);
+    assert.deepEqual(
+      [...new Set(imagesIn(record).map(({ src }) => src))],
+      assets.map(({ src }) => src),
+      key,
+    );
+  }
+
+  assert.doesNotThrow(() => validateSourceOwnershipFixture(report.assets, fixture));
+  assert.throws(() => validateSourceOwnershipFixture([
+    { ownerType: 'page', ownerSlug: 'one', order: 1, sha256: 'a'.repeat(64), sourceRef: 'source:shared' },
+    { ownerType: 'page', ownerSlug: 'two', order: 1, sha256: 'a'.repeat(64), sourceRef: 'source:shared' },
+  ], {
+    schemaVersion: 1,
+    crossOwnerReuseAllowlist: [],
+    records: [
+      { ownerType: 'page', ownerSlug: 'one', sha256: ['a'.repeat(64)] },
+      { ownerType: 'page', ownerSlug: 'two', sha256: ['a'.repeat(64)] },
+    ],
+  }), /unapproved cross-owner reuse/iu);
+
+  for (const record of records.map(({ record: contentRecord }) => contentRecord)) {
+    for (const image of imagesIn(record)) {
+      assert.deepEqual(Object.keys(image).toSorted(), ['alt', 'height', 'src', 'width']);
+      assert.match(image.src, /^\/assets\/(?:pages|articles)\//);
+      assert.ok(image.alt.trim());
+      assert.ok(image.width > 0 && image.height > 0, image.src);
+      const asset = assetsBySrc.get(image.src);
+      assert.ok(asset, `missing report asset for ${image.src}`);
+      assert.equal(image.width, asset.width, image.src);
+      assert.equal(image.height, asset.height, image.src);
+    }
+  }
+});
+
+test('validated staging replacement removes stale editorial assets and preserves unrelated roots', async () => {
+  const { replaceEditorialAssetDirectories } = await import('../../scripts/migrate-editorial-content.mjs');
+  assert.equal(typeof replaceEditorialAssetDirectories, 'function');
+
+  const root = await mkdtemp(path.join(tmpdir(), 'iconamaster-editorial-swap-'));
+  const assetsRoot = path.join(root, 'public', 'assets');
+  const stagingRoot = path.join(root, 'staging');
+  try {
+    await Promise.all([
+      mkdir(path.join(assetsRoot, 'pages'), { recursive: true }),
+      mkdir(path.join(assetsRoot, 'articles'), { recursive: true }),
+      mkdir(path.join(assetsRoot, 'icons'), { recursive: true }),
+      mkdir(path.join(stagingRoot, 'pages'), { recursive: true }),
+      mkdir(path.join(stagingRoot, 'articles', 'covers'), { recursive: true }),
+    ]);
+    await Promise.all([
+      writeFile(path.join(assetsRoot, 'pages', 'stale.jpg'), 'stale-page'),
+      writeFile(path.join(assetsRoot, 'articles', 'stale.jpg'), 'stale-article'),
+      writeFile(path.join(assetsRoot, 'icons', 'keep.jpg'), 'keep-icon'),
+      writeFile(path.join(stagingRoot, 'pages', 'fresh.jpg'), 'fresh-page'),
+      writeFile(path.join(stagingRoot, 'articles', 'fresh.jpg'), 'fresh-article'),
+      writeFile(path.join(stagingRoot, 'articles', 'covers', 'fresh.jpg'), 'fresh-cover'),
+    ]);
+
+    await replaceEditorialAssetDirectories({ assetsRoot, stagingRoot });
+
+    assert.deepEqual(await relativeFiles(path.join(assetsRoot, 'pages')), ['fresh.jpg']);
+    assert.deepEqual(await relativeFiles(path.join(assetsRoot, 'articles')), [
+      'covers/fresh.jpg',
+      'fresh.jpg',
+    ]);
+    assert.equal(await readFile(path.join(assetsRoot, 'icons', 'keep.jpg'), 'utf8'), 'keep-icon');
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('article cards use smaller derived covers while full originals and disk bijection remain intact', async () => {
   const [pages, articles, report] = await Promise.all([
     json('../../public/content/pages.json'),
     json('../../public/content/articles.json'),
     json('../../reports/editorial-migration.json'),
   ]);
-  const assetsBySrc = new Map(report.assets.map((asset) => [asset.src, asset]));
-  const images = [...pages, ...articles].flatMap(imagesIn);
+  const originalsBySrc = new Map(report.assets.map((asset) => [asset.src, asset]));
+  const coversByOwner = new Map((report.coverAssets ?? []).map((asset) => [asset.ownerSlug, asset]));
 
-  assert.equal(new Set(report.assets.map(({ src }) => src)).size, report.assets.length);
-  assert.equal(report.summary.relevantImageSources, 171);
-  assert.equal(report.summary.assetFiles + report.summary.omittedImageSources, 171);
-  for (const image of images) {
-    assert.deepEqual(Object.keys(image).toSorted(), ['alt', 'height', 'src', 'width']);
-    assert.match(image.src, /^\/assets\/(?:pages|articles)\//);
-    assert.ok(image.alt.trim());
-    assert.ok(image.width > 0 && image.height > 0, image.src);
+  assert.equal(report.coverAssets?.length, 8);
+  assert.equal(report.summary.originalAssetFiles, 171);
+  assert.equal(report.summary.coverAssetFiles, 8);
+  assert.equal(report.summary.assetFiles, 179);
+  for (const article of articles) {
+    const cover = coversByOwner.get(article.slug);
+    assert.ok(cover, `missing cover for ${article.slug}`);
+    assert.equal(cover.ownerType, 'article');
+    assert.equal(article.image.src, cover.src);
+    assert.equal(article.image.width, cover.width);
+    assert.equal(article.image.height, cover.height);
+    assert.match(cover.src, /^\/assets\/articles\/covers\/[a-z0-9-]+\.jpg$/u);
+    assert.equal(cover.provenance, 'ffmpeg-mjpeg-cover-v1');
+    assert.deepEqual(cover.transform, {
+      format: 'jpeg',
+      maxDimension: 640,
+      qualityScale: 5,
+    });
+    assert.ok(Math.max(cover.width, cover.height) <= 640, cover.src);
+    assert.ok(Math.min(cover.width, cover.height) >= 300, cover.src);
 
-    const asset = assetsBySrc.get(image.src);
-    assert.ok(asset, `missing report asset for ${image.src}`);
-    assert.equal(asset.width, image.width);
-    assert.equal(asset.height, image.height);
-    assert.ok(asset.sourceRef);
-    assert.ok(asset.provenance);
-    assert.match(asset.sha256, /^[a-f0-9]{64}$/);
+    const source = originalsBySrc.get(cover.sourceAssetSrc);
+    assert.ok(source, `missing full source for ${cover.src}`);
+    assert.equal(source.ownerType, 'article');
+    assert.equal(source.ownerSlug, article.slug);
+    assert.equal(cover.sourceAssetSha256, source.sha256);
+    assert.equal(cover.sourceRef, source.sourceRef);
+    assert.ok(imagesIn(article).some(({ src }) => src === source.src), article.slug);
+    assert.ok(cover.bytes < source.bytes * 0.75, `${cover.src}: ${cover.bytes} !< ${source.bytes} * 0.75`);
 
-    const bytes = await readFile(new URL(`../../public${image.src}`, import.meta.url));
-    assert.equal(asset.bytes, bytes.length, image.src);
-    assert.equal(asset.sha256, sha256(bytes), image.src);
+    const bytes = await readFile(new URL(`../../public${cover.src}`, import.meta.url));
+    assert.equal(bytes.length, cover.bytes, cover.src);
+    assert.equal(sha256(bytes), cover.sha256, cover.src);
   }
+
+  const actualDiskFiles = [
+    ...(await relativeFiles(new URL('../../public/assets/pages/', import.meta.url)))
+      .map((file) => `/assets/pages/${file}`),
+    ...(await relativeFiles(new URL('../../public/assets/articles/', import.meta.url)))
+      .map((file) => `/assets/articles/${file}`),
+  ].toSorted();
+  const expectedDiskFiles = [
+    ...report.assets.map(({ src }) => src),
+    ...report.coverAssets.map(({ src }) => src),
+  ].toSorted();
+  assert.deepEqual(actualDiskFiles, expectedDiskFiles);
+  assert.equal(pages.length, 7);
+});
+
+test('removes only the accepted literal source-debris marker', async () => {
+  const { parseEditorialMarkup } = await import('../../scripts/migrate-editorial-content.mjs');
+  const articles = await json('../../public/content/articles.json');
+  const theotokos = articles.find(({ slug }) => slug === 'theotokos-russkaya');
+
+  assert.doesNotMatch(JSON.stringify(theotokos), /<б131>/u);
+  assert.deepEqual(
+    parseEditorialMarkup('<p>Гран-при и Большой золотой медали. &lt;б131&gt;</p>')[0].paragraphs,
+    ['Гран-при и Большой золотой медали.'],
+  );
+  assert.deepEqual(
+    parseEditorialMarkup('<p>Сохраняемый маркер &lt;б132&gt;</p>')[0].paragraphs,
+    ['Сохраняемый маркер <б132>'],
+  );
+});
+
+test('known prayer soft line breaks match the committed paragraph segmentation fixture', async () => {
+  const [articles, fixture] = await Promise.all([
+    json('../../public/content/articles.json'),
+    json('../fixtures/migration/editorial-text-segmentation.json'),
+  ]);
+  const article = articles.find(({ slug }) => slug === fixture.ownerSlug);
+  const section = article.sections.find(({ type, paragraphs }) => (
+    type === 'text' && paragraphs[0] === fixture.anchor
+  ));
+
+  assert.equal(fixture.schemaVersion, 1);
+  assert.ok(section, `missing prayer section for ${fixture.ownerSlug}`);
+  assert.deepEqual(section.paragraphs, fixture.expectedParagraphs);
 });
 
 test('durable editorial report accounts for exclusions, omissions, encoding and outputs', async () => {

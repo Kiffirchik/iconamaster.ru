@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
+import { spawn } from 'node:child_process';
+import { mkdir, mkdtemp, readFile, readdir, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -12,6 +13,9 @@ const contentDirectory = path.join(projectDirectory, 'public', 'content');
 const reportDirectory = path.join(projectDirectory, 'reports');
 const runLogPath = path.join(projectDirectory, 'tmp', 'editorial-migration-run.json');
 const reportPath = path.join(reportDirectory, 'editorial-migration.json');
+const editorialAssetRoot = path.join(projectDirectory, 'public', 'assets');
+const editorialAssetStagingRoot = path.join(projectDirectory, 'tmp', 'editorial-assets-staging');
+const sourceAssetFixturePath = path.join(projectDirectory, 'tests', 'fixtures', 'migration', 'editorial-source-assets.json');
 const outputPaths = {
   pages: path.join(contentDirectory, 'pages.json'),
   articles: path.join(contentDirectory, 'articles.json'),
@@ -26,6 +30,9 @@ const sourceSite = 'https://iconamaster.cargo.site';
 const json = (value) => `${JSON.stringify(value, null, 2)}\n`;
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const sortedUnique = (values) => [...new Set(values)].sort();
+export const sortEntriesByCodeUnit = (entries) => [...entries].sort(([left], [right]) => (
+  left < right ? -1 : left > right ? 1 : 0
+));
 const cp1251Bytes = new Map();
 const cp1251Decoder = new TextDecoder('windows-1251');
 
@@ -101,6 +108,10 @@ const mojibakeSamples = (value) => {
   }));
 };
 
+// Accepted review ruling: this one encoded Cargo token is source debris, not prose.
+// Keep the cleanup suffix-only so similar or embedded angle-bracket text is preserved.
+const removeKnownSourceDebris = (text) => text.replace(/\s*<б131>$/u, '');
+
 const repairText = (text) => {
   let repaired = decodeHtmlEntities(String(text ?? ''));
   for (let pass = 0; pass < 3; pass += 1) {
@@ -108,11 +119,12 @@ const repairText = (text) => {
     if (next === repaired) break;
     repaired = next;
   }
-  return repaired
+  const normalized = repaired
     .replace(/[\u200b-\u200d\ufeff]/gu, '')
     .replace(/\u00a0/gu, ' ')
     .replace(/\s+/gu, ' ')
     .trim();
+  return removeKnownSourceDebris(normalized);
 };
 
 const parseAttributes = (tag) => {
@@ -335,6 +347,28 @@ const removeTechnicalNavigation = (blocks) => {
   return { blocks: cleaned, removed };
 };
 
+const mergeKnownPrayerSoftBreaks = (blocks, ownerSlug) => {
+  if (ownerSlug !== 'icon-painting-canon') return { blocks, mergedBreaks: 0 };
+  let mergedBreaks = 0;
+  const merged = blocks.map((block) => {
+    if (block.type !== 'text') return block;
+    const start = block.paragraphs.indexOf('Исусе');
+    const end = block.paragraphs.indexOf('Аминь.', start + 1);
+    if (start < 0 || end < start) return block;
+    const prayerLines = block.paragraphs.slice(start, end + 1);
+    mergedBreaks += prayerLines.length - 1;
+    return {
+      ...block,
+      paragraphs: [
+        ...block.paragraphs.slice(0, start),
+        repairText(prayerLines.join(' ')),
+        ...block.paragraphs.slice(end + 1),
+      ],
+    };
+  });
+  return { blocks: merged, mergedBreaks };
+};
+
 const imageDimensions = (bytes) => {
   if (bytes.length >= 24 && bytes.subarray(0, 8).equals(Buffer.from('89504e470d0a1a0a', 'hex'))) {
     return { width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20), extension: '.png' };
@@ -374,6 +408,65 @@ const readJsonIfPresent = async (file, fallback) => {
   } catch (error) {
     if (error.code === 'ENOENT') return fallback;
     throw error;
+  }
+};
+
+const relativeFiles = async (directory, prefix = '') => {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const nested = await Promise.all(entries.map(async (entry) => {
+    const relativePath = prefix ? `${prefix}/${entry.name}` : entry.name;
+    return entry.isDirectory()
+      ? relativeFiles(path.join(directory, entry.name), relativePath)
+      : [relativePath];
+  }));
+  return nested.flat().sort();
+};
+
+const validateStagedAssets = async (stagingRoot, assets) => {
+  const expected = assets.map(({ src }) => src.replace(/^\/assets\//u, '')).sort();
+  const actual = [
+    ...(await relativeFiles(path.join(stagingRoot, 'pages'))).map((file) => `pages/${file}`),
+    ...(await relativeFiles(path.join(stagingRoot, 'articles'))).map((file) => `articles/${file}`),
+  ].sort();
+  if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+    throw new Error(`Staged editorial asset set mismatch\nExpected: ${JSON.stringify(expected)}\nActual: ${JSON.stringify(actual)}`);
+  }
+  for (const asset of assets) {
+    const bytes = await readFile(path.join(stagingRoot, asset.src.replace(/^\/assets\//u, '')));
+    if (bytes.length !== asset.bytes || sha256(bytes) !== asset.sha256) {
+      throw new Error(`Staged editorial asset checksum mismatch: ${asset.src}`);
+    }
+  }
+};
+
+export const replaceEditorialAssetDirectories = async ({ assetsRoot, stagingRoot }) => {
+  const names = ['pages', 'articles'];
+  const backupRoot = await mkdtemp(path.join(path.dirname(assetsRoot), '.editorial-assets-backup-'));
+  const backedUp = [];
+  const installed = [];
+  try {
+    for (const name of names) {
+      try {
+        await rename(path.join(assetsRoot, name), path.join(backupRoot, name));
+        backedUp.push(name);
+      } catch (error) {
+        if (error.code !== 'ENOENT') throw error;
+      }
+    }
+    for (const name of names) {
+      await rename(path.join(stagingRoot, name), path.join(assetsRoot, name));
+      installed.push(name);
+    }
+  } catch (error) {
+    for (const name of installed.toReversed()) {
+      await rm(path.join(assetsRoot, name), { recursive: true, force: true });
+    }
+    for (const name of backedUp.toReversed()) {
+      await rename(path.join(backupRoot, name), path.join(assetsRoot, name));
+    }
+    throw error;
+  } finally {
+    await rm(backupRoot, { recursive: true, force: true });
   }
 };
 
@@ -436,6 +529,52 @@ const fetchOriginal = async (sourceUrl) => {
 };
 
 const assetKey = ({ ownerType, ownerSlug, sourceRef }) => `${ownerType}\u0000${ownerSlug}\u0000${sourceRef}`;
+const ownerKey = ({ ownerType, ownerSlug }) => `${ownerType}:${ownerSlug}`;
+
+export const validateSourceOwnershipFixture = (assets, fixture) => {
+  if (fixture?.schemaVersion !== 1 || !Array.isArray(fixture.records)) {
+    throw new Error('Expected editorial source ownership fixture schema version 1');
+  }
+  const allowlist = new Set(fixture.crossOwnerReuseAllowlist ?? []);
+  const ownersByIdentity = new Map();
+  const assetsByOwner = new Map();
+
+  for (const expected of fixture.records) {
+    const key = ownerKey(expected);
+    if (assetsByOwner.has(key)) throw new Error(`Duplicate source fixture owner: ${key}`);
+    assetsByOwner.set(key, []);
+  }
+  for (const asset of assets) {
+    const key = ownerKey(asset);
+    const owned = assetsByOwner.get(key);
+    if (!owned) throw new Error(`Source fixture has no owner for ${key}`);
+    owned.push(asset);
+    for (const identity of [`sourceRef:${asset.sourceRef}`, `sha256:${asset.sha256}`]) {
+      const owners = ownersByIdentity.get(identity) ?? new Set();
+      owners.add(key);
+      ownersByIdentity.set(identity, owners);
+    }
+  }
+
+  for (const [identity, owners] of ownersByIdentity) {
+    if (owners.size > 1 && !allowlist.has(identity)) {
+      throw new Error(`Unapproved cross-owner reuse for ${identity}: ${[...owners].join(', ')}`);
+    }
+  }
+  for (const expected of fixture.records) {
+    const key = ownerKey(expected);
+    const owned = assetsByOwner.get(key).toSorted((left, right) => left.order - right.order);
+    const orders = owned.map(({ order }) => order);
+    const expectedOrders = expected.sha256.map((_, index) => index + 1);
+    if (JSON.stringify(orders) !== JSON.stringify(expectedOrders)) {
+      throw new Error(`Source fixture order mismatch for ${key}`);
+    }
+    const checksums = owned.map(({ sha256: checksum }) => checksum);
+    if (JSON.stringify(checksums) !== JSON.stringify(expected.sha256)) {
+      throw new Error(`Source fixture checksum mismatch for ${key}`);
+    }
+  }
+};
 
 const prepareRecords = async ({ sourceDirectory, inventoryRecords, mappings, kind }) => {
   const inventoryByPath = new Map(inventoryRecords.map((record) => [record.sourcePath, record]));
@@ -446,15 +585,18 @@ const prepareRecords = async ({ sourceDirectory, inventoryRecords, mappings, kin
     const markup = extractRecordMarkup(html, mapping.legacyPath, kind);
     const parsed = parseEditorialMarkup(markup);
     const navigation = removeTechnicalNavigation(parsed);
+    const prayer = mergeKnownPrayerSoftBreaks(navigation.blocks, mapping.slug);
     const plainSource = decodeHtmlEntities(markup.replace(/<[^>]+>/gu, ' '));
     records.push({
       kind,
       mapping,
       source,
       markup,
-      blocks: navigation.blocks,
+      blocks: prayer.blocks,
       sourceMarkers: countMojibakeMarkers(plainSource),
+      removedKnownSourceDebris: markup.match(/(?:&lt;|<)б131(?:&gt;|>)/gu)?.length ?? 0,
       removedNavigationParagraphs: navigation.removed,
+      mergedPrayerSoftBreaks: prayer.mergedBreaks,
       removedIframes: markup.match(/<iframe\b/giu)?.length ?? 0,
     });
   }
@@ -519,7 +661,7 @@ const prepareCandidates = (preparedRecords) => {
   return candidates;
 };
 
-const migrateCandidate = async ({ candidate, previousAssetsByKey, liveAttempts }) => {
+const migrateCandidate = async ({ candidate, previousAssetsByKey, liveAttempts, stagingRoot }) => {
   const previous = previousAssetsByKey.get(assetKey(candidate));
   let bytes = candidate.bytes;
   let live = null;
@@ -549,7 +691,7 @@ const migrateCandidate = async ({ candidate, previousAssetsByKey, liveAttempts }
   const dimensions = imageDimensions(bytes);
   const directoryName = candidate.ownerType === 'page' ? 'pages' : 'articles';
   const fileName = `${candidate.ownerSlug}${candidate.ordinal === 1 ? '' : `-${candidate.ordinal}`}${dimensions.extension}`;
-  const directory = path.join(projectDirectory, 'public', 'assets', directoryName);
+  const directory = path.join(stagingRoot, directoryName);
   const destination = path.join(directory, fileName);
   const src = `/assets/${directoryName}/${fileName}`;
   await mkdir(directory, { recursive: true });
@@ -582,7 +724,7 @@ const migrateCandidate = async ({ candidate, previousAssetsByKey, liveAttempts }
   return asset;
 };
 
-const migrateCandidates = async (candidates, previousReport) => {
+const migrateCandidates = async (candidates, previousReport, stagingRoot) => {
   const previousAssetsByKey = new Map((previousReport?.assets ?? []).map((asset) => [assetKey(asset), asset]));
   const results = new Map();
   const liveAttempts = [];
@@ -595,7 +737,7 @@ const migrateCandidates = async (candidates, previousReport) => {
       const candidate = candidates[nextIndex];
       nextIndex += 1;
       try {
-        results.set(candidate.key, await migrateCandidate({ candidate, previousAssetsByKey, liveAttempts }));
+        results.set(candidate.key, await migrateCandidate({ candidate, previousAssetsByKey, liveAttempts, stagingRoot }));
       } catch (error) {
         failures.push({ candidate, error });
         liveAttempts.push({
@@ -623,7 +765,89 @@ const publicImage = (candidate, asset) => ({
   height: asset.height,
 });
 
-const buildPublicRecords = (preparedRecords, migration) => {
+const firstCandidate = (prepared) => prepared.blocks.flatMap((block) => (
+  block.type === 'image' ? [block.candidate]
+    : block.type === 'gallery' ? block.candidates
+      : []
+))[0];
+
+const createCoverDerivative = async (source, destination) => {
+  const args = [
+    '-hide_banner',
+    '-loglevel', 'error',
+    '-nostdin',
+    '-i', source,
+    '-frames:v', '1',
+    '-vf', 'scale=640:640:force_original_aspect_ratio=decrease:flags=lanczos',
+    '-map_metadata', '-1',
+    '-c:v', 'mjpeg',
+    '-q:v', '5',
+    '-pix_fmt', 'yuvj420p',
+    '-fflags', '+bitexact',
+    '-flags:v', '+bitexact',
+    '-threads', '1',
+    '-y', destination,
+  ];
+  await new Promise((resolve, reject) => {
+    const child = spawn('ffmpeg', args, { windowsHide: true, stdio: ['ignore', 'ignore', 'pipe'] });
+    let stderr = '';
+    child.stderr.setEncoding('utf8');
+    child.stderr.on('data', (chunk) => { stderr += chunk; });
+    child.on('error', reject);
+    child.on('close', (code) => {
+      if (code === 0) resolve();
+      else reject(new Error(`ffmpeg cover generation failed (${code}): ${stderr.trim()}`));
+    });
+  });
+};
+
+const generateArticleCovers = async (preparedArticles, migration, stagingRoot) => {
+  const coverDirectory = path.join(stagingRoot, 'articles', 'covers');
+  await mkdir(coverDirectory, { recursive: true });
+  const assets = [];
+  const byOwner = new Map();
+  for (const prepared of preparedArticles) {
+    const candidate = firstCandidate(prepared);
+    const sourceAsset = candidate && migration.results.get(candidate.key);
+    if (!sourceAsset) throw new Error(`Article cover source is unavailable: ${prepared.mapping.slug}`);
+    const fileName = `${prepared.mapping.slug}.jpg`;
+    const sourcePath = path.join(stagingRoot, sourceAsset.src.replace(/^\/assets\//u, ''));
+    const destination = path.join(coverDirectory, fileName);
+    await createCoverDerivative(sourcePath, destination);
+    const bytes = await readFile(destination);
+    const dimensions = imageDimensions(bytes);
+    if (dimensions.extension !== '.jpg') throw new Error(`Article cover is not JPEG: ${prepared.mapping.slug}`);
+    if (Math.max(dimensions.width, dimensions.height) > 640 || Math.min(dimensions.width, dimensions.height) < 300) {
+      throw new Error(`Article cover dimensions are not useful: ${prepared.mapping.slug} (${dimensions.width}x${dimensions.height})`);
+    }
+    if (bytes.length >= sourceAsset.bytes * 0.75) {
+      throw new Error(`Article cover is not materially smaller: ${prepared.mapping.slug}`);
+    }
+    const asset = {
+      ownerType: 'article',
+      ownerSlug: prepared.mapping.slug,
+      src: `/assets/articles/covers/${fileName}`,
+      width: dimensions.width,
+      height: dimensions.height,
+      bytes: bytes.length,
+      sha256: sha256(bytes),
+      sourceAssetSrc: sourceAsset.src,
+      sourceAssetSha256: sourceAsset.sha256,
+      sourceRef: sourceAsset.sourceRef,
+      provenance: 'ffmpeg-mjpeg-cover-v1',
+      transform: {
+        format: 'jpeg',
+        maxDimension: 640,
+        qualityScale: 5,
+      },
+    };
+    assets.push(asset);
+    byOwner.set(prepared.mapping.slug, asset);
+  }
+  return { assets, byOwner };
+};
+
+const buildPublicRecords = (preparedRecords, migration, coverAssetsByOwner = new Map()) => {
   const records = [];
   const omittedBlocks = [];
   const omittedMedia = [];
@@ -688,11 +912,7 @@ const buildPublicRecords = (preparedRecords, migration) => {
       .filter(({ type }) => type === 'text')
       .flatMap(({ paragraphs }) => paragraphs)
       .find((paragraph) => paragraph.length >= 80);
-    const firstImage = sections.flatMap((section) => (
-      section.type === 'image' ? [section.image]
-        : section.type === 'gallery' ? section.images
-          : []
-    ))[0];
+    const coverAsset = coverAssetsByOwner.get(prepared.mapping.slug);
     records.push({
       id: prepared.mapping.slug,
       slug: prepared.mapping.slug,
@@ -701,7 +921,14 @@ const buildPublicRecords = (preparedRecords, migration) => {
       order: records.length + 1,
       sourceUrl: prepared.source.sourceUrl,
       ...(prepared.kind === 'article' && firstParagraph ? { summary: firstParagraph } : {}),
-      ...(prepared.kind === 'article' && firstImage ? { image: firstImage } : {}),
+      ...(prepared.kind === 'article' && coverAsset ? {
+        image: {
+          src: coverAsset.src,
+          alt: prepared.mapping.title,
+          width: coverAsset.width,
+          height: coverAsset.height,
+        },
+      } : {}),
       sections,
     });
   }
@@ -728,9 +955,10 @@ const main = async () => {
   const inventory = await readJson(inventoryPath);
   await validateInputs(sourceDirectory, inventory);
 
-  const [existingAliases, previousReport, preparedPages, preparedArticles] = await Promise.all([
+  const [existingAliases, previousReport, sourceAssetFixtureBytes, preparedPages, preparedArticles] = await Promise.all([
     readJson(outputPaths.aliases),
     readJsonIfPresent(reportPath, null),
+    readFile(sourceAssetFixturePath),
     prepareRecords({
       sourceDirectory,
       inventoryRecords: inventory.services,
@@ -750,9 +978,15 @@ const main = async () => {
     throw new Error(`Expected ${expectedRelevantImageSources} relevant editorial image sources, found ${candidates.length}`);
   }
 
-  const migration = await migrateCandidates(candidates, previousReport);
+  await rm(editorialAssetStagingRoot, { recursive: true, force: true });
+  await Promise.all([
+    mkdir(path.join(editorialAssetStagingRoot, 'pages'), { recursive: true }),
+    mkdir(path.join(editorialAssetStagingRoot, 'articles'), { recursive: true }),
+  ]);
+  const migration = await migrateCandidates(candidates, previousReport, editorialAssetStagingRoot);
+  const coverBuild = await generateArticleCovers(preparedArticles, migration, editorialAssetStagingRoot);
   const pageBuild = buildPublicRecords(preparedPages, migration);
-  const articleBuild = buildPublicRecords(preparedArticles, migration);
+  const articleBuild = buildPublicRecords(preparedArticles, migration, coverBuild.byOwner);
   const pages = pageBuild.records;
   const articles = articleBuild.records;
   const videos = [
@@ -785,10 +1019,10 @@ const main = async () => {
     ...legacyPageMap.flatMap((mapping) => mapping.aliases.map((alias) => [alias, `/${mapping.slug}`])),
     ...legacyArticleMap.flatMap((mapping) => mapping.aliases.map((alias) => [alias, `/articles/${mapping.slug}`])),
   ]);
-  const aliases = Object.fromEntries(Object.entries({
+  const aliases = Object.fromEntries(sortEntriesByCodeUnit(Object.entries({
     ...existingAliases,
     ...editorialAliases,
-  }).sort(([left], [right]) => left.localeCompare(right)));
+  })));
 
   const pagesJson = json(pages);
   const articlesJson = json(articles);
@@ -798,6 +1032,9 @@ const main = async () => {
   const assets = candidates
     .map((candidate) => migration.results.get(candidate.key))
     .filter(Boolean);
+  const sourceAssetFixture = JSON.parse(sourceAssetFixtureBytes);
+  validateSourceOwnershipFixture(assets, sourceAssetFixture);
+  await validateStagedAssets(editorialAssetStagingRoot, [...assets, ...coverBuild.assets]);
   const omittedMedia = [...pageBuild.omittedMedia, ...articleBuild.omittedMedia]
     .filter((entry, index, entries) => entries.findIndex((candidate) => (
       candidate.ownerType === entry.ownerType
@@ -829,6 +1066,11 @@ const main = async () => {
       archiveName: inventory.source.archiveName,
       inventorySchemaVersion: inventory.schemaVersion,
     },
+    sourceAssetFixture: {
+      path: 'tests/fixtures/migration/editorial-source-assets.json',
+      schemaVersion: sourceAssetFixture.schemaVersion,
+      sha256: sha256(sourceAssetFixtureBytes),
+    },
     outputs: [
       outputEntry('pages', 'public/content/pages.json', pagesJson, pages.length),
       outputEntry('articles', 'public/content/articles.json', articlesJson, articles.length),
@@ -841,12 +1083,24 @@ const main = async () => {
       aliases: Object.keys(aliases).length,
       editorialAliases: Object.keys(editorialAliases).length,
       relevantImageSources: candidates.length,
-      assetFiles: assets.length,
-      assetBytes: assets.reduce((total, asset) => total + asset.bytes, 0),
+      originalAssetFiles: assets.length,
+      coverAssetFiles: coverBuild.assets.length,
+      assetFiles: assets.length + coverBuild.assets.length,
+      originalAssetBytes: assets.reduce((total, asset) => total + asset.bytes, 0),
+      coverAssetBytes: coverBuild.assets.reduce((total, asset) => total + asset.bytes, 0),
+      assetBytes: [...assets, ...coverBuild.assets].reduce((total, asset) => total + asset.bytes, 0),
       omittedImageSources: omittedMedia.length,
       omittedBlocks: omittedBlocks.length,
       repairedNavigationParagraphs: preparedRecords.reduce(
         (total, prepared) => total + prepared.removedNavigationParagraphs,
+        0,
+      ),
+      removedKnownSourceDebris: preparedRecords.reduce(
+        (total, prepared) => total + prepared.removedKnownSourceDebris,
+        0,
+      ),
+      mergedPrayerSoftBreaks: preparedRecords.reduce(
+        (total, prepared) => total + prepared.mergedPrayerSoftBreaks,
         0,
       ),
       unresolvedMojibakeMarkers: 0,
@@ -857,8 +1111,9 @@ const main = async () => {
       records: encodingRecords,
       unresolved,
     },
-    mediaPolicy: 'Only relevant original URLs and image data embedded in the archived editorial body are copied. Bytes are never decoded, resized, or re-encoded.',
+    mediaPolicy: 'Relevant originals are copied byte-for-byte for sections. Article cards use separate deterministic JPEG cover derivatives while the full originals remain available in article sections.',
     assets,
+    coverAssets: coverBuild.assets,
     omittedMedia,
     omittedBlocks,
     technicalDebrisRemoved: preparedRecords.flatMap((prepared) => [
@@ -874,7 +1129,21 @@ const main = async () => {
         kind: 'legacy-iframe',
         count: prepared.removedIframes,
       }] : []),
+      ...(prepared.removedKnownSourceDebris > 0 ? [{
+        ownerType: prepared.kind,
+        ownerSlug: prepared.mapping.slug,
+        kind: 'known-source-debris-<б131>',
+        count: prepared.removedKnownSourceDebris,
+      }] : []),
     ]),
+    textNormalizations: preparedRecords.flatMap((prepared) => (
+      prepared.mergedPrayerSoftBreaks > 0 ? [{
+        ownerType: prepared.kind,
+        ownerSlug: prepared.mapping.slug,
+        kind: 'known-prayer-soft-br-merge',
+        mergedBreaks: prepared.mergedPrayerSoftBreaks,
+      }] : []
+    )),
     aliases: Object.entries(editorialAliases).map(([legacyPath, canonicalPath]) => ({ legacyPath, canonicalPath })),
     excludedArticleCandidates: [{
       legacyPath: excluded.sourcePath,
@@ -922,6 +1191,11 @@ const main = async () => {
     mkdir(reportDirectory, { recursive: true }),
     mkdir(path.dirname(runLogPath), { recursive: true }),
   ]);
+  await replaceEditorialAssetDirectories({
+    assetsRoot: editorialAssetRoot,
+    stagingRoot: editorialAssetStagingRoot,
+  });
+  await rm(editorialAssetStagingRoot, { recursive: true, force: true });
   await Promise.all([
     writeFile(outputPaths.pages, pagesJson, 'utf8'),
     writeFile(outputPaths.articles, articlesJson, 'utf8'),

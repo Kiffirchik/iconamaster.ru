@@ -5,6 +5,11 @@
     "archiveName": "pre-optimized-publish-20260818",
     "inventorySchemaVersion": 2
   },
+  "sourceAssetFixture": {
+    "path": "tests/fixtures/migration/editorial-source-assets.json",
+    "schemaVersion": 1,
+    "sha256": "4be9575a9f03a528165946ccd39f3e1646adab6c0d218a0d25967517d83d5ca8"
+  },
   "outputs": [
     {
       "id": "pages",
@@ -17,8 +22,8 @@
       "id": "articles",
       "path": "public/content/articles.json",
       "records": 8,
-      "bytes": 174524,
-      "sha256": "72be9b91db5a295b19a62342faf87f65bef2a3e5b4fddd2193cf2660b7183be4"
+      "bytes": 174444,
+      "sha256": "008130864eab3c1875ef1723fce5c35ff1fc14401a1b6c68b50d11bfea15b943"
     },
     {
       "id": "videos",
@@ -39,7 +44,7 @@
       "path": "public/content/aliases.json",
       "records": 78,
       "bytes": 5109,
-      "sha256": "1644d90012f148b1aa9d953b47c600e73d721c8dd178c4175e8a56a84f37c82e"
+      "sha256": "20909e6845bb557b68129fbe5b22efaf0635a3bd9026135b8fa1186f10d74339"
     }
   ],
   "summary": {
@@ -52,11 +57,17 @@
     "aliases": 78,
     "editorialAliases": 23,
     "relevantImageSources": 171,
-    "assetFiles": 171,
-    "assetBytes": 146498667,
+    "originalAssetFiles": 171,
+    "coverAssetFiles": 8,
+    "assetFiles": 179,
+    "originalAssetBytes": 146498667,
+    "coverAssetBytes": 488031,
+    "assetBytes": 146986698,
     "omittedImageSources": 0,
     "omittedBlocks": 1,
     "repairedNavigationParagraphs": 8,
+    "removedKnownSourceDebris": 1,
+    "mergedPrayerSoftBreaks": 9,
     "unresolvedMojibakeMarkers": 0
   },
   "encoding": {
@@ -171,7 +182,7 @@
     ],
     "unresolved": []
   },
-  "mediaPolicy": "Only relevant original URLs and image data embedded in the archived editorial body are copied. Bytes are never decoded, resized, or re-encoded.",
+  "mediaPolicy": "Relevant originals are copied byte-for-byte for sections. Article cards use separate deterministic JPEG cover derivatives while the full originals remain available in article sections.",
   "assets": [
     {
       "ownerType": "page",
@@ -2933,6 +2944,152 @@
       ]
     }
   ],
+  "coverAssets": [
+    {
+      "ownerType": "article",
+      "ownerSlug": "gorbunov-icons-kholuy",
+      "src": "/assets/articles/covers/gorbunov-icons-kholuy.jpg",
+      "width": 640,
+      "height": 640,
+      "bytes": 60050,
+      "sha256": "346e43cd7108e410d39198cd43ee7694b4233989390259eba69d9fc6f2109d93",
+      "sourceAssetSrc": "/assets/articles/gorbunov-icons-kholuy.jpg",
+      "sourceAssetSha256": "10532522d0748ff27bda6fb21f5f3deda7f24256551d951768d73fa031835f5e",
+      "sourceRef": "https://freight.cargo.site/t/original/i/493bea60b57037ad0f369372c5c0021e0da00d6f37984ade4bae0293c8378576/5.jpg",
+      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "transform": {
+        "format": "jpeg",
+        "maxDimension": 640,
+        "qualityScale": 5
+      }
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "kineshma-icon-painting",
+      "src": "/assets/articles/covers/kineshma-icon-painting.jpg",
+      "width": 493,
+      "height": 640,
+      "bytes": 71855,
+      "sha256": "664b89c513dcd66d15b78e093a2d064f14bdd124627e9ab85e15349c1d0cf835",
+      "sourceAssetSrc": "/assets/articles/kineshma-icon-painting.jpg",
+      "sourceAssetSha256": "ef87a4e8ed798a50778d62a576585e2caa615a8df40af2ed8fbb45e96ca35582",
+      "sourceRef": "https://freight.cargo.site/t/original/i/a7ae5bf312e6bd71ff7885a9aef754480cd7f67a1fb3d6c9f0930bc1254050d2/scale_2400-3.jpeg",
+      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "transform": {
+        "format": "jpeg",
+        "maxDimension": 640,
+        "qualityScale": 5
+      }
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "panteleimon-monastery-icons",
+      "src": "/assets/articles/covers/panteleimon-monastery-icons.jpg",
+      "width": 411,
+      "height": 640,
+      "bytes": 23955,
+      "sha256": "23722167d11fd6fda9800c7b4c9e98599be4c529dc54bc4fae3a76b6a6f35731",
+      "sourceAssetSrc": "/assets/articles/panteleimon-monastery-icons.jpg",
+      "sourceAssetSha256": "76ff3be6c970ee80cd13be08cbf5f2382a7718648c3f89863f3a5e857e581568",
+      "sourceRef": "https://freight.cargo.site/t/original/i/2bb5fd5d4c777bb975c1bdb8fa17e3486617327e915057c08e3ee1666001da47/KVb88NgNiSI.jpg",
+      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "transform": {
+        "format": "jpeg",
+        "maxDimension": 640,
+        "qualityScale": 5
+      }
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "theotokos-russkaya",
+      "src": "/assets/articles/covers/theotokos-russkaya.jpg",
+      "width": 417,
+      "height": 640,
+      "bytes": 48349,
+      "sha256": "ffbf1a5369db6a3fc4cce7594f827063c8566e70bc39614a2dc61d4967ccf104",
+      "sourceAssetSrc": "/assets/articles/theotokos-russkaya.jpg",
+      "sourceAssetSha256": "533f00d3ef5bd83c900712d75a49f9de05bd414f87bc5a48538f4051e6446103",
+      "sourceRef": "https://freight.cargo.site/t/original/i/8a6c7b5482165120b759c16e3994116126d53db544249390485640db38df5564/6.jpg",
+      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "transform": {
+        "format": "jpeg",
+        "maxDimension": 640,
+        "qualityScale": 5
+      }
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "pavlovo-na-oke",
+      "src": "/assets/articles/covers/pavlovo-na-oke.jpg",
+      "width": 564,
+      "height": 640,
+      "bytes": 72593,
+      "sha256": "68dc820f6149f070278f711f4360275f3c77a5573e22d18788761b70b3c1a0f7",
+      "sourceAssetSrc": "/assets/articles/pavlovo-na-oke.jpg",
+      "sourceAssetSha256": "7659b47a525324f974a39be91f6278c368acb7bd40b61bf13fe86404b250a247",
+      "sourceRef": "https://freight.cargo.site/t/original/i/4da5266efacebe730b0d3b85ea1dfda29820fbb2739a9ea3c06b97060c5c48d3/------.--18-.-..jpg",
+      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "transform": {
+        "format": "jpeg",
+        "maxDimension": 640,
+        "qualityScale": 5
+      }
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "history-of-icon-oklads",
+      "src": "/assets/articles/covers/history-of-icon-oklads.jpg",
+      "width": 403,
+      "height": 640,
+      "bytes": 72093,
+      "sha256": "62e329ae2a7881de865a426fa5c03eb07b78a2c36b9c84a2b01d87c6a8d094b2",
+      "sourceAssetSrc": "/assets/articles/history-of-icon-oklads.jpg",
+      "sourceAssetSha256": "e5b3920b00f99bff59918bc69c365517685671222dc82f3851e060aa63c1360f",
+      "sourceRef": "https://freight.cargo.site/t/original/i/3ed46b11fcf3946bcfa815793dfc253fe1bc7c71e3a954b70e8c20a203896f85/---------.---XI-..jpg",
+      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "transform": {
+        "format": "jpeg",
+        "maxDimension": 640,
+        "qualityScale": 5
+      }
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-canon",
+      "src": "/assets/articles/covers/icon-painting-canon.jpg",
+      "width": 640,
+      "height": 427,
+      "bytes": 36114,
+      "sha256": "78c8d05de1624f5f2d308da0225c91332c78015434723fd84c23ea74e5515d72",
+      "sourceAssetSrc": "/assets/articles/icon-painting-canon.jpg",
+      "sourceAssetSha256": "2e6682720c0701417707af1694a34009181a987e16be65c95b2727861c64f721",
+      "sourceRef": "https://freight.cargo.site/t/original/i/16c6e90c5c344d1f09e69f1b30939eecb05417c62fd331e9d20c89dfaf4c843b/3.jpg",
+      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "transform": {
+        "format": "jpeg",
+        "maxDimension": 640,
+        "qualityScale": 5
+      }
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "guslitsa",
+      "src": "/assets/articles/covers/guslitsa.jpg",
+      "width": 640,
+      "height": 480,
+      "bytes": 103022,
+      "sha256": "4e80c17aea2ce5e23baaf03a5c53ebc0719835898a6d66df00a579d2c891cc67",
+      "sourceAssetSrc": "/assets/articles/guslitsa.png",
+      "sourceAssetSha256": "ba5322c6c14b7d3b1335e998284661367da6a3e4ca207f8acf930d3eaeaa1553",
+      "sourceRef": "https://freight.cargo.site/t/original/i/28bd343295cf7d6053a75424bfdffb70d45b3b62eb4693d606d39b9d26341146/2.png",
+      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "transform": {
+        "format": "jpeg",
+        "maxDimension": 640,
+        "qualityScale": 5
+      }
+    }
+  ],
   "omittedMedia": [],
   "omittedBlocks": [
     {
@@ -2955,6 +3112,20 @@
       "ownerSlug": "excursions",
       "kind": "legacy-iframe",
       "count": 1
+    },
+    {
+      "ownerType": "article",
+      "ownerSlug": "theotokos-russkaya",
+      "kind": "known-source-debris-<б131>",
+      "count": 1
+    }
+  ],
+  "textNormalizations": [
+    {
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-canon",
+      "kind": "known-prayer-soft-br-merge",
+      "mergedBreaks": 9
     }
   ],
   "aliases": [
