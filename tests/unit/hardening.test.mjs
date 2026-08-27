@@ -5,6 +5,7 @@ import test from 'node:test';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { createServer } from 'vite';
+import { icons } from '../../src/data/icons.js';
 
 const root = new URL('../../src/', import.meta.url);
 
@@ -84,7 +85,7 @@ test('renders a labeled catalog h2 between the collection h1 and card h3 heading
   context.after(() => server.close());
 
   const { CollectionPage } = await server.ssrLoadModule('/src/pages/CollectionPage.jsx');
-  const markup = renderToStaticMarkup(createElement(CollectionPage, { onNavigate() {} }));
+  const markup = renderToStaticMarkup(createElement(CollectionPage, { icons, onNavigate() {} }));
   const h1Index = markup.indexOf('<h1');
   const h2Index = markup.indexOf('<h2');
   const h3Index = markup.indexOf('<h3');

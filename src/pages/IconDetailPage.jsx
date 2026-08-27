@@ -1,7 +1,6 @@
 import { IconGallery } from '../components/IconGallery.jsx';
 import { getNextIcon } from '../lib/catalog.js';
 import { buildContactLinks } from '../lib/contacts.js';
-import { icons } from '../data/icons.js';
 
 const passportFields = [
   ['Датировка', 'period'],
@@ -12,7 +11,7 @@ const passportFields = [
   ['Реставрация', 'expertise']
 ];
 
-export function IconDetailPage({ icon, onNavigate }) {
+export function IconDetailPage({ icon, icons, onNavigate }) {
   if (!icon) {
     return (
       <main id="main-content" className="baseline-page not-found-page">

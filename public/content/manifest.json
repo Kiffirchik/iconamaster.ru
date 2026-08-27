@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "files": {
+    "icons": "icons.json",
+    "pages": "pages.json",
+    "articles": "articles.json",
+    "videos": "videos.json",
+    "contacts": "contacts.json",
+    "aliases": "aliases.json"
+  }
+}

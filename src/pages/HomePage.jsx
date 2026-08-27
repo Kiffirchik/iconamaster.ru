@@ -1,7 +1,6 @@
 import { IconCard } from '../components/IconCard.jsx';
 import { IconImage } from '../components/IconImage.jsx';
 import { homeContent } from '../data/home-content.js';
-import { icons } from '../data/icons.js';
 
 const passportLabels = [
   ['Происхождение', 'origin'],
@@ -11,7 +10,7 @@ const passportLabels = [
   ['Экспертное заключение', 'expertise']
 ];
 
-export function HomePage({ onNavigate }) {
+export function HomePage({ icons, onNavigate }) {
   const heroIcon = icons.find((icon) => icon.slug === 'archangel-michael');
   const featuredIcons = homeContent.featuredSlugs.map((slug) => icons.find((icon) => icon.slug === slug));
 

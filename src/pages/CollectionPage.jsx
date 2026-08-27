@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { CatalogFilters } from '../components/CatalogFilters.jsx';
 import { IconCard } from '../components/IconCard.jsx';
-import { icons } from '../data/icons.js';
 import { filterIcons } from '../lib/catalog.js';
 
 const initialFilters = {
@@ -10,7 +9,7 @@ const initialFilters = {
   availability: 'all'
 };
 
-export function CollectionPage({ onNavigate }) {
+export function CollectionPage({ icons, onNavigate }) {
   const [filters, setFilters] = useState(initialFilters);
   const filteredIcons = filterIcons(icons, filters);
 
