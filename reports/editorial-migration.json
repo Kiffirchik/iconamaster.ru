@@ -8,7 +8,17 @@
   "sourceAssetFixture": {
     "path": "tests/fixtures/migration/editorial-source-assets.json",
     "schemaVersion": 1,
-    "sha256": "4be9575a9f03a528165946ccd39f3e1646adab6c0d218a0d25967517d83d5ca8"
+    "sha256": "7354aaca5c31045d59a9c165121e421d683e3fa0ff8a305bf267fc6635eec567"
+  },
+  "coverAssetFixture": {
+    "path": "tests/fixtures/migration/editorial-cover-assets.json",
+    "schemaVersion": 1,
+    "sha256": "5dca8eb32a6520e53e312a6ff5c859bb2d500690bb6b8911d90a2e286fd70389"
+  },
+  "coverEncoder": {
+    "command": "ffmpeg",
+    "binarySha256": "4727a2433272231932f8bd34e9afcc1b32a70e6d08ed15053d22b746e61dab5f",
+    "versionLine": "ffmpeg version 2026-05-21-git-0857141823-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
   },
   "outputs": [
     {
@@ -22,8 +32,8 @@
       "id": "articles",
       "path": "public/content/articles.json",
       "records": 8,
-      "bytes": 174444,
-      "sha256": "008130864eab3c1875ef1723fce5c35ff1fc14401a1b6c68b50d11bfea15b943"
+      "bytes": 175476,
+      "sha256": "6e0b396c3326c940839a5b0862eab16b668349e3bbe29c26fa7a0b11e1b679d0"
     },
     {
       "id": "videos",
@@ -61,8 +71,8 @@
     "coverAssetFiles": 8,
     "assetFiles": 179,
     "originalAssetBytes": 146498667,
-    "coverAssetBytes": 488031,
-    "assetBytes": 146986698,
+    "coverAssetBytes": 488053,
+    "assetBytes": 146986720,
     "omittedImageSources": 0,
     "omittedBlocks": 1,
     "repairedNavigationParagraphs": 8,
@@ -2951,16 +2961,22 @@
       "src": "/assets/articles/covers/gorbunov-icons-kholuy.jpg",
       "width": 640,
       "height": 640,
-      "bytes": 60050,
-      "sha256": "346e43cd7108e410d39198cd43ee7694b4233989390259eba69d9fc6f2109d93",
+      "bytes": 60107,
+      "sha256": "b067279e27e1c1f27d235baf35cd06dc2c11f6b2eb7eb4d8075217f48fa32ee2",
       "sourceAssetSrc": "/assets/articles/gorbunov-icons-kholuy.jpg",
       "sourceAssetSha256": "10532522d0748ff27bda6fb21f5f3deda7f24256551d951768d73fa031835f5e",
       "sourceRef": "https://freight.cargo.site/t/original/i/493bea60b57037ad0f369372c5c0021e0da00d6f37984ade4bae0293c8378576/5.jpg",
-      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "provenance": "ffmpeg-mjpeg-cover-v2",
       "transform": {
         "format": "jpeg",
         "maxDimension": 640,
-        "qualityScale": 5
+        "qualityScale": 5,
+        "pixelFormat": "yuvj420p",
+        "scaleFilter": "scale=640:640:force_original_aspect_ratio=decrease:flags=lanczos+bitexact",
+        "formatFlags": "+bitexact",
+        "codecFlags": "+bitexact",
+        "threads": 1,
+        "metadata": "stripped"
       }
     },
     {
@@ -2969,16 +2985,22 @@
       "src": "/assets/articles/covers/kineshma-icon-painting.jpg",
       "width": 493,
       "height": 640,
-      "bytes": 71855,
-      "sha256": "664b89c513dcd66d15b78e093a2d064f14bdd124627e9ab85e15349c1d0cf835",
+      "bytes": 71883,
+      "sha256": "794f02a4217c963ac22ea931fcb5d5d8ed4c98e3597a0e51cd42547e9c3d58d1",
       "sourceAssetSrc": "/assets/articles/kineshma-icon-painting.jpg",
       "sourceAssetSha256": "ef87a4e8ed798a50778d62a576585e2caa615a8df40af2ed8fbb45e96ca35582",
       "sourceRef": "https://freight.cargo.site/t/original/i/a7ae5bf312e6bd71ff7885a9aef754480cd7f67a1fb3d6c9f0930bc1254050d2/scale_2400-3.jpeg",
-      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "provenance": "ffmpeg-mjpeg-cover-v2",
       "transform": {
         "format": "jpeg",
         "maxDimension": 640,
-        "qualityScale": 5
+        "qualityScale": 5,
+        "pixelFormat": "yuvj420p",
+        "scaleFilter": "scale=640:640:force_original_aspect_ratio=decrease:flags=lanczos+bitexact",
+        "formatFlags": "+bitexact",
+        "codecFlags": "+bitexact",
+        "threads": 1,
+        "metadata": "stripped"
       }
     },
     {
@@ -2987,16 +3009,22 @@
       "src": "/assets/articles/covers/panteleimon-monastery-icons.jpg",
       "width": 411,
       "height": 640,
-      "bytes": 23955,
-      "sha256": "23722167d11fd6fda9800c7b4c9e98599be4c529dc54bc4fae3a76b6a6f35731",
+      "bytes": 23975,
+      "sha256": "4f9c9e2b0a72a346b5fb9a86ae696aa8c4961818b6d288b929ecfde24a81b6e2",
       "sourceAssetSrc": "/assets/articles/panteleimon-monastery-icons.jpg",
       "sourceAssetSha256": "76ff3be6c970ee80cd13be08cbf5f2382a7718648c3f89863f3a5e857e581568",
       "sourceRef": "https://freight.cargo.site/t/original/i/2bb5fd5d4c777bb975c1bdb8fa17e3486617327e915057c08e3ee1666001da47/KVb88NgNiSI.jpg",
-      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "provenance": "ffmpeg-mjpeg-cover-v2",
       "transform": {
         "format": "jpeg",
         "maxDimension": 640,
-        "qualityScale": 5
+        "qualityScale": 5,
+        "pixelFormat": "yuvj420p",
+        "scaleFilter": "scale=640:640:force_original_aspect_ratio=decrease:flags=lanczos+bitexact",
+        "formatFlags": "+bitexact",
+        "codecFlags": "+bitexact",
+        "threads": 1,
+        "metadata": "stripped"
       }
     },
     {
@@ -3005,16 +3033,22 @@
       "src": "/assets/articles/covers/theotokos-russkaya.jpg",
       "width": 417,
       "height": 640,
-      "bytes": 48349,
-      "sha256": "ffbf1a5369db6a3fc4cce7594f827063c8566e70bc39614a2dc61d4967ccf104",
+      "bytes": 48340,
+      "sha256": "1d7423b328490182dc7eb3146f04287066030f8ca88edec7459b3f116bd89e6b",
       "sourceAssetSrc": "/assets/articles/theotokos-russkaya.jpg",
       "sourceAssetSha256": "533f00d3ef5bd83c900712d75a49f9de05bd414f87bc5a48538f4051e6446103",
       "sourceRef": "https://freight.cargo.site/t/original/i/8a6c7b5482165120b759c16e3994116126d53db544249390485640db38df5564/6.jpg",
-      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "provenance": "ffmpeg-mjpeg-cover-v2",
       "transform": {
         "format": "jpeg",
         "maxDimension": 640,
-        "qualityScale": 5
+        "qualityScale": 5,
+        "pixelFormat": "yuvj420p",
+        "scaleFilter": "scale=640:640:force_original_aspect_ratio=decrease:flags=lanczos+bitexact",
+        "formatFlags": "+bitexact",
+        "codecFlags": "+bitexact",
+        "threads": 1,
+        "metadata": "stripped"
       }
     },
     {
@@ -3023,16 +3057,22 @@
       "src": "/assets/articles/covers/pavlovo-na-oke.jpg",
       "width": 564,
       "height": 640,
-      "bytes": 72593,
-      "sha256": "68dc820f6149f070278f711f4360275f3c77a5573e22d18788761b70b3c1a0f7",
+      "bytes": 72589,
+      "sha256": "278c44ab40d5db544fd33ef0a620618933ef2768cbc844a301446fdb5c2fa620",
       "sourceAssetSrc": "/assets/articles/pavlovo-na-oke.jpg",
       "sourceAssetSha256": "7659b47a525324f974a39be91f6278c368acb7bd40b61bf13fe86404b250a247",
       "sourceRef": "https://freight.cargo.site/t/original/i/4da5266efacebe730b0d3b85ea1dfda29820fbb2739a9ea3c06b97060c5c48d3/------.--18-.-..jpg",
-      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "provenance": "ffmpeg-mjpeg-cover-v2",
       "transform": {
         "format": "jpeg",
         "maxDimension": 640,
-        "qualityScale": 5
+        "qualityScale": 5,
+        "pixelFormat": "yuvj420p",
+        "scaleFilter": "scale=640:640:force_original_aspect_ratio=decrease:flags=lanczos+bitexact",
+        "formatFlags": "+bitexact",
+        "codecFlags": "+bitexact",
+        "threads": 1,
+        "metadata": "stripped"
       }
     },
     {
@@ -3041,16 +3081,22 @@
       "src": "/assets/articles/covers/history-of-icon-oklads.jpg",
       "width": 403,
       "height": 640,
-      "bytes": 72093,
-      "sha256": "62e329ae2a7881de865a426fa5c03eb07b78a2c36b9c84a2b01d87c6a8d094b2",
+      "bytes": 72118,
+      "sha256": "be76545e5960a41a33fc881d4a0f3ffcadc7ade98abb8f171a2a4d330619e3a8",
       "sourceAssetSrc": "/assets/articles/history-of-icon-oklads.jpg",
       "sourceAssetSha256": "e5b3920b00f99bff59918bc69c365517685671222dc82f3851e060aa63c1360f",
       "sourceRef": "https://freight.cargo.site/t/original/i/3ed46b11fcf3946bcfa815793dfc253fe1bc7c71e3a954b70e8c20a203896f85/---------.---XI-..jpg",
-      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "provenance": "ffmpeg-mjpeg-cover-v2",
       "transform": {
         "format": "jpeg",
         "maxDimension": 640,
-        "qualityScale": 5
+        "qualityScale": 5,
+        "pixelFormat": "yuvj420p",
+        "scaleFilter": "scale=640:640:force_original_aspect_ratio=decrease:flags=lanczos+bitexact",
+        "formatFlags": "+bitexact",
+        "codecFlags": "+bitexact",
+        "threads": 1,
+        "metadata": "stripped"
       }
     },
     {
@@ -3059,16 +3105,22 @@
       "src": "/assets/articles/covers/icon-painting-canon.jpg",
       "width": 640,
       "height": 427,
-      "bytes": 36114,
-      "sha256": "78c8d05de1624f5f2d308da0225c91332c78015434723fd84c23ea74e5515d72",
+      "bytes": 36081,
+      "sha256": "dcc632f58789432edab83a450d826f803974093fc1c3a5b38f30858badc9030f",
       "sourceAssetSrc": "/assets/articles/icon-painting-canon.jpg",
       "sourceAssetSha256": "2e6682720c0701417707af1694a34009181a987e16be65c95b2727861c64f721",
       "sourceRef": "https://freight.cargo.site/t/original/i/16c6e90c5c344d1f09e69f1b30939eecb05417c62fd331e9d20c89dfaf4c843b/3.jpg",
-      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "provenance": "ffmpeg-mjpeg-cover-v2",
       "transform": {
         "format": "jpeg",
         "maxDimension": 640,
-        "qualityScale": 5
+        "qualityScale": 5,
+        "pixelFormat": "yuvj420p",
+        "scaleFilter": "scale=640:640:force_original_aspect_ratio=decrease:flags=lanczos+bitexact",
+        "formatFlags": "+bitexact",
+        "codecFlags": "+bitexact",
+        "threads": 1,
+        "metadata": "stripped"
       }
     },
     {
@@ -3077,16 +3129,22 @@
       "src": "/assets/articles/covers/guslitsa.jpg",
       "width": 640,
       "height": 480,
-      "bytes": 103022,
-      "sha256": "4e80c17aea2ce5e23baaf03a5c53ebc0719835898a6d66df00a579d2c891cc67",
+      "bytes": 102960,
+      "sha256": "1d70672d5e872f652d42ad3a817991eeb64f35f896a26d2e5f17544d2a2e1a6d",
       "sourceAssetSrc": "/assets/articles/guslitsa.png",
       "sourceAssetSha256": "ba5322c6c14b7d3b1335e998284661367da6a3e4ca207f8acf930d3eaeaa1553",
       "sourceRef": "https://freight.cargo.site/t/original/i/28bd343295cf7d6053a75424bfdffb70d45b3b62eb4693d606d39b9d26341146/2.png",
-      "provenance": "ffmpeg-mjpeg-cover-v1",
+      "provenance": "ffmpeg-mjpeg-cover-v2",
       "transform": {
         "format": "jpeg",
         "maxDimension": 640,
-        "qualityScale": 5
+        "qualityScale": 5,
+        "pixelFormat": "yuvj420p",
+        "scaleFilter": "scale=640:640:force_original_aspect_ratio=decrease:flags=lanczos+bitexact",
+        "formatFlags": "+bitexact",
+        "codecFlags": "+bitexact",
+        "threads": 1,
+        "metadata": "stripped"
       }
     }
   ],

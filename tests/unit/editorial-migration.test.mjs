@@ -43,6 +43,8 @@ const expectedArticlePaths = [
 ];
 
 const excludedArticlePath = '/IKONY-V-OKLADAK-TRADITIY-I-ISTORIY';
+const expectedSourceFixtureHash = '7354aaca5c31045d59a9c165121e421d683e3fa0ff8a305bf267fc6635eec567';
+const expectedCoverFixtureHash = '5dca8eb32a6520e53e312a6ff5c859bb2d500690bb6b8911d90a2e286fd70389';
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const ownerKey = ({ ownerType, ownerSlug }) => `${ownerType}:${ownerSlug}`;
 
@@ -174,6 +176,22 @@ test('pages and articles contain only non-empty ordered structured blocks', asyn
   assert.ok(imagesIn(kiots).length > 0);
 });
 
+test('source fixture durable hash is identical for LF and CRLF representations', async () => {
+  const { canonicalJsonSha256FromText } = await import('../../scripts/migrate-editorial-content.mjs');
+  const fixtureText = await readFile(
+    new URL('../fixtures/migration/editorial-source-assets.json', import.meta.url),
+    'utf8',
+  );
+  const report = await json('../../reports/editorial-migration.json');
+  const lf = fixtureText.replace(/\r\n/gu, '\n');
+  const crlf = lf.replace(/\n/gu, '\r\n');
+
+  assert.equal(typeof canonicalJsonSha256FromText, 'function');
+  assert.equal(canonicalJsonSha256FromText(lf), expectedSourceFixtureHash);
+  assert.equal(canonicalJsonSha256FromText(crlf), expectedSourceFixtureHash);
+  assert.equal(report.sourceAssetFixture.sha256, expectedSourceFixtureHash);
+});
+
 test('frozen source ownership fixture matches content, report and original files bijectively', async () => {
   const { validateSourceOwnershipFixture } = await import('../../scripts/migrate-editorial-content.mjs');
   const fixtureUrl = new URL('../fixtures/migration/editorial-source-assets.json', import.meta.url);
@@ -196,7 +214,7 @@ test('frozen source ownership fixture matches content, report and original files
   assert.deepEqual(report.sourceAssetFixture, {
     path: 'tests/fixtures/migration/editorial-source-assets.json',
     schemaVersion: 1,
-    sha256: sha256(fixtureBytes),
+    sha256: expectedSourceFixtureHash,
   });
   assert.deepEqual(fixture.records.map(ownerKey), records.map(ownerKey));
 
@@ -294,33 +312,77 @@ test('validated staging replacement removes stale editorial assets and preserves
   }
 });
 
+test('pinned cover encoder and derivative contract rejects identity and checksum drift', async () => {
+  const {
+    validateCoverAssetFixture,
+    validateCoverEncoderIdentity,
+  } = await import('../../scripts/migrate-editorial-content.mjs');
+  const [fixture, report] = await Promise.all([
+    json('../fixtures/migration/editorial-cover-assets.json'),
+    json('../../reports/editorial-migration.json'),
+  ]);
+  const fixtureAssets = fixture.records.map((record) => ({
+    ...record,
+    provenance: fixture.provenance,
+    transform: fixture.transform,
+  }));
+
+  assert.equal(typeof validateCoverEncoderIdentity, 'function');
+  assert.equal(typeof validateCoverAssetFixture, 'function');
+  assert.doesNotThrow(() => validateCoverEncoderIdentity(fixture.encoder, fixture.encoder));
+  assert.throws(() => validateCoverEncoderIdentity({
+    ...fixture.encoder,
+    binarySha256: '0'.repeat(64),
+  }, fixture.encoder), /cover encoder identity mismatch/iu);
+  assert.doesNotThrow(() => validateCoverAssetFixture(fixtureAssets, fixture));
+  assert.throws(() => validateCoverAssetFixture([
+    { ...fixtureAssets[0], sha256: '0'.repeat(64) },
+    ...fixtureAssets.slice(1),
+  ], fixture), /cover asset fixture mismatch/iu);
+  assert.doesNotThrow(() => validateCoverAssetFixture(report.coverAssets, fixture));
+});
+
 test('article cards use smaller derived covers while full originals and disk bijection remain intact', async () => {
-  const [pages, articles, report] = await Promise.all([
+  const [pages, articles, report, fixture] = await Promise.all([
     json('../../public/content/pages.json'),
     json('../../public/content/articles.json'),
     json('../../reports/editorial-migration.json'),
+    json('../fixtures/migration/editorial-cover-assets.json'),
   ]);
   const originalsBySrc = new Map(report.assets.map((asset) => [asset.src, asset]));
   const coversByOwner = new Map((report.coverAssets ?? []).map((asset) => [asset.ownerSlug, asset]));
+  const expectedByOwner = new Map(fixture.records.map((asset) => [asset.ownerSlug, asset]));
+  const expectedCoverAssets = fixture.records.map((record) => ({
+    ...record,
+    provenance: fixture.provenance,
+    transform: fixture.transform,
+  }));
 
   assert.equal(report.coverAssets?.length, 8);
   assert.equal(report.summary.originalAssetFiles, 171);
   assert.equal(report.summary.coverAssetFiles, 8);
   assert.equal(report.summary.assetFiles, 179);
+  assert.deepEqual(report.coverAssetFixture, {
+    path: 'tests/fixtures/migration/editorial-cover-assets.json',
+    schemaVersion: 1,
+    sha256: expectedCoverFixtureHash,
+  });
+  assert.deepEqual(report.coverEncoder, fixture.encoder);
+  assert.deepEqual(report.coverAssets, expectedCoverAssets);
   for (const article of articles) {
     const cover = coversByOwner.get(article.slug);
+    const expected = expectedByOwner.get(article.slug);
     assert.ok(cover, `missing cover for ${article.slug}`);
+    assert.ok(expected, `missing fixture cover for ${article.slug}`);
     assert.equal(cover.ownerType, 'article');
     assert.equal(article.image.src, cover.src);
     assert.equal(article.image.width, cover.width);
     assert.equal(article.image.height, cover.height);
+    assert.equal(article.image.sha256, expected.sha256);
+    assert.equal(article.image.provenance, fixture.provenance);
     assert.match(cover.src, /^\/assets\/articles\/covers\/[a-z0-9-]+\.jpg$/u);
-    assert.equal(cover.provenance, 'ffmpeg-mjpeg-cover-v1');
-    assert.deepEqual(cover.transform, {
-      format: 'jpeg',
-      maxDimension: 640,
-      qualityScale: 5,
-    });
+    assert.equal(cover.provenance, fixture.provenance);
+    assert.deepEqual(cover.transform, fixture.transform);
     assert.ok(Math.max(cover.width, cover.height) <= 640, cover.src);
     assert.ok(Math.min(cover.width, cover.height) >= 300, cover.src);
 
@@ -334,8 +396,8 @@ test('article cards use smaller derived covers while full originals and disk bij
     assert.ok(cover.bytes < source.bytes * 0.75, `${cover.src}: ${cover.bytes} !< ${source.bytes} * 0.75`);
 
     const bytes = await readFile(new URL(`../../public${cover.src}`, import.meta.url));
-    assert.equal(bytes.length, cover.bytes, cover.src);
-    assert.equal(sha256(bytes), cover.sha256, cover.src);
+    assert.equal(bytes.length, expected.bytes, cover.src);
+    assert.equal(sha256(bytes), expected.sha256, cover.src);
   }
 
   const actualDiskFiles = [

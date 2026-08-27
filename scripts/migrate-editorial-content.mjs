@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
+import { createReadStream } from 'node:fs';
 import { mkdir, mkdtemp, readFile, readdir, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -16,6 +17,7 @@ const reportPath = path.join(reportDirectory, 'editorial-migration.json');
 const editorialAssetRoot = path.join(projectDirectory, 'public', 'assets');
 const editorialAssetStagingRoot = path.join(projectDirectory, 'tmp', 'editorial-assets-staging');
 const sourceAssetFixturePath = path.join(projectDirectory, 'tests', 'fixtures', 'migration', 'editorial-source-assets.json');
+const coverAssetFixturePath = path.join(projectDirectory, 'tests', 'fixtures', 'migration', 'editorial-cover-assets.json');
 const outputPaths = {
   pages: path.join(contentDirectory, 'pages.json'),
   articles: path.join(contentDirectory, 'articles.json'),
@@ -29,6 +31,26 @@ const expectedRelevantImageSources = 171;
 const sourceSite = 'https://iconamaster.cargo.site';
 const json = (value) => `${JSON.stringify(value, null, 2)}\n`;
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
+const canonicalJsonValue = (value) => {
+  if (Array.isArray(value)) return value.map(canonicalJsonValue);
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.keys(value).sort().map((key) => [key, canonicalJsonValue(value[key])]),
+    );
+  }
+  return value;
+};
+export const canonicalJsonSha256 = (value) => sha256(
+  Buffer.from(JSON.stringify(canonicalJsonValue(value)), 'utf8'),
+);
+export const canonicalJsonSha256FromText = (text) => canonicalJsonSha256(JSON.parse(text));
+const sha256File = async (filePath) => new Promise((resolve, reject) => {
+  const hash = createHash('sha256');
+  const stream = createReadStream(filePath);
+  stream.on('error', reject);
+  stream.on('data', (chunk) => hash.update(chunk));
+  stream.on('end', () => resolve(hash.digest('hex')));
+});
 const sortedUnique = (values) => [...new Set(values)].sort();
 export const sortEntriesByCodeUnit = (entries) => [...entries].sort(([left], [right]) => (
   left < right ? -1 : left > right ? 1 : 0
@@ -576,6 +598,40 @@ export const validateSourceOwnershipFixture = (assets, fixture) => {
   }
 };
 
+export const validateCoverEncoderIdentity = (actual, expected) => {
+  for (const field of ['command', 'binarySha256', 'versionLine']) {
+    if (typeof expected?.[field] !== 'string' || !expected[field]) {
+      throw new Error(`Expected pinned cover encoder ${field}`);
+    }
+    if (actual?.[field] !== expected[field]) {
+      throw new Error(`Cover encoder identity mismatch for ${field}`);
+    }
+  }
+};
+
+const expectedCoverAssets = (fixture) => {
+  if (
+    fixture?.schemaVersion !== 1
+    || !Array.isArray(fixture.records)
+    || typeof fixture.provenance !== 'string'
+    || !fixture.transform
+  ) {
+    throw new Error('Expected editorial cover asset fixture schema version 1');
+  }
+  return fixture.records.map((record) => ({
+    ...record,
+    provenance: fixture.provenance,
+    transform: fixture.transform,
+  }));
+};
+
+export const validateCoverAssetFixture = (assets, fixture) => {
+  const expected = expectedCoverAssets(fixture);
+  if (canonicalJsonSha256(assets) !== canonicalJsonSha256(expected)) {
+    throw new Error('Cover asset fixture mismatch');
+  }
+};
+
 const prepareRecords = async ({ sourceDirectory, inventoryRecords, mappings, kind }) => {
   const inventoryByPath = new Map(inventoryRecords.map((record) => [record.sourcePath, record]));
   const records = [];
@@ -771,25 +827,79 @@ const firstCandidate = (prepared) => prepared.blocks.flatMap((block) => (
       : []
 ))[0];
 
-const createCoverDerivative = async (source, destination) => {
+const resolveExecutableFromPath = async (command) => {
+  const extensions = process.platform === 'win32' && !path.extname(command)
+    ? (process.env.PATHEXT ?? '.COM;.EXE;.BAT;.CMD').split(';')
+    : [''];
+  for (const rawDirectory of (process.env.PATH ?? '').split(path.delimiter)) {
+    const directory = rawDirectory.replace(/^"|"$/gu, '') || process.cwd();
+    for (const extension of extensions) {
+      const candidate = path.resolve(directory, `${command}${extension}`);
+      try {
+        const candidateStat = await stat(candidate);
+        if (candidateStat.isFile()) return candidate;
+      } catch {
+        // Continue through PATH until the pinned binary is found.
+      }
+    }
+  }
+  throw new Error(`Pinned cover encoder is not available on PATH: ${command}`);
+};
+
+const captureProcess = async (executablePath, args) => new Promise((resolve, reject) => {
+  const child = spawn(executablePath, args, {
+    windowsHide: true,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  let stdout = '';
+  let stderr = '';
+  child.stdout.setEncoding('utf8');
+  child.stderr.setEncoding('utf8');
+  child.stdout.on('data', (chunk) => { stdout += chunk; });
+  child.stderr.on('data', (chunk) => { stderr += chunk; });
+  child.on('error', reject);
+  child.on('close', (code) => {
+    if (code === 0) resolve(`${stdout}${stderr}`);
+    else reject(new Error(`Cover encoder identity probe failed (${code}): ${stderr.trim()}`));
+  });
+});
+
+const resolvePinnedCoverEncoder = async (expected) => {
+  const executablePath = await resolveExecutableFromPath(expected.command);
+  const binarySha256 = await sha256File(executablePath);
+  if (binarySha256 !== expected.binarySha256) {
+    validateCoverEncoderIdentity({ ...expected, binarySha256 }, expected);
+  }
+  const versionOutput = await captureProcess(executablePath, ['-version']);
+  const versionLine = versionOutput.replace(/\r\n?/gu, '\n').trim().split('\n')[0];
+  const identity = {
+    command: expected.command,
+    binarySha256,
+    versionLine,
+  };
+  validateCoverEncoderIdentity(identity, expected);
+  return { executablePath, identity };
+};
+
+const createCoverDerivative = async (encoderPath, transform, source, destination) => {
   const args = [
     '-hide_banner',
     '-loglevel', 'error',
     '-nostdin',
     '-i', source,
     '-frames:v', '1',
-    '-vf', 'scale=640:640:force_original_aspect_ratio=decrease:flags=lanczos',
+    '-vf', transform.scaleFilter,
     '-map_metadata', '-1',
     '-c:v', 'mjpeg',
-    '-q:v', '5',
-    '-pix_fmt', 'yuvj420p',
-    '-fflags', '+bitexact',
-    '-flags:v', '+bitexact',
-    '-threads', '1',
+    '-q:v', String(transform.qualityScale),
+    '-pix_fmt', transform.pixelFormat,
+    '-fflags', transform.formatFlags,
+    '-flags:v', transform.codecFlags,
+    '-threads', String(transform.threads),
     '-y', destination,
   ];
   await new Promise((resolve, reject) => {
-    const child = spawn('ffmpeg', args, { windowsHide: true, stdio: ['ignore', 'ignore', 'pipe'] });
+    const child = spawn(encoderPath, args, { windowsHide: true, stdio: ['ignore', 'ignore', 'pipe'] });
     let stderr = '';
     child.stderr.setEncoding('utf8');
     child.stderr.on('data', (chunk) => { stderr += chunk; });
@@ -801,7 +911,13 @@ const createCoverDerivative = async (source, destination) => {
   });
 };
 
-const generateArticleCovers = async (preparedArticles, migration, stagingRoot) => {
+const generateArticleCovers = async (
+  preparedArticles,
+  migration,
+  stagingRoot,
+  encoderPath,
+  fixture,
+) => {
   const coverDirectory = path.join(stagingRoot, 'articles', 'covers');
   await mkdir(coverDirectory, { recursive: true });
   const assets = [];
@@ -813,7 +929,7 @@ const generateArticleCovers = async (preparedArticles, migration, stagingRoot) =
     const fileName = `${prepared.mapping.slug}.jpg`;
     const sourcePath = path.join(stagingRoot, sourceAsset.src.replace(/^\/assets\//u, ''));
     const destination = path.join(coverDirectory, fileName);
-    await createCoverDerivative(sourcePath, destination);
+    await createCoverDerivative(encoderPath, fixture.transform, sourcePath, destination);
     const bytes = await readFile(destination);
     const dimensions = imageDimensions(bytes);
     if (dimensions.extension !== '.jpg') throw new Error(`Article cover is not JPEG: ${prepared.mapping.slug}`);
@@ -834,12 +950,8 @@ const generateArticleCovers = async (preparedArticles, migration, stagingRoot) =
       sourceAssetSrc: sourceAsset.src,
       sourceAssetSha256: sourceAsset.sha256,
       sourceRef: sourceAsset.sourceRef,
-      provenance: 'ffmpeg-mjpeg-cover-v1',
-      transform: {
-        format: 'jpeg',
-        maxDimension: 640,
-        qualityScale: 5,
-      },
+      provenance: fixture.provenance,
+      transform: fixture.transform,
     };
     assets.push(asset);
     byOwner.set(prepared.mapping.slug, asset);
@@ -927,6 +1039,8 @@ const buildPublicRecords = (preparedRecords, migration, coverAssetsByOwner = new
           alt: prepared.mapping.title,
           width: coverAsset.width,
           height: coverAsset.height,
+          sha256: coverAsset.sha256,
+          provenance: coverAsset.provenance,
         },
       } : {}),
       sections,
@@ -955,10 +1069,18 @@ const main = async () => {
   const inventory = await readJson(inventoryPath);
   await validateInputs(sourceDirectory, inventory);
 
-  const [existingAliases, previousReport, sourceAssetFixtureBytes, preparedPages, preparedArticles] = await Promise.all([
+  const [
+    existingAliases,
+    previousReport,
+    sourceAssetFixtureText,
+    coverAssetFixtureText,
+    preparedPages,
+    preparedArticles,
+  ] = await Promise.all([
     readJson(outputPaths.aliases),
     readJsonIfPresent(reportPath, null),
-    readFile(sourceAssetFixturePath),
+    readFile(sourceAssetFixturePath, 'utf8'),
+    readFile(coverAssetFixturePath, 'utf8'),
     prepareRecords({
       sourceDirectory,
       inventoryRecords: inventory.services,
@@ -972,6 +1094,10 @@ const main = async () => {
       kind: 'article',
     }),
   ]);
+  const sourceAssetFixture = JSON.parse(sourceAssetFixtureText);
+  const coverAssetFixture = JSON.parse(coverAssetFixtureText);
+  expectedCoverAssets(coverAssetFixture);
+  const coverEncoder = await resolvePinnedCoverEncoder(coverAssetFixture.encoder);
   const preparedRecords = [...preparedPages, ...preparedArticles];
   const candidates = prepareCandidates(preparedRecords);
   if (candidates.length !== expectedRelevantImageSources) {
@@ -984,7 +1110,14 @@ const main = async () => {
     mkdir(path.join(editorialAssetStagingRoot, 'articles'), { recursive: true }),
   ]);
   const migration = await migrateCandidates(candidates, previousReport, editorialAssetStagingRoot);
-  const coverBuild = await generateArticleCovers(preparedArticles, migration, editorialAssetStagingRoot);
+  const coverBuild = await generateArticleCovers(
+    preparedArticles,
+    migration,
+    editorialAssetStagingRoot,
+    coverEncoder.executablePath,
+    coverAssetFixture,
+  );
+  validateCoverAssetFixture(coverBuild.assets, coverAssetFixture);
   const pageBuild = buildPublicRecords(preparedPages, migration);
   const articleBuild = buildPublicRecords(preparedArticles, migration, coverBuild.byOwner);
   const pages = pageBuild.records;
@@ -1032,7 +1165,6 @@ const main = async () => {
   const assets = candidates
     .map((candidate) => migration.results.get(candidate.key))
     .filter(Boolean);
-  const sourceAssetFixture = JSON.parse(sourceAssetFixtureBytes);
   validateSourceOwnershipFixture(assets, sourceAssetFixture);
   await validateStagedAssets(editorialAssetStagingRoot, [...assets, ...coverBuild.assets]);
   const omittedMedia = [...pageBuild.omittedMedia, ...articleBuild.omittedMedia]
@@ -1069,8 +1201,14 @@ const main = async () => {
     sourceAssetFixture: {
       path: 'tests/fixtures/migration/editorial-source-assets.json',
       schemaVersion: sourceAssetFixture.schemaVersion,
-      sha256: sha256(sourceAssetFixtureBytes),
+      sha256: canonicalJsonSha256(sourceAssetFixture),
     },
+    coverAssetFixture: {
+      path: 'tests/fixtures/migration/editorial-cover-assets.json',
+      schemaVersion: coverAssetFixture.schemaVersion,
+      sha256: canonicalJsonSha256(coverAssetFixture),
+    },
+    coverEncoder: coverEncoder.identity,
     outputs: [
       outputEntry('pages', 'public/content/pages.json', pagesJson, pages.length),
       outputEntry('articles', 'public/content/articles.json', articlesJson, articles.length),
