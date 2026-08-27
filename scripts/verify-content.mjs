@@ -30,6 +30,14 @@ const ARTICLE_FIELDS = new Set([...PAGE_FIELDS, 'summary', 'image']);
 const VIDEO_FIELDS = new Set(['provider', 'id', 'title', 'description', 'autoplay', 'published', 'sourceUrl']);
 const CONTACT_FIELDS = new Set(['whatsapp', 'phone', 'email', 'sourceUrl']);
 const BLOCK_CONTAINER_FIELDS = ['children', 'sections', 'blocks', 'items'];
+const BLOCK_FIELDS = {
+  text: new Set(['type', 'heading', 'paragraphs', ...BLOCK_CONTAINER_FIELDS]),
+  image: new Set(['type', 'image', ...BLOCK_CONTAINER_FIELDS]),
+  gallery: new Set(['type', 'images', ...BLOCK_CONTAINER_FIELDS]),
+};
+const EDITORIAL_IMAGE_FIELDS = new Set(['src', 'alt', 'width', 'height']);
+const ICON_IMAGE_FIELDS = new Set([...EDITORIAL_IMAGE_FIELDS, 'fit', 'position']);
+const COVER_IMAGE_FIELDS = new Set([...EDITORIAL_IMAGE_FIELDS, 'sha256', 'provenance']);
 
 const sorted = (values) => [...values].sort();
 const compareCodeUnits = (left, right) => (left < right ? -1 : left > right ? 1 : 0);
@@ -117,12 +125,29 @@ export function resolvePublicAssetPath(publicDirectory, assetUrl) {
   return candidate;
 }
 
-function validateImage(image, label, assetFiles, errors, referencedFiles, missingLabel = label) {
+function validateImage(
+  image,
+  label,
+  assetFiles,
+  errors,
+  referencedFiles,
+  missingLabel = label,
+  context = 'editorial',
+) {
   if (!isPlainObject(image)) {
     errors.push(`${label} must be an object`);
     return { structurallyValid: false, valid: false };
   }
+  const allowedFields = context === 'icon'
+    ? ICON_IMAGE_FIELDS
+    : context === 'cover' ? COVER_IMAGE_FIELDS : EDITORIAL_IMAGE_FIELDS;
   let usable = true;
+  for (const field of sorted(Object.keys(image))) {
+    if (!allowedFields.has(field)) {
+      errors.push(`${label} contains unknown field ${field}`);
+      usable = false;
+    }
+  }
   let exists = false;
   const source = decodedAssetPath(image.src);
   if (!source) {
@@ -140,6 +165,24 @@ function validateImage(image, label, assetFiles, errors, referencedFiles, missin
   if (!Number.isInteger(image.width) || image.width <= 0 || !Number.isInteger(image.height) || image.height <= 0) {
     errors.push(`${label} has invalid dimensions ${image.width ?? '<missing>'}x${image.height ?? '<missing>'}`);
     usable = false;
+  }
+  if (context === 'icon') {
+    for (const field of ['fit', 'position']) {
+      if (image[field] !== undefined && (typeof image[field] !== 'string' || !image[field].trim())) {
+        errors.push(`${label} field ${field} must be a non-empty string`);
+        usable = false;
+      }
+    }
+  }
+  if (context === 'cover') {
+    if (!/^[a-f0-9]{64}$/u.test(image.sha256 ?? '')) {
+      errors.push(`${label} requires a SHA-256 checksum`);
+      usable = false;
+    }
+    if (typeof image.provenance !== 'string' || !image.provenance.trim()) {
+      errors.push(`${label} requires non-empty provenance`);
+      usable = false;
+    }
   }
   return { structurallyValid: usable, valid: usable && exists };
 }
@@ -161,6 +204,13 @@ function validateBlocks(sections, label, assetFiles, errors, referencedFiles) {
     if (!Object.hasOwn(value, 'type') || typeof value.type !== 'string' || !value.type.trim()) {
       errors.push(`${label} contains untyped block at ${location}`);
       return;
+    }
+
+    const allowedFields = BLOCK_FIELDS[value.type];
+    if (allowedFields) {
+      for (const field of sorted(Object.keys(value))) {
+        if (!allowedFields.has(field)) errors.push(`${label} ${value.type} block contains unknown field ${field}`);
+      }
     }
 
     if (value.type === 'text') {
@@ -255,6 +305,15 @@ function isRootRelativeRoute(value) {
   }
 }
 
+function hasDecodedDotSegment(value) {
+  if (typeof value !== 'string') return false;
+  try {
+    return decodeURI(value).split('/').some((segment) => segment === '.' || segment === '..');
+  } catch {
+    return false;
+  }
+}
+
 function normalizedRoutePath(value) {
   const decoded = decodeURI(value || '/');
   return decoded !== '/' && decoded.endsWith('/') ? decoded.slice(0, -1) : decoded;
@@ -308,8 +367,16 @@ function validateAliases(bundle, errors) {
   const pageSlugs = new Set(bundle.pages.map(({ slug }) => slug));
   for (const alias of keys) {
     const target = aliases[alias];
+    if (hasDecodedDotSegment(alias)) {
+      errors.push(`alias path contains a decoded dot segment: ${alias}`);
+      continue;
+    }
     if (!isRootRelativeRoute(alias)) {
       errors.push(`alias path must be root-relative: ${alias}`);
+      continue;
+    }
+    if (hasDecodedDotSegment(target)) {
+      errors.push(`alias ${alias} target contains a decoded dot segment: ${target}`);
       continue;
     }
     if (!isRootRelativeRoute(target)) {
@@ -392,10 +459,32 @@ function validateExpectedSet(label, actualValues, expectedValues, errors) {
 
 function validateExpectedContract(bundle, expected, errors) {
   if (!expected) return;
+  const expectedSlug = (record) => (typeof record === 'string' ? record : record?.slug);
+  const expectedVideo = (record) => (typeof record === 'string' ? record : `${record?.provider}:${record?.id}`);
+  const validatePublished = (label, actualRecords, expectedRecords, identity, noun) => {
+    if (!Array.isArray(expectedRecords)) return;
+    const actualByIdentity = new Map(actualRecords.map((record) => [identity(record), record]));
+    for (const expectedRecord of expectedRecords) {
+      if (!isPlainObject(expectedRecord) || expectedRecord.published !== true) continue;
+      const expectedIdentity = identity(expectedRecord);
+      const actualRecord = actualByIdentity.get(expectedIdentity);
+      if (actualRecord && actualRecord.published !== true) {
+        errors.push(`${label} contract requires published ${noun}${expectedIdentity}`);
+      }
+    }
+  };
   validateExpectedSet('icons', bundle.icons.map(({ slug }) => slug), expected.icons, errors);
-  validateExpectedSet('pages', bundle.pages.map(({ slug }) => slug), expected.pages, errors);
-  validateExpectedSet('articles', bundle.articles.map(({ slug }) => slug), expected.articles, errors);
-  validateExpectedSet('videos', bundle.videos.map(({ provider, id }) => `${provider}:${id}`), expected.videos, errors);
+  validateExpectedSet('pages', bundle.pages.map(({ slug }) => slug), expected.pages?.map(expectedSlug), errors);
+  validateExpectedSet('articles', bundle.articles.map(({ slug }) => slug), expected.articles?.map(expectedSlug), errors);
+  validateExpectedSet(
+    'videos',
+    bundle.videos.map(({ provider, id }) => `${provider}:${id}`),
+    expected.videos?.map(expectedVideo),
+    errors,
+  );
+  validatePublished('pages', bundle.pages, expected.pages, ({ slug }) => slug, 'slug ');
+  validatePublished('articles', bundle.articles, expected.articles, ({ slug }) => slug, 'slug ');
+  validatePublished('videos', bundle.videos, expected.videos, ({ provider, id }) => `${provider}:${id}`, '');
 
   for (const [alias, target] of Object.entries(expected.aliases ?? {})) {
     if (bundle.aliases[alias] === undefined) errors.push(`aliases contract is missing ${alias}`);
@@ -460,6 +549,7 @@ export function verifyContent(bundle, assetFiles = new Set(), options = {}) {
       errors,
       referencedFiles,
       `${icon.published ? 'published ' : ''}icon ${icon.slug}`,
+      'icon',
     ));
     if (icon?.published && !usability.some(({ structurallyValid }) => structurallyValid)) {
       errors.push(`published icon ${icon.slug} has no usable images`);
@@ -476,7 +566,7 @@ export function verifyContent(bundle, assetFiles = new Set(), options = {}) {
         if (!isPlainObject(record?.image)) {
           errors.push(`${label} field image must be an image object`);
         } else {
-          validateImage(record.image, `${label} cover`, assetFiles, errors, referencedFiles);
+          validateImage(record.image, `${label} cover`, assetFiles, errors, referencedFiles, `${label} cover`, 'cover');
         }
       }
       validateBlocks(record?.sections, label, assetFiles, errors, referencedFiles);
@@ -557,7 +647,8 @@ async function validateDirectoryRoot(directory, label, errors) {
 
 function isContained(root, candidate) {
   const relative = path.relative(root, candidate);
-  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+  const escapesParent = relative === '..' || relative.startsWith(`..${path.sep}`);
+  return relative === '' || (!escapesParent && !path.isAbsolute(relative));
 }
 
 export async function inspectContentDirectory(directory, errors) {
@@ -842,9 +933,12 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
     referencedFiles,
     expected: {
       icons: legacyIconMap.map(({ slug }) => slug),
-      pages: legacyPageMap.map(({ slug }) => slug),
-      articles: legacyArticleMap.map(({ slug }) => slug),
-      videos: ['youtube:y10sw1KIOqQ', 'vimeo:353365425'],
+      pages: legacyPageMap.map(({ slug }) => ({ slug, published: true })),
+      articles: legacyArticleMap.map(({ slug }) => ({ slug, published: true })),
+      videos: [
+        { provider: 'youtube', id: 'y10sw1KIOqQ', published: true },
+        { provider: 'vimeo', id: '353365425', published: true },
+      ],
       aliases: expectedAliases(),
       excludedAliases: [EXCLUDED_ARTICLE_PATH],
       excludedSourcePaths: [EXCLUDED_ARTICLE_PATH],

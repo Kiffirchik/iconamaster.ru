@@ -14,7 +14,7 @@ import {
   verifyOwnedAssetInventory,
   verifyProject,
 } from '../../scripts/verify-content.mjs';
-import { verifyIconAssetSet } from '../../scripts/verify-icon-assets.mjs';
+import { verifyIconAssetProject, verifyIconAssetSet } from '../../scripts/verify-icon-assets.mjs';
 
 const canonicalContacts = {
   whatsapp: '79166554595',
@@ -46,7 +46,12 @@ const articleRecord = (slug, sections, overrides = {}) => ({
   slug,
   title: `Article ${slug}`,
   summary: `Summary ${slug}`,
-  image: { ...validImage, src: `/assets/articles/${slug}.jpg` },
+  image: {
+    ...validImage,
+    src: `/assets/articles/${slug}.jpg`,
+    sha256: 'a'.repeat(64),
+    provenance: 'fixture-cover',
+  },
   published: true,
   order: 1,
   sourceUrl: sourceUrl(slug),
@@ -253,6 +258,32 @@ test('alias validation matches runtime resolution and rejects normalization, col
   }
 });
 
+test('alias validation rejects literal and encoded decoded dot segments in keys and targets', () => {
+  const cases = [
+    {
+      aliases: { '/legacy/./path': '/collection' },
+      expected: 'alias path contains a decoded dot segment: /legacy/./path',
+    },
+    {
+      aliases: { '/legacy/%2e/path': '/collection' },
+      expected: 'alias path contains a decoded dot segment: /legacy/%2e/path',
+    },
+    {
+      aliases: { '/legacy': '/./collection' },
+      expected: 'alias /legacy target contains a decoded dot segment: /./collection',
+    },
+    {
+      aliases: { '/legacy': '/%2e/collection' },
+      expected: 'alias /legacy target contains a decoded dot segment: /%2e/collection',
+    },
+  ];
+
+  for (const { aliases, expected } of cases) {
+    const errors = verifyContent(bundle({ aliases }), new Set());
+    assert.ok(errors.includes(expected), `${expected}\n${errors.join('\n')}`);
+  }
+});
+
 test('video contract rejects duplicate provider ids and exact-set multiplicity drift', () => {
   const errors = verifyContent(bundle({
     videos: [
@@ -261,12 +292,79 @@ test('video contract rejects duplicate provider ids and exact-set multiplicity d
       videoRecord('vimeo', '353365425'),
     ],
   }), new Set(), {
-    expected: { videos: ['youtube:y10sw1KIOqQ', 'vimeo:353365425'] },
+    expected: {
+      videos: [
+        { provider: 'youtube', id: 'y10sw1KIOqQ', published: true },
+        { provider: 'vimeo', id: '353365425', published: true },
+      ],
+    },
   });
 
   assert.ok(errors.includes('duplicate video youtube:y10sw1KIOqQ'));
   assert.ok(errors.includes('videos contract expected 2 records but found 3'));
   assert.ok(errors.includes('videos contract has 2 copies of youtube:y10sw1KIOqQ; expected 1'));
+});
+
+test('exact page, article, and video contracts require their records to remain published', () => {
+  const page = pageRecord('required-page', [{ type: 'text', paragraphs: ['Text'] }], { published: false });
+  const article = articleRecord('required-article', [{ type: 'text', paragraphs: ['Text'] }], { published: false });
+  const video = videoRecord('youtube', 'y10sw1KIOqQ', { published: false });
+  const errors = verifyContent(bundle({ pages: [page], articles: [article], videos: [video] }), new Set([
+    '/assets/articles/required-article.jpg',
+  ]), {
+    expected: {
+      pages: [{ slug: 'required-page', published: true }],
+      articles: [{ slug: 'required-article', published: true }],
+      videos: [{ provider: 'youtube', id: 'y10sw1KIOqQ', published: true }],
+    },
+  });
+
+  assert.ok(errors.includes('pages contract requires published slug required-page'));
+  assert.ok(errors.includes('articles contract requires published slug required-article'));
+  assert.ok(errors.includes('videos contract requires published youtube:y10sw1KIOqQ'));
+});
+
+test('typed blocks and context-specific images reject unknown nested fields', () => {
+  const page = pageRecord('nested-fields', [
+    { type: 'text', paragraphs: ['Text'], embedUrl: 'https://example.test/embed' },
+    { type: 'image', image: { ...validImage, embedUrl: 'https://example.test/embed', source: 'external' } },
+    { type: 'gallery', images: [validImage], source: 'external', executable: 'javascript:alert(1)' },
+  ]);
+  const article = articleRecord('cover-fields', [{ type: 'text', paragraphs: ['Text'] }], {
+    image: {
+      ...articleRecord('cover-fields', []).image,
+      embedUrl: 'https://example.test/embed',
+      fit: 'cover',
+    },
+  });
+  const icon = {
+    slug: 'icon-fields',
+    published: true,
+    images: [{
+      ...validImage,
+      src: '/assets/icons/icon-fields.jpg',
+      fit: 'contain',
+      position: 'center',
+      provenance: 'not-valid-in-content-image',
+    }],
+  };
+  const errors = verifyContent(bundle({ pages: [page], articles: [article], icons: [icon] }), new Set([
+    validImage.src,
+    '/assets/articles/cover-fields.jpg',
+    '/assets/icons/icon-fields.jpg',
+  ]));
+
+  for (const expected of [
+    'page nested-fields text block contains unknown field embedUrl',
+    'page nested-fields image block contains unknown field embedUrl',
+    'page nested-fields image block contains unknown field source',
+    'page nested-fields gallery block contains unknown field executable',
+    'page nested-fields gallery block contains unknown field source',
+    'article cover-fields cover contains unknown field embedUrl',
+    'article cover-fields cover contains unknown field fit',
+    'icon icon-fields image 1 contains unknown field provenance',
+    'page nested-fields contains raw executable HTML',
+  ]) assert.ok(errors.includes(expected), expected);
 });
 
 test('page, article, video, and contact records enforce required types, source metadata, and known fields', () => {
@@ -315,7 +413,10 @@ test('integrity validator enforces canonical contacts and exact source-map contr
       icons: ['expected'],
       pages: [],
       articles: [],
-      videos: ['youtube:y10sw1KIOqQ', 'vimeo:353365425'],
+      videos: [
+        { provider: 'youtube', id: 'y10sw1KIOqQ', published: true },
+        { provider: 'vimeo', id: '353365425', published: true },
+      ],
       excludedAliases: ['/excluded-article'],
     },
   });
@@ -471,6 +572,7 @@ test('content directory inspection rejects directories and linked JSON entries',
   const directory = await mkdtemp(path.join(tmpdir(), 'iconamaster-content-root-'));
   context.after(() => rm(directory, { recursive: true, force: true }));
   await writeFile(path.join(directory, 'real.json'), '{}');
+  await writeFile(path.join(directory, '..valid.json'), '{}');
   await mkdir(path.join(directory, 'directory.json'));
   let linked = true;
   try {
@@ -482,9 +584,32 @@ test('content directory inspection rejects directories and linked JSON entries',
 
   const errors = [];
   const files = await inspectContentDirectory(directory, errors);
-  assert.deepEqual(files, ['real.json']);
+  assert.deepEqual(files, ['..valid.json', 'real.json']);
   assert.ok(errors.includes('content directory contains a non-file: directory.json'));
   if (linked) assert.ok(errors.includes('content directory contains a symbolic link: linked.json'));
+});
+
+test('icon verifier accepts a contained filename beginning with two dots', async (context) => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'iconamaster-icon-dot-prefix-'));
+  context.after(() => rm(directory, { recursive: true, force: true }));
+  const bytes = Buffer.from('safe dot-prefix original');
+  await writeFile(path.join(directory, '..valid.jpg'), bytes);
+  const source = 'https://freight.cargo.site/t/original/dot-prefix.jpg';
+  assert.deepEqual(await verifyIconAssetSet({
+    assetDirectory: directory,
+    manifest: [{
+      file: '..valid.jpg',
+      bytes: bytes.length,
+      sha256: createHash('sha256').update(bytes).digest('hex'),
+      width: 1,
+      height: 1,
+      sourceUrl: source,
+      legacyPath: '/DOT-PREFIX',
+      role: 'original',
+      provenance: 'fixture-original',
+    }],
+    allowedOwners: new Map([[source, '/DOT-PREFIX']]),
+  }), []);
 });
 
 test('icon verifier sorts entry diagnostics and catches checksum drift', async (context) => {
@@ -534,6 +659,26 @@ test('icon verifier rejects a linked asset root where the platform permits links
     manifest: [],
     allowedOwners: new Map(),
   }), ['icon asset root must be a real directory']);
+});
+
+test('standalone icon project verifier rejects a linked assets parent', async (context) => {
+  const root = await mkdtemp(path.join(tmpdir(), 'iconamaster-icon-parent-link-'));
+  context.after(() => rm(root, { recursive: true, force: true }));
+  const project = path.join(root, 'project');
+  const externalAssets = path.join(root, 'external-assets');
+  await Promise.all([
+    mkdir(path.join(project, 'public'), { recursive: true }),
+    mkdir(path.join(externalAssets, 'icons'), { recursive: true }),
+  ]);
+  try {
+    await symlink(externalAssets, path.join(project, 'public', 'assets'), process.platform === 'win32' ? 'junction' : 'dir');
+  } catch (error) {
+    if (['EPERM', 'EACCES', 'ENOSYS'].includes(error.code)) return;
+    throw error;
+  }
+
+  const result = await verifyIconAssetProject(project);
+  assert.deepEqual(result.errors, ['icon asset parent chain must use real contained directories']);
 });
 
 test('content verifier CLI exits non-zero for a broken project fixture', async (context) => {

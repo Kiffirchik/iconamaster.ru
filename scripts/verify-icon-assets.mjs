@@ -12,7 +12,33 @@ const compareCodeUnits = (left, right) => (left < right ? -1 : left > right ? 1 
 
 function isContained(root, candidate) {
   const relative = path.relative(root, candidate);
-  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+  const escapesParent = relative === '..' || relative.startsWith(`..${path.sep}`);
+  return relative === '' || (!escapesParent && !path.isAbsolute(relative));
+}
+
+async function validateProjectAssetChain(projectDirectory) {
+  const directories = [
+    projectDirectory,
+    path.join(projectDirectory, 'public'),
+    path.join(projectDirectory, 'public', 'assets'),
+    path.join(projectDirectory, 'public', 'assets', 'icons'),
+  ];
+  const realPaths = [];
+  for (const directory of directories) {
+    let metadata;
+    let resolved;
+    try {
+      metadata = await lstat(directory);
+      resolved = await realpath(directory);
+    } catch {
+      return null;
+    }
+    if (metadata.isSymbolicLink() || !metadata.isDirectory()) return null;
+    if (realPaths.length > 0 && !isContained(realPaths[realPaths.length - 1], resolved)) return null;
+    realPaths.push(resolved);
+  }
+  if (!isContained(realPaths[1], realPaths[3])) return null;
+  return { assetDirectory: directories[3], rootRealPath: realPaths[3] };
 }
 
 async function sha256File(file) {
@@ -176,20 +202,14 @@ function validateContentOwnership(icons, manifest, errors) {
 
 export async function verifyIconAssetProject(projectRoot = new URL('../', import.meta.url)) {
   const projectDirectory = projectRoot instanceof URL ? fileURLToPath(projectRoot) : path.resolve(projectRoot);
-  const assetDirectory = path.join(projectDirectory, 'public', 'assets', 'icons');
-  let rootMetadata;
-  try {
-    rootMetadata = await lstat(assetDirectory);
-  } catch {
-    rootMetadata = null;
-  }
-  if (!rootMetadata?.isDirectory() || rootMetadata.isSymbolicLink()) {
+  const chain = await validateProjectAssetChain(projectDirectory);
+  if (!chain) {
     return {
-      errors: ['icon asset root must be a real directory'],
+      errors: ['icon asset parent chain must use real contained directories'],
       summary: { assets: 0, bytes: 0, independentOwners: 0 },
     };
   }
-  const rootRealPath = await realpath(assetDirectory);
+  const { assetDirectory, rootRealPath } = chain;
   const manifestPath = path.join(assetDirectory, 'manifest.json');
   let manifestMetadata;
   try {
