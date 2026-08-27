@@ -6,8 +6,11 @@ import {
   extractEmbeddedPage,
   extractLinks,
   extractLinkedCards,
+  extractMediaEntries,
   extractMediaUrls,
   extractTitle,
+  getMediaDisposition,
+  partitionContractedLinks,
   repairMojibake,
 } from '../../scripts/lib/legacy-html.mjs';
 
@@ -30,14 +33,94 @@ test('extracts only sorted catalog cards with repaired titles and media evidence
     {
       sourcePath: '/IKONA-A',
       title: 'Икона первая',
-      mediaUrls: ['//freight.cargo.site/w/350/a.jpg'],
+      media: [{
+        url: '//freight.cargo.site/w/350/a.jpg',
+        role: 'thumbnail',
+        provenance: 'catalog-card',
+      }],
     },
     {
       sourcePath: '/IKONA-B',
       title: 'Вторая икона',
-      mediaUrls: ['//freight.cargo.site/w/350/b.jpg'],
+      media: [{
+        url: '//freight.cargo.site/w/350/b.jpg',
+        role: 'thumbnail',
+        provenance: 'catalog-card',
+      }],
     },
   ]);
+});
+
+test('labels media roles and provenance without requiring downstream URL inference', () => {
+  const html = [
+    '<img data-src="https://freight.cargo.site/t/original/i/hash/icon.jpg">',
+    '<img data-lazy-src="https://freight.cargo.site/w/350/i/hash/icon.jpg">',
+    '<img src="https://freight.cargo.site/w/441/i/hash/icon.jpg">',
+  ].join('');
+
+  assert.deepEqual(extractMediaEntries(html, 'local-page-html'), [
+    {
+      url: 'https://freight.cargo.site/t/original/i/hash/icon.jpg',
+      role: 'original',
+      provenance: 'local-page-html',
+    },
+    {
+      url: 'https://freight.cargo.site/w/350/i/hash/icon.jpg',
+      role: 'thumbnail',
+      provenance: 'local-page-html',
+    },
+    {
+      url: 'https://freight.cargo.site/w/441/i/hash/icon.jpg',
+      role: 'page-media',
+      provenance: 'local-page-html',
+    },
+  ]);
+});
+
+test('keeps thumbnail-only icons unpublished until public or Cargo recovery', () => {
+  assert.deepEqual(getMediaDisposition([{
+    url: '//freight.cargo.site/w/350/i/hash/icon.jpg',
+    role: 'thumbnail',
+    provenance: 'catalog-card',
+  }]), {
+    mediaRecovery: 'required-public-or-cargo',
+    publicationStatus: 'unpublished',
+  });
+  assert.deepEqual(getMediaDisposition([{
+    url: 'https://freight.cargo.site/t/original/i/hash/icon.jpg',
+    role: 'original',
+    provenance: 'local-page-html',
+  }]), {
+    mediaRecovery: 'not-required',
+    publicationStatus: 'pending-validation',
+  });
+});
+
+test('requires every explicitly excluded link and rejects uncontracted observations', () => {
+  assert.deepEqual(
+    partitionContractedLinks(['/ARTICLE-A', '/ARTICLE-EXCLUDED'], {
+      included: ['/ARTICLE-A'],
+      excluded: ['/ARTICLE-EXCLUDED'],
+    }),
+    {
+      included: ['/ARTICLE-A'],
+      excluded: ['/ARTICLE-EXCLUDED'],
+    },
+  );
+  assert.throws(
+    () => partitionContractedLinks(['/ARTICLE-A'], {
+      included: ['/ARTICLE-A'],
+      excluded: ['/ARTICLE-EXCLUDED'],
+    }),
+    /Contracted links mismatch/,
+  );
+  assert.throws(
+    () => partitionContractedLinks(['/ARTICLE-A', '/ARTICLE-EXCLUDED', '/SURPRISE'], {
+      included: ['/ARTICLE-A'],
+      excluded: ['/ARTICLE-EXCLUDED'],
+    }),
+    /Contracted links mismatch/,
+  );
 });
 
 test('extracts sorted unique absolute and root-relative image URLs', async () => {
@@ -58,9 +141,17 @@ test('extracts decoded title text and repairs only its mojibake segment', async 
 test('extracts the requested page from embedded Cargo scaffolding JSON', async () => {
   assert.deepEqual(extractEmbeddedPage(await fixture('icon.html'), '/IKONA-EXAMPLE'), {
     title: 'Икона из данных',
-    mediaUrls: [
-      'https://freight.cargo.site/t/original/i/hash/embedded.jpg',
-      'https://freight.cargo.site/t/original/i/other-hash/My%20Icon.JPG',
+    media: [
+      {
+        url: 'https://freight.cargo.site/t/original/i/hash/embedded.jpg',
+        role: 'original',
+        provenance: 'cargo-scaffolding-content',
+      },
+      {
+        url: 'https://freight.cargo.site/t/original/i/other-hash/My%20Icon.JPG',
+        role: 'original',
+        provenance: 'cargo-scaffolding-images',
+      },
     ],
   });
   assert.equal(extractEmbeddedPage(await fixture('icon.html'), '/ABSENT'), null);
@@ -78,6 +169,8 @@ test('rejects unterminated embedded Cargo scaffolding instead of ignoring it', (
 
 test('does not alter valid Cyrillic while repairing known mojibake', () => {
   assert.equal(repairMojibake('Реставрация икон'), 'Реставрация икон');
+  assert.equal(repairMojibake('В Москве'), 'В Москве');
+  assert.equal(repairMojibake('вариант «В»'), 'вариант «В»');
   assert.equal(repairMojibake('«Икона» — история'), '«Икона» — история');
   assert.equal(repairMojibake('Р РµСЃС‚Р°РІСЂР°С†РёСЏ'), 'Реставрация');
   assert.equal(repairMojibake('иконС‹ в наличии'), 'иконы в наличии');

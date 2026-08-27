@@ -14,14 +14,25 @@ for (let byte = 0x80; byte <= 0x9f; byte += 1) {
 
 const sortedUnique = (values) => [...new Set(values)].sort();
 
+export const normalizeMediaEntries = (entries) => [...new Map(entries.map((entry) => [
+  `${entry.url}\u0000${entry.role}\u0000${entry.provenance}`,
+  entry,
+])).values()].sort((left, right) => (
+  left.url.localeCompare(right.url)
+  || left.role.localeCompare(right.role)
+  || left.provenance.localeCompare(right.provenance)
+));
+
 const knownMojibake = new Map([
-  ['В ', '\u00a0'],
-  ['В«', '«'],
-  ['В»', '»'],
   ['вЂ“', '–'],
   ['вЂ”', '—'],
   ['вЂ¦', '…'],
   ['в„–', '№'],
+]);
+
+const ambiguousMojibake = new Map([
+  ['В«', '«'],
+  ['В»', '»'],
 ]);
 
 const decodeHtmlEntities = (text) => text
@@ -52,6 +63,7 @@ const extractAttributeValues = (html, tagPattern, attributePattern) => {
 
 export const repairMojibake = (text) => {
   let repaired = '';
+  let identifiedMojibake = [...knownMojibake.keys()].some((corrupted) => text.includes(corrupted));
 
   for (let index = 0; index < text.length; index += 1) {
     const lead = text[index];
@@ -69,6 +81,7 @@ export const repairMojibake = (text) => {
     }
 
     repaired += Buffer.from([leadByte, trailByte]).toString('utf8');
+    identifiedMojibake = true;
     index += 1;
   }
 
@@ -76,16 +89,70 @@ export const repairMojibake = (text) => {
     repaired = repaired.replaceAll(corrupted, replacement);
   }
 
+  if (identifiedMojibake) {
+    for (const [corrupted, replacement] of ambiguousMojibake) {
+      repaired = repaired.replaceAll(corrupted, replacement);
+    }
+  }
+
   return repaired;
 };
 
 export const extractLinks = (html) => extractAttributeValues(html, 'a', 'href');
 
-export const extractMediaUrls = (html) => extractAttributeValues(
-  html,
-  'img|source|video|audio',
-  'data-lazy-src|data-src|src|poster',
-).filter((url) => /^(?:https?:)?\//u.test(url));
+export const extractMediaEntries = (html, provenance) => {
+  const entries = [];
+  const tags = html.match(/<(?:img|source|video|audio)\b[^>]*>/giu) ?? [];
+
+  for (const tag of tags) {
+    const attributes = /\b(data-lazy-src|data-src|src|poster)\s*=\s*(["'])(.*?)\2/giu;
+    for (const match of tag.matchAll(attributes)) {
+      const attribute = match[1].toLowerCase();
+      const url = decodeHtmlEntities(match[3].trim());
+      if (!/^(?:https?:)?\//u.test(url)) {
+        continue;
+      }
+
+      const role = attribute === 'data-lazy-src'
+        ? 'thumbnail'
+        : /\/t\/original\/|files\.cargocollective\.com|\/uploads\//iu.test(url)
+          ? 'original'
+          : 'page-media';
+      entries.push({ url, role, provenance });
+    }
+  }
+
+  return normalizeMediaEntries(entries);
+};
+
+export const extractMediaUrls = (html) => sortedUnique(
+  extractMediaEntries(html, 'unspecified').map(({ url }) => url),
+);
+
+export const getMediaDisposition = (media) => (media.some(({ role }) => role === 'original')
+  ? {
+    mediaRecovery: 'not-required',
+    publicationStatus: 'pending-validation',
+  }
+  : {
+    mediaRecovery: 'required-public-or-cargo',
+    publicationStatus: 'unpublished',
+  });
+
+export const partitionContractedLinks = (observed, contract) => {
+  const included = sortedUnique(contract.included);
+  const excluded = sortedUnique(contract.excluded);
+  const expected = sortedUnique([...included, ...excluded]);
+  const actual = sortedUnique(observed);
+
+  if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+    throw new Error(
+      `Contracted links mismatch\nExpected: ${JSON.stringify(expected)}\nActual: ${JSON.stringify(actual)}`,
+    );
+  }
+
+  return { included, excluded };
+};
 
 export const extractLinkedCards = (html) => {
   const cards = new Map();
@@ -112,7 +179,10 @@ export const extractLinkedCards = (html) => {
     cards.set(sourcePath, {
       sourcePath,
       title,
-      mediaUrls: extractMediaUrls(match[2]),
+      media: extractMediaEntries(match[2], 'catalog-card').map((entry) => ({
+        ...entry,
+        role: 'thumbnail',
+      })),
     });
   }
 
@@ -156,18 +226,22 @@ export const extractEmbeddedPage = (html, sourcePath) => {
     return null;
   }
 
-  const mediaUrls = extractMediaUrls(page.content ?? '');
+  const media = extractMediaEntries(page.content ?? '', 'cargo-scaffolding-content');
   for (const image of page.images ?? []) {
-    if (!image?.hash || !image?.name || mediaUrls.some((url) => url.includes(`/i/${image.hash}/`))) {
+    if (!image?.hash || !image?.name) {
       continue;
     }
     const encodedName = String(image.name).split('/').map(encodeURIComponent).join('/');
-    mediaUrls.push(`https://freight.cargo.site/t/original/i/${image.hash}/${encodedName}`);
+    media.push({
+      url: `https://freight.cargo.site/t/original/i/${image.hash}/${encodedName}`,
+      role: 'original',
+      provenance: 'cargo-scaffolding-images',
+    });
   }
 
   return {
     title: repairMojibake(String(page.title_no_html ?? page.title ?? '')).trim(),
-    mediaUrls: sortedUnique(mediaUrls),
+    media: normalizeMediaEntries(media),
   };
 };
 

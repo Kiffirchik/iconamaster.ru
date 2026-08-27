@@ -5,8 +5,11 @@ import {
   extractEmbeddedPage,
   extractLinkedCards,
   extractLinks,
-  extractMediaUrls,
+  extractMediaEntries,
   extractTitle,
+  getMediaDisposition,
+  normalizeMediaEntries,
+  partitionContractedLinks,
 } from './lib/legacy-html.mjs';
 
 const sourceSite = 'https://iconamaster.cargo.site';
@@ -18,6 +21,12 @@ const expectedMissingIconPaths = [
   '/IKONA-SVYTOI-KNYZ-VLADISLAV-CESSKII',
 ];
 
+const expectedDamagedIconPaths = [
+  '/IKONA-BOGORODITY-PETROVSKAY-V-REZNOM-KIOTE',
+  '/IKONA-BOGORODITY-RUSSKAY',
+  '/IKONA-BOGORODITY-TREK-RADOSTEI',
+];
+
 const approvedArticlePaths = [
   '/GUSLITA-ODIN-IZ-KRUPNEISIK-STAROOBRYDCESKIK-TENTROV-KNIGOPISANIY-I',
   '/IKONA-BOGORODITY-RUSSKAY-ILI-VZBRANNAY-VOEVODA-1',
@@ -27,6 +36,10 @@ const approvedArticlePaths = [
   '/KINESMA-STARYI-IKONOPISNYI-TENTR-STAROOBRYDCESTVA',
   '/PAVLOVO-NA-OKE-STAROOBRYDCESKII-IKONOPISNYI-TENTR',
   '/PIS-MA-GORBUNOVYK-IKONY-SELA-KOLUI',
+];
+
+const excludedArticlePaths = [
+  '/IKONY-V-OKLADAK-TRADITIY-I-ISTORIY',
 ];
 
 const servicePaths = [
@@ -102,10 +115,13 @@ const makeRecord = async (sourceDirectory, sourcePath, fallback = {}) => {
     issues.push('Local page is absent from the archive');
   }
 
-  const pageMediaUrls = page.html
-    ? sortedUnique([...extractMediaUrls(page.html), ...(embedded?.mediaUrls ?? [])])
+  const pageMedia = page.html
+    ? normalizeMediaEntries([
+      ...extractMediaEntries(page.html, 'local-page-html'),
+      ...(embedded?.media ?? []),
+    ])
     : [];
-  if (page.html && pageMediaUrls.length === 0) {
+  if (page.html && pageMedia.length === 0) {
     issues.push('No media URL found in the local page');
   }
 
@@ -116,7 +132,7 @@ const makeRecord = async (sourceDirectory, sourcePath, fallback = {}) => {
     title: page.html
       ? stripBrand(embedded?.title || fallback.title || cleanTitle(page.html) || '')
       : fallback.title || '',
-    mediaUrls: sortedUnique([...pageMediaUrls, ...(fallback.mediaUrls ?? [])]),
+    media: normalizeMediaEntries([...pageMedia, ...(fallback.media ?? [])]),
     ...(issues.length > 0 ? { issues: sortedUnique(issues) } : {}),
   };
 };
@@ -133,7 +149,9 @@ const countFiles = async (directory) => {
   return count;
 };
 
-const countUniqueMedia = (records) => sortedUnique(records.flatMap(({ mediaUrls }) => mediaUrls)).length;
+const uniqueMediaUrls = (records, role) => sortedUnique(records.flatMap(({ media }) => media
+  .filter((entry) => !role || entry.role === role)
+  .map(({ url }) => url)));
 
 const main = async () => {
   const sourceFlag = process.argv.indexOf('--source');
@@ -156,11 +174,13 @@ const main = async () => {
     throw new Error(`Expected 50 catalog links, found ${catalogCards.length}`);
   }
 
-  const icons = await Promise.all(catalogCards.map((card) => makeRecord(
-    sourceDirectory,
-    card.sourcePath,
-    card,
-  )));
+  const icons = await Promise.all(catalogCards.map(async (card) => {
+    const record = await makeRecord(sourceDirectory, card.sourcePath, card);
+    return {
+      ...record,
+      ...getMediaDisposition(record.media),
+    };
+  }));
   icons.sort((left, right) => left.sourcePath.localeCompare(right.sourcePath));
 
   const presentIcons = icons.filter(({ localPath }) => localPath !== null);
@@ -171,6 +191,14 @@ const main = async () => {
     throw new Error(`Expected 46 locally present icon pages, found ${presentIcons.length}`);
   }
   assertExactList('Missing icon pages', missingIconPages, expectedMissingIconPaths);
+  const recoveryRequiredIconPaths = icons
+    .filter(({ mediaRecovery }) => mediaRecovery === 'required-public-or-cargo')
+    .map(({ sourcePath }) => sourcePath);
+  assertExactList(
+    'Icons requiring public/Cargo recovery',
+    recoveryRequiredIconPaths,
+    [...expectedMissingIconPaths, ...expectedDamagedIconPaths],
+  );
 
   const articleIndexHtml = await readFile(
     path.join(sourceDirectory, localPathFor('/STAT-I')),
@@ -179,13 +207,12 @@ const main = async () => {
   const articleCandidates = extractLinks(articleIndexHtml).filter(
     (sourcePath) => /^\/[^/]+$/u.test(sourcePath) && !navigationPaths.has(sourcePath),
   );
-  const candidateSet = new Set(articleCandidates);
-  const absentApprovedArticles = approvedArticlePaths.filter((sourcePath) => !candidateSet.has(sourcePath));
-  if (absentApprovedArticles.length > 0) {
-    throw new Error(`Approved article links absent from STAT-I: ${absentApprovedArticles.join(', ')}`);
-  }
+  const articleContract = partitionContractedLinks(articleCandidates, {
+    included: approvedArticlePaths,
+    excluded: excludedArticlePaths,
+  });
 
-  const articles = await Promise.all(approvedArticlePaths.map(
+  const articles = await Promise.all(articleContract.included.map(
     (sourcePath) => makeRecord(sourceDirectory, sourcePath),
   ));
   const missingArticles = articles.filter(({ localPath }) => localPath === null);
@@ -196,9 +223,7 @@ const main = async () => {
   }
 
   const excludedArticleCandidates = await Promise.all(
-    articleCandidates
-      .filter((sourcePath) => !approvedArticlePaths.includes(sourcePath))
-      .map((sourcePath) => makeRecord(sourceDirectory, sourcePath)),
+    articleContract.excluded.map((sourcePath) => makeRecord(sourceDirectory, sourcePath)),
   );
 
   const services = await Promise.all(servicePaths.map(
@@ -211,9 +236,10 @@ const main = async () => {
     );
   }
 
-  const allIconMedia = sortedUnique(icons.flatMap(({ mediaUrls }) => mediaUrls));
+  const allIconMediaUrls = uniqueMediaUrls(icons);
+  const iconOriginalMediaUrls = uniqueMediaUrls(icons, 'original');
   const inventory = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     source: {
       siteUrl: sourceSite,
       archiveName: path.basename(sourceDirectory),
@@ -223,15 +249,17 @@ const main = async () => {
       catalogLinks: catalogCards.length,
       localIconPages: presentIcons.length,
       missingIconPages: missingIconPages.length,
-      iconMediaUrls: allIconMedia.length,
-      iconOriginalMediaUrls: allIconMedia.filter(
-        (url) => /\/t\/original\/|files\.cargocollective\.com|\/uploads\//iu.test(url),
-      ).length,
+      iconMediaUrls: allIconMediaUrls.length,
+      iconOriginalMediaUrls: iconOriginalMediaUrls.length,
+      iconPageMediaUrls: uniqueMediaUrls(icons, 'page-media').length,
+      iconThumbnailMediaUrls: uniqueMediaUrls(icons, 'thumbnail').length,
+      iconRecoveryRequired: recoveryRequiredIconPaths.length,
+      unpublishedIcons: icons.filter(({ publicationStatus }) => publicationStatus === 'unpublished').length,
       articleLinks: articles.length,
-      articleMediaUrls: countUniqueMedia(articles),
+      articleMediaUrls: uniqueMediaUrls(articles).length,
       excludedArticleLinks: excludedArticleCandidates.length,
       servicePages: services.length,
-      serviceMediaUrls: countUniqueMedia(services),
+      serviceMediaUrls: uniqueMediaUrls(services).length,
     },
     icons,
     missingIconPages,
