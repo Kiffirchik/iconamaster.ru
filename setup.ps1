@@ -226,10 +226,17 @@ function Test-ProjectMetadata {
         throw "Missing project metadata: $lockPath"
     }
 
-    Add-Type -AssemblyName System.Web.Extensions
-    $serializer = New-Object System.Web.Script.Serialization.JavaScriptSerializer
-    $package = $serializer.DeserializeObject((Get-Content -Raw -LiteralPath $packagePath))
-    $lock = $serializer.DeserializeObject((Get-Content -Raw -LiteralPath $lockPath))
+    $packageJson = Get-Content -Raw -LiteralPath $packagePath
+    $lockJson = Get-Content -Raw -LiteralPath $lockPath
+    if ($PSVersionTable.PSVersion.Major -ge 6) {
+        $package = $packageJson | ConvertFrom-Json -AsHashtable
+        $lock = $lockJson | ConvertFrom-Json -AsHashtable
+    } else {
+        Add-Type -AssemblyName System.Web.Extensions
+        $serializer = New-Object System.Web.Script.Serialization.JavaScriptSerializer
+        $package = $serializer.DeserializeObject($packageJson)
+        $lock = $serializer.DeserializeObject($lockJson)
+    }
     $rootPackage = $lock['packages']['']
     if ($null -eq $rootPackage) {
         throw 'package-lock.json is missing its root package metadata.'

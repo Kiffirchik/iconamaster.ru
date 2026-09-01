@@ -14,6 +14,13 @@ const powershell = path.join(
   'v1.0',
   'powershell.exe',
 );
+const pwshProbe = spawnSync(
+  'pwsh.exe',
+  ['-NoProfile', '-Command', '$PSVersionTable.PSVersion.ToString()'],
+  { cwd: root, encoding: 'utf8', windowsHide: true },
+);
+const pwshVersion = pwshProbe.status === 0 ? pwshProbe.stdout.trim() : null;
+const pwsh = Number.parseInt(pwshVersion?.split('.')[0] ?? '', 10) >= 7 ? 'pwsh.exe' : null;
 const setupPath = path.join(root, 'setup.ps1');
 const setup = psLiteral(setupPath);
 
@@ -21,12 +28,16 @@ function psLiteral(value) {
   return `'${value.replaceAll("'", "''")}'`;
 }
 
-function runPowerShell(command) {
+function runShell(shell, command) {
   return spawnSync(
-    powershell,
+    shell,
     ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', command],
     { cwd: root, encoding: 'utf8', windowsHide: true },
   );
+}
+
+function runPowerShell(command) {
+  return runShell(powershell, command);
 }
 
 function runSetupFile(arguments_) {
@@ -64,17 +75,23 @@ test('accepts only the declared Node and npm version policies', () => {
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
 });
 
-test('validates matching package metadata and lockfile version 3', (t) => {
-  const valid = createMetadataFixture(t);
-  const mismatched = createMetadataFixture(t, { lockName: 'other-project' });
-  const oldLockfile = createMetadataFixture(t, { lockfileVersion: 2 });
-  const result = runPowerShell(`. ${setup};
-    Test-ProjectMetadata -Root ${psLiteral(valid)}
-    try { Test-ProjectMetadata -Root ${psLiteral(mismatched)}; exit 21 } catch {}
-    try { Test-ProjectMetadata -Root ${psLiteral(oldLockfile)}; exit 22 } catch {}
-    exit 0`);
-  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
-});
+for (const shell of [
+  { name: 'Windows PowerShell 5.1', executable: powershell, version: '5.1' },
+  { name: 'PowerShell 7+', executable: pwsh, version: pwshVersion },
+]) {
+  test(`validates exact package metadata in ${shell.name}`, { skip: !shell.executable }, (t) => {
+    t.diagnostic(`exercising PowerShell ${shell.version}`);
+    const valid = createMetadataFixture(t);
+    const mismatched = createMetadataFixture(t, { lockName: 'other-project' });
+    const oldLockfile = createMetadataFixture(t, { lockfileVersion: 2 });
+    const result = runShell(shell.executable, `. ${setup};
+      Test-ProjectMetadata -Root ${psLiteral(valid)}
+      try { Test-ProjectMetadata -Root ${psLiteral(mismatched)}; exit 21 } catch {}
+      try { Test-ProjectMetadata -Root ${psLiteral(oldLockfile)}; exit 22 } catch {}
+      exit 0`);
+    assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  });
+}
 
 test('derives core readiness from real version policies and command results', () => {
   const result = runPowerShell(`. ${setup};
