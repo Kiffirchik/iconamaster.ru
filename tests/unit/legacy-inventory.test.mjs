@@ -4,6 +4,7 @@ import test from 'node:test';
 
 import {
   extractEmbeddedPage,
+  extractIconCopy,
   extractLinks,
   extractLinkedCards,
   extractMediaEntries,
@@ -136,6 +137,46 @@ test('extracts decoded title text and repairs only its mojibake segment', async 
     extractTitle(await fixture('icon.html')),
     'Реставрация & иконы - iconamaster',
   );
+});
+
+test('extracts an icon price and normalized description from the second product column', () => {
+  const html = `
+    <bodycopy>
+      <div class="page_content">
+        <div grid-row>
+          <div grid-col="x11"><div class="image-gallery"><img src="/icon.jpg"></div></div>
+          <div grid-col="x11" class="">
+            <h1></h1><b>Икона благоверного царя Иоанна Грозного.<br></b>
+            150 000 руб.<br>
+            31х27 см., в профильном киоте с открывающейся дверкой из массива дуба 45х40 см.,
+            доска липа с двумя&nbsp; ковчегами&nbsp; и двумя врезными шпонками.<br>
+            <a href="/contact-form/">Узнать подробнее об иконе.</a>
+          </div>
+        </div>
+      </div>
+    </bodycopy>
+  `;
+
+  assert.deepEqual(extractIconCopy(html), {
+    price: '150 000 руб.',
+    description: '31х27 см., в профильном киоте с открывающейся дверкой из массива дуба 45х40 см., доска липа с двумя ковчегами и двумя врезными шпонками.',
+  });
+});
+
+test('keeps period and dimensions listed between the icon title and price', () => {
+  const html = `
+    <div class="page_content"><div grid-row>
+      <div grid-col="x11"><div class="image-gallery"></div></div>
+      <div grid-col="x11"><b>Старинная икона Богородица Купина Неопалимая.</b><br>
+        19 век. Мстера.<br>31х27 см.<br>300 000 руб.<br>
+      </div>
+    </div></div>
+  `;
+
+  assert.deepEqual(extractIconCopy(html), {
+    price: '300 000 руб.',
+    description: '19 век. Мстера. 31х27 см.',
+  });
 });
 
 test('extracts the requested page from embedded Cargo scaffolding JSON', async () => {

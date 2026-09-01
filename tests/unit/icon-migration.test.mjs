@@ -53,6 +53,17 @@ test('catalog migration contains all 50 source records and no duplicate slugs', 
   assert.equal(new Set(icons.map(({ slug }) => slug)).size, 50);
 });
 
+test('migrated icon content preserves the original listed price and description', async () => {
+  const icons = await loadJson('../../public/content/icons.json');
+  const tsarIvan = icons.find(({ slug }) => slug === 'tsar-ivan-the-terrible');
+
+  assert.equal(tsarIvan.price, '150 000 руб.');
+  assert.equal(
+    tsarIvan.description,
+    '31х27 см., в профильном киоте с открывающейся дверкой из массива дуба 45х40 см., доска липа с двумя ковчегами и двумя врезными шпонками, холст, натуральный левкас, настоящая минеральная яичная темпера, червонное золото сусальное и твореное, копаловый лак. Икона писана в одном экземпляре, высокохудожественная ручная авторская работа.',
+  );
+});
+
 test('asset failures are fatal except for unverified candidates on recovery-required records', async () => {
   const { migrateCandidates } = await import('../../scripts/migrate-icons.mjs');
   const verified = { verified: { file: 'immutable-original.jpg' }, sourceUrl: 'https://example.test/original.jpg' };

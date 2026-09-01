@@ -254,3 +254,111 @@ export const extractTitle = (html) => {
   const text = decodeHtmlEntities(match[1].replace(/<[^>]+>/gu, ' '));
   return repairMojibake(text).replace(/\s+/gu, ' ').trim();
 };
+
+const extractDivAt = (html, openingIndex) => {
+  const tags = /<\/?div\b[^>]*>/giu;
+  tags.lastIndex = openingIndex;
+  let depth = 0;
+  let openingEnd = -1;
+
+  for (const match of html.matchAll(tags)) {
+    const closing = /^<\//u.test(match[0]);
+    if (!closing) {
+      depth += 1;
+      if (openingEnd < 0) openingEnd = match.index + match[0].length;
+      continue;
+    }
+    depth -= 1;
+    if (depth === 0) {
+      return {
+        opening: html.slice(openingIndex, openingEnd),
+        inner: html.slice(openingEnd, match.index),
+      };
+    }
+  }
+
+  return null;
+};
+
+const visibleText = (html) => repairMojibake(decodeHtmlEntities(html
+  .replace(/<!--[\s\S]*?-->/gu, ' ')
+  .replace(/<(?:script|style|svg)\b[^>]*>[\s\S]*?<\/(?:script|style|svg)>/giu, ' ')
+  .replace(/<a\b[^>]*href\s*=\s*(["'])[^"']*contact-form[^"']*\1[^>]*>[\s\S]*?<\/a>/giu, ' ')
+  .replace(/<br\b[^>]*>/giu, '\n')
+  .replace(/<\/(?:div|p|h[1-6]|li)>/giu, '\n')
+  .replace(/<[^>]+>/gu, ' ')))
+  .replace(/\u00a0/gu, ' ')
+  .replace(/[\t ]+/gu, ' ')
+  .replace(/ *\n */gu, '\n')
+  .replace(/\n{2,}/gu, '\n')
+  .trim();
+
+const listedPrice = (text) => {
+  const match = text.match(/(?:цена\s*:?\s*)?(\d{1,3}(?:[ \u00a0]\d{3})+|\d+)\s*(?:руб(?:\.|лей|ля)?|р\.)/iu);
+  if (!match) return null;
+  return {
+    index: match.index,
+    length: match[0].length,
+    value: `${match[1].replace(/\s+/gu, ' ')} руб.`,
+  };
+};
+
+const metadataBeforePrice = (text) => {
+  const [firstLine = '', ...remainingLines] = text
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean);
+  let firstLineDetails = '';
+  const titleSentenceEnd = firstLine.indexOf('.');
+  if (titleSentenceEnd >= 0) {
+    firstLineDetails = firstLine.slice(titleSentenceEnd + 1).trim();
+  } else {
+    const metadataIndex = firstLine.search(/\b(?:\d{1,3}\s*[хx×]\s*\d{1,3}|\d{1,2}\s*(?:век|в\.)|продан[ао]?)\b/iu);
+    if (metadataIndex > 0) firstLineDetails = firstLine.slice(metadataIndex).trim();
+  }
+  return [firstLineDetails, ...remainingLines].filter(Boolean).join(' ');
+};
+
+export const extractIconCopy = (html) => {
+  const pageOpenings = [...html.matchAll(
+    /<div\b[^>]*\bclass\s*=\s*(["'])[^"']*\bpage_content\b[^"']*\1[^>]*>/giu,
+  )];
+  let productColumn = null;
+
+  for (const pageOpening of pageOpenings) {
+    const page = extractDivAt(html, pageOpening.index);
+    const rowMatch = page?.inner.match(/<div\b[^>]*\bgrid-row\b[^>]*>/iu);
+    const row = rowMatch ? extractDivAt(page.inner, rowMatch.index) : null;
+    const columnOpenings = row ? [...row.inner.matchAll(/<div\b[^>]*\bgrid-col\b[^>]*>/giu)] : [];
+    const imageColumn = columnOpenings[0]
+      ? extractDivAt(row.inner, columnOpenings[0].index)?.inner
+      : null;
+    const copyColumn = columnOpenings[1]
+      ? extractDivAt(row.inner, columnOpenings[1].index)?.inner
+      : null;
+    if (imageColumn && copyColumn && /\bimage-gallery\b|<img\b/iu.test(imageColumn)) {
+      productColumn = copyColumn;
+      break;
+    }
+  }
+  if (!productColumn) return { price: null, description: '' };
+
+  const text = visibleText(productColumn);
+  const price = listedPrice(text);
+  let description = price
+    ? [metadataBeforePrice(text.slice(0, price.index)), text.slice(price.index + price.length)]
+      .filter(Boolean)
+      .join('\n')
+    : visibleText(productColumn.replace(
+      /<(?:b|strong)\b[^>]*>[\s\S]*?<\/(?:b|strong)>/iu,
+      ' ',
+    ));
+  description = description
+    .split('\n')
+    .filter((line) => !/^узнать подробнее об иконе\.?$/iu.test(line.trim()))
+    .join(' ')
+    .replace(/\s+/gu, ' ')
+    .trim();
+
+  return { price: price?.value ?? null, description };
+};
