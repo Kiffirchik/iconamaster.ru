@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
@@ -58,6 +59,30 @@ function createMetadataFixture(t, { lockName = 'fixture-project', lockfileVersio
     packages: { '': { name: lockName } },
   }));
   return fixture;
+}
+
+function createMigrationFixture(t) {
+  const fixture = createMetadataFixture(t);
+  const binary = path.join(fixture, 'ffmpeg.exe');
+  const fixturePath = path.join(
+    fixture,
+    'tests',
+    'fixtures',
+    'migration',
+    'editorial-cover-assets.json',
+  );
+  const contents = Buffer.from('controlled ffmpeg fixture\n', 'utf8');
+  const versionLine = 'ffmpeg version pinned-test-build';
+  writeFileSync(binary, contents);
+  mkdirSync(path.dirname(fixturePath), { recursive: true });
+  writeFileSync(fixturePath, JSON.stringify({
+    encoder: {
+      command: 'ffmpeg',
+      binarySha256: createHash('sha256').update(contents).digest('hex'),
+      versionLine,
+    },
+  }));
+  return { fixture, fixturePath, binary, versionLine };
 }
 
 test('accepts only the declared Node and npm version policies', () => {
@@ -220,6 +245,171 @@ test('default setup stops before verify when portability fails', (t) => {
     'npm|ci',
     'npm|run|check:portability',
   ]);
+});
+
+test('deployment mode requires ssh scp and tar as a separate tool group', () => {
+  const result = runPowerShell(`. ${setup};
+    $resolver = { param($Name) if ($Name -in @('ssh','tar')) { [pscustomobject]@{ Source=$Name } } }
+    $state = Get-DeploymentToolState $resolver
+    if (($state | Where-Object Name -eq 'scp').Ready) { exit 21 }
+    if (-not ($state | Where-Object Name -eq 'ssh').Ready) { exit 22 }
+    if (-not ($state | Where-Object Name -eq 'tar').Ready) { exit 23 }`);
+  assert.equal(result.status, 0, result.stderr);
+});
+
+test('migration mode rejects checksum and version drift', () => {
+  const result = runPowerShell(`. ${setup};
+    $expected = [pscustomobject]@{ binarySha256='${'a'.repeat(64)}'; versionLine='ffmpeg version pinned' }
+    $actual = [pscustomobject]@{ binarySha256='${'b'.repeat(64)}'; versionLine='ffmpeg version other' }
+    $state = Compare-FfmpegIdentity -Expected $expected -Actual $actual
+    if ($state.Ready) { exit 24 }
+    if ($state.Reasons.Count -ne 2) { exit 25 }`);
+  assert.equal(result.status, 0, result.stderr);
+});
+
+test('migration toolchain requires the exact fixture hash and first version line', (t) => {
+  const migration = createMigrationFixture(t);
+  const result = runPowerShell(`. ${setup};
+    $script:IconamasterProjectRoot = ${psLiteral(migration.fixture)}
+    $resolver = {
+      param($Name)
+      if ($Name -eq 'ffmpeg') { [pscustomobject]@{ Source=${psLiteral(migration.binary)} } }
+    }
+    $runner = {
+      param($File, $Arguments)
+      if ($File -ne ${psLiteral(migration.binary)}) { return 81 }
+      if (($Arguments -join ' ') -ne '-version') { return 82 }
+      ${psLiteral(migration.versionLine)}
+      'configuration: ignored second line'
+      return 0
+    }
+    $state = Test-MigrationToolchain $resolver $runner
+    if (-not $state.Ready) { exit 26 }
+    if ($state.Reasons.Count -ne 0) { exit 27 }
+    if ($state.Fixture -ne ${psLiteral(migration.fixturePath)}) { exit 28 }`);
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+});
+
+test('requested optional checks finish before npm ci', (t) => {
+  const migration = createMigrationFixture(t);
+  const transcript = path.join(migration.fixture, 'optional-transcript.txt');
+  const result = runPowerShell(`. ${setup};
+    $script:IconamasterProjectRoot = ${psLiteral(migration.fixture)}
+    $resolver = {
+      param($Name)
+      Add-Content -LiteralPath ${psLiteral(transcript)} -Value ('resolve|' + $Name)
+      if ($Name -eq 'ffmpeg') { return [pscustomobject]@{ Source=${psLiteral(migration.binary)} } }
+      return [pscustomobject]@{ Source=$Name }
+    }
+    $runner = {
+      param($File, $Arguments)
+      Add-Content -LiteralPath ${psLiteral(transcript)} -Value ('run|' + $File + '|' + ($Arguments -join '|'))
+      if ($Arguments -eq '--version') {
+        if ($File -eq 'git') { 'git version 2.46.0'; return 0 }
+        if ($File -eq 'node') { 'v20.19.0'; return 0 }
+        if ($File -eq 'npm') { '10.8.2'; return 0 }
+      }
+      if ($File -eq ${psLiteral(migration.binary)} -and $Arguments -eq '-version') {
+        ${psLiteral(migration.versionLine)}
+        return 0
+      }
+      return 0
+    }
+    $code = @(Invoke-IconamasterSetup -ForDeployment -ForMigration -ProjectRoot ${psLiteral(migration.fixture)} -Resolver $resolver -Runner $runner)
+    if ($code.Count -ne 1 -or $code[0] -ne 0) { exit 29 }`);
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  const lines = readFileSync(transcript, 'utf8').trim().split(/\r?\n/u);
+  const npmCi = lines.indexOf('run|npm|ci');
+  for (const optionalEvent of [
+    'resolve|ssh',
+    'resolve|scp',
+    'resolve|tar',
+    `run|${migration.binary}|-version`,
+  ]) {
+    const optionalIndex = lines.indexOf(optionalEvent);
+    assert.notEqual(optionalIndex, -1, `missing transcript event: ${optionalEvent}`);
+    assert.ok(optionalIndex < npmCi, `${optionalEvent} must precede npm ci`);
+  }
+});
+
+test('missing deployment tools fail with safe Windows remedies without running them', (t) => {
+  const fixture = createMetadataFixture(t);
+  const transcript = path.join(fixture, 'deployment-failure-transcript.txt');
+  const result = runPowerShell(`. ${setup};
+    $resolver = {
+      param($Name)
+      if ($Name -in @('git', 'node', 'npm', 'ssh')) { [pscustomobject]@{ Source=$Name } }
+    }
+    $runner = {
+      param($File, $Arguments)
+      Add-Content -LiteralPath ${psLiteral(transcript)} -Value ($File + '|' + ($Arguments -join '|'))
+      if ($Arguments -eq '--version') {
+        if ($File -eq 'git') { 'git version 2.46.0'; return 0 }
+        if ($File -eq 'node') { 'v20.19.0'; return 0 }
+        if ($File -eq 'npm') { '10.8.2'; return 0 }
+      }
+      return 0
+    }
+    try {
+      $null = Invoke-IconamasterSetup -CheckOnly -ForDeployment -ProjectRoot ${psLiteral(fixture)} -Resolver $resolver -Runner $runner
+      exit 41
+    } catch {
+      Write-Output $_.Exception.Message
+    }`);
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  assert.match(result.stdout, /OpenSSH Client: Settings > System > Optional features > Add an optional feature > OpenSSH Client/u);
+  assert.match(result.stdout, /tar: install or repair the Windows BSD tar component, then reopen PowerShell/u);
+  assert.deepEqual(readFileSync(transcript, 'utf8').trim().split(/\r?\n/u), [
+    'git|--version',
+    'node|--version',
+    'npm|--version',
+  ]);
+});
+
+test('migration failure reports only the fixture and mismatch kinds', (t) => {
+  const migration = createMigrationFixture(t);
+  const expectedHash = 'a'.repeat(64);
+  const expectedVersion = 'ffmpeg version expected-secret-identity';
+  writeFileSync(migration.fixturePath, JSON.stringify({
+    encoder: {
+      command: 'ffmpeg',
+      binarySha256: expectedHash,
+      versionLine: expectedVersion,
+    },
+  }));
+  const result = runPowerShell(`. ${setup};
+    $script:IconamasterProjectRoot = ${psLiteral(migration.fixture)}
+    $resolver = {
+      param($Name)
+      if ($Name -eq 'ffmpeg') { return [pscustomobject]@{ Source=${psLiteral(migration.binary)} } }
+      return [pscustomobject]@{ Source=$Name }
+    }
+    $runner = {
+      param($File, $Arguments)
+      if ($Arguments -eq '--version') {
+        if ($File -eq 'git') { 'git version 2.46.0'; return 0 }
+        if ($File -eq 'node') { 'v20.19.0'; return 0 }
+        if ($File -eq 'npm') { '10.8.2'; return 0 }
+      }
+      if ($File -eq ${psLiteral(migration.binary)} -and $Arguments -eq '-version') {
+        ${psLiteral(migration.versionLine)}
+        return 0
+      }
+      return 0
+    }
+    try {
+      $null = Invoke-IconamasterSetup -CheckOnly -ForMigration -ProjectRoot ${psLiteral(migration.fixture)} -Resolver $resolver -Runner $runner
+      exit 42
+    } catch {
+      Write-Output $_.Exception.Message
+    }`);
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  assert.ok(result.stdout.includes(migration.fixturePath));
+  assert.match(result.stdout, /Mismatch: checksum, version\./u);
+  assert.ok(!result.stdout.includes(expectedHash));
+  assert.ok(!result.stdout.includes(expectedVersion));
+  assert.ok(!result.stdout.includes(migration.versionLine));
+  assert.ok(!result.stdout.includes(migration.binary));
 });
 
 test('package metadata declares the supported runtime versions', () => {

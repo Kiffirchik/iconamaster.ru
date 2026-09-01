@@ -158,6 +158,99 @@ function Get-CoreToolchainState {
     }
 }
 
+function Get-DeploymentToolState {
+    param([scriptblock]$Resolver)
+
+    if ($null -eq $Resolver) {
+        $Resolver = { param($Name) Resolve-SetupCommand $Name }
+    }
+
+    foreach ($name in @('ssh', 'scp', 'tar')) {
+        $command = & $Resolver $name
+        $found = $null
+        if ($null -ne $command) {
+            $found = Get-SetupCommandSource -Command $command -Fallback $name
+        }
+
+        [pscustomobject]@{
+            Name = $name
+            Ready = $null -ne $command
+            Found = $found
+            Required = 'installed'
+        }
+    }
+}
+
+function Compare-FfmpegIdentity {
+    param(
+        [Parameter(Mandatory)]$Expected,
+        [Parameter(Mandatory)]$Actual
+    )
+
+    $expectedHash = ([string]$Expected.binarySha256).ToLowerInvariant()
+    $actualHash = ([string]$Actual.binarySha256).ToLowerInvariant()
+    $reasons = @()
+    if ($expectedHash -cne $actualHash) {
+        $reasons += 'checksum'
+    }
+    if ([string]$Expected.versionLine -cne [string]$Actual.versionLine) {
+        $reasons += 'version'
+    }
+
+    return [pscustomobject]@{
+        Ready = $reasons.Count -eq 0
+        Reasons = $reasons
+    }
+}
+
+function Test-MigrationToolchain {
+    param(
+        [scriptblock]$Resolver,
+        [scriptblock]$Runner
+    )
+
+    if ($null -eq $Resolver) {
+        $Resolver = { param($Name) Resolve-SetupCommand $Name }
+    }
+    if ($null -eq $Runner) {
+        $Runner = { param($File, $Arguments) Invoke-SetupCommand -File $File -Arguments $Arguments }
+    }
+
+    $fixturePath = Join-Path $script:IconamasterProjectRoot 'tests/fixtures/migration/editorial-cover-assets.json'
+    $fixture = Get-Content -Raw -LiteralPath $fixturePath | ConvertFrom-Json
+    $command = & $Resolver 'ffmpeg'
+    if ($null -eq $command) {
+        return [pscustomobject]@{
+            Ready = $false
+            Fixture = $fixturePath
+            Reasons = @('missing')
+        }
+    }
+
+    $source = Get-SetupCommandSource -Command $command -Fallback 'ffmpeg'
+    if ($null -eq (Get-Command Get-FileHash -ErrorAction SilentlyContinue)) {
+        $utilityModule = Join-Path $PSHOME 'Modules/Microsoft.PowerShell.Utility/Microsoft.PowerShell.Utility.psd1'
+        Import-Module -Name $utilityModule -Force
+    }
+    $hash = (Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash.ToLowerInvariant()
+    $result = Invoke-SetupCommandResult -Runner $Runner -File $source -Arguments @('-version')
+    $versionLine = $null
+    if ($result.Output.Count -gt 0) {
+        $versionLine = [string]$result.Output[0]
+    }
+    $actual = [pscustomobject]@{
+        binarySha256 = $hash
+        versionLine = $versionLine
+    }
+    $comparison = Compare-FfmpegIdentity -Expected $fixture.encoder -Actual $actual
+
+    return [pscustomobject]@{
+        Ready = $result.ExitCode -eq 0 -and $comparison.Ready
+        Fixture = $fixturePath
+        Reasons = @($comparison.Reasons)
+    }
+}
+
 function Install-CorePrerequisites {
     param(
         [Parameter(Mandatory)][object[]]$State,
@@ -319,6 +412,28 @@ function Invoke-IconamasterSetup {
     }
 
     Test-ProjectMetadata -Root $ProjectRoot
+    if ($ForDeployment) {
+        $deploymentState = @(Get-DeploymentToolState -Resolver $Resolver)
+        $missingDeploymentTools = @($deploymentState | Where-Object { -not $_.Ready })
+        if ($missingDeploymentTools.Count -gt 0) {
+            $remedies = @()
+            if (@($missingDeploymentTools | Where-Object Name -in @('ssh', 'scp')).Count -gt 0) {
+                $remedies += 'OpenSSH Client: Settings > System > Optional features > Add an optional feature > OpenSSH Client'
+            }
+            if (@($missingDeploymentTools | Where-Object Name -eq 'tar').Count -gt 0) {
+                $remedies += 'tar: install or repair the Windows BSD tar component, then reopen PowerShell'
+            }
+            throw ($remedies -join [Environment]::NewLine)
+        }
+    }
+    if ($ForMigration) {
+        $migrationState = Test-MigrationToolchain -Resolver $Resolver -Runner $Runner
+        if (-not $migrationState.Ready) {
+            $mismatchKinds = @($migrationState.Reasons) -join ', '
+            throw "FFmpeg migration toolchain is not ready. Fixture: $($migrationState.Fixture). Mismatch: $mismatchKinds."
+        }
+    }
+
     $nodeCommand = [string]($state | Where-Object Name -eq 'node').Command
     $npmCommand = [string]($state | Where-Object Name -eq 'npm').Command
     $previousLocation = (Get-Location).Path
