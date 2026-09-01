@@ -48,8 +48,8 @@ test('preserves the portrait rotation applied to two iconostasis photographs in 
   const articles = JSON.parse(await readFile(articlesUrl, 'utf8'));
   const article = articles.find((candidate) => candidate.slug === 'georgievsky-church-iconostasis');
   const expected = [
-    ['/assets/articles/dzen/georgievsky-church-iconostasis-5.jpg', 1070, 1429],
-    ['/assets/articles/dzen/georgievsky-church-iconostasis-6.jpg', 815, 1088],
+    ['/assets/articles/dzen/georgievsky-church-iconostasis-5-upright.jpg', 1070, 1429],
+    ['/assets/articles/dzen/georgievsky-church-iconostasis-6-upright.jpg', 815, 1088],
   ];
 
   for (const [src, width, height] of expected) {
