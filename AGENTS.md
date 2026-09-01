@@ -16,3 +16,4 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - WhatsApp is primary; phone and email remain visible alternatives.
 - Requested production changes are published directly to `https://iconamaster.ru` on MTW with a rollback copy preserved.
 - Do not publish subsequent changes to Sites unless the user explicitly requests it.
+- Before every MTW production deployment, commit and push the exact verified source to `https://github.com/Kiffirchik/iconamaster.ru`; deploy only after that push succeeds.
