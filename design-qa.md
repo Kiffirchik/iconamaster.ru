@@ -12,11 +12,11 @@ No changes were made to the production domain `iconamaster.ru`.
 
 ## Sources
 
-- Approved visual direction: `C:\Users\user\.codex\generated_images\019fec29-67ec-7ff3-9884-3c8cc048e433\exec-f20c3f02-cb65-4f66-a8be-01f9b47fa03d.png`.
+- Approved visual direction: external generated design reference (not stored in the repository).
 - Exact immutable source used for the homepage icon: `public/assets/icons/archangel-michael.jpg`.
-- Public desktop QA capture (1425 × 990 raster): `C:\Users\user\.codex\visualizations\2026\08\10\019fec29-67ec-7ff3-9884-3c8cc048e433\iconamaster-public-home-final.png`.
-- Approved-reference/final same-viewport comparison (two 1425 × 990 panels): `C:\Users\user\.codex\visualizations\2026\08\10\019fec29-67ec-7ff3-9884-3c8cc048e433\iconamaster-reference-final-same-viewport.png`.
-- Public mobile-menu documentary capture (375 × 812 effective browser content area): `C:\Users\user\.codex\visualizations\2026\08\10\019fec29-67ec-7ff3-9884-3c8cc048e433\iconamaster-public-mobile-menu-v7.png`.
+- Public desktop QA capture (1425 × 990 raster): ephemeral local QA capture (not stored in the repository).
+- Approved-reference/final same-viewport comparison (two 1425 × 990 panels): ephemeral local QA capture (not stored in the repository).
+- Public mobile-menu documentary capture (375 × 812 effective browser content area): ephemeral local QA capture (not stored in the repository).
 
 ## Tested screens and viewports
 

@@ -66,8 +66,8 @@ test('repository ignores the Corona credential file by exact name', async () => 
 Run: `node --test premium-prototype/tests/unit/corona-ops.test.mjs`
 Expected: PASS.
 
-Run: `git check-ignore -v -- "C:/Users/user/Documents/ChatGPT/Iconamaster/new admid creds.txt"`
-Expected: output identifies the new exact `.gitignore` rule.
+Run: `git check-ignore -v -- "<workspace>\new admid creds.txt"`
+Expected: output identifies the new exact `.gitignore` rule. The credential file remains outside Git.
 
 - [ ] **Step 3: Create a read-only remote audit**
 

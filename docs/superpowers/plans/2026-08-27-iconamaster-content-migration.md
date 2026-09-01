@@ -461,7 +461,7 @@ Add these scripts:
 Run:
 
 ```powershell
-npm run migrate:inventory -- --source "C:\Users\user\Documents\ChatGPT\Iconamaster\backups\pre-optimized-publish-20260818"
+npm run migrate:inventory -- --source "<legacy-backup>"
 ```
 
 Expected: `tmp/migration-inventory.json` reports 50 catalog links, 46 locally present icon pages, eight article links, the agreed service pages and the known image counts. It separately lists the four icon pages absent from the local backup.
@@ -530,7 +530,7 @@ Each `legacy-icon-map.mjs` entry contains `legacyPath`, `slug`, `type`, `period`
 Run:
 
 ```powershell
-node scripts/migrate-icons.mjs --source "C:\Users\user\Documents\ChatGPT\Iconamaster\backups\pre-optimized-publish-20260818" --inventory tmp/migration-inventory.json
+node scripts/migrate-icons.mjs --source "<legacy-backup>" --inventory tmp/migration-inventory.json
 ```
 
 For the four locally missing pages, retrieve originals from the public Iconamaster/Cargo source during execution, record their source URL, and rerun the script. If no original is available, keep the record with `published: false` and an empty image array; the frontend must not reserve a card or image slot.
@@ -607,7 +607,7 @@ Drop an `image` block when its source cannot be recovered. Drop a `gallery` bloc
 Run:
 
 ```powershell
-node scripts/migrate-editorial-content.mjs --source "C:\Users\user\Documents\ChatGPT\Iconamaster\backups\pre-optimized-publish-20260818" --inventory tmp/migration-inventory.json
+node scripts/migrate-editorial-content.mjs --source "<legacy-backup>" --inventory tmp/migration-inventory.json
 ```
 
 Expected: seven service records, eight articles, two videos, canonical contacts, zero unresolved mojibake markers, and source URLs for every record.
