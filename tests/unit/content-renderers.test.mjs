@@ -14,15 +14,17 @@ async function rendererModules(context) {
   });
   context.after(() => server.close());
 
-  const [sections, video, articles, videoPage, contacts] = await Promise.all([
+  const [sections, video, articles, article, videoPage, contacts, home] = await Promise.all([
     server.ssrLoadModule('/src/components/ContentSections.jsx'),
     server.ssrLoadModule('/src/components/VideoEmbed.jsx'),
     server.ssrLoadModule('/src/pages/ArticlesPage.jsx'),
+    server.ssrLoadModule('/src/pages/ArticlePage.jsx'),
     server.ssrLoadModule('/src/pages/VideoPage.jsx'),
-    server.ssrLoadModule('/src/pages/ContactsPage.jsx')
+    server.ssrLoadModule('/src/pages/ContactsPage.jsx'),
+    server.ssrLoadModule('/src/pages/HomePage.jsx')
   ]);
 
-  return { ...sections, ...video, ...articles, ...videoPage, ...contacts };
+  return { ...sections, ...video, ...articles, ...article, ...videoPage, ...contacts, ...home };
 }
 
 function renderAfterImageError(ImageComponent, props) {
@@ -107,4 +109,48 @@ test('ContactsPage builds links from the supplied contact bundle', async (contex
   assert.match(markup, /href="https:\/\/wa\.me\/79990001122"/);
   assert.match(markup, /href="tel:\+79990001122"/);
   assert.match(markup, /href="mailto:atelier@example\.test"/);
+});
+
+test('HomePage presents the two featured workshop stories as internal article links', async (context) => {
+  const { HomePage } = await rendererModules(context);
+  const articles = [
+    {
+      slug: 'restoration-murals-cleaning',
+      title: 'Расчистка настенных храмовых росписей',
+      summary: 'Бережная расчистка храмовой стенописи.',
+      published: true,
+      image: { src: '/assets/articles/murals.jpg', alt: 'Храмовые росписи', width: 1200, height: 800 },
+    },
+    {
+      slug: 'georgievsky-church-iconostasis',
+      title: 'Иконостас Георгиевского храма в Зеленограде',
+      summary: 'Большой проект иконописной мастерской.',
+      published: true,
+      image: { src: '/assets/articles/iconostasis.jpg', alt: 'Иконостас', width: 1200, height: 800 },
+    },
+  ];
+
+  const markup = renderToStaticMarkup(createElement(HomePage, { icons: [], articles, onNavigate() {} }));
+
+  assert.match(markup, /Избранные материалы/);
+  assert.match(markup, /href="\/articles\/restoration-murals-cleaning"/);
+  assert.match(markup, /href="\/articles\/georgievsky-church-iconostasis"/);
+  assert.equal((markup.match(/class="home-story-card"/g) ?? []).length, 2);
+});
+
+test('ArticlePage identifies a Dzen source without replacing the internal reading experience', async (context) => {
+  const { ArticlePage } = await rendererModules(context);
+  const markup = renderToStaticMarkup(createElement(ArticlePage, {
+    article: {
+      title: 'Расчистка настенных храмовых росписей',
+      summary: 'Кейс мастерской.',
+      sourceUrl: 'https://dzen.ru/a/ak_PywErdWEdTZrn',
+      sections: [{ type: 'text', paragraphs: ['Полный материал находится на сайте.'] }],
+    },
+    onNavigate() {},
+  }));
+
+  assert.match(markup, /Полный материал находится на сайте/);
+  assert.match(markup, /href="https:\/\/dzen\.ru\/a\/ak_PywErdWEdTZrn"/);
+  assert.match(markup, /target="_blank"/);
 });

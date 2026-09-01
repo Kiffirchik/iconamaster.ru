@@ -85,7 +85,10 @@ test('editorial migration contains exactly the agreed records and contact policy
     'restoration',
     'workshop',
   ]);
-  assert.deepEqual(articles.map(({ title }) => title), expectedArticleTitles);
+  assert.deepEqual(
+    articles.filter(({ sourceUrl }) => sourceUrl.startsWith('https://iconamaster.cargo.site/')).map(({ title }) => title),
+    expectedArticleTitles,
+  );
   assert.deepEqual(videos.map(({ provider, id }) => `${provider}:${id}`), [
     'youtube:y10sw1KIOqQ',
     'vimeo:353365425',
@@ -102,7 +105,10 @@ test('every approved source path has a root-relative same-tab alias', async () =
     json('../../public/content/articles.json'),
     json('../../public/content/aliases.json'),
   ]);
-  const records = [...pages, ...articles];
+  const records = [
+    ...pages,
+    ...articles.filter(({ sourceUrl }) => sourceUrl.startsWith('https://iconamaster.cargo.site/')),
+  ];
   const recordsByPath = new Map(records.map((record) => [recordPath(record), record]));
 
   assert.deepEqual([...recordsByPath.keys()].toSorted(), [
@@ -148,7 +154,11 @@ test('pages and articles contain only non-empty ordered structured blocks', asyn
 
   for (const record of [...pages, ...articles]) {
     assert.equal(record.published, true, record.slug);
-    assert.ok(record.sourceUrl.startsWith('https://iconamaster.cargo.site/'), record.slug);
+    assert.ok(
+      record.sourceUrl.startsWith('https://iconamaster.cargo.site/')
+        || record.sourceUrl.startsWith('https://dzen.ru/a/'),
+      record.slug,
+    );
     assert.ok(record.sections.length > 0, record.slug);
 
     for (const section of record.sections) {
@@ -204,7 +214,9 @@ test('frozen source ownership fixture matches content, report and original files
   const fixture = JSON.parse(fixtureBytes);
   const records = [
     ...pages.map((record) => ({ ownerType: 'page', ownerSlug: record.slug, record })),
-    ...articles.map((record) => ({ ownerType: 'article', ownerSlug: record.slug, record })),
+    ...articles
+      .filter(({ sourceUrl }) => sourceUrl.startsWith('https://iconamaster.cargo.site/'))
+      .map((record) => ({ ownerType: 'article', ownerSlug: record.slug, record })),
   ];
   const recordsByOwner = new Map(records.map((entry) => [ownerKey(entry), entry.record]));
   const assetsByOwner = new Map(fixture.records.map((entry) => [ownerKey(entry), []]));
@@ -369,7 +381,7 @@ test('article cards use smaller derived covers while full originals and disk bij
   });
   assert.deepEqual(report.coverEncoder, fixture.encoder);
   assert.deepEqual(report.coverAssets, expectedCoverAssets);
-  for (const article of articles) {
+  for (const article of articles.filter(({ sourceUrl }) => sourceUrl.startsWith('https://iconamaster.cargo.site/'))) {
     const cover = coversByOwner.get(article.slug);
     const expected = expectedByOwner.get(article.slug);
     assert.ok(cover, `missing cover for ${article.slug}`);
@@ -404,7 +416,8 @@ test('article cards use smaller derived covers while full originals and disk bij
     ...(await relativeFiles(new URL('../../public/assets/pages/', import.meta.url)))
       .map((file) => `/assets/pages/${file}`),
     ...(await relativeFiles(new URL('../../public/assets/articles/', import.meta.url)))
-      .map((file) => `/assets/articles/${file}`),
+      .map((file) => `/assets/articles/${file}`)
+      .filter((file) => !file.startsWith('/assets/articles/dzen/')),
   ].toSorted();
   const expectedDiskFiles = [
     ...report.assets.map(({ src }) => src),

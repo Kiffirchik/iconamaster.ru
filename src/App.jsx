@@ -31,7 +31,7 @@ export function NotFoundPage({ onNavigate }) {
 }
 
 export function renderReadyRoute(route, bundle, onNavigate) {
-  if (route.name === 'home') return <HomePage icons={bundle.icons} onNavigate={onNavigate} />;
+  if (route.name === 'home') return <HomePage icons={bundle.icons} articles={bundle.articles} onNavigate={onNavigate} />;
   if (route.name === 'collection') return <CollectionPage icons={bundle.icons} onNavigate={onNavigate} />;
   if (route.name === 'icon') {
     return <IconDetailPage icon={findIconBySlug(bundle.icons, route.slug)} icons={bundle.icons} onNavigate={onNavigate} />;

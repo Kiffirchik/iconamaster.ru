@@ -106,6 +106,21 @@ test('integrity validator reports a missing asset and empty image block', () => 
   ]);
 });
 
+test('integrity validator accepts canonical Dzen article sources without relaxing page sources', () => {
+  const article = articleRecord('dzen-story', [{ type: 'text', paragraphs: ['Материал'] }], {
+    sourceUrl: 'https://dzen.ru/a/ak_PywErdWEdTZrn',
+  });
+  const page = pageRecord('dzen-page', [{ type: 'text', paragraphs: ['Материал'] }], {
+    sourceUrl: 'https://dzen.ru/a/ak_PywErdWEdTZrn',
+  });
+  const errors = verifyContent(bundle({ articles: [article], pages: [page] }), new Set([
+    '/assets/articles/dzen-story.jpg',
+  ]));
+
+  assert.doesNotMatch(errors.join('\n'), /article dzen-story field sourceUrl/);
+  assert.ok(errors.includes('page dzen-page field sourceUrl must be an HTTPS iconamaster.cargo.site URL'));
+});
+
 test('integrity validator rejects duplicate slugs and unusable published icon images', () => {
   const errors = verifyContent(bundle({
     icons: [
@@ -465,11 +480,11 @@ test('clean checkout content, aliases, ownership inventories, and local assets p
     icons: 50,
     publishedIcons: 50,
     pages: 7,
-    articles: 8,
+    articles: 10,
     videos: 2,
     aliases: 78,
-    referencedAssets: 258,
-    ownedAssets: 258,
+    referencedAssets: 272,
+    ownedAssets: 272,
   });
 });
 

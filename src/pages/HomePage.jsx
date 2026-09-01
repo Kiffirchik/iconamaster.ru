@@ -1,5 +1,6 @@
 import { IconCard } from '../components/IconCard.jsx';
 import { IconImage } from '../components/IconImage.jsx';
+import { FailureAwareImage } from '../components/FailureAwareImage.jsx';
 import { publishedIcons } from '../content/schema.js';
 import { homeContent } from '../data/home-content.js';
 
@@ -11,11 +12,14 @@ const passportLabels = [
   ['Экспертное заключение', 'expertise']
 ];
 
-export function HomePage({ icons = [], onNavigate }) {
+export function HomePage({ icons = [], articles = [], onNavigate }) {
   const catalogIcons = publishedIcons({ icons });
   const heroIcon = catalogIcons.find((icon) => icon.slug === 'archangel-michael') ?? catalogIcons[0] ?? null;
   const featuredIcons = homeContent.featuredSlugs
     .map((slug) => catalogIcons.find((icon) => icon.slug === slug))
+    .filter(Boolean);
+  const featuredArticles = homeContent.featuredArticleSlugs
+    .map((slug) => articles.find((article) => article.slug === slug && article.published !== false))
     .filter(Boolean);
 
   function follow(event, path) {
@@ -69,6 +73,36 @@ export function HomePage({ icons = [], onNavigate }) {
           {featuredIcons.map((icon) => <IconCard key={icon.slug} icon={icon} onNavigate={onNavigate} />)}
         </div>
       </section>
+
+      {featuredArticles.length ? (
+        <section className="home-section home-stories" aria-labelledby="stories-title">
+          <div className="home-section__heading">
+            <p className="eyebrow">Работы и исследования</p>
+            <h2 id="stories-title">Избранные материалы</h2>
+            <a href="/articles" onClick={(event) => follow(event, '/articles')}>Все статьи</a>
+          </div>
+          <div className="home-stories__grid">
+            {featuredArticles.map((article) => (
+              <article className="home-story-card" key={article.slug}>
+                <a
+                  className="home-story-card__image"
+                  href={`/articles/${article.slug}`}
+                  onClick={(event) => follow(event, `/articles/${article.slug}`)}
+                  aria-label={`Открыть материал «${article.title}»`}
+                >
+                  <FailureAwareImage image={article.image} />
+                </a>
+                <div className="home-story-card__content">
+                  <p className="eyebrow">Материал мастерской</p>
+                  <h3><a href={`/articles/${article.slug}`} onClick={(event) => follow(event, `/articles/${article.slug}`)}>{article.title}</a></h3>
+                  <p>{article.summary}</p>
+                  <a className="home-story-card__more" href={`/articles/${article.slug}`} onClick={(event) => follow(event, `/articles/${article.slug}`)}>Читать материал →</a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section id="atelier" className="home-section home-copy-section" aria-labelledby="atelier-title">
         <p className="eyebrow">Традиционная технология</p>

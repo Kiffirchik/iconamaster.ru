@@ -34,6 +34,11 @@ test('ready routes render their data-backed page components', async (context) =>
     assert.equal(element.type.name, componentName, route.name);
     assert.equal(element.props[propName], propValue, route.name);
   }
+
+  const home = renderReadyRoute({ name: 'home' }, bundle, () => {});
+  assert.equal(home.type.name, 'HomePage');
+  assert.equal(home.props.icons, bundle.icons);
+  assert.equal(home.props.articles, bundle.articles);
 });
 
 test('missing page and article slugs use the shared not-found renderer', async (context) => {

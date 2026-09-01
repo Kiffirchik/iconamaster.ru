@@ -77,15 +77,34 @@ function isCanonicalSourceUrl(value) {
   }
 }
 
-function validatePublicationRecord(record, fields, label, errors) {
+function isCanonicalDzenArticleSourceUrl(value) {
+  if (typeof value !== 'string') return false;
+  try {
+    const source = new URL(value);
+    return source.protocol === 'https:'
+      && source.hostname === 'dzen.ru'
+      && /^\/a\/[A-Za-z0-9_-]+$/u.test(source.pathname)
+      && source.username === ''
+      && source.password === ''
+      && source.port === ''
+      && source.search === ''
+      && source.hash === '';
+  } catch {
+    return false;
+  }
+}
+
+function validatePublicationRecord(record, fields, label, errors, allowDzen = false) {
   if (!validateKnownFields(record, fields, label, errors)) return false;
   for (const field of ['id', 'slug', 'title']) validateNonEmptyString(record, field, label, errors);
   if (typeof record.published !== 'boolean') errors.push(`${label} field published must be a boolean`);
   if (!Number.isInteger(record.order) || record.order <= 0) {
     errors.push(`${label} field order must be a positive integer`);
   }
-  if (!isCanonicalSourceUrl(record.sourceUrl)) {
-    errors.push(`${label} field sourceUrl must be an HTTPS iconamaster.cargo.site URL`);
+  if (!isCanonicalSourceUrl(record.sourceUrl) && !(allowDzen && isCanonicalDzenArticleSourceUrl(record.sourceUrl))) {
+    errors.push(allowDzen
+      ? `${label} field sourceUrl must be an approved HTTPS publication URL`
+      : `${label} field sourceUrl must be an HTTPS iconamaster.cargo.site URL`);
   }
   return true;
 }
@@ -560,7 +579,7 @@ export function verifyContent(bundle, assetFiles = new Set(), options = {}) {
   for (const [kind, records] of [['page', safeBundle.pages], ['article', safeBundle.articles]]) {
     for (const record of records) {
       const label = `${kind} ${record?.slug ?? '<missing>'}`;
-      validatePublicationRecord(record, kind === 'page' ? PAGE_FIELDS : ARTICLE_FIELDS, label, errors);
+      validatePublicationRecord(record, kind === 'page' ? PAGE_FIELDS : ARTICLE_FIELDS, label, errors, kind === 'article');
       if (kind === 'article') {
         validateNonEmptyString(record, 'summary', label, errors);
         if (!isPlainObject(record?.image)) {
@@ -910,15 +929,23 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
   }
   const bundle = { version: manifest.version, ...documents };
 
-  const [iconManifest, editorialReport, sourceFixture, coverFixture] = await Promise.all([
+  const [iconManifest, editorialReport, dzenReport, sourceFixture, coverFixture] = await Promise.all([
     readJson(path.join(publicDirectory, 'assets', 'icons', 'manifest.json')),
     readJson(path.join(projectDirectory, 'reports', 'editorial-migration.json')),
+    readJson(path.join(projectDirectory, 'reports', 'dzen-import.json')),
     readJson(path.join(projectDirectory, 'tests', 'fixtures', 'migration', 'editorial-source-assets.json')),
     readJson(path.join(projectDirectory, 'tests', 'fixtures', 'migration', 'editorial-cover-assets.json')),
   ]);
+  if (dzenReport?.schemaVersion !== 1 || !Array.isArray(dzenReport?.assets)) {
+    errors.push('Dzen import report must use schema version 1 and contain an asset list');
+  }
+  const combinedEditorialReport = {
+    ...editorialReport,
+    assets: [...(editorialReport.assets ?? []), ...(dzenReport.assets ?? [])],
+  };
   validateSourceOwnershipFixture(editorialReport, sourceFixture, errors);
-  const ownedFiles = validateOwnedMetadata(iconManifest, editorialReport, coverFixture, errors);
-  errors.push(...await verifyEditorialAssetFiles({ publicDirectory, editorialReport }));
+  const ownedFiles = validateOwnedMetadata(iconManifest, combinedEditorialReport, coverFixture, errors);
+  errors.push(...await verifyEditorialAssetFiles({ publicDirectory, editorialReport: combinedEditorialReport }));
 
   const diskFiles = new Set();
   await inspectAssetDirectoryRoot(path.join(publicDirectory, 'assets'), errors);
@@ -934,7 +961,11 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
     expected: {
       icons: legacyIconMap.map(({ slug }) => slug),
       pages: legacyPageMap.map(({ slug }) => ({ slug, published: true })),
-      articles: legacyArticleMap.map(({ slug }) => ({ slug, published: true })),
+      articles: [
+        ...legacyArticleMap.map(({ slug }) => ({ slug, published: true })),
+        { slug: 'restoration-murals-cleaning', published: true },
+        { slug: 'georgievsky-church-iconostasis', published: true },
+      ],
       videos: [
         { provider: 'youtube', id: 'y10sw1KIOqQ', published: true },
         { provider: 'vimeo', id: '353365425', published: true },

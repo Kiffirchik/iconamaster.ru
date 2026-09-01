@@ -12,6 +12,11 @@ export function ArticlePage({ article, onNavigate }) {
           {introduction ? <p className="editorial-page__intro">{introduction}</p> : null}
         </header>
         <ContentSections sections={article.sections} />
+        {article.sourceUrl?.startsWith('https://dzen.ru/') ? (
+          <p className="editorial-page__source">
+            Материал также опубликован в <a href={article.sourceUrl} target="_blank" rel="noreferrer">Дзене</a>.
+          </p>
+        ) : null}
       </article>
       <a
         className="editorial-page__back-link"

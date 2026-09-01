@@ -4,6 +4,7 @@ export const homeContent = {
   established: '1991',
   materials: 'В мастерской работают в традиционной технике: используют минеральные пигменты, яичную темперу, левкас и сусальное золото.',
   featuredSlugs: ['archangel-michael', 'sergius-appearance', 'facade-george'],
+  featuredArticleSlugs: ['restoration-murals-cleaning', 'georgievsky-church-iconostasis'],
   sectionIds: ['atelier', 'restoration', 'research'],
   atelier: {
     title: 'Материалы и мастерская',
