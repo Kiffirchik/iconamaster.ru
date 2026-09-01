@@ -53,6 +53,18 @@ test('getFilterOptions prepends all and removes duplicate period values', () => 
   assert.equal(new Set(options).size, options.length);
 });
 
+test('getFilterOptions excludes blank filter values', () => {
+  const options = getFilterOptions([
+    { type: 'Авторские' },
+    { type: '' },
+    { type: '   ' },
+    { type: null },
+    {}
+  ], 'type');
+
+  assert.deepEqual(options, ['all', 'Авторские']);
+});
+
 test('getNextIcon wraps from the final catalog record to the first', () => {
   assert.equal(getNextIcon(icons, icons.at(-1).slug).slug, icons[0].slug);
 });

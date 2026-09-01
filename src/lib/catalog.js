@@ -7,7 +7,11 @@ export function filterIcons(items, filters) {
 }
 
 export function getFilterOptions(items, key) {
-  return ['all', ...new Set(items.map((item) => item[key]))];
+  const values = items
+    .map((item) => item?.[key])
+    .filter((value) => typeof value === 'string' && value.trim());
+
+  return ['all', ...new Set(values)];
 }
 
 export function findIconBySlug(items, slug) {
