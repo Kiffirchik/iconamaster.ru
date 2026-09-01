@@ -24,7 +24,7 @@
     "test:inventory": "node --test tests/unit/legacy-inventory.test.mjs",
     "test:sites": "node --test tests/sites-worker.test.mjs",
     "test:mtw": "node --test tests/mtw-deployment.test.mjs",
-    "verify": "npm run check:portability && npm run test:setup && npm test && npm run test:content && npm run test:assets && npm run build && npm run test:sites && npm run build:mtw && npm run test:mtw"
+    "verify": "node scripts/run-verification.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "5.0.4",

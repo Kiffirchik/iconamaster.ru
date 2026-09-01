@@ -125,6 +125,40 @@ function assertControlledMigrationFailure(result, {
   }
 }
 
+for (const shell of supportedShells) {
+  test(`copied setup emits only controlled migration stderr in ${shell.name}`, {
+    skip: !shell.executable,
+  }, (t) => {
+    const copiedRoot = createMetadataFixture(t);
+    const copiedSetup = path.join(copiedRoot, 'setup.ps1');
+    writeFileSync(copiedSetup, readFileSync(setupPath));
+    const result = spawnSync(
+      shell.executable,
+      ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', copiedSetup, '-ForMigration'],
+      { cwd: path.dirname(copiedRoot), encoding: 'utf8', windowsHide: true },
+    );
+    const expected = [
+      `FFmpeg migration check failed. Fixture: ${migrationFixtureReference}.`,
+      'Category: fixture-read.',
+      'Action: verify the tracked fixture and pinned FFmpeg binary,',
+      'then run .\\setup.ps1 -CheckOnly -ForMigration.',
+      'See docs/windows-setup.md.',
+    ].join(' ');
+
+    assert.equal(result.status, 1, `${result.stdout}\n${result.stderr}`);
+    assert.equal(result.stderr.trim(), expected);
+    for (const privateValue of [
+      copiedRoot,
+      process.env.USERPROFILE,
+      root,
+      copiedSetup,
+      shell.executable,
+    ]) {
+      if (privateValue) assert.ok(!result.stderr.includes(privateValue), result.stderr);
+    }
+  });
+}
+
 test('accepts only the declared Node and npm version policies', () => {
   const result = runPowerShell(`. ${setup};
     if (-not (Test-NodeVersionPolicy 'v20.19.0')) { exit 11 }
@@ -365,26 +399,6 @@ test('clean Git copy in a path with spaces runs check-only without installing de
   } finally {
     await rm(tempRoot, { recursive: true, force: true });
   }
-});
-
-test('npm test executes the portability unit tests', () => {
-  const testName = 'flags arbitrary drive roots, Windows profile environments, and sibling dependencies';
-  const packageEnv = { ...process.env };
-  delete packageEnv.NODE_TEST_CONTEXT;
-  const npmCli = path.join(
-    path.dirname(process.execPath),
-    'node_modules',
-    'npm',
-    'bin',
-    'npm-cli.js',
-  );
-  const result = spawnSync(
-    process.execPath,
-    [npmCli, 'test', '--', '--test-name-pattern', `^${testName}$`],
-    { cwd: root, encoding: 'utf8', windowsHide: true, env: packageEnv },
-  );
-  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
-  assert.match(result.stdout, new RegExp(`ok \\d+ - ${testName}\\r?\\n`, 'u'));
 });
 
 test('explicit installation emits exact deduplicated winget commands', (t) => {

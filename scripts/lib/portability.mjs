@@ -12,11 +12,12 @@ const patterns = [
   { kind: 'legacy-windows-profile', expression: /(?<!file:\/\/)(?<!file:\/\/\/)(?<![a-z])[a-z]:(?:\\+|\/)Documents and Settings(?:\\+|\/)[^\\/\s`"']+/giu },
   { kind: 'windows-file-url', expression: /file:\/{2,3}[a-z]:\//giu },
   // Profile paths have dedicated findings above; this catches other concrete drive-rooted paths.
-  { kind: 'windows-drive-root', expression: /(?<!file:\/\/)(?<!file:\/\/\/)(?<![a-z])[a-z]:(?:\\+|\/)(?!\/)(?!(?:Users|Documents and Settings)(?:\\+|\/))[^\\/\s`"'<>]+(?:(?:\\+|\/)[^\\/\s`"'<>]+)*/giu },
+  { kind: 'windows-drive-root', expression: /(?<!file:\/\/)(?<!file:\/\/\/)(?<![a-z])(?!x:\/resource(?:[\/\s`"'<>]|$))[a-z]:(?:\\+|\/)(?!\/)(?!(?:Users|Documents and Settings)(?:\\+|\/))[^\\/\s`"'<>]+(?:(?:\\+|\/)[^\\/\s`"'<>]+)*/giu },
   // These profile/temp variables still bind operational files to one Windows account or machine.
   { kind: 'windows-profile-environment', expression: /%(?:LOCALAPPDATA|APPDATA|USERPROFILE|TEMP|TMP)%(?:\\+|\/)[^\\/\s`"'<>]+(?:(?:\\+|\/)[^\\/\s`"'<>]+)*/giu },
-  // Backslash parent traversal identifies Windows scripts coupled to a sibling checkout or junction.
-  { kind: 'windows-parent-dependency', expression: /(?<!\.)\.\.\\+[^\\/\s`"'<>]+(?:\\+[^\\/\s`"'<>]+)*/gu },
+  { kind: 'windows-profile-environment', expression: /(?:\$env:(?:LOCALAPPDATA|APPDATA|USERPROFILE|TEMP|TMP)|\$\{env:(?:LOCALAPPDATA|APPDATA|USERPROFILE|TEMP|TMP)\})(?:\\+|\/)[^\\/\s`"'<>]+(?:(?:\\+|\/)[^\\/\s`"'<>]+)*/giu },
+  // Parent traversal into another Iconamaster checkout is an operational sibling dependency.
+  { kind: 'windows-parent-dependency', expression: /(?<!\.)\.\.(?:\\+|\/)Iconamaster(?:-[^\\/\s`"'<>]+)?(?:(?:\\+|\/)[^\\/\s`"'<>]+)*/giu },
 ];
 
 export function findMachinePathFindings(records) {

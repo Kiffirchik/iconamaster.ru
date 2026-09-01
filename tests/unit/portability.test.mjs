@@ -17,8 +17,13 @@ const driveTempArtifact = ['C:', 'Temp', 'artifact'].join('\\');
 const localAppDataCache = ['%LOCALAPPDATA%', 'Iconamaster', 'cache'].join('\\');
 const tempWorkspace = ['%TEMP%', 'Iconamaster'].join('\\');
 const siblingDependency = ['..', 'Iconamaster-copy', 'asset'].join('\\');
+const powershellTempWorkspace = ['$env:TEMP', 'Iconamaster'].join('\\');
+const powershellLocalAppData = ['${env:LOCALAPPDATA}', 'Iconamaster'].join('\\');
+const slashSiblingDependency = ['..', 'Iconamaster-copy', 'asset'].join('/');
+const runtimeParentPath = ['$PSScriptRoot', '..', 'package.json'].join('\\');
 
-test('flags local Windows profiles and file URLs', () => {
+test('flags local Windows profiles and file URLs', (t) => {
+  t.diagnostic('ICONAMASTER_PORTABILITY_UNIT_MARKER');
   const findings = findMachinePathFindings([
     { path: 'scripts/example.mjs', text: `open(${JSON.stringify(windowsProfile)})` },
     { path: 'docs/example.md', text: slashProfile },
@@ -53,6 +58,20 @@ test('flags arbitrary drive roots, Windows profile environments, and sibling dep
     { path: 'config/cache.txt', kind: 'windows-profile-environment' },
     { path: 'config/temp.txt', kind: 'windows-profile-environment' },
     { path: 'scripts/copy.ps1', kind: 'windows-parent-dependency' },
+  ]);
+});
+
+test('flags PowerShell profile environments and slash-separated sibling dependencies', () => {
+  const findings = findMachinePathFindings([
+    { path: 'scripts/temp.ps1', text: `New-Item ${powershellTempWorkspace}` },
+    { path: 'scripts/cache.ps1', text: `Join-Path ${powershellLocalAppData} cache` },
+    { path: 'scripts/copy.mjs', text: `copy('${slashSiblingDependency}')` },
+  ]);
+
+  assert.deepEqual(findings.map(({ path, kind }) => ({ path, kind })), [
+    { path: 'scripts/temp.ps1', kind: 'windows-profile-environment' },
+    { path: 'scripts/cache.ps1', kind: 'windows-profile-environment' },
+    { path: 'scripts/copy.mjs', kind: 'windows-parent-dependency' },
   ]);
 });
 
@@ -96,10 +115,12 @@ test('does not read tracked text through a symbolic link outside the repository'
   assert.deepEqual(await trackedTextRecords({ root: repository }), []);
 });
 
-test('allows runtime roots, URLs and documented MTW server paths', () => {
+test('allows runtime roots, URI schemes, URLs and repository-relative paths', () => {
   assert.deepEqual(findMachinePathFindings([
     { path: 'setup.ps1', text: 'Join-Path $PSScriptRoot package.json' },
+    { path: 'setup.ps1', text: runtimeParentPath },
     { path: 'scripts/example.mjs', text: 'new URL("../public", import.meta.url)' },
+    { path: 'src/resource.txt', text: 'x:/resource' },
     { path: 'docs/deploy.md', text: 'https://iconamaster.ru /www/vhosts/example/httpdocs' },
     { path: 'docs/example.md', text: '<drive>:\\Users\\<profile>\\project' },
     { path: 'docs/versions.md', text: 'Windows 10/11; Node.js ^20.19.0 || >=22.12.0; drive C: is illustrative prose' },
