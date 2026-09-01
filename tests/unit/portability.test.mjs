@@ -12,6 +12,11 @@ const execFileAsync = promisify(execFile);
 const windowsProfile = ['C:', 'Users', 'alice', 'project', 'file.txt'].join('\\');
 const slashProfile = ['D:', 'Users', 'bob', 'AppData', 'Local', 'Temp', 'x.png'].join('/');
 const legacyProfile = ['E:', 'Documents and Settings', 'carol', 'Application Data', 'prefs.json'].join('\\');
+const driveWorkspace = ['D:', 'work', 'Iconamaster'].join('\\');
+const driveTempArtifact = ['C:', 'Temp', 'artifact'].join('\\');
+const localAppDataCache = ['%LOCALAPPDATA%', 'Iconamaster', 'cache'].join('\\');
+const tempWorkspace = ['%TEMP%', 'Iconamaster'].join('\\');
+const siblingDependency = ['..', 'Iconamaster-copy', 'asset'].join('\\');
 
 test('flags local Windows profiles and file URLs', () => {
   const findings = findMachinePathFindings([
@@ -30,6 +35,24 @@ test('flags JSON-escaped legacy Windows profiles', () => {
   ]);
   assert.deepEqual(findings.map(({ path, kind }) => ({ path, kind })), [
     { path: 'config/example.json', kind: 'legacy-windows-profile' },
+  ]);
+});
+
+test('flags arbitrary drive roots, Windows profile environments, and sibling dependencies', () => {
+  const findings = findMachinePathFindings([
+    { path: 'scripts/workspace.ps1', text: `Set-Location ${driveWorkspace}` },
+    { path: 'scripts/archive.ps1', text: `Copy-Item ${driveTempArtifact}` },
+    { path: 'config/cache.txt', text: localAppDataCache },
+    { path: 'config/temp.txt', text: tempWorkspace },
+    { path: 'scripts/copy.ps1', text: `Copy-Item ${siblingDependency}` },
+  ]);
+
+  assert.deepEqual(findings.map(({ path, kind }) => ({ path, kind })), [
+    { path: 'scripts/workspace.ps1', kind: 'windows-drive-root' },
+    { path: 'scripts/archive.ps1', kind: 'windows-drive-root' },
+    { path: 'config/cache.txt', kind: 'windows-profile-environment' },
+    { path: 'config/temp.txt', kind: 'windows-profile-environment' },
+    { path: 'scripts/copy.ps1', kind: 'windows-parent-dependency' },
   ]);
 });
 
@@ -79,5 +102,10 @@ test('allows runtime roots, URLs and documented MTW server paths', () => {
     { path: 'scripts/example.mjs', text: 'new URL("../public", import.meta.url)' },
     { path: 'docs/deploy.md', text: 'https://iconamaster.ru /www/vhosts/example/httpdocs' },
     { path: 'docs/example.md', text: '<drive>:\\Users\\<profile>\\project' },
+    { path: 'docs/versions.md', text: 'Windows 10/11; Node.js ^20.19.0 || >=22.12.0; drive C: is illustrative prose' },
+    { path: 'scripts/relative.ps1', text: '.\\setup.ps1 ./scripts/check-portability.mjs' },
+    { path: 'docs/placeholders.md', text: '<workspace>\\cache <legacy-backup>\\assets <drive>:\\Temp\\artifact' },
+    { path: 'tests/contact.test.mjs', text: String.raw`/tel:\+79990001122/u` },
+    { path: 'tests/styles.test.mjs', text: String.raw`/display:\s*none|min-height:\s*2\.75rem/u` },
   ]), []);
 });

@@ -8,9 +8,15 @@ const textExtensions = new Set([
 ]);
 const textNames = new Set(['.gitattributes', '.gitignore', '.htaccess', '.npmrc']);
 const patterns = [
-  { kind: 'windows-user-profile', expression: /(?<!file:\/\/)(?<!file:\/\/\/)[a-z]:(?:\\+|\/)Users(?:\\+|\/)[^\\/\s`"']+/giu },
-  { kind: 'legacy-windows-profile', expression: /(?<!file:\/\/)(?<!file:\/\/\/)[a-z]:(?:\\+|\/)Documents and Settings(?:\\+|\/)[^\\/\s`"']+/giu },
+  { kind: 'windows-user-profile', expression: /(?<!file:\/\/)(?<!file:\/\/\/)(?<![a-z])[a-z]:(?:\\+|\/)Users(?:\\+|\/)[^\\/\s`"']+/giu },
+  { kind: 'legacy-windows-profile', expression: /(?<!file:\/\/)(?<!file:\/\/\/)(?<![a-z])[a-z]:(?:\\+|\/)Documents and Settings(?:\\+|\/)[^\\/\s`"']+/giu },
   { kind: 'windows-file-url', expression: /file:\/{2,3}[a-z]:\//giu },
+  // Profile paths have dedicated findings above; this catches other concrete drive-rooted paths.
+  { kind: 'windows-drive-root', expression: /(?<!file:\/\/)(?<!file:\/\/\/)(?<![a-z])[a-z]:(?:\\+|\/)(?!\/)(?!(?:Users|Documents and Settings)(?:\\+|\/))[^\\/\s`"'<>]+(?:(?:\\+|\/)[^\\/\s`"'<>]+)*/giu },
+  // These profile/temp variables still bind operational files to one Windows account or machine.
+  { kind: 'windows-profile-environment', expression: /%(?:LOCALAPPDATA|APPDATA|USERPROFILE|TEMP|TMP)%(?:\\+|\/)[^\\/\s`"'<>]+(?:(?:\\+|\/)[^\\/\s`"'<>]+)*/giu },
+  // Backslash parent traversal identifies Windows scripts coupled to a sibling checkout or junction.
+  { kind: 'windows-parent-dependency', expression: /(?<!\.)\.\.\\+[^\\/\s`"'<>]+(?:\\+[^\\/\s`"'<>]+)*/gu },
 ];
 
 export function findMachinePathFindings(records) {

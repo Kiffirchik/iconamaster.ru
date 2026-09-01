@@ -23,11 +23,20 @@ const pwshProbe = spawnSync(
 );
 const pwshVersion = pwshProbe.status === 0 ? pwshProbe.stdout.trim() : null;
 const pwsh = Number.parseInt(pwshVersion?.split('.')[0] ?? '', 10) >= 7 ? 'pwsh.exe' : null;
+const supportedShells = [
+  { name: 'Windows PowerShell 5.1', executable: powershell, version: '5.1' },
+  { name: 'PowerShell 7+', executable: pwsh, version: pwshVersion },
+];
 const setupPath = path.join(root, 'setup.ps1');
 const setup = psLiteral(setupPath);
+const migrationFixtureReference = 'tests/fixtures/migration/editorial-cover-assets.json';
 
 function psLiteral(value) {
   return `'${value.replaceAll("'", "''")}'`;
+}
+
+function privatePathMarker(label, fileName) {
+  return `${label}-${['C:', 'private', fileName].join('/')}`;
 }
 
 async function exists(filePath) {
@@ -95,14 +104,23 @@ function createMigrationFixture(t) {
   return { fixture, fixturePath, binary, versionLine };
 }
 
-function assertControlledMigrationFailure(result, fixturePath, reason, forbidden = []) {
+function assertControlledMigrationFailure(result, {
+  reason,
+  projectRoot,
+  executable,
+  forbidden = [],
+}) {
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
   const output = `${result.stdout}\n${result.stderr}`;
-  assert.ok(
-    output.includes(`Fixture: ${fixturePath}. Mismatch: ${reason}.`),
-    output,
-  );
-  for (const value of forbidden) {
+  assert.ok(output.includes([
+    `FFmpeg migration check failed. Fixture: ${migrationFixtureReference}.`,
+    `Category: ${reason}.`,
+    'Action: verify the tracked fixture and pinned FFmpeg binary,',
+    'then run .\\setup.ps1 -CheckOnly -ForMigration.',
+    'See docs/windows-setup.md.',
+  ].join(' ')), output);
+  for (const value of [projectRoot, executable, process.env.USERPROFILE, ...forbidden]) {
+    if (!value) continue;
     assert.ok(!output.includes(value), `diagnostic disclosed ${value}:\n${output}`);
   }
 }
@@ -122,10 +140,7 @@ test('accepts only the declared Node and npm version policies', () => {
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
 });
 
-for (const shell of [
-  { name: 'Windows PowerShell 5.1', executable: powershell, version: '5.1' },
-  { name: 'PowerShell 7+', executable: pwsh, version: pwshVersion },
-]) {
+for (const shell of supportedShells) {
   test(`validates exact package metadata in ${shell.name}`, { skip: !shell.executable }, (t) => {
     t.diagnostic(`exercising PowerShell ${shell.version}`);
     const valid = createMetadataFixture(t);
@@ -183,6 +198,105 @@ test('public setup fails without installing when prerequisites are not ready', (
     }`);
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
   assert.equal(readFileSync(path.join(fixture, 'package.json'), 'utf8'), '{"name":"fixture-project"}');
+});
+
+for (const scenario of [
+  {
+    name: 'missing Git',
+    missingName: 'git',
+    resolverBranch: "if ($Name -eq 'git') { return $null }",
+    nodeVersion: 'v20.19.0',
+  },
+  {
+    name: 'outdated Node.js',
+    missingName: 'node',
+    resolverBranch: '',
+    nodeVersion: 'v22.11.0',
+  },
+]) {
+  test(`${scenario.name} with winget available prints the exact installation command`, (t) => {
+    const fixture = createMetadataFixture(t);
+    const result = runPowerShell(`. ${setup};
+      $resolver = {
+        param($Name)
+        ${scenario.resolverBranch}
+        return [pscustomobject]@{ Source=$Name }
+      }
+      $runner = {
+        param($File, $Arguments)
+        if ($File -eq 'git') { 'git version 2.46.0'; return 0 }
+        if ($File -eq 'node') { '${scenario.nodeVersion}'; return 0 }
+        if ($File -eq 'npm') { '10.8.2'; return 0 }
+        if ($File -eq 'winget') { exit 71 }
+        return 0
+      }
+      try {
+        $null = Invoke-IconamasterSetup -CheckOnly -ProjectRoot ${psLiteral(fixture)} -Resolver $resolver -Runner $runner
+        exit 72
+      } catch {
+        Write-Output $_.Exception.Message
+      }`);
+    assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+    assert.ok(result.stdout.includes(
+      `Core prerequisites are not ready: ${scenario.missingName}. Next command: .\\setup.ps1 -InstallPrerequisites`,
+    ), result.stdout);
+    assert.ok(!result.stdout.includes(fixture), result.stdout);
+  });
+}
+
+test('missing winget directs users through Microsoft App Installer and a safe recheck', (t) => {
+  const fixture = createMetadataFixture(t);
+  const result = runPowerShell(`. ${setup};
+    $resolver = {
+      param($Name)
+      if ($Name -in @('node', 'winget')) { return $null }
+      return [pscustomobject]@{ Source=$Name }
+    }
+    $runner = {
+      param($File, $Arguments)
+      if ($File -eq 'git') { 'git version 2.46.0'; return 0 }
+      if ($File -eq 'npm') { '10.8.2'; return 0 }
+      return 0
+    }
+    try {
+      $null = Invoke-IconamasterSetup -CheckOnly -ProjectRoot ${psLiteral(fixture)} -Resolver $resolver -Runner $runner
+      exit 73
+    } catch {
+      Write-Output $_.Exception.Message
+    }`);
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  assert.ok(result.stdout.includes([
+    'Core prerequisites are not ready: node.',
+    'Action: install or update Microsoft App Installer, reopen the shell,',
+    'then run .\\setup.ps1 -CheckOnly',
+  ].join(' ')), result.stdout);
+  assert.ok(!result.stdout.includes(fixture), result.stdout);
+});
+
+test('failed recheck after installation directs users to a new shell and check-only', (t) => {
+  const fixture = createMetadataFixture(t);
+  const result = runPowerShell(`. ${setup};
+    $resolver = { param($Name) [pscustomobject]@{ Source=$Name } }
+    $runner = {
+      param($File, $Arguments)
+      if ($File -eq 'git') { return 127 }
+      if ($File -eq 'node') { 'v20.19.0'; return 0 }
+      if ($File -eq 'npm') { '10.8.2'; return 0 }
+      if ($File -eq 'winget') { return 0 }
+      return 0
+    }
+    try {
+      $null = Invoke-IconamasterSetup -CheckOnly:$false -InstallPrerequisites -ProjectRoot ${psLiteral(fixture)} -Resolver $resolver -Runner $runner
+      exit 74
+    } catch {
+      Write-Output $_.Exception.Message
+    }`);
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  assert.ok(result.stdout.includes([
+    'Core prerequisites are not ready after installation: git.',
+    'Open a new shell, then run .\\setup.ps1 -CheckOnly',
+  ].join(' ')), result.stdout);
+  assert.ok(!result.stdout.includes(fixture), result.stdout);
 });
 
 test('rejects check-only plus installation before doing work', () => {
@@ -251,6 +365,26 @@ test('clean Git copy in a path with spaces runs check-only without installing de
   } finally {
     await rm(tempRoot, { recursive: true, force: true });
   }
+});
+
+test('npm test executes the portability unit tests', () => {
+  const testName = 'flags arbitrary drive roots, Windows profile environments, and sibling dependencies';
+  const packageEnv = { ...process.env };
+  delete packageEnv.NODE_TEST_CONTEXT;
+  const npmCli = path.join(
+    path.dirname(process.execPath),
+    'node_modules',
+    'npm',
+    'bin',
+    'npm-cli.js',
+  );
+  const result = spawnSync(
+    process.execPath,
+    [npmCli, 'test', '--', '--test-name-pattern', `^${testName}$`],
+    { cwd: root, encoding: 'utf8', windowsHide: true, env: packageEnv },
+  );
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  assert.match(result.stdout, new RegExp(`ok \\d+ - ${testName}\\r?\\n`, 'u'));
 });
 
 test('explicit installation emits exact deduplicated winget commands', (t) => {
@@ -331,15 +465,18 @@ test('default setup stops before verify when portability fails', (t) => {
   ]);
 });
 
-test('deployment mode requires ssh scp and tar as a separate tool group', () => {
-  const result = runPowerShell(`. ${setup};
-    $resolver = { param($Name) if ($Name -in @('ssh','tar')) { [pscustomobject]@{ Source=$Name } } }
-    $state = Get-DeploymentToolState $resolver
-    if (($state | Where-Object Name -eq 'scp').Ready) { exit 21 }
-    if (-not ($state | Where-Object Name -eq 'ssh').Ready) { exit 22 }
-    if (-not ($state | Where-Object Name -eq 'tar').Ready) { exit 23 }`);
-  assert.equal(result.status, 0, result.stderr);
-});
+for (const shell of supportedShells) {
+  test(`deployment mode keeps optional tools separate in ${shell.name}`, { skip: !shell.executable }, (t) => {
+    t.diagnostic(`exercising PowerShell ${shell.version}`);
+    const result = runShell(shell.executable, `. ${setup};
+      $resolver = { param($Name) if ($Name -in @('ssh','tar')) { [pscustomobject]@{ Source=$Name } } }
+      $state = Get-DeploymentToolState $resolver
+      if (($state | Where-Object Name -eq 'scp').Ready) { exit 21 }
+      if (-not ($state | Where-Object Name -eq 'ssh').Ready) { exit 22 }
+      if (-not ($state | Where-Object Name -eq 'tar').Ready) { exit 23 }`);
+    assert.equal(result.status, 0, result.stderr);
+  });
+}
 
 test('migration mode rejects checksum and version drift', () => {
   const result = runPowerShell(`. ${setup};
@@ -351,28 +488,51 @@ test('migration mode rejects checksum and version drift', () => {
   assert.equal(result.status, 0, result.stderr);
 });
 
-test('migration toolchain requires the exact fixture hash and first version line', (t) => {
-  const migration = createMigrationFixture(t);
+test('FFmpeg version identity rejects case-only drift independently', () => {
   const result = runPowerShell(`. ${setup};
-    $script:IconamasterProjectRoot = ${psLiteral(migration.fixture)}
-    $resolver = {
-      param($Name)
-      if ($Name -eq 'ffmpeg') { [pscustomobject]@{ Source=${psLiteral(migration.binary)} } }
-    }
-    $runner = {
-      param($File, $Arguments)
-      if ($File -ne ${psLiteral(migration.binary)}) { return 81 }
-      if (($Arguments -join ' ') -ne '-version') { return 82 }
-      ${psLiteral(migration.versionLine)}
-      'configuration: ignored second line'
-      return 0
-    }
-    $state = Test-MigrationToolchain $resolver $runner
-    if (-not $state.Ready) { exit 26 }
-    if ($state.Reasons.Count -ne 0) { exit 27 }
-    if ($state.Fixture -ne ${psLiteral(migration.fixturePath)}) { exit 28 }`);
+    $expected = [pscustomobject]@{ binarySha256='${'a'.repeat(64)}'; versionLine='ffmpeg version Pinned' }
+    $actual = [pscustomobject]@{ binarySha256='${'a'.repeat(64)}'; versionLine='ffmpeg version pinned' }
+    $state = Compare-FfmpegIdentity -Expected $expected -Actual $actual
+    if ($state.Ready) { exit 75 }
+    if ($state.Reasons.Count -ne 1 -or $state.Reasons[0] -cne 'version') { exit 76 }`);
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
 });
+
+test('FFmpeg hash identity accepts uppercase expected and lowercase actual values', () => {
+  const result = runPowerShell(`. ${setup};
+    $expected = [pscustomobject]@{ binarySha256='${'A'.repeat(64)}'; versionLine='ffmpeg version pinned' }
+    $actual = [pscustomobject]@{ binarySha256='${'a'.repeat(64)}'; versionLine='ffmpeg version pinned' }
+    $state = Compare-FfmpegIdentity -Expected $expected -Actual $actual
+    if (-not $state.Ready) { exit 77 }
+    if ($state.Reasons.Count -ne 0) { exit 78 }`);
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+});
+
+for (const shell of supportedShells) {
+  test(`migration mode verifies the pinned identity in ${shell.name}`, { skip: !shell.executable }, (t) => {
+    t.diagnostic(`exercising PowerShell ${shell.version}`);
+    const migration = createMigrationFixture(t);
+    const result = runShell(shell.executable, `. ${setup};
+      $script:IconamasterProjectRoot = ${psLiteral(migration.fixture)}
+      $resolver = {
+        param($Name)
+        if ($Name -eq 'ffmpeg') { [pscustomobject]@{ Source=${psLiteral(migration.binary)} } }
+      }
+      $runner = {
+        param($File, $Arguments)
+        if ($File -ne ${psLiteral(migration.binary)}) { return 81 }
+        if (($Arguments -join ' ') -ne '-version') { return 82 }
+        ${psLiteral(migration.versionLine)}
+        'configuration: ignored second line'
+        return 0
+      }
+      $state = Test-MigrationToolchain $resolver $runner
+      if (-not $state.Ready) { exit 26 }
+      if ($state.Reasons.Count -ne 0) { exit 27 }
+      if ($state.Fixture -ne ${psLiteral(migrationFixtureReference)}) { exit 28 }`);
+    assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  });
+}
 
 test('requested optional checks finish before npm ci', (t) => {
   const migration = createMigrationFixture(t);
@@ -488,12 +648,12 @@ test('migration failure reports only the fixture and mismatch kinds', (t) => {
       Write-Output $_.Exception.Message
     }`);
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
-  assert.ok(result.stdout.includes(migration.fixturePath));
-  assert.match(result.stdout, /Mismatch: checksum, version\./u);
-  assert.ok(!result.stdout.includes(expectedHash));
-  assert.ok(!result.stdout.includes(expectedVersion));
-  assert.ok(!result.stdout.includes(migration.versionLine));
-  assert.ok(!result.stdout.includes(migration.binary));
+  assertControlledMigrationFailure(result, {
+    reason: 'checksum, version',
+    projectRoot: migration.fixture,
+    executable: migration.binary,
+    forbidden: [expectedHash, expectedVersion, migration.versionLine, migration.fixturePath],
+  });
 });
 
 test('nonzero ffmpeg version exit reports version-command with matching identity', (t) => {
@@ -538,12 +698,16 @@ test('migration fixture read failure uses a controlled reason', (t) => {
     } catch {
       Write-Output $_.Exception.Message
     }`);
-  assertControlledMigrationFailure(readResult, missingFixture, 'fixture-read');
+  assertControlledMigrationFailure(readResult, {
+    reason: 'fixture-read',
+    projectRoot: missingRoot,
+    forbidden: [missingFixture],
+  });
 });
 
 test('migration fixture parse failure hides raw fixture content', (t) => {
   const malformed = createMigrationFixture(t);
-  const parseSecret = 'parse-secret-marker-C:/private/editorial-cover-assets.json';
+  const parseSecret = privatePathMarker('parse-secret-marker', 'editorial-cover-assets.json');
   writeFileSync(malformed.fixturePath, `{${parseSecret}`);
   const parseResult = runPowerShell(`. ${setup};
     $script:IconamasterProjectRoot = ${psLiteral(malformed.fixture)}
@@ -561,17 +725,17 @@ test('migration fixture parse failure hides raw fixture content', (t) => {
     } catch {
       Write-Output $_.Exception.Message
     }`);
-  assertControlledMigrationFailure(
-    parseResult,
-    malformed.fixturePath,
-    'fixture-parse',
-    [parseSecret],
-  );
+  assertControlledMigrationFailure(parseResult, {
+    reason: 'fixture-parse',
+    projectRoot: malformed.fixture,
+    executable: malformed.binary,
+    forbidden: [parseSecret, malformed.fixturePath],
+  });
 });
 
 test('migration resolver failure hides its raw error', (t) => {
   const migration = createMigrationFixture(t);
-  const resolverSecret = 'resolver-secret-marker-C:/private/ffmpeg.exe';
+  const resolverSecret = privatePathMarker('resolver-secret-marker', 'ffmpeg.exe');
   const result = runPowerShell(`. ${setup};
     $script:IconamasterProjectRoot = ${psLiteral(migration.fixture)}
     $resolver = {
@@ -592,7 +756,12 @@ test('migration resolver failure hides its raw error', (t) => {
     } catch {
       Write-Output $_.Exception.Message
     }`);
-  assertControlledMigrationFailure(result, migration.fixturePath, 'resolve', [resolverSecret]);
+  assertControlledMigrationFailure(result, {
+    reason: 'resolve',
+    projectRoot: migration.fixture,
+    executable: migration.binary,
+    forbidden: [resolverSecret, migration.fixturePath],
+  });
 });
 
 test('migration hash failure hides the resolved executable and raw error', (t) => {
@@ -618,12 +787,17 @@ test('migration hash failure hides the resolved executable and raw error', (t) =
     } catch {
       Write-Output $_.Exception.Message
     }`);
-  assertControlledMigrationFailure(result, migration.fixturePath, 'hash', [hashSecret]);
+  assertControlledMigrationFailure(result, {
+    reason: 'hash',
+    projectRoot: migration.fixture,
+    executable: hashSecret,
+    forbidden: [migration.fixturePath],
+  });
 });
 
 test('migration module import failure hides the module path and raw error', (t) => {
   const migration = createMigrationFixture(t);
-  const moduleSecret = 'module-secret-marker-C:/private/Microsoft.PowerShell.Utility.psd1';
+  const moduleSecret = privatePathMarker('module-secret-marker', 'Microsoft.PowerShell.Utility.psd1');
   const result = runPowerShell(`. ${setup};
     $script:IconamasterProjectRoot = ${psLiteral(migration.fixture)}
     function Get-Command { return $null }
@@ -646,12 +820,17 @@ test('migration module import failure hides the module path and raw error', (t) 
     } catch {
       Write-Output $_.Exception.Message
     }`);
-  assertControlledMigrationFailure(result, migration.fixturePath, 'hash', [moduleSecret]);
+  assertControlledMigrationFailure(result, {
+    reason: 'hash',
+    projectRoot: migration.fixture,
+    executable: migration.binary,
+    forbidden: [moduleSecret, migration.fixturePath],
+  });
 });
 
 test('migration runner failure hides the executable and raw error', (t) => {
   const migration = createMigrationFixture(t);
-  const runnerSecret = 'runner-secret-marker-C:/private/ffmpeg.exe';
+  const runnerSecret = privatePathMarker('runner-secret-marker', 'ffmpeg.exe');
   const result = runPowerShell(`. ${setup};
     $script:IconamasterProjectRoot = ${psLiteral(migration.fixture)}
     $resolver = {
@@ -673,12 +852,12 @@ test('migration runner failure hides the executable and raw error', (t) => {
     } catch {
       Write-Output $_.Exception.Message
     }`);
-  assertControlledMigrationFailure(
-    result,
-    migration.fixturePath,
-    'version-command',
-    [runnerSecret, migration.binary],
-  );
+  assertControlledMigrationFailure(result, {
+    reason: 'version-command',
+    projectRoot: migration.fixture,
+    executable: migration.binary,
+    forbidden: [runnerSecret, migration.fixturePath],
+  });
 });
 
 test('package metadata declares the supported runtime versions', () => {

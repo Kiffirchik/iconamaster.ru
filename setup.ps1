@@ -216,13 +216,14 @@ function Test-MigrationToolchain {
         $Runner = { param($File, $Arguments) Invoke-SetupCommand -File $File -Arguments $Arguments }
     }
 
-    $fixturePath = Join-Path $script:IconamasterProjectRoot 'tests/fixtures/migration/editorial-cover-assets.json'
+    $fixtureReference = 'tests/fixtures/migration/editorial-cover-assets.json'
+    $fixturePath = Join-Path $script:IconamasterProjectRoot $fixtureReference
     try {
         $fixtureJson = Get-Content -Raw -LiteralPath $fixturePath
     } catch {
         return [pscustomobject]@{
             Ready = $false
-            Fixture = $fixturePath
+            Fixture = $fixtureReference
             Reasons = @('fixture-read')
         }
     }
@@ -236,7 +237,7 @@ function Test-MigrationToolchain {
     } catch {
         return [pscustomobject]@{
             Ready = $false
-            Fixture = $fixturePath
+            Fixture = $fixtureReference
             Reasons = @('fixture-parse')
         }
     }
@@ -245,14 +246,14 @@ function Test-MigrationToolchain {
     } catch {
         return [pscustomobject]@{
             Ready = $false
-            Fixture = $fixturePath
+            Fixture = $fixtureReference
             Reasons = @('resolve')
         }
     }
     if ($null -eq $command) {
         return [pscustomobject]@{
             Ready = $false
-            Fixture = $fixturePath
+            Fixture = $fixtureReference
             Reasons = @('missing')
         }
     }
@@ -267,7 +268,7 @@ function Test-MigrationToolchain {
     } catch {
         return [pscustomobject]@{
             Ready = $false
-            Fixture = $fixturePath
+            Fixture = $fixtureReference
             Reasons = @('hash')
         }
     }
@@ -276,7 +277,7 @@ function Test-MigrationToolchain {
     } catch {
         return [pscustomobject]@{
             Ready = $false
-            Fixture = $fixturePath
+            Fixture = $fixtureReference
             Reasons = @('version-command')
         }
     }
@@ -296,7 +297,7 @@ function Test-MigrationToolchain {
 
     return [pscustomobject]@{
         Ready = $result.ExitCode -eq 0 -and $comparison.Ready
-        Fixture = $fixturePath
+        Fixture = $fixtureReference
         Reasons = $reasons
     }
 }
@@ -326,7 +327,7 @@ function Install-CorePrerequisites {
 
     $wingetCommand = & $Resolver 'winget'
     if ($null -eq $wingetCommand) {
-        throw 'winget is required to install core prerequisites.'
+        throw 'winget is unavailable. Action: install or update Microsoft App Installer, reopen the shell, then run .\setup.ps1 -CheckOnly'
     }
     $winget = Get-SetupCommandSource -Command $wingetCommand -Fallback 'winget'
     $packageIds = @{ git = 'Git.Git'; node = 'OpenJS.NodeJS.LTS'; npm = 'OpenJS.NodeJS.LTS' }
@@ -458,7 +459,19 @@ function Invoke-IconamasterSetup {
     }
     if ($missing.Count -gt 0) {
         $names = ($missing | ForEach-Object { $_.Name }) -join ', '
-        throw "Core prerequisites are not ready: $names."
+        if ($InstallPrerequisites) {
+            throw "Core prerequisites are not ready after installation: $names. Open a new shell, then run .\setup.ps1 -CheckOnly"
+        }
+
+        try {
+            $wingetAvailable = $null -ne (& $Resolver 'winget')
+        } catch {
+            $wingetAvailable = $false
+        }
+        if ($wingetAvailable) {
+            throw "Core prerequisites are not ready: $names. Next command: .\setup.ps1 -InstallPrerequisites"
+        }
+        throw "Core prerequisites are not ready: $names. Action: install or update Microsoft App Installer, reopen the shell, then run .\setup.ps1 -CheckOnly"
     }
 
     Test-ProjectMetadata -Root $ProjectRoot
@@ -480,7 +493,7 @@ function Invoke-IconamasterSetup {
         $migrationState = Test-MigrationToolchain -Resolver $Resolver -Runner $Runner
         if (-not $migrationState.Ready) {
             $mismatchKinds = @($migrationState.Reasons) -join ', '
-            throw "FFmpeg migration toolchain is not ready. Fixture: $($migrationState.Fixture). Mismatch: $mismatchKinds."
+            throw "FFmpeg migration check failed. Fixture: $($migrationState.Fixture). Category: $mismatchKinds. Action: verify the tracked fixture and pinned FFmpeg binary, then run .\setup.ps1 -CheckOnly -ForMigration. See docs/windows-setup.md."
         }
     }
 
