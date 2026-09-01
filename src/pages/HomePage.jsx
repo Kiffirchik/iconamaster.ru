@@ -63,17 +63,6 @@ export function HomePage({ icons = [], articles = [], onNavigate }) {
         </div>
       </section>
 
-      <section className="home-section home-featured" aria-labelledby="featured-title">
-        <div className="home-section__heading">
-          <p className="eyebrow">Избранные произведения</p>
-          <h2 id="featured-title">Новые поступления</h2>
-          <a href="/collection" onClick={(event) => follow(event, '/collection')}>Смотреть коллекцию</a>
-        </div>
-        <div className="home-featured__grid">
-          {featuredIcons.map((icon) => <IconCard key={icon.slug} icon={icon} onNavigate={onNavigate} />)}
-        </div>
-      </section>
-
       {featuredArticles.length ? (
         <section className="home-section home-stories" aria-labelledby="stories-title">
           <div className="home-section__heading">
@@ -103,6 +92,17 @@ export function HomePage({ icons = [], articles = [], onNavigate }) {
           </div>
         </section>
       ) : null}
+
+      <section className="home-section home-featured" aria-labelledby="featured-title">
+        <div className="home-section__heading">
+          <p className="eyebrow">Избранные произведения</p>
+          <h2 id="featured-title">Новые поступления</h2>
+          <a href="/collection" onClick={(event) => follow(event, '/collection')}>Смотреть коллекцию</a>
+        </div>
+        <div className="home-featured__grid">
+          {featuredIcons.map((icon) => <IconCard key={icon.slug} icon={icon} onNavigate={onNavigate} />)}
+        </div>
+      </section>
 
       <section id="atelier" className="home-section home-copy-section" aria-labelledby="atelier-title">
         <p className="eyebrow">Традиционная технология</p>

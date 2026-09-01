@@ -136,6 +136,10 @@ test('HomePage presents the two featured workshop stories as internal article li
   assert.match(markup, /href="\/articles\/restoration-murals-cleaning"/);
   assert.match(markup, /href="\/articles\/georgievsky-church-iconostasis"/);
   assert.equal((markup.match(/class="home-story-card"/g) ?? []).length, 2);
+  assert.ok(
+    markup.indexOf('Избранные материалы') < markup.indexOf('Новые поступления'),
+    'featured materials must appear before new arrivals on the homepage'
+  );
 });
 
 test('ArticlePage identifies a Dzen source without replacing the internal reading experience', async (context) => {
