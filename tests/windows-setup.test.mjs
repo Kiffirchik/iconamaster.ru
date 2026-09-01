@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { access, cp, mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
@@ -27,6 +28,15 @@ const setup = psLiteral(setupPath);
 
 function psLiteral(value) {
   return `'${value.replaceAll("'", "''")}'`;
+}
+
+async function exists(filePath) {
+  try {
+    await access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 function runShell(shell, command) {
@@ -179,6 +189,68 @@ test('rejects check-only plus installation before doing work', () => {
   const result = runSetupFile(['-CheckOnly', '-InstallPrerequisites']);
   assert.notEqual(result.status, 0);
   assert.match(`${result.stdout}\n${result.stderr}`, /cannot be used together/iu);
+});
+
+test('clean Git copy in a path with spaces runs check-only without installing dependencies', async () => {
+  const tempRoot = await mkdtemp(path.join(tmpdir(), 'Iconamaster setup test '));
+  const copyRoot = path.join(tempRoot, 'Clean Git copy with spaces');
+
+  try {
+    mkdirSync(path.join(copyRoot, 'scripts', 'lib'), { recursive: true });
+    await Promise.all([
+      cp(path.join(root, 'setup.ps1'), path.join(copyRoot, 'setup.ps1')),
+      cp(path.join(root, 'package.json'), path.join(copyRoot, 'package.json')),
+      cp(path.join(root, 'package-lock.json'), path.join(copyRoot, 'package-lock.json')),
+      cp(
+        path.join(root, 'scripts', 'check-portability.mjs'),
+        path.join(copyRoot, 'scripts', 'check-portability.mjs'),
+      ),
+      cp(
+        path.join(root, 'scripts', 'lib', 'portability.mjs'),
+        path.join(copyRoot, 'scripts', 'lib', 'portability.mjs'),
+      ),
+    ]);
+
+    const init = spawnSync('git', ['init'], {
+      cwd: copyRoot,
+      encoding: 'utf8',
+      windowsHide: true,
+    });
+    assert.equal(init.status, 0, `${init.stdout}\n${init.stderr}`);
+
+    const add = spawnSync('git', [
+      'add',
+      '--',
+      'setup.ps1',
+      'package.json',
+      'package-lock.json',
+      'scripts/check-portability.mjs',
+      'scripts/lib/portability.mjs',
+    ], {
+      cwd: copyRoot,
+      encoding: 'utf8',
+      windowsHide: true,
+    });
+    assert.equal(add.status, 0, `${add.stdout}\n${add.stderr}`);
+
+    const result = spawnSync(
+      powershell,
+      [
+        '-NoProfile',
+        '-ExecutionPolicy',
+        'Bypass',
+        '-File',
+        path.join(copyRoot, 'setup.ps1'),
+        '-CheckOnly',
+      ],
+      { cwd: tempRoot, encoding: 'utf8', windowsHide: true },
+    );
+
+    assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+    assert.equal(await exists(path.join(copyRoot, 'node_modules')), false);
+  } finally {
+    await rm(tempRoot, { recursive: true, force: true });
+  }
 });
 
 test('explicit installation emits exact deduplicated winget commands', (t) => {
