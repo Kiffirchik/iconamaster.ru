@@ -85,6 +85,18 @@ function createMigrationFixture(t) {
   return { fixture, fixturePath, binary, versionLine };
 }
 
+function assertControlledMigrationFailure(result, fixturePath, reason, forbidden = []) {
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  const output = `${result.stdout}\n${result.stderr}`;
+  assert.ok(
+    output.includes(`Fixture: ${fixturePath}. Mismatch: ${reason}.`),
+    output,
+  );
+  for (const value of forbidden) {
+    assert.ok(!output.includes(value), `diagnostic disclosed ${value}:\n${output}`);
+  }
+}
+
 test('accepts only the declared Node and npm version policies', () => {
   const result = runPowerShell(`. ${setup};
     if (-not (Test-NodeVersionPolicy 'v20.19.0')) { exit 11 }
@@ -410,6 +422,191 @@ test('migration failure reports only the fixture and mismatch kinds', (t) => {
   assert.ok(!result.stdout.includes(expectedVersion));
   assert.ok(!result.stdout.includes(migration.versionLine));
   assert.ok(!result.stdout.includes(migration.binary));
+});
+
+test('nonzero ffmpeg version exit reports version-command with matching identity', (t) => {
+  const migration = createMigrationFixture(t);
+  const result = runPowerShell(`. ${setup};
+    $script:IconamasterProjectRoot = ${psLiteral(migration.fixture)}
+    $resolver = { param($Name) [pscustomobject]@{ Source=${psLiteral(migration.binary)} } }
+    $runner = {
+      param($File, $Arguments)
+      ${psLiteral(migration.versionLine)}
+      return 73
+    }
+    $state = Test-MigrationToolchain $resolver $runner
+    if ($state.Ready) { exit 51 }
+    if ($state.Reasons.Count -ne 1) { exit 52 }
+    if ($state.Reasons[0] -cne 'version-command') { exit 53 }`);
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+});
+
+test('migration fixture read failure uses a controlled reason', (t) => {
+  const missingRoot = createMetadataFixture(t);
+  const missingFixture = path.join(
+    missingRoot,
+    'tests',
+    'fixtures',
+    'migration',
+    'editorial-cover-assets.json',
+  );
+  const readResult = runPowerShell(`. ${setup};
+    $script:IconamasterProjectRoot = ${psLiteral(missingRoot)}
+    $resolver = { param($Name) [pscustomobject]@{ Source=$Name } }
+    $runner = {
+      param($File, $Arguments)
+      if ($File -eq 'git') { 'git version 2.46.0'; return 0 }
+      if ($File -eq 'node') { 'v20.19.0'; return 0 }
+      if ($File -eq 'npm') { '10.8.2'; return 0 }
+      return 0
+    }
+    try {
+      $null = Invoke-IconamasterSetup -CheckOnly -ForMigration -ProjectRoot ${psLiteral(missingRoot)} -Resolver $resolver -Runner $runner
+      exit 54
+    } catch {
+      Write-Output $_.Exception.Message
+    }`);
+  assertControlledMigrationFailure(readResult, missingFixture, 'fixture-read');
+});
+
+test('migration fixture parse failure hides raw fixture content', (t) => {
+  const malformed = createMigrationFixture(t);
+  const parseSecret = 'parse-secret-marker-C:/private/editorial-cover-assets.json';
+  writeFileSync(malformed.fixturePath, `{${parseSecret}`);
+  const parseResult = runPowerShell(`. ${setup};
+    $script:IconamasterProjectRoot = ${psLiteral(malformed.fixture)}
+    $resolver = { param($Name) [pscustomobject]@{ Source=$Name } }
+    $runner = {
+      param($File, $Arguments)
+      if ($File -eq 'git') { 'git version 2.46.0'; return 0 }
+      if ($File -eq 'node') { 'v20.19.0'; return 0 }
+      if ($File -eq 'npm') { '10.8.2'; return 0 }
+      return 0
+    }
+    try {
+      $null = Invoke-IconamasterSetup -CheckOnly -ForMigration -ProjectRoot ${psLiteral(malformed.fixture)} -Resolver $resolver -Runner $runner
+      exit 55
+    } catch {
+      Write-Output $_.Exception.Message
+    }`);
+  assertControlledMigrationFailure(
+    parseResult,
+    malformed.fixturePath,
+    'fixture-parse',
+    [parseSecret],
+  );
+});
+
+test('migration resolver failure hides its raw error', (t) => {
+  const migration = createMigrationFixture(t);
+  const resolverSecret = 'resolver-secret-marker-C:/private/ffmpeg.exe';
+  const result = runPowerShell(`. ${setup};
+    $script:IconamasterProjectRoot = ${psLiteral(migration.fixture)}
+    $resolver = {
+      param($Name)
+      if ($Name -eq 'ffmpeg') { throw ${psLiteral(resolverSecret)} }
+      return [pscustomobject]@{ Source=$Name }
+    }
+    $runner = {
+      param($File, $Arguments)
+      if ($File -eq 'git') { 'git version 2.46.0'; return 0 }
+      if ($File -eq 'node') { 'v20.19.0'; return 0 }
+      if ($File -eq 'npm') { '10.8.2'; return 0 }
+      return 0
+    }
+    try {
+      $null = Invoke-IconamasterSetup -CheckOnly -ForMigration -ProjectRoot ${psLiteral(migration.fixture)} -Resolver $resolver -Runner $runner
+      exit 59
+    } catch {
+      Write-Output $_.Exception.Message
+    }`);
+  assertControlledMigrationFailure(result, migration.fixturePath, 'resolve', [resolverSecret]);
+});
+
+test('migration hash failure hides the resolved executable and raw error', (t) => {
+  const migration = createMigrationFixture(t);
+  const hashSecret = path.join(migration.fixture, 'private-hash-secret', 'ffmpeg.exe');
+  const result = runPowerShell(`. ${setup};
+    $script:IconamasterProjectRoot = ${psLiteral(migration.fixture)}
+    $resolver = {
+      param($Name)
+      if ($Name -eq 'ffmpeg') { return [pscustomobject]@{ Source=${psLiteral(hashSecret)} } }
+      return [pscustomobject]@{ Source=$Name }
+    }
+    $runner = {
+      param($File, $Arguments)
+      if ($File -eq 'git') { 'git version 2.46.0'; return 0 }
+      if ($File -eq 'node') { 'v20.19.0'; return 0 }
+      if ($File -eq 'npm') { '10.8.2'; return 0 }
+      return 0
+    }
+    try {
+      $null = Invoke-IconamasterSetup -CheckOnly -ForMigration -ProjectRoot ${psLiteral(migration.fixture)} -Resolver $resolver -Runner $runner
+      exit 56
+    } catch {
+      Write-Output $_.Exception.Message
+    }`);
+  assertControlledMigrationFailure(result, migration.fixturePath, 'hash', [hashSecret]);
+});
+
+test('migration module import failure hides the module path and raw error', (t) => {
+  const migration = createMigrationFixture(t);
+  const moduleSecret = 'module-secret-marker-C:/private/Microsoft.PowerShell.Utility.psd1';
+  const result = runPowerShell(`. ${setup};
+    $script:IconamasterProjectRoot = ${psLiteral(migration.fixture)}
+    function Get-Command { return $null }
+    function Import-Module { throw ${psLiteral(moduleSecret)} }
+    $resolver = {
+      param($Name)
+      if ($Name -eq 'ffmpeg') { return [pscustomobject]@{ Source=${psLiteral(migration.binary)} } }
+      return [pscustomobject]@{ Source=$Name }
+    }
+    $runner = {
+      param($File, $Arguments)
+      if ($File -eq 'git') { 'git version 2.46.0'; return 0 }
+      if ($File -eq 'node') { 'v20.19.0'; return 0 }
+      if ($File -eq 'npm') { '10.8.2'; return 0 }
+      return 0
+    }
+    try {
+      $null = Invoke-IconamasterSetup -CheckOnly -ForMigration -ProjectRoot ${psLiteral(migration.fixture)} -Resolver $resolver -Runner $runner
+      exit 57
+    } catch {
+      Write-Output $_.Exception.Message
+    }`);
+  assertControlledMigrationFailure(result, migration.fixturePath, 'hash', [moduleSecret]);
+});
+
+test('migration runner failure hides the executable and raw error', (t) => {
+  const migration = createMigrationFixture(t);
+  const runnerSecret = 'runner-secret-marker-C:/private/ffmpeg.exe';
+  const result = runPowerShell(`. ${setup};
+    $script:IconamasterProjectRoot = ${psLiteral(migration.fixture)}
+    $resolver = {
+      param($Name)
+      if ($Name -eq 'ffmpeg') { return [pscustomobject]@{ Source=${psLiteral(migration.binary)} } }
+      return [pscustomobject]@{ Source=$Name }
+    }
+    $runner = {
+      param($File, $Arguments)
+      if ($File -eq 'git') { 'git version 2.46.0'; return 0 }
+      if ($File -eq 'node') { 'v20.19.0'; return 0 }
+      if ($File -eq 'npm') { '10.8.2'; return 0 }
+      if ($File -eq ${psLiteral(migration.binary)}) { throw ${psLiteral(runnerSecret)} }
+      return 0
+    }
+    try {
+      $null = Invoke-IconamasterSetup -CheckOnly -ForMigration -ProjectRoot ${psLiteral(migration.fixture)} -Resolver $resolver -Runner $runner
+      exit 58
+    } catch {
+      Write-Output $_.Exception.Message
+    }`);
+  assertControlledMigrationFailure(
+    result,
+    migration.fixturePath,
+    'version-command',
+    [runnerSecret, migration.binary],
+  );
 });
 
 test('package metadata declares the supported runtime versions', () => {

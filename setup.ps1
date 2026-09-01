@@ -217,8 +217,38 @@ function Test-MigrationToolchain {
     }
 
     $fixturePath = Join-Path $script:IconamasterProjectRoot 'tests/fixtures/migration/editorial-cover-assets.json'
-    $fixture = Get-Content -Raw -LiteralPath $fixturePath | ConvertFrom-Json
-    $command = & $Resolver 'ffmpeg'
+    try {
+        $fixtureJson = Get-Content -Raw -LiteralPath $fixturePath
+    } catch {
+        return [pscustomobject]@{
+            Ready = $false
+            Fixture = $fixturePath
+            Reasons = @('fixture-read')
+        }
+    }
+    try {
+        $fixture = $fixtureJson | ConvertFrom-Json
+        $expected = $fixture.encoder
+        if ([string]::IsNullOrWhiteSpace([string]$expected.binarySha256) -or
+            [string]::IsNullOrWhiteSpace([string]$expected.versionLine)) {
+            throw 'Invalid migration encoder fixture.'
+        }
+    } catch {
+        return [pscustomobject]@{
+            Ready = $false
+            Fixture = $fixturePath
+            Reasons = @('fixture-parse')
+        }
+    }
+    try {
+        $command = & $Resolver 'ffmpeg'
+    } catch {
+        return [pscustomobject]@{
+            Ready = $false
+            Fixture = $fixturePath
+            Reasons = @('resolve')
+        }
+    }
     if ($null -eq $command) {
         return [pscustomobject]@{
             Ready = $false
@@ -227,13 +257,29 @@ function Test-MigrationToolchain {
         }
     }
 
-    $source = Get-SetupCommandSource -Command $command -Fallback 'ffmpeg'
-    if ($null -eq (Get-Command Get-FileHash -ErrorAction SilentlyContinue)) {
-        $utilityModule = Join-Path $PSHOME 'Modules/Microsoft.PowerShell.Utility/Microsoft.PowerShell.Utility.psd1'
-        Import-Module -Name $utilityModule -Force
+    try {
+        $source = Get-SetupCommandSource -Command $command -Fallback 'ffmpeg'
+        if ($null -eq (Get-Command Get-FileHash -ErrorAction SilentlyContinue)) {
+            $utilityModule = Join-Path $PSHOME 'Modules/Microsoft.PowerShell.Utility/Microsoft.PowerShell.Utility.psd1'
+            Import-Module -Name $utilityModule -Force
+        }
+        $hash = (Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash.ToLowerInvariant()
+    } catch {
+        return [pscustomobject]@{
+            Ready = $false
+            Fixture = $fixturePath
+            Reasons = @('hash')
+        }
     }
-    $hash = (Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash.ToLowerInvariant()
-    $result = Invoke-SetupCommandResult -Runner $Runner -File $source -Arguments @('-version')
+    try {
+        $result = Invoke-SetupCommandResult -Runner $Runner -File $source -Arguments @('-version')
+    } catch {
+        return [pscustomobject]@{
+            Ready = $false
+            Fixture = $fixturePath
+            Reasons = @('version-command')
+        }
+    }
     $versionLine = $null
     if ($result.Output.Count -gt 0) {
         $versionLine = [string]$result.Output[0]
@@ -242,12 +288,16 @@ function Test-MigrationToolchain {
         binarySha256 = $hash
         versionLine = $versionLine
     }
-    $comparison = Compare-FfmpegIdentity -Expected $fixture.encoder -Actual $actual
+    $comparison = Compare-FfmpegIdentity -Expected $expected -Actual $actual
+    $reasons = @($comparison.Reasons)
+    if ($result.ExitCode -ne 0) {
+        $reasons = @('version-command') + $reasons
+    }
 
     return [pscustomobject]@{
         Ready = $result.ExitCode -eq 0 -and $comparison.Ready
         Fixture = $fixturePath
-        Reasons = @($comparison.Reasons)
+        Reasons = $reasons
     }
 }
 
