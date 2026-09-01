@@ -14,4 +14,5 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - Icon files are immutable originals. Do not use ImageGen, pixel editing, generative fill, or handcrafted replacements on them.
 - Preview crops may remove only incidental photographic background; full images always use `object-fit: contain`.
 - WhatsApp is primary; phone and email remain visible alternatives.
-- This project is local-only until the user separately authorizes publishing.
+- Requested production changes are published directly to `https://iconamaster.ru` on MTW with a rollback copy preserved.
+- Do not publish subsequent changes to Sites unless the user explicitly requests it.
