@@ -1,4 +1,4 @@
-function normalizePath(pathname) {
+export function normalizePath(pathname) {
   try {
     const decoded = decodeURI(pathname || '/');
     return decoded !== '/' && decoded.endsWith('/') ? decoded.slice(0, -1) : decoded;
