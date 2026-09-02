@@ -22,6 +22,7 @@
     "test": "node scripts/run-unit-tests.mjs",
     "test:content": "node scripts/verify-content.mjs",
     "test:assets": "node scripts/verify-icon-assets.mjs",
+    "test:static": "node --test tests/static-build.test.mjs",
     "migrate:inventory": "node scripts/build-content-inventory.mjs",
     "migrate:editorial": "node scripts/migrate-editorial-content.mjs",
     "migrate:icons": "node scripts/migrate-icons.mjs",

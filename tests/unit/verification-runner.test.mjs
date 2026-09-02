@@ -11,7 +11,7 @@ async function loadRunner() {
   }
 }
 
-test('verification runner executes the unit suite once and observes one portability marker', async () => {
+test('verification runner executes the static SEO gate immediately after its build', async () => {
   const { PORTABILITY_MARKER, runVerification } = await loadRunner();
   const calls = [];
   await runVerification({
@@ -27,7 +27,18 @@ test('verification runner executes the unit suite once and observes one portabil
     },
   });
 
-  assert.deepEqual(calls.filter((args) => args.length === 1 && args[0] === 'test'), [['test']]);
+  assert.deepEqual(calls, [
+    ['run', 'check:portability'],
+    ['run', 'test:setup'],
+    ['test'],
+    ['run', 'test:content'],
+    ['run', 'test:assets'],
+    ['run', 'build'],
+    ['run', 'test:static'],
+    ['run', 'test:sites'],
+    ['run', 'build:mtw'],
+    ['run', 'test:mtw'],
+  ]);
 });
 
 test('verification runner rejects duplicate portability execution markers', async () => {

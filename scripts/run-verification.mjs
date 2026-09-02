@@ -12,6 +12,7 @@ const verificationSteps = [
   ['run', 'test:content'],
   ['run', 'test:assets'],
   ['run', 'build'],
+  ['run', 'test:static'],
   ['run', 'test:sites'],
   ['run', 'build:mtw'],
   ['run', 'test:mtw'],
