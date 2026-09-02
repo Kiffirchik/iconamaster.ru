@@ -47,9 +47,44 @@ function sitemapUrls(xml) {
   return [...xml.matchAll(/<loc>([^<]+)<\/loc>/gu)].map(([, url]) => url);
 }
 
-function escapeRegExp(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&');
+function assertAliasRedirects(apache, aliases, canonicalPaths) {
+  assert.equal(aliases.length, 78, 'current alias bundle must contain 78 redirects');
+  const aliasRules = aliases.map(([source, target]) => (
+    `RewriteRule ^${source.slice(1)}$ ${target} [R=301,L,NE]`
+  ));
+  const canonicalRedirects = new Set(canonicalPaths
+    .filter((pathname) => pathname !== '/')
+    .map((pathname) => `RewriteRule ^${pathname.slice(1)}/$ ${pathname} [R=301,L,NE]`));
+  const actualAliasRules = apache.split(/\r?\n/u)
+    .filter((line) => line.endsWith('[R=301,L,NE]'))
+    .filter((line) => !canonicalRedirects.has(line));
+
+  assert.equal(
+    actualAliasRules.length,
+    78,
+    'generated Apache config must contain exactly 78 alias redirects',
+  );
+  assert.deepEqual(
+    new Set(actualAliasRules),
+    new Set(aliasRules),
+    'generated Apache config must not contain unexpected alias redirects',
+  );
 }
+
+test('static alias gate rejects an unexpected alias redirect', async () => {
+  const bundle = await readBundle();
+  const apache = await readFile(path.join(clientRoot, '.htaccess'), 'utf8');
+  const unexpectedAlias = 'RewriteRule ^unexpected-alias$ /collection [R=301,L,NE]';
+
+  assert.throws(
+    () => assertAliasRedirects(
+      `${apache}\n${unexpectedAlias}`,
+      Object.entries(bundle.aliases),
+      listCanonicalPaths(bundle),
+    ),
+    /exactly 78 alias redirects/u,
+  );
+});
 
 test('static build publishes every canonical page with crawlable Russian SEO metadata', async () => {
   const bundle = await readBundle();
@@ -107,16 +142,7 @@ test('static build publishes every canonical page with crawlable Russian SEO met
 
   const apache = await readFile(path.join(clientRoot, '.htaccess'), 'utf8');
   const aliases = Object.entries(bundle.aliases);
-  assert.equal(aliases.length, 78, 'current alias bundle must contain 78 redirects');
-  const aliasRules = aliases.map(([source, target]) => (
-    `RewriteRule ^${source.slice(1)}$ ${target} [R=301,L,NE]`
-  ));
-  for (const rule of aliasRules) assert.match(apache, new RegExp(`^${escapeRegExp(rule)}$`, 'mu'));
-  assert.equal(
-    apache.split(/\r?\n/u).filter((line) => aliasRules.includes(line)).length,
-    78,
-    'generated Apache config must contain exactly one redirect per current alias',
-  );
+  assertAliasRedirects(apache, aliases, canonicalPaths);
 
   const notFound = await readFile(path.join(clientRoot, '404.html'), 'utf8');
   assert.match(notFound, /<meta\s+name="robots"\s+content="noindex,follow"/u);
