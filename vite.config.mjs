@@ -40,7 +40,14 @@ function cleanStaticPreviewRoutes() {
         } catch {
           return next();
         }
-        const pathname = decodeURIComponent(url.pathname);
+        let pathname;
+        try {
+          pathname = decodeURIComponent(url.pathname);
+        } catch {
+          response.statusCode = 400;
+          response.setHeader("Content-Type", "text/plain; charset=utf-8");
+          return response.end("Bad Request");
+        }
 
         if (pathname === "/" || pathname.endsWith("/")) return next();
 

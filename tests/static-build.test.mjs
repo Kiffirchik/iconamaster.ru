@@ -105,6 +105,21 @@ test('preview serves a canonical clean path from its prerendered route document'
   assert.match(html, /data-prerender-path="\/raschistka-hramovyh-rospisey"/u);
 });
 
+test('preview does not reject a malformed percent-encoded path', async (context) => {
+  const server = await preview({
+    logLevel: 'silent',
+    preview: { host: '127.0.0.1', port: 0 },
+  });
+  context.after(() => server.close());
+
+  const address = server.httpServer.address();
+  assert.ok(address && typeof address !== 'string', 'preview must listen on a TCP port');
+  const response = await fetch(`http://127.0.0.1:${address.port}/%E0%A4%A`);
+
+  assert.equal(response.status, 400, 'malformed paths must get a controlled preview response');
+  assert.equal(await response.text(), 'Bad Request');
+});
+
 test('preview can inject local contact-goal instrumentation without changing contact destinations', async (context) => {
   const server = await preview({
     logLevel: 'silent',

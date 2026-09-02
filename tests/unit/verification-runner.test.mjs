@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 const runnerUrl = new URL('../../scripts/run-verification.mjs', import.meta.url);
+const unitRunnerUrl = new URL('../../scripts/run-unit-tests.mjs', import.meta.url);
 
 async function loadRunner() {
   try {
@@ -55,4 +57,10 @@ test('verification runner rejects duplicate portability execution markers', asyn
     }),
     /expected exactly one portability marker, observed 2/u,
   );
+});
+
+test('unit runner keeps Vite-backed tests sequential to avoid cancelled builds', async () => {
+  const source = await readFile(unitRunnerUrl, 'utf8');
+
+  assert.match(source, /'--test-concurrency=1'/u);
 });

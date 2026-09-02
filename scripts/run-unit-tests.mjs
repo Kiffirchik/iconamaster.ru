@@ -3,6 +3,7 @@ import { spawn } from 'node:child_process';
 
 const child = spawn(process.execPath, [
   '--test',
+  '--test-concurrency=1',
   ...process.argv.slice(2),
   'tests/unit',
 ], {

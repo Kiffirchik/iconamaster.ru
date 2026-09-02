@@ -99,3 +99,22 @@ The required embedded in-app browser was subsequently available for the replacem
 | All other workshop submenu links | at least 44 px high (two-line links 48.13 px high) |
 
 Every measured interactive target satisfies the required 44 px minimum.
+
+## Fix Round 2 — malformed preview paths and contacts-card hitboxes
+
+### Controlled malformed-path behavior
+
+RED: requesting `/%E0%A4%A` through a real Vite preview rejected the asynchronous middleware with an unhandled `URIError: URI malformed`. GREEN: decoding is now guarded inside the preview-only middleware; that exact request returns the controlled plain-text response `400 Bad Request` and the focused static-preview suite passes 6/6. Canonical clean-path serving remains covered by the same suite.
+
+While rerunning the full gate, Node's default parallel execution reproducibly cancelled Vite compilation in the Vite-backed `content-loader` tests even though that file passed alone and all 178 tests passed with `--test-concurrency=1`. A source-backed regression now locks the unit runner to that sequential setting. This is a test-runner stability correction only; `npm run verify` then passed in full (178 unit tests, content/assets/static/Sites/MTW gates).
+
+### Contacts card (IAB, innerWidth 390)
+
+The IAB opened the exact `/contacts` route (`Контакты | Московская иконописная мастерская`), measured the rendered card, then reset its viewport and closed the tab. All four visible primary contact-card controls meet the 44 px minimum and retain their destination contract.
+
+| Rendered control | Measured size in CSS px | href | target / rel |
+| --- | --- | --- | --- |
+| `Написать в WhatsApp` | 308 × 46.78 | `https://wa.me/79166554595` | `_blank` / `noreferrer` |
+| `+79166554595` | 308 × 44 | `tel:+79166554595` | none / none |
+| `iconamaster@yandex.ru` | 308 × 44 | `mailto:iconamaster@yandex.ru` | none / none |
+| `Открыть в Яндекс Картах` | 308 × 44 | `https://yandex.com/maps/-/CTT2bAoq` | `_blank` / `noreferrer` |
