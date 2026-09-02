@@ -17,10 +17,17 @@ const driveTempArtifact = ['C:', 'Temp', 'artifact'].join('\\');
 const localAppDataCache = ['%LOCALAPPDATA%', 'Iconamaster', 'cache'].join('\\');
 const tempWorkspace = ['%TEMP%', 'Iconamaster'].join('\\');
 const siblingDependency = ['..', 'Iconamaster-copy', 'asset'].join('\\');
-const powershellTempWorkspace = ['$env:TEMP', 'Iconamaster'].join('\\');
-const powershellLocalAppData = ['${env:LOCALAPPDATA}', 'Iconamaster'].join('\\');
+const powershellTempRoot = ['$env:', 'TEMP'].join('');
+const powershellLocalAppDataRoot = ['${env:', 'LOCALAPPDATA', '}'].join('');
+const powershellTempWorkspace = [powershellTempRoot, 'Iconamaster'].join('\\');
+const powershellLocalAppData = [powershellLocalAppDataRoot, 'Iconamaster'].join('\\');
 const slashSiblingDependency = ['..', 'Iconamaster-copy', 'asset'].join('/');
 const runtimeParentPath = ['$PSScriptRoot', '..', 'package.json'].join('\\');
+const releaseSiblingDependency = ['..', 'release-checkout', 'asset'].join('\\');
+const slashReleaseSiblingDependency = ['..', 'release-checkout', 'asset'].join('/');
+const runtimeAssetPath = ['$PSScriptRoot', '..', 'Iconamaster-assets', 'manifest.json'].join('\\');
+const slashRuntimeAssetPath = ['$PSScriptRoot', '..', 'Iconamaster-assets', 'manifest.json'].join('/');
+const ordinaryRelativeImport = ['..', 'shared', 'module.mjs'].join('/');
 
 test('flags local Windows profiles and file URLs', (t) => {
   t.diagnostic('ICONAMASTER_PORTABILITY_UNIT_MARKER');
@@ -75,6 +82,49 @@ test('flags PowerShell profile environments and slash-separated sibling dependen
   ]);
 });
 
+test('flags operational sibling dependencies independent of basename and separator', () => {
+  const findings = findMachinePathFindings([
+    { path: 'scripts/copy-backslash.ps1', text: `Copy-Item ${releaseSiblingDependency}` },
+    { path: 'scripts/copy-slash.ps1', text: `Copy-Item ${slashReleaseSiblingDependency}` },
+  ]);
+
+  assert.deepEqual(findings.map(({ path, kind, match }) => ({ path, kind, match })), [
+    {
+      path: 'scripts/copy-backslash.ps1',
+      kind: 'windows-parent-dependency',
+      match: releaseSiblingDependency,
+    },
+    {
+      path: 'scripts/copy-slash.ps1',
+      kind: 'windows-parent-dependency',
+      match: slashReleaseSiblingDependency,
+    },
+  ]);
+});
+
+test('flags bare PowerShell profile environment roots', () => {
+  const findings = findMachinePathFindings([
+    { path: 'scripts/temp.ps1', text: `Set-Location ${powershellTempRoot}` },
+    { path: 'scripts/cache.ps1', text: `Write-Output ${powershellLocalAppDataRoot}` },
+  ]);
+
+  assert.deepEqual(findings.map(({ path, kind, match }) => ({ path, kind, match })), [
+    { path: 'scripts/temp.ps1', kind: 'windows-profile-environment', match: powershellTempRoot },
+    {
+      path: 'scripts/cache.ps1',
+      kind: 'windows-profile-environment',
+      match: powershellLocalAppDataRoot,
+    },
+  ]);
+});
+
+test('does not treat longer PowerShell identifiers or environment prose as profile roots', () => {
+  assert.deepEqual(findMachinePathFindings([
+    { path: 'docs/identifiers.md', text: '$env:TEMPORARY ${env:LOCALAPPDATA_BACKUP}' },
+    { path: 'docs/environment.md', text: 'Use the TEMP environment variable for temporary files.' },
+  ]), []);
+});
+
 test('does not read tracked text through a symbolic link outside the repository', async (t) => {
   const fixtureRoot = await mkdtemp(path.join(tmpdir(), 'iconamaster-portability-'));
   t.after(() => rm(fixtureRoot, { recursive: true, force: true }));
@@ -119,12 +169,16 @@ test('allows runtime roots, URI schemes, URLs and repository-relative paths', ()
   assert.deepEqual(findMachinePathFindings([
     { path: 'setup.ps1', text: 'Join-Path $PSScriptRoot package.json' },
     { path: 'setup.ps1', text: runtimeParentPath },
+    { path: 'scripts/assets.ps1', text: `Copy-Item ${runtimeAssetPath}` },
+    { path: 'scripts/assets.ps1', text: `Copy-Item ${slashRuntimeAssetPath}` },
+    { path: 'src/module.mjs', text: `import '${ordinaryRelativeImport}'` },
+    { path: 'docs/module.md', text: `[shared module](${ordinaryRelativeImport})` },
     { path: 'scripts/example.mjs', text: 'new URL("../public", import.meta.url)' },
     { path: 'src/resource.txt', text: 'x:/resource' },
     { path: 'docs/deploy.md', text: 'https://iconamaster.ru /www/vhosts/example/httpdocs' },
     { path: 'docs/example.md', text: '<drive>:\\Users\\<profile>\\project' },
     { path: 'docs/versions.md', text: 'Windows 10/11; Node.js ^20.19.0 || >=22.12.0; drive C: is illustrative prose' },
-    { path: 'scripts/relative.ps1', text: '.\\setup.ps1 ./scripts/check-portability.mjs' },
+    { path: 'scripts/relative.ps1', text: '.\\setup.ps1 ./asset ./scripts/check-portability.mjs' },
     { path: 'docs/placeholders.md', text: '<workspace>\\cache <legacy-backup>\\assets <drive>:\\Temp\\artifact' },
     { path: 'tests/contact.test.mjs', text: String.raw`/tel:\+79990001122/u` },
     { path: 'tests/styles.test.mjs', text: String.raw`/display:\s*none|min-height:\s*2\.75rem/u` },

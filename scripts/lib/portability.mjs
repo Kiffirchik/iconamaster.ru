@@ -15,21 +15,46 @@ const patterns = [
   { kind: 'windows-drive-root', expression: /(?<!file:\/\/)(?<!file:\/\/\/)(?<![a-z])(?!x:\/resource(?:[\/\s`"'<>]|$))[a-z]:(?:\\+|\/)(?!\/)(?!(?:Users|Documents and Settings)(?:\\+|\/))[^\\/\s`"'<>]+(?:(?:\\+|\/)[^\\/\s`"'<>]+)*/giu },
   // These profile/temp variables still bind operational files to one Windows account or machine.
   { kind: 'windows-profile-environment', expression: /%(?:LOCALAPPDATA|APPDATA|USERPROFILE|TEMP|TMP)%(?:\\+|\/)[^\\/\s`"'<>]+(?:(?:\\+|\/)[^\\/\s`"'<>]+)*/giu },
-  { kind: 'windows-profile-environment', expression: /(?:\$env:(?:LOCALAPPDATA|APPDATA|USERPROFILE|TEMP|TMP)|\$\{env:(?:LOCALAPPDATA|APPDATA|USERPROFILE|TEMP|TMP)\})(?:\\+|\/)[^\\/\s`"'<>]+(?:(?:\\+|\/)[^\\/\s`"'<>]+)*/giu },
-  // Parent traversal into another Iconamaster checkout is an operational sibling dependency.
-  { kind: 'windows-parent-dependency', expression: /(?<!\.)\.\.(?:\\+|\/)Iconamaster(?:-[^\\/\s`"'<>]+)?(?:(?:\\+|\/)[^\\/\s`"'<>]+)*/giu },
+  { kind: 'windows-profile-environment', expression: /(?:\$env:(?:LOCALAPPDATA|APPDATA|USERPROFILE|TEMP|TMP)(?![a-z0-9_])|\$\{env:(?:LOCALAPPDATA|APPDATA|USERPROFILE|TEMP|TMP)\})(?:(?:\\+|\/)[^\\/\s`"'<>]+)*/giu },
 ];
+// Only commands that consume filesystem operands make a parent path an operational dependency.
+const operationalParentContexts = [
+  /\b(?:Copy-Item|Move-Item|Set-Location)\b/iu,
+  /(?:^|[^\p{L}\p{N}_])copy\s*\(/iu,
+];
+const parentPathExpression = /(?<!\.)\.\.(?:\\+|\/)[^\\/\s`"'<>()[\]{},;]+(?:(?:\\+|\/)[^\\/\s`"'<>()[\]{},;]+)*/gu;
+const runtimeRootExpression = /\$(?:PSScriptRoot|\{PSScriptRoot\})(?:\\+|\/)$/iu;
+
+function findOperationalParentDependencies({ path: filePath, text }) {
+  return text.split(/\r?\n/u).flatMap((line, lineIndex) => {
+    parentPathExpression.lastIndex = 0;
+    return [...line.matchAll(parentPathExpression)].flatMap((match) => {
+      const prefix = line.slice(0, match.index);
+      const isOperational = operationalParentContexts.some((expression) => expression.test(prefix));
+      if (!isOperational || runtimeRootExpression.test(prefix)) return [];
+      return [{
+        path: filePath,
+        kind: 'windows-parent-dependency',
+        match: match[0],
+        line: lineIndex + 1,
+      }];
+    });
+  });
+}
 
 export function findMachinePathFindings(records) {
-  return records.flatMap(({ path: filePath, text }) => patterns.flatMap(({ kind, expression }) => {
-    expression.lastIndex = 0;
-    return [...text.matchAll(expression)].map((match) => ({
-      path: filePath,
-      kind,
-      match: match[0],
-      line: text.slice(0, match.index).split(/\r?\n/u).length,
-    }));
-  }));
+  return records.flatMap((record) => [
+    ...patterns.flatMap(({ kind, expression }) => {
+      expression.lastIndex = 0;
+      return [...record.text.matchAll(expression)].map((match) => ({
+        path: record.path,
+        kind,
+        match: match[0],
+        line: record.text.slice(0, match.index).split(/\r?\n/u).length,
+      }));
+    }),
+    ...findOperationalParentDependencies(record),
+  ]);
 }
 
 function gitTrackedFiles(root) {
