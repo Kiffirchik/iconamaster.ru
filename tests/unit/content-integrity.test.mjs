@@ -121,11 +121,19 @@ test('integrity validator accepts canonical Dzen article sources without relaxin
   const page = pageRecord('dzen-page', [{ type: 'text', paragraphs: ['Материал'] }], {
     sourceUrl: 'https://dzen.ru/a/ak_PywErdWEdTZrn',
   });
-  const errors = verifyContent(bundle({ articles: [article], pages: [page] }), new Set([
+  const service = pageRecord('raschistka-hramovyh-rospisey', [{ type: 'text', paragraphs: ['Материал'] }], {
+    intro: 'Описание услуги',
+    template: 'service',
+    consultationTopic: 'murals',
+    relatedArticleSlug: 'restoration-murals-cleaning',
+    sourceUrl: 'https://dzen.ru/a/ak_PywErdWEdTZrn',
+  });
+  const errors = verifyContent(bundle({ articles: [article], pages: [page, service] }), new Set([
     '/assets/articles/dzen-story.jpg',
   ]));
 
   assert.doesNotMatch(errors.join('\n'), /article dzen-story field sourceUrl/);
+  assert.doesNotMatch(errors.join('\n'), /page raschistka-hramovyh-rospisey field sourceUrl/);
   assert.ok(errors.includes('page dzen-page field sourceUrl must be an HTTPS iconamaster.cargo.site URL'));
 });
 
@@ -512,7 +520,7 @@ test('clean checkout content, aliases, ownership inventories, and local assets p
   assert.deepEqual(result.summary, {
     icons: 50,
     publishedIcons: 50,
-    pages: 7,
+    pages: 8,
     articles: 10,
     videos: 2,
     aliases: 78,

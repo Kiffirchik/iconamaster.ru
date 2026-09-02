@@ -767,6 +767,28 @@ button {
   background: var(--surface);
 }
 
+.mural-service-page__related {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  max-width: 70ch;
+  padding-block: clamp(1rem, 3vw, 2rem);
+  border-block: 1px solid var(--line);
+}
+
+.mural-service-page__related h2,
+.mural-service-page__related p {
+  margin: 0;
+}
+
+.mural-service-page__related p {
+  color: var(--muted);
+}
+
+.article-page__service-link {
+  justify-self: start;
+}
+
 .article-index {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

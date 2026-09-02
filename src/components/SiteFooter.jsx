@@ -5,6 +5,7 @@ const sections = [
   ['Главная', '/'],
   ['Иконы в наличии', '/collection'],
   ['Реставрация', '/restoration'],
+  ['Расчистка росписей', '/raschistka-hramovyh-rospisey'],
   ['Статьи', '/articles'],
   ['Видео', '/video'],
   ['Контакты', '/contacts']

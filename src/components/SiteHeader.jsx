@@ -5,7 +5,8 @@ const workshopNavigation = [
   ['Мерная икона', '/measure-icon'],
   ['Киоты и резьба', '/kiots'],
   ['Оклады на иконы', '/oklads'],
-  ['Иконостасы', '/iconostases']
+  ['Иконостасы', '/iconostases'],
+  ['Расчистка росписей', '/raschistka-hramovyh-rospisey']
 ];
 
 export class SiteHeader extends Component {

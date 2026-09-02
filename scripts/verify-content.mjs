@@ -25,8 +25,10 @@ const STATIC_ALIASES = {
 const EXCLUDED_ARTICLE_PATH = '/IKONY-V-OKLADAK-TRADITIY-I-ISTORIY';
 const RAW_HTML = /<(?:\/?[A-Za-z][^>]*|!DOCTYPE[^>]*)>/iu;
 const EXECUTABLE_TEXT = /(?:javascript\s*:|\bon[a-z]+\s*=)/iu;
-const PAGE_FIELDS = new Set(['id', 'slug', 'title', 'published', 'order', 'sourceUrl', 'sections']);
-const ARTICLE_FIELDS = new Set([...PAGE_FIELDS, 'summary', 'image']);
+const PUBLICATION_FIELDS = ['id', 'slug', 'title', 'published', 'order', 'sourceUrl', 'sections'];
+const SERVICE_PAGE_FIELDS = ['intro', 'template', 'consultationTopic', 'relatedArticleSlug'];
+const PAGE_FIELDS = new Set([...PUBLICATION_FIELDS, ...SERVICE_PAGE_FIELDS]);
+const ARTICLE_FIELDS = new Set([...PUBLICATION_FIELDS, 'summary', 'image']);
 const VIDEO_FIELDS = new Set(['provider', 'id', 'title', 'description', 'autoplay', 'published', 'sourceUrl']);
 const CONTACT_FIELDS = new Set(['whatsapp', 'phone', 'email', 'sourceUrl', 'mapUrl', 'address']);
 const ADDRESS_FIELDS = new Set(['display', 'streetAddress', 'addressLocality', 'addressRegion', 'addressCountry']);
@@ -598,7 +600,21 @@ export function verifyContent(bundle, assetFiles = new Set(), options = {}) {
   for (const [kind, records] of [['page', safeBundle.pages], ['article', safeBundle.articles]]) {
     for (const record of records) {
       const label = `${kind} ${record?.slug ?? '<missing>'}`;
-      validatePublicationRecord(record, kind === 'page' ? PAGE_FIELDS : ARTICLE_FIELDS, label, errors, kind === 'article');
+      const servicePage = kind === 'page' && record?.template === 'service';
+      validatePublicationRecord(
+        record,
+        kind === 'page' ? PAGE_FIELDS : ARTICLE_FIELDS,
+        label,
+        errors,
+        kind === 'article' || servicePage,
+      );
+      if (servicePage) {
+        for (const field of SERVICE_PAGE_FIELDS) validateNonEmptyString(record, field, label, errors);
+      } else if (kind === 'page') {
+        for (const field of SERVICE_PAGE_FIELDS) {
+          if (Object.hasOwn(record ?? {}, field)) errors.push(`${label} field ${field} is only allowed for service pages`);
+        }
+      }
       if (kind === 'article') {
         validateNonEmptyString(record, 'summary', label, errors);
         if (!isPlainObject(record?.image)) {
@@ -981,7 +997,10 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
     referencedFiles,
     expected: {
       icons: legacyIconMap.map(({ slug }) => slug),
-      pages: legacyPageMap.map(({ slug }) => ({ slug, published: true })),
+      pages: [
+        ...legacyPageMap.map(({ slug }) => ({ slug, published: true })),
+        { slug: 'raschistka-hramovyh-rospisey', published: true },
+      ],
       articles: [
         ...legacyArticleMap.map(({ slug }) => ({ slug, published: true })),
         { slug: 'restoration-murals-cleaning', published: true },

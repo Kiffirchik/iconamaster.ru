@@ -3,10 +3,15 @@ export function buildContactLinks(contacts = {}, iconTitle, intent = 'consultati
   const phone = String(contacts.phone || '').replace(/\D/g, '');
   const email = String(contacts.email || '').trim();
   const viewing = intent === 'viewing';
-  const subject = viewing
+  const murals = intent === 'murals';
+  const subject = murals
+    ? 'Консультация по расчистке настенных храмовых росписей'
+    : viewing
     ? `Личный просмотр${iconTitle ? ` иконы «${iconTitle}»` : ' икон мастерской'}`
     : iconTitle ? `Консультация об иконе «${iconTitle}»` : 'Консультация в иконописной мастерской';
-  const body = viewing
+  const body = murals
+    ? 'Здравствуйте! Нужна консультация по расчистке настенных храмовых росписей.'
+    : viewing
     ? `Здравствуйте! Хочу назначить личный просмотр${iconTitle ? ` иконы «${iconTitle}»` : ' икон мастерской'}.`
     : iconTitle
       ? `Здравствуйте! Хочу получить консультацию об иконе «${iconTitle}».`

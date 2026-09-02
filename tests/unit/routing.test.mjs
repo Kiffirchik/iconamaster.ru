@@ -87,7 +87,12 @@ test('parseRoute recognizes every canonical route shape', () => {
     ['/restoration', { name: 'page', slug: 'restoration', canonicalPath: '/restoration' }],
     ['/kiots', { name: 'page', slug: 'kiots', canonicalPath: '/kiots' }],
     ['/oklads', { name: 'page', slug: 'oklads', canonicalPath: '/oklads' }],
-    ['/iconostases', { name: 'page', slug: 'iconostases', canonicalPath: '/iconostases' }]
+    ['/iconostases', { name: 'page', slug: 'iconostases', canonicalPath: '/iconostases' }],
+    ['/raschistka-hramovyh-rospisey', {
+      name: 'page',
+      slug: 'raschistka-hramovyh-rospisey',
+      canonicalPath: '/raschistka-hramovyh-rospisey'
+    }]
   ];
 
   for (const [path, expected] of cases) {

@@ -24,9 +24,9 @@
     {
       "id": "pages",
       "path": "public/content/pages.json",
-      "records": 7,
-      "bytes": 44413,
-      "sha256": "cc19e034add9c4dda0872be75cdf655765002a5ef78d4919ec66fab8f4b876c9"
+      "records": 8,
+      "bytes": 48814,
+      "sha256": "a6bc071a3a2143dd612d88a7224a0e71e2773a86b1b331e5c7e86811b562f566"
     },
     {
       "id": "articles",
@@ -59,7 +59,7 @@
   ],
   "summary": {
     "records": {
-      "pages": 7,
+      "pages": 8,
       "articles": 8,
       "videos": 2,
       "contacts": 1
@@ -3184,6 +3184,12 @@
       "ownerSlug": "icon-painting-canon",
       "kind": "known-prayer-soft-br-merge",
       "mergedBreaks": 9
+    },
+    {
+      "ownerType": "page",
+      "kind": "canonical-workshop-address",
+      "paragraphs": 2,
+      "value": "Московская область, д. Брёхово, Ромашковая ул., 16"
     }
   ],
   "aliases": [
@@ -3351,6 +3357,14 @@
       "sourceUrl": "https://iconamaster.cargo.site/IKONOSTASY",
       "sections": 12,
       "media": 18
+    },
+    {
+      "kind": "page",
+      "slug": "raschistka-hramovyh-rospisey",
+      "title": "Расчистка настенных храмовых росписей от копоти и загрязнений",
+      "sourceUrl": "https://dzen.ru/a/ak_PywErdWEdTZrn",
+      "sections": 7,
+      "media": 3
     },
     {
       "kind": "article",

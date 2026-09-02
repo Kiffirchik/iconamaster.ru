@@ -24,7 +24,7 @@ export function parseRoute(pathname, aliases = {}) {
   const article = canonicalPath.match(/^\/articles\/([^/]+)$/);
   if (article) return { name: 'article', slug: article[1] };
 
-  const page = canonicalPath.match(/^\/(workshop|excursions|measure-icon|restoration|kiots|oklads|iconostases)$/);
+  const page = canonicalPath.match(/^\/(workshop|excursions|measure-icon|restoration|kiots|oklads|iconostases|raschistka-hramovyh-rospisey)$/);
   if (page) return { name: 'page', slug: page[1], canonicalPath };
 
   return { name: 'not-found' };

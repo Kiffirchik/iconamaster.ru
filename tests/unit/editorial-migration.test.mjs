@@ -82,6 +82,7 @@ test('editorial migration contains exactly the agreed records and contact policy
     'kiots',
     'measure-icon',
     'oklads',
+    'raschistka-hramovyh-rospisey',
     'restoration',
     'workshop',
   ]);
@@ -106,7 +107,7 @@ test('every approved source path has a root-relative same-tab alias', async () =
     json('../../public/content/aliases.json'),
   ]);
   const records = [
-    ...pages,
+    ...pages.filter(({ sourceUrl }) => sourceUrl.startsWith('https://iconamaster.cargo.site/')),
     ...articles.filter(({ sourceUrl }) => sourceUrl.startsWith('https://iconamaster.cargo.site/')),
   ];
   const recordsByPath = new Map(records.map((record) => [recordPath(record), record]));
@@ -213,7 +214,9 @@ test('frozen source ownership fixture matches content, report and original files
   ]);
   const fixture = JSON.parse(fixtureBytes);
   const records = [
-    ...pages.map((record) => ({ ownerType: 'page', ownerSlug: record.slug, record })),
+    ...pages
+      .filter(({ sourceUrl }) => sourceUrl.startsWith('https://iconamaster.cargo.site/'))
+      .map((record) => ({ ownerType: 'page', ownerSlug: record.slug, record })),
     ...articles
       .filter(({ sourceUrl }) => sourceUrl.startsWith('https://iconamaster.cargo.site/'))
       .map((record) => ({ ownerType: 'article', ownerSlug: record.slug, record })),
@@ -424,7 +427,7 @@ test('article cards use smaller derived covers while full originals and disk bij
     ...report.coverAssets.map(({ src }) => src),
   ].toSorted();
   assert.deepEqual(actualDiskFiles, expectedDiskFiles);
-  assert.equal(pages.length, 7);
+  assert.equal(pages.length, 8);
 });
 
 test('removes only the accepted literal source-debris marker', async () => {
@@ -464,7 +467,7 @@ test('durable editorial report accounts for exclusions, omissions, encoding and 
 
   assert.equal(report.schemaVersion, 1);
   assert.deepEqual(report.summary.records, {
-    pages: 7,
+    pages: 8,
     articles: 8,
     videos: 2,
     contacts: 1,

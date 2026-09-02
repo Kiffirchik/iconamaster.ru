@@ -1,6 +1,9 @@
 const requiredCollections = ['icons', 'pages', 'articles', 'videos'];
 const contactFields = new Set(['whatsapp', 'phone', 'email', 'sourceUrl', 'mapUrl', 'address']);
 const addressFields = new Set(['display', 'streetAddress', 'addressLocality', 'addressRegion', 'addressCountry']);
+const publicationFields = ['id', 'slug', 'title', 'published', 'order', 'sourceUrl', 'sections'];
+const servicePageFields = ['intro', 'template', 'consultationTopic', 'relatedArticleSlug'];
+const pageFields = new Set([...publicationFields, ...servicePageFields]);
 
 function validateContacts(contacts, errors) {
   if (!contacts || typeof contacts !== 'object' || Array.isArray(contacts)) {
@@ -52,6 +55,24 @@ export function validateContentBundle(bundle) {
     for (const image of icon.images ?? []) {
       if (!image.src || !image.alt || !(image.width > 0) || !(image.height > 0)) {
         errors.push(`invalid image in icon ${icon.slug}`);
+      }
+    }
+  }
+  for (const page of Array.isArray(bundle?.pages) ? bundle.pages : []) {
+    const label = `page ${page?.slug ?? '<missing>'}`;
+    for (const field of Object.keys(page ?? {})) {
+      if (!pageFields.has(field)) errors.push(`${label} contains unknown field ${field}`);
+    }
+    const servicePage = page?.template === 'service';
+    if (servicePage) {
+      for (const field of servicePageFields) {
+        if (typeof page[field] !== 'string' || !page[field].trim()) {
+          errors.push(`${label} field ${field} must be a non-empty string`);
+        }
+      }
+    } else {
+      for (const field of servicePageFields) {
+        if (Object.hasOwn(page ?? {}, field)) errors.push(`${label} field ${field} is only allowed for service pages`);
       }
     }
   }

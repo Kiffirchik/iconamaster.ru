@@ -7,6 +7,7 @@ import path from 'node:path';
 
 import { legacyArticleMap } from './data/legacy-article-map.mjs';
 import { legacyPageMap } from './data/legacy-page-map.mjs';
+import { manualPages } from './data/manual-pages.mjs';
 import { repairMojibake } from './lib/legacy-html.mjs';
 
 const projectDirectory = fileURLToPath(new URL('../', import.meta.url));
@@ -1057,6 +1058,34 @@ const outputEntry = (id, relativePath, serialized, records) => ({
   sha256: sha256(Buffer.from(serialized)),
 });
 
+const canonicalWorkshopAddress = 'Московская область, д. Брёхово, Ромашковая ул., 16';
+const normalizeWorkshopLocationParagraphs = (records) => {
+  let normalized = 0;
+  const replacements = new Map([
+    ['excursions', ['Московская область, Пятницкое шоссе, деревня Брехово, ул Ромашковая, д.16', canonicalWorkshopAddress]],
+    ['restoration', ['Московская область, Пятницкое шоссе, деревня Брехово', canonicalWorkshopAddress]],
+  ]);
+  const pages = records.map((record) => {
+    const replacement = replacements.get(record.slug);
+    if (!replacement) return record;
+    return {
+      ...record,
+      sections: record.sections.map((section) => section.type === 'text' ? {
+        ...section,
+        paragraphs: section.paragraphs.map((paragraph) => {
+          if (!paragraph.includes(replacement[0])) return paragraph;
+          normalized += 1;
+          return paragraph.replace(replacement[0], replacement[1]);
+        }),
+      } : section),
+    };
+  });
+  if (normalized !== replacements.size) {
+    throw new Error(`Expected ${replacements.size} workshop address paragraphs, normalized ${normalized}`);
+  }
+  return { pages, normalized };
+};
+
 const main = async () => {
   const sourceArgument = argument('--source');
   const inventoryArgument = argument('--inventory');
@@ -1120,7 +1149,8 @@ const main = async () => {
   validateCoverAssetFixture(coverBuild.assets, coverAssetFixture);
   const pageBuild = buildPublicRecords(preparedPages, migration);
   const articleBuild = buildPublicRecords(preparedArticles, migration, coverBuild.byOwner);
-  const pages = pageBuild.records;
+  const normalizedPageBuild = normalizeWorkshopLocationParagraphs(pageBuild.records);
+  const pages = [...normalizedPageBuild.pages, ...manualPages];
   const articles = articleBuild.records;
   const videos = [
     {
@@ -1289,7 +1319,12 @@ const main = async () => {
         kind: 'known-prayer-soft-br-merge',
         mergedBreaks: prepared.mergedPrayerSoftBreaks,
       }] : []
-    )),
+    )).concat({
+      ownerType: 'page',
+      kind: 'canonical-workshop-address',
+      paragraphs: normalizedPageBuild.normalized,
+      value: canonicalWorkshopAddress,
+    }),
     aliases: Object.entries(editorialAliases).map(([legacyPath, canonicalPath]) => ({ legacyPath, canonicalPath })),
     excludedArticleCandidates: [{
       legacyPath: excluded.sourcePath,

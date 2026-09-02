@@ -17,6 +17,11 @@ export function ArticlePage({ article, onNavigate }) {
             Материал также опубликован в <a href={article.sourceUrl} target="_blank" rel="noreferrer">Дзене</a>.
           </p>
         ) : null}
+        {article.slug === 'restoration-murals-cleaning' ? (
+          <a className="button button--primary article-page__service-link" href="/raschistka-hramovyh-rospisey">
+            Обсудить расчистку росписей
+          </a>
+        ) : null}
       </article>
       <a
         className="editorial-page__back-link"

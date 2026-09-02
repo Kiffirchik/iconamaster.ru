@@ -12,6 +12,7 @@ import { ContactsPage } from './pages/ContactsPage.jsx';
 import { ContentPage } from './pages/ContentPage.jsx';
 import { HomePage } from './pages/HomePage.jsx';
 import { IconDetailPage } from './pages/IconDetailPage.jsx';
+import { MuralCleaningPage } from './pages/MuralCleaningPage.jsx';
 import { VideoPage } from './pages/VideoPage.jsx';
 
 function getRoute(aliases) {
@@ -38,7 +39,8 @@ export function renderReadyRoute(route, bundle, onNavigate) {
   }
   if (route.name === 'page') {
     const page = selectBySlug(bundle.pages, route.slug);
-    return page ? <ContentPage page={page} /> : <NotFoundPage onNavigate={onNavigate} />;
+    if (!page) return <NotFoundPage onNavigate={onNavigate} />;
+    return page.template === 'service' ? <MuralCleaningPage page={page} /> : <ContentPage page={page} />;
   }
   if (route.name === 'articles') return <ArticlesPage articles={bundle.articles} onNavigate={onNavigate} />;
   if (route.name === 'article') {
