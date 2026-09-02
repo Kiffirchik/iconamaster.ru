@@ -3,6 +3,8 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
+import { runInNewContext } from 'node:vm';
+import { preview } from 'vite';
 
 import { listCanonicalPaths } from '../src/lib/seo.js';
 
@@ -84,6 +86,93 @@ test('static alias gate rejects an unexpected alias redirect', async () => {
     ),
     /exactly 78 alias redirects/u,
   );
+});
+
+test('preview serves a canonical clean path from its prerendered route document', async (context) => {
+  const server = await preview({
+    logLevel: 'silent',
+    preview: { host: '127.0.0.1', port: 0 },
+  });
+  context.after(() => server.close());
+
+  const address = server.httpServer.address();
+  assert.ok(address && typeof address !== 'string', 'preview must listen on a TCP port');
+  const response = await fetch(`http://127.0.0.1:${address.port}/raschistka-hramovyh-rospisey`);
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /<title data-seo-managed="true">Расчистка настенных храмовых росписей/u);
+  assert.match(html, /data-prerender-path="\/raschistka-hramovyh-rospisey"/u);
+});
+
+test('preview can inject local contact-goal instrumentation without changing contact destinations', async (context) => {
+  const server = await preview({
+    logLevel: 'silent',
+    preview: { host: '127.0.0.1', port: 0 },
+  });
+  context.after(() => server.close());
+
+  const address = server.httpServer.address();
+  assert.ok(address && typeof address !== 'string', 'preview must listen on a TCP port');
+  const response = await fetch(`http://127.0.0.1:${address.port}/contacts?__qa_contact_instrument=1`);
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /<script data-qa-contact-instrument>/u);
+  assert.match(html, /href="https:\/\/wa\.me\/79166554595"/u);
+  assert.match(html, /href="tel:\+79166554595"/u);
+  assert.match(html, /href="mailto:iconamaster@yandex\.ru"/u);
+});
+
+test('preview contact instrumentation records a goal and safely intercepts its destination', async (context) => {
+  const server = await preview({
+    logLevel: 'silent',
+    preview: { host: '127.0.0.1', port: 0 },
+  });
+  context.after(() => server.close());
+
+  const address = server.httpServer.address();
+  assert.ok(address && typeof address !== 'string', 'preview must listen on a TCP port');
+  const html = await (await fetch(`http://127.0.0.1:${address.port}/contacts?__qa_contact_instrument=1`)).text();
+  const script = html.match(/<script data-qa-contact-instrument>([\s\S]*?)<\/script>/u)?.[1];
+  assert.ok(script, 'preview must emit the local contact instrumentation');
+
+  let clickListener;
+  const document = { documentElement: { dataset: {} } };
+  const window = {
+    addEventListener(type, listener, capture) {
+      if (type === 'click' && capture === true) clickListener = listener;
+    },
+  };
+  class Anchor {
+    constructor(href, target = '') {
+      this.href = href;
+      this.target = target;
+      const url = new URL(href, 'https://preview.test');
+      this.protocol = url.protocol;
+      this.hostname = url.hostname;
+    }
+
+    closest(selector) {
+      return selector === 'a' ? this : null;
+    }
+  }
+
+  runInNewContext(script, { document, Element: Anchor, window });
+  assert.equal(typeof clickListener, 'function');
+  const event = {
+    target: new Anchor('tel:+79166554595'),
+    defaultPrevented: false,
+    preventDefault() { this.defaultPrevented = true; },
+  };
+  clickListener(event);
+  window.ym(112185835, 'reachGoal', 'contact_phone');
+
+  assert.deepEqual(JSON.parse(document.documentElement.dataset.qaContactEvents), [
+    { kind: 'contact-click', href: 'tel:+79166554595', target: null, defaultPreventedBefore: false },
+    { kind: 'contact-navigation-intercepted', href: 'tel:+79166554595', target: null, defaultPreventedAfter: true },
+    { kind: 'ym', args: [112185835, 'reachGoal', 'contact_phone'] },
+  ]);
 });
 
 test('static build publishes every canonical page with crawlable Russian SEO metadata', async () => {

@@ -42,4 +42,60 @@ All local route content, CSS, and visible images used the built preview without 
 
 ## Outcome
 
-Static artifacts, responsive presentation, menu navigation, contact destinations, and post-hydration metadata transitions passed. No source or design defect was changed. The no-slash Vite preview fallback and unavailable local Metrika function are the only acceptance limitations noted above.
+The initial pass found no design defect, but its Vite-preview clean-path and local-goal limitations were superseded by the correction and evidence in Fix Round 1 below.
+
+## Fix Round 1 — preview routing and instrumented interactions
+
+### Reproduced and corrected clean-path preview behavior
+
+The initial focused regression reproduced the defect: Vite preview answered `GET /raschistka-hramovyh-rospisey` with the root prerendered document (`data-prerender-path="/"` and the home title), rather than `dist/client/raschistka-hramovyh-rospisey/index.html`. The regression now starts an actual Vite preview on an ephemeral local port and asserts that the exact no-slash URL returns status 200, the murals title, and `data-prerender-path="/raschistka-hramovyh-rospisey"`.
+
+The smallest correction is a preview-server-only middleware in `vite.config.mjs`: for a safe GET/HEAD clean path it serves that route's generated `index.html` when present. It does not change `dist/client`, Apache rules, the worker, or production routing. After the change, direct HTTP checks and the browser both returned the exact prerendered document before hydration for `/raschistka-hramovyh-rospisey`, `/icons/archangel-michael`, and `/contacts`; each response was 200 and had the appropriate route title and prerender path. `node --test tests/static-build.test.mjs` was RED before the correction and GREEN afterwards (5/5).
+
+### Browser-side metadata transition evidence
+
+The following were clicked through the SPA without a tab reload: Home → murals service → Home → Archangel Michael → Home → Contacts. At every hop there was exactly one managed title, canonical, description, OG title, OG description, and JSON-LD node (`data-seo-managed` count = 1 for each applicable tag; managed JSON-LD script count = 1).
+
+| Route after SPA navigation | Title / canonical | Description and OG description | JSON-LD identity |
+| --- | --- | --- | --- |
+| `/` | `Московская иконописная мастерская` · `https://iconamaster.ru/` | `Московская иконописная мастерская: иконы, реставрация и храмовые росписи.` | 1 LocalBusiness document |
+| `/raschistka-hramovyh-rospisey` | `Расчистка настенных храмовых росписей от копоти и загрязнений \| Московская иконописная мастерская` · `https://iconamaster.ru/raschistka-hramovyh-rospisey` | `Бережно удаляем копоть и загрязнения с храмовой стенописи, укрепляем повреждённые участки и сохраняем действующую роспись.` | 1 graph: Service + BreadcrumbList |
+| `/icons/archangel-michael` | `Икона чудо Архистратига Михаила. \| Московская иконописная мастерская` · `https://iconamaster.ru/icons/archangel-michael` | `21 х 17 см. доска липовая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, настоящая минеральная яичная темпера, золото сусальное, копаловый…` | 1 graph: VisualArtwork + Product + BreadcrumbList |
+| `/contacts` | `Контакты \| Московская иконописная мастерская` · `https://iconamaster.ru/contacts` | `Контакты Московской иконописной мастерской.` | 1 graph: LocalBusiness + BreadcrumbList |
+
+The observed OG title matched each row's title. No warning/error console entries appeared during this recheck. The exact clean service page was already prerendered on initial browser load, so there was no observed title/content replacement flash during hydration.
+
+### Real local browser contact instrumentation and safe clicks
+
+An opt-in local-preview query (`?__qa_contact_instrument=1`) adds no production code or artifact change. It stubs `window.ym`, reads the original anchor contract, and intercepts only contact activation at capture phase after recording it. Each entry below was activated in the browser through its rendered anchor; the address stayed on the local preview page, no external popup or operating-system handler was launched, and the recorded `defaultPrevented` changed from `false` to `true`.
+
+| Rendered target clicked | Original href / target | Recorded goal sequence |
+| --- | --- | --- |
+| Contacts WhatsApp | `https://wa.me/79166554595` / `_blank` (`rel=noreferrer`) | `contact-click` → `contact-navigation-intercepted` → `[112185835, "reachGoal", "contact_whatsapp"]` |
+| Contacts phone | `tel:+79166554595` / no target | `contact-click` → `contact-navigation-intercepted` → `[112185835, "reachGoal", "contact_phone"]` |
+| Contacts email | `mailto:iconamaster@yandex.ru` / no target | `contact-click` → `contact-navigation-intercepted` → `[112185835, "reachGoal", "contact_email"]` |
+| Murals primary consultation CTA | `https://wa.me/79166554595?text=…` / `_blank` (`rel=noreferrer`) | `contact-click` → `contact-navigation-intercepted` → `[112185835, "reachGoal", "murals_consultation"]` → `[112185835, "reachGoal", "contact_whatsapp"]` |
+
+The targeted test also executes the emitted instrumentation with a local VM event and confirms the click record, interception state, and phone goal call. This provides a regression for the test-only guard as well as the live-browser click coverage.
+
+### Mobile recapture and lazy-image evidence
+
+The required embedded in-app browser was subsequently available for the replacement capture. At the actual `390 × 844` viewport, the exact clean URL reported `innerWidth=390`, `innerHeight=844`, `location.pathname=/raschistka-hramovyh-rospisey`, and `data-prerender-path=/raschistka-hramovyh-rospisey`; title and H1 were the route-specific murals values. Before capture it was scrolled to `y=2300`, after which all three content images were complete with natural widths `1243`, `1200`, and `960`. The replacement [`qa-output/seo-murals-mobile.png`](../qa-output/seo-murals-mobile.png) is 294,791 bytes and visually contains the formerly blank third scaffold image. The embedded viewport was reset and its tab closed after capture.
+
+### Mobile target measurements (IAB, innerWidth 390)
+
+| Target | Measured size in CSS px |
+| --- | --- |
+| Menu button | 72.58 × 45.19 |
+| Leading primary murals CTA | 308 × 72.38 |
+| Leading phone / email | 192.61 × 44 / 245.39 × 44 |
+| Closing primary murals CTA | 308 × 72.38 |
+| Closing phone / email | 192.61 × 44 / 245.39 × 44 |
+| Footer WhatsApp / phone / email | 192.77 × 44 / 192.61 × 44 / 245.39 × 44 |
+| Footer nav: Главная / Иконы / Реставрация / Расчистка / Статьи / Видео / Контакты | 58.02 × 44 / 129.88 × 44 / 92.39 × 44 / 147.02 × 44 / 48.53 × 44 / 44.97 × 44 / 68.47 × 44 |
+| Open-menu: Главная / Иконы | 122.09 × 44 / 122.09 × 44 |
+| Open-menu: Расчистка росписей | 106.09 × 48.13 |
+| Open-menu: Реставрация / Статьи / Видео / Контакты | each 122.09 × 44 |
+| All other workshop submenu links | at least 44 px high (two-line links 48.13 px high) |
+
+Every measured interactive target satisfies the required 44 px minimum.
