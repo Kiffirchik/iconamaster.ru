@@ -21,6 +21,14 @@ const canonicalContacts = {
   phone: '+79166554595',
   email: 'iconamaster@yandex.ru',
   sourceUrl: 'https://iconamaster.cargo.site/KONTAKTY',
+  mapUrl: 'https://yandex.com/maps/-/CTT2bAoq',
+  address: {
+    display: 'Московская область, д. Брёхово, Ромашковая ул., 16',
+    streetAddress: 'Ромашковая ул., 16',
+    addressLocality: 'д. Брёхово',
+    addressRegion: 'Московская область',
+    addressCountry: 'RU',
+  },
 };
 
 const validImage = {
@@ -443,6 +451,31 @@ test('integrity validator enforces canonical contacts and exact source-map contr
   assert.ok(errors.includes('icons contract has unexpected slug unexpected'));
   assert.ok(errors.includes('videos contract is missing youtube:y10sw1KIOqQ'));
   assert.ok(errors.includes('videos contract is missing vimeo:353365425'));
+});
+
+test('integrity validator rejects incomplete or unsafe canonical address data', () => {
+  const cases = [
+    {
+      contacts: { ...canonicalContacts, address: { ...canonicalContacts.address, display: '' } },
+      expected: 'contacts address field display must be a non-empty string',
+    },
+    {
+      contacts: { ...canonicalContacts, address: { ...canonicalContacts.address, addressCountry: 'US' } },
+      expected: 'contacts address field addressCountry must be RU',
+    },
+    {
+      contacts: { ...canonicalContacts, mapUrl: 'http://yandex.com/maps/-/CTT2bAoq' },
+      expected: 'contacts field mapUrl must be an HTTPS URL',
+    },
+    {
+      contacts: { ...canonicalContacts, address: { ...canonicalContacts.address, extra: true } },
+      expected: 'contacts address contains unknown field extra',
+    },
+  ];
+
+  for (const { contacts, expected } of cases) {
+    assert.ok(verifyContent(bundle({ contacts }), new Set()).includes(expected), expected);
+  }
 });
 
 test('owned asset inventory reports missing, stale, unreferenced, and undeclared files', () => {

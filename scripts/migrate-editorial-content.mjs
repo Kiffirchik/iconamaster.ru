@@ -1147,6 +1147,14 @@ const main = async () => {
     phone: '+79166554595',
     email: 'iconamaster@yandex.ru',
     sourceUrl: `${sourceSite}/KONTAKTY`,
+    mapUrl: 'https://yandex.com/maps/-/CTT2bAoq',
+    address: {
+      display: 'Московская область, д. Брёхово, Ромашковая ул., 16',
+      streetAddress: 'Ромашковая ул., 16',
+      addressLocality: 'д. Брёхово',
+      addressRegion: 'Московская область',
+      addressCountry: 'RU',
+    },
   };
   const editorialAliases = Object.fromEntries([
     ...legacyPageMap.flatMap((mapping) => mapping.aliases.map((alias) => [alias, `/${mapping.slug}`])),

@@ -10,7 +10,19 @@ test('loads every document named by the manifest', async () => {
     }}],
     ['/content/icons.json', []], ['/content/pages.json', []],
     ['/content/articles.json', []], ['/content/videos.json', []],
-    ['/content/contacts.json', { whatsapp: '79166554595', phone: '+79166554595', email: 'iconamaster@yandex.ru' }],
+    ['/content/contacts.json', {
+      whatsapp: '79166554595',
+      phone: '+79166554595',
+      email: 'iconamaster@yandex.ru',
+      mapUrl: 'https://yandex.com/maps/-/CTT2bAoq',
+      address: {
+        display: 'Московская область, д. Брёхово, Ромашковая ул., 16',
+        streetAddress: 'Ромашковая ул., 16',
+        addressLocality: 'д. Брёхово',
+        addressRegion: 'Московская область',
+        addressCountry: 'RU',
+      },
+    }],
     ['/content/aliases.json', {}]
   ]);
   const bundle = await loadContent(async (url) => ({

@@ -1,6 +1,30 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
+import { siteConfig } from '../../src/data/site-config.js';
 import { buildContactLinks } from '../../src/lib/contacts.js';
+
+test('site configuration exposes the canonical workshop identity', () => {
+  assert.deepEqual(siteConfig, {
+    name: 'Московская иконописная мастерская',
+    url: 'https://iconamaster.ru',
+    locale: 'ru_RU',
+    metrikaId: 112185835,
+  });
+});
+
+test('contact content exposes the canonical address and map URL', async () => {
+  const contacts = JSON.parse(await readFile(new URL('../../public/content/contacts.json', import.meta.url), 'utf8'));
+
+  assert.deepEqual(contacts.address, {
+    display: 'Московская область, д. Брёхово, Ромашковая ул., 16',
+    streetAddress: 'Ромашковая ул., 16',
+    addressLocality: 'д. Брёхово',
+    addressRegion: 'Московская область',
+    addressCountry: 'RU',
+  });
+  assert.equal(contacts.mapUrl, 'https://yandex.com/maps/-/CTT2bAoq');
+});
 
 test('buildContactLinks includes a named icon in WhatsApp and email links', () => {
   const contacts = { whatsapp: '79166554595', phone: '+79166554595', email: 'iconamaster@yandex.ru' };

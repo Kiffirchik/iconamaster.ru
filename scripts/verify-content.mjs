@@ -28,7 +28,8 @@ const EXECUTABLE_TEXT = /(?:javascript\s*:|\bon[a-z]+\s*=)/iu;
 const PAGE_FIELDS = new Set(['id', 'slug', 'title', 'published', 'order', 'sourceUrl', 'sections']);
 const ARTICLE_FIELDS = new Set([...PAGE_FIELDS, 'summary', 'image']);
 const VIDEO_FIELDS = new Set(['provider', 'id', 'title', 'description', 'autoplay', 'published', 'sourceUrl']);
-const CONTACT_FIELDS = new Set(['whatsapp', 'phone', 'email', 'sourceUrl']);
+const CONTACT_FIELDS = new Set(['whatsapp', 'phone', 'email', 'sourceUrl', 'mapUrl', 'address']);
+const ADDRESS_FIELDS = new Set(['display', 'streetAddress', 'addressLocality', 'addressRegion', 'addressCountry']);
 const BLOCK_CONTAINER_FIELDS = ['children', 'sections', 'blocks', 'items'];
 const BLOCK_FIELDS = {
   text: new Set(['type', 'heading', 'paragraphs', ...BLOCK_CONTAINER_FIELDS]),
@@ -75,6 +76,24 @@ function isCanonicalSourceUrl(value) {
   } catch {
     return false;
   }
+}
+
+function isHttpsUrl(value) {
+  if (typeof value !== 'string') return false;
+  try {
+    return new URL(value).protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
+function validateContactAddress(contacts, errors) {
+  const address = contacts?.address;
+  if (!validateKnownFields(address, ADDRESS_FIELDS, 'contacts address', errors)) return;
+  for (const field of ['display', 'streetAddress', 'addressLocality', 'addressRegion']) {
+    validateNonEmptyString(address, field, 'contacts address', errors);
+  }
+  if (address.addressCountry !== 'RU') errors.push('contacts address field addressCountry must be RU');
 }
 
 function isCanonicalDzenArticleSourceUrl(value) {
@@ -614,6 +633,8 @@ export function verifyContent(bundle, assetFiles = new Set(), options = {}) {
   if (!isCanonicalSourceUrl(bundle?.contacts?.sourceUrl)) {
     errors.push('contacts field sourceUrl must be an HTTPS iconamaster.cargo.site URL');
   }
+  if (!isHttpsUrl(bundle?.contacts?.mapUrl)) errors.push('contacts field mapUrl must be an HTTPS URL');
+  validateContactAddress(bundle?.contacts, errors);
   for (const [key, expected] of Object.entries(CANONICAL_CONTACTS)) {
     if (bundle?.contacts?.[key] !== expected) errors.push(`contacts.${key} must be ${expected}`);
   }

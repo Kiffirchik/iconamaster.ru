@@ -46,8 +46,8 @@
       "id": "contacts",
       "path": "public/content/contacts.json",
       "records": 1,
-      "bytes": 153,
-      "sha256": "25a529076334462fee79de674ccaaa995623a72f067fe7fa41b570502ce24951"
+      "bytes": 516,
+      "sha256": "5acabedb30c081e106dda294d60cc2615ff357cdb49b37efac5ed748a9ece023"
     },
     {
       "id": "aliases",

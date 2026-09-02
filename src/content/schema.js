@@ -1,4 +1,39 @@
 const requiredCollections = ['icons', 'pages', 'articles', 'videos'];
+const contactFields = new Set(['whatsapp', 'phone', 'email', 'sourceUrl', 'mapUrl', 'address']);
+const addressFields = new Set(['display', 'streetAddress', 'addressLocality', 'addressRegion', 'addressCountry']);
+
+function validateContacts(contacts, errors) {
+  if (!contacts || typeof contacts !== 'object' || Array.isArray(contacts)) {
+    errors.push('contacts must be an object');
+    return;
+  }
+  for (const field of Object.keys(contacts)) {
+    if (!contactFields.has(field)) errors.push(`contacts contains unknown field ${field}`);
+  }
+  if (typeof contacts.mapUrl !== 'string') {
+    errors.push('contacts field mapUrl must be an HTTPS URL');
+  } else {
+    try {
+      if (new URL(contacts.mapUrl).protocol !== 'https:') errors.push('contacts field mapUrl must be an HTTPS URL');
+    } catch {
+      errors.push('contacts field mapUrl must be an HTTPS URL');
+    }
+  }
+  const address = contacts.address;
+  if (!address || typeof address !== 'object' || Array.isArray(address)) {
+    errors.push('contacts address must be an object');
+    return;
+  }
+  for (const field of Object.keys(address)) {
+    if (!addressFields.has(field)) errors.push(`contacts address contains unknown field ${field}`);
+  }
+  for (const field of ['display', 'streetAddress', 'addressLocality', 'addressRegion']) {
+    if (typeof address[field] !== 'string' || !address[field].trim()) {
+      errors.push(`contacts address field ${field} must be a non-empty string`);
+    }
+  }
+  if (address.addressCountry !== 'RU') errors.push('contacts address field addressCountry must be RU');
+}
 
 export function validateContentBundle(bundle) {
   const errors = [];
@@ -20,6 +55,7 @@ export function validateContentBundle(bundle) {
       }
     }
   }
+  validateContacts(bundle?.contacts, errors);
   return { ok: errors.length === 0, errors };
 }
 

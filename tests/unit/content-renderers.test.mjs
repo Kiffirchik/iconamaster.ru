@@ -103,12 +103,21 @@ test('article and video indexes remain usable with empty collections', async (co
 test('ContactsPage builds links from the supplied contact bundle', async (context) => {
   const { ContactsPage } = await rendererModules(context);
   const markup = renderToStaticMarkup(createElement(ContactsPage, {
-    contacts: { whatsapp: '79990001122', phone: '+79990001122', email: 'atelier@example.test' }
+    contacts: {
+      whatsapp: '79990001122',
+      phone: '+79990001122',
+      email: 'atelier@example.test',
+      mapUrl: 'https://yandex.com/maps/-/CTT2bAoq',
+      address: { display: 'Московская область, д. Брёхово, Ромашковая ул., 16' },
+    }
   }));
 
   assert.match(markup, /href="https:\/\/wa\.me\/79990001122"/);
   assert.match(markup, /href="tel:\+79990001122"/);
   assert.match(markup, /href="mailto:atelier@example\.test"/);
+  assert.match(markup, /<address>Московская область, д\. Брёхово, Ромашковая ул\., 16<\/address>/);
+  assert.match(markup, /href="https:\/\/yandex\.com\/maps\/-\/CTT2bAoq"/);
+  assert.match(markup, /Открыть в Яндекс Картах/);
 });
 
 test('HomePage presents the two featured workshop stories as internal article links', async (context) => {

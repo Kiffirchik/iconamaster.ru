@@ -1,4 +1,5 @@
 import { ConsultationLinks } from './ConsultationLinks.jsx';
+import { useContent } from '../content/ContentProvider.jsx';
 
 const sections = [
   ['Главная', '/'],
@@ -10,6 +11,9 @@ const sections = [
 ];
 
 export function SiteFooter({ onNavigate }) {
+  const { bundle } = useContent();
+  const address = bundle?.contacts?.address;
+
   function follow(event, path) {
     if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
       return;
@@ -25,6 +29,7 @@ export function SiteFooter({ onNavigate }) {
         <div>
           <p className="site-footer__title">Московская иконописная мастерская</p>
           <p>Работаем с 1991 года</p>
+          {address ? <p>{[address.addressLocality, address.addressRegion].join(', ')}</p> : null}
         </div>
         <div>
           <p className="site-footer__label">Консультация</p>

@@ -21,7 +21,15 @@ const validBundle = {
     sourceUrl: 'https://iconamaster.ru/example/', images: [validImage]
   }],
   pages: [], articles: [], videos: [], contacts: {
-    whatsapp: '79166554595', phone: '+79166554595', email: 'iconamaster@yandex.ru'
+    whatsapp: '79166554595', phone: '+79166554595', email: 'iconamaster@yandex.ru',
+    mapUrl: 'https://yandex.com/maps/-/CTT2bAoq',
+    address: {
+      display: 'Московская область, д. Брёхово, Ромашковая ул., 16',
+      streetAddress: 'Ромашковая ул., 16',
+      addressLocality: 'д. Брёхово',
+      addressRegion: 'Московская область',
+      addressCountry: 'RU',
+    },
   }, aliases: {}
 };
 
@@ -33,6 +41,33 @@ test('rejects a published icon without an image', () => {
   const bundle = structuredClone(validBundle);
   bundle.icons[0].images = [];
   assert.match(validateContentBundle(bundle).errors.join('\n'), /published icon example has no images/);
+});
+
+test('rejects incomplete or unsafe contact address data', () => {
+  const cases = [
+    {
+      mutate(bundle) { delete bundle.contacts.address.display; },
+      expected: 'contacts address field display must be a non-empty string',
+    },
+    {
+      mutate(bundle) { bundle.contacts.address.addressCountry = 'US'; },
+      expected: 'contacts address field addressCountry must be RU',
+    },
+    {
+      mutate(bundle) { bundle.contacts.mapUrl = 'http://yandex.com/maps/-/CTT2bAoq'; },
+      expected: 'contacts field mapUrl must be an HTTPS URL',
+    },
+    {
+      mutate(bundle) { bundle.contacts.address.extra = 'unexpected'; },
+      expected: 'contacts address contains unknown field extra',
+    },
+  ];
+
+  for (const { mutate, expected } of cases) {
+    const bundle = structuredClone(validBundle);
+    mutate(bundle);
+    assert.ok(validateContentBundle(bundle).errors.includes(expected), expected);
+  }
 });
 
 test('returns validation errors for a non-array icons collection', () => {
