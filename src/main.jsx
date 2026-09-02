@@ -20,19 +20,20 @@ export async function bootstrapApp({
   hydrateRootImpl = hydrateRoot,
   createRootImpl = createRoot,
 }) {
-  const normalizedPath = normalizePath(pathname) ?? '/';
+  const normalizedPath = normalizePath(pathname);
+  const initialPath = normalizedPath ?? pathname;
   let bundle;
 
   try {
     bundle = await loadContentImpl();
   } catch (initialError) {
     const root = createRootImpl(container);
-    root.render(appTree({ initialError, initialPath: normalizedPath }));
+    root.render(appTree({ initialError, initialPath }));
     return root;
   }
 
-  const tree = appTree({ initialBundle: bundle, initialPath: normalizedPath });
-  if (container.dataset.prerenderPath === normalizedPath) {
+  const tree = appTree({ initialBundle: bundle, initialPath });
+  if (normalizedPath !== null && container.dataset.prerenderPath === normalizedPath) {
     return hydrateRootImpl(container, tree);
   }
 

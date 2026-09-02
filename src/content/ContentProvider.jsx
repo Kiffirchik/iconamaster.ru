@@ -9,7 +9,12 @@ function initialContent(initialBundle, initialError) {
   return { status: 'loading', bundle: null, error: null };
 }
 
-export function ContentProvider({ children, initialBundle = null, initialError = null }) {
+export function ContentProvider({
+  children,
+  initialBundle = null,
+  initialError = null,
+  loadContentImpl = loadContent,
+}) {
   const [content, setContent] = useState(() => initialContent(initialBundle, initialError));
   const [attempt, setAttempt] = useState(0);
 
@@ -18,12 +23,12 @@ export function ContentProvider({ children, initialBundle = null, initialError =
 
     let active = true;
     setContent({ status: 'loading', bundle: null, error: null });
-    loadContent().then(
+    loadContentImpl().then(
       (bundle) => active && setContent({ status: 'ready', bundle, error: null }),
       (error) => active && setContent({ status: 'error', bundle: null, error })
     );
     return () => { active = false; };
-  }, [attempt, initialBundle, initialError]);
+  }, [attempt, initialBundle, initialError, loadContentImpl]);
 
   return (
     <ContentContext.Provider value={{ ...content, retry: () => setAttempt((current) => current + 1) }}>

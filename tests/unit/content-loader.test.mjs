@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 import { createElement } from 'react';
+import { act } from 'react';
 import { renderToString } from 'react-dom/server';
 import { createServer } from 'vite';
 import { loadContent } from '../../src/content/load-content.js';
@@ -15,6 +16,129 @@ async function loadBrowserModule(context, path) {
   });
   context.after(() => server.close());
   return server.ssrLoadModule(path);
+}
+
+class TestNode {
+  constructor(nodeType, ownerDocument = null) {
+    this.nodeType = nodeType;
+    this.ownerDocument = ownerDocument;
+    this.parentNode = null;
+    this.childNodes = [];
+  }
+
+  addEventListener() {}
+  removeEventListener() {}
+
+  appendChild(child) {
+    child.parentNode = this;
+    this.childNodes.push(child);
+    return child;
+  }
+
+  insertBefore(child, before) {
+    child.parentNode = this;
+    const index = this.childNodes.indexOf(before);
+    this.childNodes.splice(index < 0 ? this.childNodes.length : index, 0, child);
+    return child;
+  }
+
+  removeChild(child) {
+    const index = this.childNodes.indexOf(child);
+    if (index >= 0) this.childNodes.splice(index, 1);
+    child.parentNode = null;
+    return child;
+  }
+
+  get firstChild() { return this.childNodes[0] ?? null; }
+  get lastChild() { return this.childNodes.at(-1) ?? null; }
+
+  get textContent() { return this.childNodes.map((child) => child.textContent).join(''); }
+  set textContent(value) {
+    this.childNodes = value ? [this.ownerDocument.createTextNode(value)] : [];
+  }
+}
+
+class TestElement extends TestNode {
+  constructor(tagName, ownerDocument) {
+    super(1, ownerDocument);
+    this.tagName = tagName.toUpperCase();
+    this.nodeName = this.tagName;
+    this.namespaceURI = 'http://www.w3.org/1999/xhtml';
+    this.style = {};
+    this.attributes = new Map();
+  }
+
+  get parentElement() { return this.parentNode?.nodeType === 1 ? this.parentNode : null; }
+  setAttribute(name, value) { this.attributes.set(name, String(value)); }
+  getAttribute(name) { return this.attributes.get(name) ?? null; }
+  removeAttribute(name) { this.attributes.delete(name); }
+}
+
+class TestText extends TestNode {
+  constructor(value, ownerDocument) {
+    super(3, ownerDocument);
+    this.nodeName = '#text';
+    this.nodeValue = String(value);
+  }
+
+  get textContent() { return this.nodeValue; }
+  set textContent(value) { this.nodeValue = String(value); }
+}
+
+class TestDocument extends TestNode {
+  constructor() {
+    super(9);
+    this.ownerDocument = this;
+    this.documentElement = new TestElement('html', this);
+    this.body = new TestElement('body', this);
+    this.documentElement.appendChild(this.body);
+    this.activeElement = this.body;
+    this.defaultView = null;
+  }
+
+  createElement(tagName) { return new TestElement(tagName, this); }
+  createTextNode(value) { return new TestText(value, this); }
+}
+
+async function mountContentProvider(context, Provider, useContent, props) {
+  const documentLike = new TestDocument();
+  const windowLike = { document: documentLike, HTMLIFrameElement: class {} };
+  documentLike.defaultView = windowLike;
+  const previous = {
+    document: globalThis.document,
+    window: globalThis.window,
+    navigator: globalThis.navigator,
+    actEnvironment: globalThis.IS_REACT_ACT_ENVIRONMENT,
+  };
+  globalThis.document = documentLike;
+  globalThis.window = windowLike;
+  globalThis.navigator = { userAgent: 'node.js' };
+  globalThis.IS_REACT_ACT_ENVIRONMENT = true;
+
+  const { createRoot } = await import('react-dom/client');
+  const container = documentLike.createElement('div');
+  documentLike.body.appendChild(container);
+  const root = createRoot(container);
+  let content;
+
+  function Probe() {
+    content = useContent();
+    return null;
+  }
+
+  await act(async () => {
+    root.render(createElement(Provider, props, createElement(Probe)));
+  });
+
+  context.after(async () => {
+    await act(async () => root.unmount());
+    globalThis.document = previous.document;
+    globalThis.window = previous.window;
+    globalThis.navigator = previous.navigator;
+    globalThis.IS_REACT_ACT_ENVIRONMENT = previous.actEnvironment;
+  });
+
+  return { getContent: () => content };
 }
 
 test('loads every document named by the manifest', async () => {
@@ -54,16 +178,9 @@ test('reports the exact failed content URL', async () => {
   );
 });
 
-test('ContentProvider exposes an initial bundle as ready without fetching', async (context) => {
+test('ContentProvider exposes an initial bundle as ready during server rendering', async (context) => {
   const { ContentProvider, useContent } = await loadBrowserModule(context, '/src/content/ContentProvider.jsx');
   const initialBundle = { marker: 'server-content' };
-  let fetchCalls = 0;
-  const previousFetch = globalThis.fetch;
-  globalThis.fetch = async () => {
-    fetchCalls += 1;
-    throw new Error('unexpected fetch');
-  };
-  context.after(() => { globalThis.fetch = previousFetch; });
 
   function Probe() {
     const content = useContent();
@@ -81,7 +198,63 @@ test('ContentProvider exposes an initial bundle as ready without fetching', asyn
 
   assert.match(html, /data-status="ready"/u);
   assert.match(html, /data-marker="server-content"/u);
-  assert.equal(fetchCalls, 0);
+});
+
+test('client-mounted ContentProvider skips loading when initialized with a bundle', async (context) => {
+  const { ContentProvider, useContent } = await loadBrowserModule(context, '/src/content/ContentProvider.jsx');
+  const initialBundle = { marker: 'browser-content' };
+  let loadCalls = 0;
+  const mounted = await mountContentProvider(context, ContentProvider, useContent, {
+    initialBundle,
+    loadContentImpl: async () => {
+      loadCalls += 1;
+      return { marker: 'unexpected' };
+    },
+  });
+
+  assert.equal(mounted.getContent().status, 'ready');
+  assert.equal(mounted.getContent().bundle, initialBundle);
+  assert.equal(loadCalls, 0);
+});
+
+test('client-mounted ContentProvider retries an injected initial error', async (context) => {
+  const { ContentProvider, useContent } = await loadBrowserModule(context, '/src/content/ContentProvider.jsx');
+  const recoveredBundle = { marker: 'recovered' };
+  let loadCalls = 0;
+  const mounted = await mountContentProvider(context, ContentProvider, useContent, {
+    initialError: new Error('offline'),
+    loadContentImpl: async () => {
+      loadCalls += 1;
+      return recoveredBundle;
+    },
+  });
+
+  assert.equal(mounted.getContent().status, 'error');
+  assert.equal(loadCalls, 0);
+  await act(async () => mounted.getContent().retry());
+  assert.equal(mounted.getContent().status, 'ready');
+  assert.equal(mounted.getContent().bundle, recoveredBundle);
+  assert.equal(loadCalls, 1);
+});
+
+test('client-mounted ContentProvider retries an error from its first load', async (context) => {
+  const { ContentProvider, useContent } = await loadBrowserModule(context, '/src/content/ContentProvider.jsx');
+  const recoveredBundle = { marker: 'recovered-later' };
+  let loadCalls = 0;
+  const mounted = await mountContentProvider(context, ContentProvider, useContent, {
+    loadContentImpl: async () => {
+      loadCalls += 1;
+      if (loadCalls === 1) throw new Error('temporary');
+      return recoveredBundle;
+    },
+  });
+
+  assert.equal(mounted.getContent().status, 'error');
+  assert.equal(loadCalls, 1);
+  await act(async () => mounted.getContent().retry());
+  assert.equal(mounted.getContent().status, 'ready');
+  assert.equal(mounted.getContent().bundle, recoveredBundle);
+  assert.equal(loadCalls, 2);
 });
 
 test('browser bootstrap preserves prerendered content until matching hydration is ready', async (context) => {
@@ -144,4 +317,25 @@ test('browser bootstrap uses a clean render for a different path and for load er
   assert.equal(calls[1].container, errorContainer);
   assert.equal(calls[1].tree.props.children.props.initialPath, '/contacts');
   assert.equal(calls[1].tree.props.children.props.initialError.message, 'offline');
+});
+
+test('browser bootstrap never hydrates a malformed pathname as the homepage', async (context) => {
+  const { bootstrapApp } = await loadBrowserModule(context, '/src/main.jsx');
+  const container = { dataset: { prerenderPath: '/' } };
+  const calls = [];
+  const createRootImpl = () => ({
+    render: (tree) => calls.push({ kind: 'create', tree }),
+  });
+
+  await bootstrapApp({
+    container,
+    pathname: '/%',
+    loadContentImpl: async () => ({ icons: [], pages: [], articles: [], videos: [], contacts: {}, aliases: {} }),
+    hydrateRootImpl: () => calls.push({ kind: 'hydrate' }),
+    createRootImpl,
+  });
+
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].kind, 'create');
+  assert.equal(calls[0].tree.props.children.props.initialPath, '/%');
 });
