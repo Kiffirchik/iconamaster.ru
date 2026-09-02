@@ -113,3 +113,11 @@ test('does not treat descriptive text containing rubles as a numeric sale price'
   assert.doesNotMatch(JSON.stringify(descriptor.structuredData), /"Product"/u);
   assert.doesNotMatch(JSON.stringify(descriptor.structuredData), /"Offer"/u);
 });
+
+test('keeps protocol-relative malformed paths on the canonical site origin', () => {
+  const descriptor = buildSeoDescriptor('//evil.example/path', bundle);
+
+  assert.equal(descriptor.canonical, 'https://iconamaster.ru/');
+  assert.equal(descriptor.openGraph.url, 'https://iconamaster.ru/');
+  assert.equal(descriptor.robots, 'noindex,follow');
+});

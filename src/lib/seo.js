@@ -13,7 +13,7 @@ function isPublished(record) {
 
 function canonicalPath(pathname) {
   const path = normalizePath(pathname);
-  return path?.startsWith('/') ? path : null;
+  return path?.startsWith('/') && !path.startsWith('//') ? path : null;
 }
 
 function absoluteUrl(path) {
