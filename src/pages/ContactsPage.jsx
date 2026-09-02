@@ -1,3 +1,5 @@
+import { trackGoal } from '../lib/analytics.js';
+
 export function ContactsPage({ contacts = {} }) {
   const whatsapp = String(contacts.whatsapp || '').replace(/\D/g, '');
 
@@ -12,9 +14,9 @@ export function ContactsPage({ contacts = {} }) {
         <h2 id="contacts-title">Московская иконописная мастерская</h2>
         <address>{contacts.address.display}</address>
         <div className="contacts-page__links">
-          {whatsapp ? <a className="button button--primary" href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer">Написать в WhatsApp</a> : null}
-          {contacts.phone ? <a href={`tel:${contacts.phone}`}>{contacts.phone}</a> : null}
-          {contacts.email ? <a href={`mailto:${contacts.email}`}>{contacts.email}</a> : null}
+          {whatsapp ? <a className="button button--primary" href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer" onClick={() => trackGoal('contact_whatsapp')}>Написать в WhatsApp</a> : null}
+          {contacts.phone ? <a href={`tel:${contacts.phone}`} onClick={() => trackGoal('contact_phone')}>{contacts.phone}</a> : null}
+          {contacts.email ? <a href={`mailto:${contacts.email}`} onClick={() => trackGoal('contact_email')}>{contacts.email}</a> : null}
           <a href={contacts.mapUrl} target="_blank" rel="noreferrer">Открыть в Яндекс Картах</a>
         </div>
       </section>
