@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { buildSeoDescriptor, listCanonicalPaths, serializeJsonLd } from '../../src/lib/seo.js';
+import { buildSeoDescriptor, listCanonicalPaths, serializeJsonLd, updateManagedSeo } from '../../src/lib/seo.js';
 
 const image = {
   src: '/assets/icons/example.jpg',
@@ -120,4 +120,75 @@ test('keeps protocol-relative malformed paths on the canonical site origin', () 
   assert.equal(descriptor.canonical, 'https://iconamaster.ru/');
   assert.equal(descriptor.openGraph.url, 'https://iconamaster.ru/');
   assert.equal(descriptor.robots, 'noindex,follow');
+});
+
+class HeadElement {
+  constructor(tagName, attributes = {}) {
+    this.tagName = tagName.toUpperCase();
+    this.attributes = new Map(Object.entries(attributes));
+    this.textContent = '';
+    this.removed = false;
+  }
+
+  getAttribute(name) { return this.attributes.get(name) ?? null; }
+  setAttribute(name, value) { this.attributes.set(name, String(value)); }
+  remove() { this.removed = true; }
+}
+
+function fakeDocument(elements) {
+  return {
+    head: { append: (element) => elements.push(element) },
+    createElement: (tagName) => new HeadElement(tagName),
+    querySelectorAll: (selector) => {
+      const matches = [...selector.matchAll(/\[([^=\]]+)="([^"]+)"\]/gu)];
+      const tagName = selector.match(/^[a-z]+/iu)?.[0]?.toUpperCase();
+      return elements.filter((element) => !element.removed
+        && (!tagName || element.tagName === tagName)
+        && matches.every(([, name, value]) => element.getAttribute(name) === value));
+    },
+  };
+}
+
+test('updates only managed SEO nodes and reconciles optional metadata without duplicates', () => {
+  const unownedDescription = new HeadElement('meta', { name: 'description' });
+  unownedDescription.setAttribute('content', 'Не изменять');
+  const title = new HeadElement('title', { 'data-seo-managed': 'true' });
+  const description = new HeadElement('meta', { 'data-seo-managed': 'true', name: 'description' });
+  const canonical = new HeadElement('link', { 'data-seo-managed': 'true', rel: 'canonical' });
+  const duplicateCanonical = new HeadElement('link', { 'data-seo-managed': 'true', rel: 'canonical' });
+  const jsonLd = new HeadElement('script', { 'data-seo-managed': 'true', type: 'application/ld+json' });
+  const elements = [unownedDescription, title, description, canonical, duplicateCanonical, jsonLd];
+  const documentLike = fakeDocument(elements);
+  const descriptor = buildSeoDescriptor('/icons/first-icon', bundle);
+
+  updateManagedSeo(documentLike, descriptor);
+
+  assert.equal(title.textContent, descriptor.title);
+  assert.equal(description.getAttribute('content'), descriptor.description);
+  assert.equal(unownedDescription.getAttribute('content'), 'Не изменять');
+  assert.equal(canonical.getAttribute('href'), 'https://iconamaster.ru/icons/first-icon');
+  assert.equal(duplicateCanonical.removed, true);
+  assert.equal(JSON.parse(jsonLd.textContent)['@context'], 'https://schema.org');
+  assert.equal(documentLike.querySelectorAll('link[rel="canonical"][data-seo-managed="true"]').length, 1);
+  assert.equal(documentLike.querySelectorAll('meta[property="og:image"][data-seo-managed="true"]').length, 1);
+  assert.equal(documentLike.querySelectorAll('script[type="application/ld+json"][data-seo-managed="true"]').length, 1);
+});
+
+test('removes stale managed image metadata when the next route has no image', () => {
+  const ogImage = new HeadElement('meta', {
+    'data-seo-managed': 'true',
+    property: 'og:image',
+    content: 'https://iconamaster.ru/assets/icons/example.jpg',
+  });
+  const twitterImage = new HeadElement('meta', {
+    'data-seo-managed': 'true',
+    name: 'twitter:image',
+    content: 'https://iconamaster.ru/assets/icons/example.jpg',
+  });
+  const elements = [ogImage, twitterImage];
+
+  updateManagedSeo(fakeDocument(elements), buildSeoDescriptor('/contacts', bundle));
+
+  assert.equal(ogImage.removed, true);
+  assert.equal(twitterImage.removed, true);
 });

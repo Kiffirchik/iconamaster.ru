@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
+import { createElement } from 'react';
+import { renderToString } from 'react-dom/server';
 import { createServer } from 'vite';
 
 const bundle = {
@@ -17,7 +19,20 @@ const bundle = {
   ],
   articles: [{ slug: 'guslitsa', title: 'Гуслица', published: true, sections: [] }],
   videos: [{ id: 'y10sw1KIOqQ', provider: 'youtube', title: 'Мастерская', autoplay: false }],
-  contacts: { whatsapp: '79166554595', phone: '+79166554595', email: 'iconamaster@yandex.ru' }
+  contacts: {
+    whatsapp: '79166554595',
+    phone: '+79166554595',
+    email: 'iconamaster@yandex.ru',
+    mapUrl: 'https://yandex.com/maps/-/CTT2bAoq',
+    address: {
+      display: 'Московская область, д. Брёхово, Ромашковая ул., 16',
+      streetAddress: 'Ромашковая ул., 16',
+      addressLocality: 'д. Брёхово',
+      addressRegion: 'Московская область',
+      addressCountry: 'RU',
+    },
+  },
+  aliases: {},
 };
 
 test('ready routes render their data-backed page components', async (context) => {
@@ -64,4 +79,24 @@ test('missing page and article slugs use the shared not-found renderer', async (
 
   assert.equal(renderReadyRoute({ name: 'page', slug: 'missing' }, bundle, () => {}).type.name, 'NotFoundPage');
   assert.equal(renderReadyRoute({ name: 'article', slug: 'missing' }, bundle, () => {}).type.name, 'NotFoundPage');
+});
+
+test('App renders its injected ready route on the first pass', async (context) => {
+  const server = await createServer({
+    appType: 'custom',
+    logLevel: 'silent',
+    root: fileURLToPath(new URL('../..', import.meta.url)),
+    server: { middlewareMode: true }
+  });
+  context.after(() => server.close());
+
+  const { App } = await server.ssrLoadModule('/src/App.jsx');
+  const html = renderToString(createElement(App, {
+    initialPath: '/contacts',
+    initialBundle: bundle,
+  }));
+
+  assert.match(html, /<h1[^>]*>Контакты<\/h1>/u);
+  assert.match(html, /wa\.me\/79166554595/u);
+  assert.doesNotMatch(html, /Загружаем коллекцию/u);
 });

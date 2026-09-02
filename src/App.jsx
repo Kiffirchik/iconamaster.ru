@@ -5,6 +5,7 @@ import { ContentProvider, useContent } from './content/ContentProvider.jsx';
 import { findIconBySlug } from './lib/catalog.js';
 import { selectBySlug } from './lib/content-selectors.js';
 import { navigate, parseRoute } from './lib/routing.js';
+import { buildSeoDescriptor, updateManagedSeo } from './lib/seo.js';
 import { ArticlePage } from './pages/ArticlePage.jsx';
 import { ArticlesPage } from './pages/ArticlesPage.jsx';
 import { CollectionPage } from './pages/CollectionPage.jsx';
@@ -14,10 +15,6 @@ import { HomePage } from './pages/HomePage.jsx';
 import { IconDetailPage } from './pages/IconDetailPage.jsx';
 import { MuralCleaningPage } from './pages/MuralCleaningPage.jsx';
 import { VideoPage } from './pages/VideoPage.jsx';
-
-function getRoute(aliases) {
-  return parseRoute(window.location.pathname, aliases);
-}
 
 export function NotFoundPage({ onNavigate }) {
   return (
@@ -52,16 +49,26 @@ export function renderReadyRoute(route, bundle, onNavigate) {
   return <NotFoundPage onNavigate={onNavigate} />;
 }
 
-function AppContent() {
-  const [route, setRoute] = useState(getRoute);
+function AppContent({ initialPath }) {
   const { status, bundle, error, retry } = useContent();
+  const [route, setRoute] = useState(() => parseRoute(initialPath, bundle?.aliases));
 
   useEffect(() => {
-    const updateRoute = () => setRoute(getRoute(bundle?.aliases));
+    if (typeof window === 'undefined') return undefined;
+
+    const updateRoute = () => setRoute(parseRoute(window.location.pathname, bundle?.aliases));
     updateRoute();
     window.addEventListener('popstate', updateRoute);
     return () => window.removeEventListener('popstate', updateRoute);
   }, [bundle?.aliases]);
+
+  useEffect(() => {
+    if (status !== 'ready' || !bundle || typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
+    updateManagedSeo(document, buildSeoDescriptor(window.location.pathname, bundle));
+  }, [status, bundle, route]);
 
   return (
     <AppView
@@ -103,10 +110,10 @@ export function AppView({ status, bundle, error, retry, route, onNavigate }) {
   );
 }
 
-export function App() {
+export function App({ initialBundle = null, initialError = null, initialPath = '/' }) {
   return (
-    <ContentProvider>
-      <AppContent />
+    <ContentProvider initialBundle={initialBundle} initialError={initialError}>
+      <AppContent initialPath={initialPath} />
     </ContentProvider>
   );
 }

@@ -1,12 +1,50 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import { App } from "./App.jsx";
+import { loadContent } from "./content/load-content.js";
+import { normalizePath } from "./lib/routing.js";
 import "./styles.css";
 
-document.documentElement.lang = "ru";
+function appTree(props) {
+  return (
+    <React.StrictMode>
+      <App {...props} />
+    </React.StrictMode>
+  );
+}
 
-createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
+export async function bootstrapApp({
+  container,
+  pathname,
+  loadContentImpl = loadContent,
+  hydrateRootImpl = hydrateRoot,
+  createRootImpl = createRoot,
+}) {
+  const normalizedPath = normalizePath(pathname) ?? '/';
+  let bundle;
+
+  try {
+    bundle = await loadContentImpl();
+  } catch (initialError) {
+    const root = createRootImpl(container);
+    root.render(appTree({ initialError, initialPath: normalizedPath }));
+    return root;
+  }
+
+  const tree = appTree({ initialBundle: bundle, initialPath: normalizedPath });
+  if (container.dataset.prerenderPath === normalizedPath) {
+    return hydrateRootImpl(container, tree);
+  }
+
+  const root = createRootImpl(container);
+  root.render(tree);
+  return root;
+}
+
+if (typeof document !== 'undefined' && typeof window !== 'undefined') {
+  document.documentElement.lang = 'ru';
+  const container = document.getElementById('root');
+  if (container) {
+    void bootstrapApp({ container, pathname: window.location.pathname });
+  }
+}

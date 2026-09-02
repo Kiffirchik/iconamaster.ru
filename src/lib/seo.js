@@ -294,3 +294,62 @@ export function serializeJsonLd(value) {
     .replace(/\u2028/gu, '\\u2028')
     .replace(/\u2029/gu, '\\u2029');
 }
+
+const managedAttribute = 'data-seo-managed';
+
+function reconcileHeadNode(documentLike, { tagName, selector, attributes = {}, value, property }) {
+  const matches = [...documentLike.querySelectorAll(selector)];
+  const managed = matches.filter((node) => node.getAttribute(managedAttribute) === 'true');
+
+  if (value === null || value === undefined || value === '') {
+    for (const node of managed) node.remove();
+    return;
+  }
+
+  let node = managed.shift();
+  for (const duplicate of managed) duplicate.remove();
+
+  if (!node) {
+    if (matches.length > 0) return;
+    node = documentLike.createElement(tagName);
+    node.setAttribute(managedAttribute, 'true');
+    for (const [name, attributeValue] of Object.entries(attributes)) {
+      node.setAttribute(name, attributeValue);
+    }
+    documentLike.head.append(node);
+  }
+
+  if (property === 'textContent') node.textContent = value;
+  else node.setAttribute(property, value);
+}
+
+export function updateManagedSeo(documentLike, descriptor) {
+  if (!documentLike?.head || typeof documentLike.querySelectorAll !== 'function') return false;
+
+  const entries = [
+    { tagName: 'title', selector: 'title', value: descriptor.title, property: 'textContent' },
+    { tagName: 'meta', selector: 'meta[name="description"]', attributes: { name: 'description' }, value: descriptor.description, property: 'content' },
+    { tagName: 'meta', selector: 'meta[name="robots"]', attributes: { name: 'robots' }, value: descriptor.robots, property: 'content' },
+    { tagName: 'link', selector: 'link[rel="canonical"]', attributes: { rel: 'canonical' }, value: descriptor.canonical, property: 'href' },
+    { tagName: 'meta', selector: 'meta[property="og:title"]', attributes: { property: 'og:title' }, value: descriptor.openGraph.title, property: 'content' },
+    { tagName: 'meta', selector: 'meta[property="og:description"]', attributes: { property: 'og:description' }, value: descriptor.openGraph.description, property: 'content' },
+    { tagName: 'meta', selector: 'meta[property="og:url"]', attributes: { property: 'og:url' }, value: descriptor.openGraph.url, property: 'content' },
+    { tagName: 'meta', selector: 'meta[property="og:type"]', attributes: { property: 'og:type' }, value: descriptor.openGraph.type, property: 'content' },
+    { tagName: 'meta', selector: 'meta[property="og:locale"]', attributes: { property: 'og:locale' }, value: descriptor.openGraph.locale, property: 'content' },
+    { tagName: 'meta', selector: 'meta[property="og:image"]', attributes: { property: 'og:image' }, value: descriptor.openGraph.image, property: 'content' },
+    { tagName: 'meta', selector: 'meta[name="twitter:card"]', attributes: { name: 'twitter:card' }, value: descriptor.twitter.card, property: 'content' },
+    { tagName: 'meta', selector: 'meta[name="twitter:title"]', attributes: { name: 'twitter:title' }, value: descriptor.twitter.title, property: 'content' },
+    { tagName: 'meta', selector: 'meta[name="twitter:description"]', attributes: { name: 'twitter:description' }, value: descriptor.twitter.description, property: 'content' },
+    { tagName: 'meta', selector: 'meta[name="twitter:image"]', attributes: { name: 'twitter:image' }, value: descriptor.twitter.image, property: 'content' },
+    {
+      tagName: 'script',
+      selector: 'script[type="application/ld+json"]',
+      attributes: { type: 'application/ld+json' },
+      value: serializeJsonLd(descriptor.structuredData),
+      property: 'textContent',
+    },
+  ];
+
+  for (const entry of entries) reconcileHeadNode(documentLike, entry);
+  return true;
+}
