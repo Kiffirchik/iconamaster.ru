@@ -1,10 +1,14 @@
 DirectoryIndex index.html
+ErrorDocument 404 /404.html
 
 RewriteEngine On
+
+# ICONAMASTER_ROUTE_RULES
+
+# ICONAMASTER_ALIAS_RULES
 
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-RewriteRule ^ index.html [L]
-
+RewriteRule ^ - [R=404,L]

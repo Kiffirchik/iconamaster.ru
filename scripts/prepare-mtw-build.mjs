@@ -28,10 +28,13 @@ export async function prepareMtwBuild({
   distRoot = path.join(projectRoot, "dist", "client"),
 } = {}) {
   const indexPath = path.join(distRoot, "index.html");
-  if (!(await stat(indexPath)).isFile()) throw new Error(`Missing MTW build input: ${indexPath}`);
+  const apachePath = path.join(distRoot, ".htaccess");
+  for (const inputPath of [indexPath, apachePath]) {
+    const input = await stat(inputPath).catch(() => null);
+    if (!input?.isFile()) throw new Error(`Missing MTW build input: ${inputPath}`);
+  }
 
   const replacedAssets = await copyTree(optimizedRoot, distRoot);
-  await copyFile(path.join(publicRoot, ".htaccess"), path.join(distRoot, ".htaccess"));
   return { replacedAssets };
 }
 

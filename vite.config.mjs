@@ -1,9 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   build: {
     outDir: "dist/client",
+    ...(isSsrBuild ? {
+      rollupOptions: {
+        output: {
+          entryFileNames: "entry-server.js",
+        },
+      },
+    } : {}),
   },
   optimizeDeps: {
     include: ["react", "react-dom/client"],
@@ -16,4 +23,4 @@ export default defineConfig({
     },
   },
   plugins: [react()],
-});
+}));
