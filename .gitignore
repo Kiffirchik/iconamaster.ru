@@ -7,3 +7,7 @@ dist/
 /tmp/migration-inventory.json
 /tmp/icon-migration-run.json
 /tmp/editorial-migration-run.json
+
+# Local credentials (never commit)
+mtw-creds.txt
+new admid creds.txt
