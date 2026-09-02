@@ -60,7 +60,7 @@
   "summary": {
     "records": {
       "pages": 8,
-      "articles": 8,
+      "articles": 10,
       "videos": 2,
       "contacts": 1
     },
@@ -3429,6 +3429,22 @@
       "sourceUrl": "https://iconamaster.cargo.site/GUSLITA-ODIN-IZ-KRUPNEISIK-STAROOBRYDCESKIK-TENTROV-KNIGOPISANIY-I",
       "sections": 24,
       "media": 12
+    },
+    {
+      "kind": "article",
+      "slug": "restoration-murals-cleaning",
+      "title": "Расчистка настенных храмовых росписей",
+      "sourceUrl": "https://dzen.ru/a/ak_PywErdWEdTZrn",
+      "sections": 6,
+      "media": 3
+    },
+    {
+      "kind": "article",
+      "slug": "georgievsky-church-iconostasis",
+      "title": "Иконостас Георгиевского храма в Зеленограде",
+      "sourceUrl": "https://dzen.ru/a/aVK_H2_G1yJNnCC5",
+      "sections": 23,
+      "media": 11
     }
   ]
 }

@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { createReadStream } from 'node:fs';
-import { mkdir, mkdtemp, readFile, readdir, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readFile, readdir, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -468,6 +468,15 @@ export const replaceEditorialAssetDirectories = async ({ assetsRoot, stagingRoot
   const backedUp = [];
   const installed = [];
   try {
+    try {
+      await cp(
+        path.join(assetsRoot, 'articles', 'dzen'),
+        path.join(stagingRoot, 'articles', 'dzen'),
+        { recursive: true, errorOnExist: true, force: false },
+      );
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
     for (const name of names) {
       try {
         await rename(path.join(assetsRoot, name), path.join(backupRoot, name));
@@ -1059,6 +1068,23 @@ const outputEntry = (id, relativePath, serialized, records) => ({
 });
 
 const canonicalWorkshopAddress = 'Московская область, д. Брёхово, Ромашковая ул., 16';
+const isDzenArticle = (record) => {
+  try {
+    const source = new URL(record?.sourceUrl);
+    return source.protocol === 'https:' && source.hostname === 'dzen.ru' && source.pathname.startsWith('/a/');
+  } catch {
+    return false;
+  }
+};
+
+export const mergePreservedArticles = (migratedArticles, existingArticles) => {
+  const migratedSlugs = new Set(migratedArticles.map(({ slug }) => slug));
+  return [
+    ...migratedArticles,
+    ...existingArticles.filter((record) => isDzenArticle(record) && !migratedSlugs.has(record.slug)),
+  ];
+};
+
 const normalizeWorkshopLocationParagraphs = (records) => {
   let normalized = 0;
   const replacements = new Map([
@@ -1100,6 +1126,7 @@ const main = async () => {
 
   const [
     existingAliases,
+    existingArticles,
     previousReport,
     sourceAssetFixtureText,
     coverAssetFixtureText,
@@ -1107,6 +1134,7 @@ const main = async () => {
     preparedArticles,
   ] = await Promise.all([
     readJson(outputPaths.aliases),
+    readJson(outputPaths.articles),
     readJsonIfPresent(reportPath, null),
     readFile(sourceAssetFixturePath, 'utf8'),
     readFile(coverAssetFixturePath, 'utf8'),
@@ -1151,7 +1179,7 @@ const main = async () => {
   const articleBuild = buildPublicRecords(preparedArticles, migration, coverBuild.byOwner);
   const normalizedPageBuild = normalizeWorkshopLocationParagraphs(pageBuild.records);
   const pages = [...normalizedPageBuild.pages, ...manualPages];
-  const articles = articleBuild.records;
+  const articles = mergePreservedArticles(articleBuild.records, existingArticles);
   const videos = [
     {
       provider: 'youtube',

@@ -301,6 +301,7 @@ test('validated staging replacement removes stale editorial assets and preserves
     await Promise.all([
       mkdir(path.join(assetsRoot, 'pages'), { recursive: true }),
       mkdir(path.join(assetsRoot, 'articles'), { recursive: true }),
+      mkdir(path.join(assetsRoot, 'articles', 'dzen'), { recursive: true }),
       mkdir(path.join(assetsRoot, 'icons'), { recursive: true }),
       mkdir(path.join(stagingRoot, 'pages'), { recursive: true }),
       mkdir(path.join(stagingRoot, 'articles', 'covers'), { recursive: true }),
@@ -308,6 +309,9 @@ test('validated staging replacement removes stale editorial assets and preserves
     await Promise.all([
       writeFile(path.join(assetsRoot, 'pages', 'stale.jpg'), 'stale-page'),
       writeFile(path.join(assetsRoot, 'articles', 'stale.jpg'), 'stale-article'),
+      writeFile(path.join(assetsRoot, 'articles', 'dzen', 'restoration-murals-cleaning-1.jpg'), 'dzen-one'),
+      writeFile(path.join(assetsRoot, 'articles', 'dzen', 'restoration-murals-cleaning-2.jpg'), 'dzen-two'),
+      writeFile(path.join(assetsRoot, 'articles', 'dzen', 'restoration-murals-cleaning-3.jpg'), 'dzen-three'),
       writeFile(path.join(assetsRoot, 'icons', 'keep.jpg'), 'keep-icon'),
       writeFile(path.join(stagingRoot, 'pages', 'fresh.jpg'), 'fresh-page'),
       writeFile(path.join(stagingRoot, 'articles', 'fresh.jpg'), 'fresh-article'),
@@ -319,12 +323,31 @@ test('validated staging replacement removes stale editorial assets and preserves
     assert.deepEqual(await relativeFiles(path.join(assetsRoot, 'pages')), ['fresh.jpg']);
     assert.deepEqual(await relativeFiles(path.join(assetsRoot, 'articles')), [
       'covers/fresh.jpg',
+      'dzen/restoration-murals-cleaning-1.jpg',
+      'dzen/restoration-murals-cleaning-2.jpg',
+      'dzen/restoration-murals-cleaning-3.jpg',
       'fresh.jpg',
     ]);
     assert.equal(await readFile(path.join(assetsRoot, 'icons', 'keep.jpg'), 'utf8'), 'keep-icon');
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+test('editorial migration preserves the two Dzen articles after the eight Cargo articles', async () => {
+  const { mergePreservedArticles } = await import('../../scripts/migrate-editorial-content.mjs');
+  const articles = await json('../../public/content/articles.json');
+  const cargoArticles = articles.filter(({ sourceUrl }) => sourceUrl.startsWith('https://iconamaster.cargo.site/'));
+
+  assert.equal(typeof mergePreservedArticles, 'function');
+  const merged = mergePreservedArticles(cargoArticles, articles);
+  assert.equal(cargoArticles.length, 8);
+  assert.equal(merged.length, 10);
+  assert.deepEqual(merged.slice(8), articles.slice(8));
+  assert.deepEqual(merged.slice(8).map(({ slug }) => slug), [
+    'restoration-murals-cleaning',
+    'georgievsky-church-iconostasis',
+  ]);
 });
 
 test('pinned cover encoder and derivative contract rejects identity and checksum drift', async () => {
@@ -468,7 +491,7 @@ test('durable editorial report accounts for exclusions, omissions, encoding and 
   assert.equal(report.schemaVersion, 1);
   assert.deepEqual(report.summary.records, {
     pages: 8,
-    articles: 8,
+    articles: 10,
     videos: 2,
     contacts: 1,
   });
