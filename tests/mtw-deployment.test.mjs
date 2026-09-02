@@ -72,3 +72,26 @@ test("MTW packaging rejects a build without generated Apache routing", async () 
     await rm(root, { recursive: true, force: true });
   }
 });
+
+test("MTW packaging rejects an untouched Apache routing template", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "iconamaster-mtw-build-"));
+  const publicRoot = path.join(root, "public");
+  const optimizedRoot = path.join(root, "release-assets");
+  const distRoot = path.join(root, "dist", "client");
+  const untouchedTemplate = await readFile(new URL("../public/.htaccess", import.meta.url), "utf8");
+
+  try {
+    await mkdir(publicRoot, { recursive: true });
+    await mkdir(optimizedRoot, { recursive: true });
+    await mkdir(distRoot, { recursive: true });
+    await writeFile(path.join(distRoot, "index.html"), "<!doctype html>");
+    await writeFile(path.join(distRoot, ".htaccess"), untouchedTemplate);
+
+    await assert.rejects(
+      prepareMtwBuild({ publicRoot, optimizedRoot, distRoot }),
+      /Missing generated MTW routing/u,
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

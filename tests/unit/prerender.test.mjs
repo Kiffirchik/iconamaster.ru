@@ -198,3 +198,38 @@ test('buildApacheConfig rejects aliases with injection, decoded dot segments, or
     );
   }
 });
+
+test('buildApacheConfig rejects canonical paths that cannot form exact Apache tokens', () => {
+  for (const pathname of [
+    '/bad path',
+    '/bad\tpath',
+    '/bad"path',
+    '/bad%20path',
+    '/bad%09path',
+    '/encoded%2Bpath',
+  ]) {
+    assert.throws(
+      () => buildApacheConfig(apacheTemplate, { canonicalPaths: ['/', pathname], aliases: {} }),
+      /canonical|path|encoding/iu,
+    );
+  }
+});
+
+test('buildApacheConfig rejects alias paths that cannot form exact Apache tokens', () => {
+  for (const source of [
+    '/bad path',
+    '/bad\tpath',
+    '/bad"path',
+    '/bad%20path',
+    '/bad%09path',
+    '/encoded%2Bpath',
+  ]) {
+    assert.throws(
+      () => buildApacheConfig(apacheTemplate, {
+        canonicalPaths: ['/', '/collection'],
+        aliases: { [source]: '/collection' },
+      }),
+      /alias|path|encoding/iu,
+    );
+  }
+});

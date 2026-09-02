@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { copyFile, mkdir, readdir, stat } from "node:fs/promises";
+import { copyFile, mkdir, readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -32,6 +32,11 @@ export async function prepareMtwBuild({
   for (const inputPath of [indexPath, apachePath]) {
     const input = await stat(inputPath).catch(() => null);
     if (!input?.isFile()) throw new Error(`Missing MTW build input: ${inputPath}`);
+  }
+  const apacheConfig = await readFile(apachePath, "utf8");
+  if (apacheConfig.includes("# ICONAMASTER_ROUTE_RULES")
+    || apacheConfig.includes("# ICONAMASTER_ALIAS_RULES")) {
+    throw new Error(`Missing generated MTW routing: ${apachePath}`);
   }
 
   const replacedAssets = await copyTree(optimizedRoot, distRoot);

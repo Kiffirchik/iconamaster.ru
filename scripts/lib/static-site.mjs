@@ -67,19 +67,10 @@ function validateCleanLocalPath(value, label) {
     throw new Error(`${label} must be a local absolute path`);
   }
   if (value !== '/' && value.endsWith('/')) throw new Error(`${label} must be a clean path`);
-  if (/[\\\r\n\0?#]/u.test(value)) throw new Error(`${label} contains unsafe path characters`);
-  if (/%(?:2f|5c)/iu.test(value)) throw new Error(`${label} contains an encoded path separator`);
+  if (/%/u.test(value)) throw new Error(`${label} must not contain percent encoding`);
+  if (/[\\\s\0?#"']/u.test(value)) throw new Error(`${label} contains unsafe path characters`);
 
-  let decoded;
-  try {
-    decoded = decodeURIComponent(value);
-  } catch {
-    throw new Error(`${label} contains invalid percent encoding`);
-  }
-  if (/[\\\r\n\0?#]/u.test(decoded) || decoded.startsWith('//')) {
-    throw new Error(`${label} decodes to an unsafe path`);
-  }
-  const segments = decoded.slice(1).split('/');
+  const segments = value.slice(1).split('/');
   if (segments.some((segment) => segment === '.' || segment === '..' || segment === '')) {
     if (value !== '/') throw new Error(`${label} contains an empty or dot path segment`);
   }
