@@ -150,16 +150,18 @@ RewriteRule ^ - [L]
 
 RewriteRule ^ - [R=404,L]
 `;
+const apacheSiteUrl = 'https://iconamaster.ru';
 
 test('buildApacheConfig maps canonical clean paths before the directory guard and returns real 404s', () => {
   const config = buildApacheConfig(apacheTemplate, {
     canonicalPaths: ['/', '/icons/example', '/collection'],
     aliases: {},
+    siteUrl: apacheSiteUrl,
   });
 
-  const expectedRoutes = `RewriteRule ^collection/$ /collection [R=301,L,NE]
+  const expectedRoutes = `RewriteRule ^collection/$ https://iconamaster.ru/collection [R=301,L,NE]
 RewriteRule ^collection$ collection/index.html [L]
-RewriteRule ^icons/example/$ /icons/example [R=301,L,NE]
+RewriteRule ^icons/example/$ https://iconamaster.ru/icons/example [R=301,L,NE]
 RewriteRule ^icons/example$ icons/example/index.html [L]`;
   assert.match(config, new RegExp(expectedRoutes.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&'), 'u'));
   assert.ok(config.indexOf(expectedRoutes) < config.indexOf('RewriteCond %{REQUEST_FILENAME} -d'));
@@ -167,17 +169,42 @@ RewriteRule ^icons/example$ icons/example/index.html [L]`;
   assert.doesNotMatch(config, /RewriteRule \^ index\.html/u);
 });
 
+test('buildApacheConfig emits every external redirect on the canonical HTTPS origin', () => {
+  const config = buildApacheConfig(apacheTemplate, {
+    canonicalPaths: ['/', '/collection'],
+    aliases: { '/legacy-collection': '/collection' },
+    siteUrl: 'https://iconamaster.ru',
+  });
+
+  assert.match(config, /^RewriteRule \^collection\/\$ https:\/\/iconamaster\.ru\/collection \[R=301,L,NE\]$/m);
+  assert.match(config, /^RewriteRule \^legacy-collection\$ https:\/\/iconamaster\.ru\/collection \[R=301,L,NE\]$/m);
+});
+
+test('buildApacheConfig rejects a redirect origin that is not a bare HTTPS origin', () => {
+  for (const siteUrl of ['http://iconamaster.ru', 'https://iconamaster.ru/path', 'https://user@iconamaster.ru']) {
+    assert.throws(
+      () => buildApacheConfig(apacheTemplate, {
+        canonicalPaths: ['/', '/collection'],
+        aliases: {},
+        siteUrl,
+      }),
+      /HTTPS origin/iu,
+    );
+  }
+});
+
 test('buildApacheConfig sorts aliases and escapes their exact source paths', () => {
   const config = buildApacheConfig(apacheTemplate, {
     canonicalPaths: ['/', '/collection', '/icons/example'],
+    siteUrl: apacheSiteUrl,
     aliases: {
       '/z.old+(x)': '/icons/example',
       '/a-path': '/collection',
     },
   });
 
-  const first = 'RewriteRule ^a-path$ /collection [R=301,L,NE]';
-  const second = 'RewriteRule ^z\\.old\\+\\(x\\)$ /icons/example [R=301,L,NE]';
+  const first = 'RewriteRule ^a-path$ https://iconamaster.ru/collection [R=301,L,NE]';
+  const second = 'RewriteRule ^z\\.old\\+\\(x\\)$ https://iconamaster.ru/icons/example [R=301,L,NE]';
   assert.ok(config.indexOf(first) < config.indexOf(second));
   assert.match(config, new RegExp(second.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&'), 'u'));
 });
@@ -193,7 +220,11 @@ test('buildApacheConfig rejects aliases with injection, decoded dot segments, or
 
   for (const aliases of unsafeAliases) {
     assert.throws(
-      () => buildApacheConfig(apacheTemplate, { canonicalPaths: ['/', '/collection'], aliases }),
+      () => buildApacheConfig(apacheTemplate, {
+        canonicalPaths: ['/', '/collection'],
+        aliases,
+        siteUrl: apacheSiteUrl,
+      }),
       /alias|path|target/iu,
     );
   }
@@ -209,7 +240,11 @@ test('buildApacheConfig rejects canonical paths that cannot form exact Apache to
     '/encoded%2Bpath',
   ]) {
     assert.throws(
-      () => buildApacheConfig(apacheTemplate, { canonicalPaths: ['/', pathname], aliases: {} }),
+      () => buildApacheConfig(apacheTemplate, {
+        canonicalPaths: ['/', pathname],
+        aliases: {},
+        siteUrl: apacheSiteUrl,
+      }),
       /canonical|path|encoding/iu,
     );
   }
@@ -228,6 +263,7 @@ test('buildApacheConfig rejects alias paths that cannot form exact Apache tokens
       () => buildApacheConfig(apacheTemplate, {
         canonicalPaths: ['/', '/collection'],
         aliases: { [source]: '/collection' },
+        siteUrl: apacheSiteUrl,
       }),
       /alias|path|encoding/iu,
     );

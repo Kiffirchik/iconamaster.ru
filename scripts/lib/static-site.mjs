@@ -90,6 +90,26 @@ function replaceUniqueMarker(template, marker, replacement) {
   return template.replace(marker, replacement);
 }
 
+function requireHttpsOrigin(value, label) {
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    throw new Error(`${label} must be a bare HTTPS origin`);
+  }
+  if (
+    url.protocol !== 'https:'
+    || url.pathname !== '/'
+    || url.search
+    || url.hash
+    || url.username
+    || url.password
+  ) {
+    throw new Error(`${label} must be a bare HTTPS origin`);
+  }
+  return url.origin;
+}
+
 export function renderDocument(template, { pathname, appHtml, seo, metrikaId }) {
   for (const marker of Object.values(markers)) requireUniqueMarker(template, marker);
   const appShell = `<div id="root">${markers.app}</div>`;
@@ -149,7 +169,8 @@ export function outputPathForRoute(distRoot, pathname) {
   return candidate;
 }
 
-export function buildApacheConfig(baseTemplate, { canonicalPaths, aliases }) {
+export function buildApacheConfig(baseTemplate, { canonicalPaths, aliases, siteUrl }) {
+  const redirectOrigin = requireHttpsOrigin(siteUrl, 'Apache redirect site URL');
   const canonical = new Set();
   for (const pathname of canonicalPaths) {
     validateCleanLocalPath(pathname, 'Canonical route');
@@ -164,7 +185,7 @@ export function buildApacheConfig(baseTemplate, { canonicalPaths, aliases }) {
       const route = pathname.slice(1);
       const pattern = escapeRewritePattern(route);
       return [
-        `RewriteRule ^${pattern}/$ ${pathname} [R=301,L,NE]`,
+        `RewriteRule ^${pattern}/$ ${redirectOrigin}${pathname} [R=301,L,NE]`,
         `RewriteRule ^${pattern}$ ${route}/index.html [L]`,
       ];
     })
@@ -180,7 +201,7 @@ export function buildApacheConfig(baseTemplate, { canonicalPaths, aliases }) {
       validateCleanLocalPath(target, 'Alias target');
       if (!canonical.has(target)) throw new Error(`Alias target is not canonical: ${target}`);
       if (canonical.has(source)) throw new Error(`Alias source is already canonical: ${source}`);
-      return `RewriteRule ^${escapeRewritePattern(source.slice(1))}$ ${target} [R=301,L,NE]`;
+      return `RewriteRule ^${escapeRewritePattern(source.slice(1))}$ ${redirectOrigin}${target} [R=301,L,NE]`;
     })
     .join('\n');
 

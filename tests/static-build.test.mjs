@@ -52,11 +52,11 @@ function sitemapUrls(xml) {
 function assertAliasRedirects(apache, aliases, canonicalPaths) {
   assert.equal(aliases.length, 78, 'current alias bundle must contain 78 redirects');
   const aliasRules = aliases.map(([source, target]) => (
-    `RewriteRule ^${source.slice(1)}$ ${target} [R=301,L,NE]`
+    `RewriteRule ^${source.slice(1)}$ ${siteUrl}${target} [R=301,L,NE]`
   ));
   const canonicalRedirects = new Set(canonicalPaths
     .filter((pathname) => pathname !== '/')
-    .map((pathname) => `RewriteRule ^${pathname.slice(1)}/$ ${pathname} [R=301,L,NE]`));
+    .map((pathname) => `RewriteRule ^${pathname.slice(1)}/$ ${siteUrl}${pathname} [R=301,L,NE]`));
   const actualAliasRules = apache.split(/\r?\n/u)
     .filter((line) => line.endsWith('[R=301,L,NE]'))
     .filter((line) => !canonicalRedirects.has(line));
@@ -76,7 +76,7 @@ function assertAliasRedirects(apache, aliases, canonicalPaths) {
 test('static alias gate rejects an unexpected alias redirect', async () => {
   const bundle = await readBundle();
   const apache = await readFile(path.join(clientRoot, '.htaccess'), 'utf8');
-  const unexpectedAlias = 'RewriteRule ^unexpected-alias$ /collection [R=301,L,NE]';
+  const unexpectedAlias = `RewriteRule ^unexpected-alias$ ${siteUrl}/collection [R=301,L,NE]`;
 
   assert.throws(
     () => assertAliasRedirects(

@@ -83,6 +83,7 @@ export async function generateStaticSite({
   await writeFile(path.join(clientRoot, '.htaccess'), buildApacheConfig(apacheTemplate, {
     canonicalPaths,
     aliases: bundle.aliases,
+    siteUrl: siteConfig.url,
   }));
 
   await rm(prerenderRoot, { recursive: true, force: true });
