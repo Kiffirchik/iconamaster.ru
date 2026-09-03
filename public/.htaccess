@@ -1,5 +1,6 @@
 DirectoryIndex index.html
-DirectoryCheckHandler On
+DirectorySlash Off
+Options -Indexes
 ErrorDocument 404 /404.html
 
 RewriteEngine On
