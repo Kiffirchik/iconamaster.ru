@@ -67,6 +67,19 @@ Three earlier candidates were cut over, failed a critical no-cache smoke check, 
 
 The release archives and backup archives for all four stamps remain under `/www/vhosts/27769`.
 
+## Public address consistency
+
+Checked on 2026-09-03 against the published site and the live public directory cards.
+
+- Canonical workshop address: `Московская область, д. Брёхово, Ромашковая ул., 16`.
+- `/contacts`, `/excursions`, and `/restoration` each displayed the canonical address in the visible page content.
+- The site footer displayed `д. Брёхово, Московская область`, the intentionally shortened geography assembled from the same canonical address fields.
+- The home-page `LocalBusiness` JSON-LD contained `streetAddress: Ромашковая ул., 16`, `addressLocality: д. Брёхово`, `addressRegion: Московская область`, and `addressCountry: RU`.
+- Yandex Maps short link `https://yandex.com/maps/-/CTT2bAoq` resolved to `https://yandex.com/maps/org/dom_masterskaya_russkogo_ikonopisca/170444860463/?ll=37.617700%2C55.755863&utm_source=share&z=10`. The live card showed the organization name `Дом-мастерская русского иконописца` and address `д. Брёхово, Ромашковая ул., 16` (expanded by Yandex as Московская область, городской округ Химки, деревня Брёхово, Ромашковая улица, 16).
+- The live 2GIS card at `https://2gis.ru/moscow/firm/70000001024227950` showed the organization name `Дом-мастерская русского иконописца` and address `Ромашковая улица, 16, д. Брёхово, Химки городской округ, Московская область, 141544`.
+
+Both directory cards already identify the same physical workshop address as the site. No public correction was submitted, and no phone, hours, category, or other directory field was changed. Yandex indicated that the owner follows the listing information; 2GIS showed a signed-out `Войти` control, so an owner session would be required for any future account-managed change.
+
 ## Exact rollback transaction
 
 Run from `/www/vhosts/27769` on MTW. The destination name must not already exist.
