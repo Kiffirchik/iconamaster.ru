@@ -6,10 +6,11 @@ import test from "node:test";
 
 import { prepareMtwBuild } from "../scripts/prepare-mtw-build.mjs";
 
-test("Apache template reserves generated routes and returns a real 404", async () => {
+test("Apache template protects clean static routes from mod_dir slash redirects", async () => {
   const source = await readFile(new URL("../public/.htaccess", import.meta.url), "utf8");
 
   assert.match(source, /^DirectoryIndex index\.html$/m);
+  assert.match(source, /^DirectoryCheckHandler On$/m);
   assert.match(source, /^ErrorDocument 404 \/404\.html$/m);
   assert.match(source, /^RewriteEngine On$/m);
   assert.match(source, /^# ICONAMASTER_ROUTE_RULES$/m);
