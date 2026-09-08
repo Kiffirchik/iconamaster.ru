@@ -18,8 +18,13 @@ const expectedArticleTitles = [
   'Павлово-на-Оке — старообрядческий иконописный центр',
   'История развития и стили окладов икон',
   'Иконописный канон как место духовной брани',
-  'Гуслица',
+  'Иконописные традиции Гуслиц 18-19 веков',
 ];
+
+const approvedDocxSources = new Map([
+  ['history-of-cast-icons', 'docx:history-of-cast-icons.docx'],
+  ['cast-crosses', 'docx:cast-crosses.docx'],
+]);
 
 const expectedPagePaths = [
   '/EKSKURSIY-PO-MASTERSKOI',
@@ -90,6 +95,10 @@ test('editorial migration contains exactly the agreed records and contact policy
     articles.filter(({ sourceUrl }) => sourceUrl.startsWith('https://iconamaster.cargo.site/')).map(({ title }) => title),
     expectedArticleTitles,
   );
+  assert.deepEqual(
+    articles.filter(({ sourceUrl }) => sourceUrl.startsWith('docx:')).map(({ slug, sourceUrl }) => [slug, sourceUrl]),
+    [...approvedDocxSources],
+  );
   assert.deepEqual(videos.map(({ provider, id }) => `${provider}:${id}`), [
     'youtube:y10sw1KIOqQ',
     'vimeo:353365425',
@@ -157,7 +166,8 @@ test('pages and articles contain only non-empty ordered structured blocks', asyn
     assert.equal(record.published, true, record.slug);
     assert.ok(
       record.sourceUrl.startsWith('https://iconamaster.cargo.site/')
-        || record.sourceUrl.startsWith('https://dzen.ru/a/'),
+        || record.sourceUrl.startsWith('https://dzen.ru/a/')
+        || (articles.includes(record) && approvedDocxSources.get(record.slug) === record.sourceUrl),
       record.slug,
     );
     assert.ok(record.sections.length > 0, record.slug);
@@ -206,11 +216,12 @@ test('source fixture durable hash is identical for LF and CRLF representations',
 test('frozen source ownership fixture matches content, report and original files bijectively', async () => {
   const { validateSourceOwnershipFixture } = await import('../../scripts/migrate-editorial-content.mjs');
   const fixtureUrl = new URL('../fixtures/migration/editorial-source-assets.json', import.meta.url);
-  const [pages, articles, report, fixtureBytes] = await Promise.all([
+  const [pages, articles, report, fixtureBytes, docxReport] = await Promise.all([
     json('../../public/content/pages.json'),
     json('../../public/content/articles.json'),
     json('../../reports/editorial-migration.json'),
     readFile(fixtureUrl),
+    json('../../reports/docx-import.json'),
   ]);
   const fixture = JSON.parse(fixtureBytes);
   const records = [
@@ -224,6 +235,32 @@ test('frozen source ownership fixture matches content, report and original files
   const recordsByOwner = new Map(records.map((entry) => [ownerKey(entry), entry.record]));
   const assetsByOwner = new Map(fixture.records.map((entry) => [ownerKey(entry), []]));
   const assetsBySrc = new Map(report.assets.map((asset) => [asset.src, asset]));
+  // Only the three approved monastery additions are outside the frozen Cargo fixture.
+  const supplements = docxReport.assets.filter(({ ownerSlug }) => ownerSlug === 'panteleimon-monastery-icons');
+  const supplementSources = new Set(supplements.map(({ src }) => src));
+  assert.equal(docxReport.schemaVersion, 1);
+  assert.deepEqual(supplements.map(({ src }) => src), [
+    '/assets/articles/docx/panteleimon-monastery-icons-3.jpg',
+    '/assets/articles/docx/panteleimon-monastery-icons-4.jpg',
+    '/assets/articles/docx/panteleimon-monastery-icons-6.jpg',
+  ]);
+  assert.deepEqual(
+    imagesIn(recordsByOwner.get('article:panteleimon-monastery-icons'))
+      .filter(({ src }) => supplementSources.has(src)).map(({ src }) => src),
+    [...supplementSources],
+  );
+  for (const asset of supplements) {
+    assert.equal(asset.ownerType, 'article');
+    assert.equal(asset.provenance, 'docx-embedded-original');
+    assert.ok([3, 4, 6].includes(asset.order));
+    assert.equal(asset.src, `/assets/articles/docx/panteleimon-monastery-icons-${asset.order}.jpg`);
+    assert.equal(asset.sourceRef,
+      `docx:Иконопись в Русском Пантелеймоновом монастыре.docx#/word/media/image${asset.order}.jpeg`);
+    assert.ok(!assetsBySrc.has(asset.src), `DOCX supplement overlaps frozen Cargo ownership: ${asset.src}`);
+    const bytes = await readFile(new URL(`../../public${asset.src}`, import.meta.url));
+    assert.equal(asset.bytes, bytes.length, asset.src);
+    assert.equal(asset.sha256, sha256(bytes), asset.src);
+  }
 
   assert.equal(typeof validateSourceOwnershipFixture, 'function');
   assert.deepEqual(report.sourceAssetFixture, {
@@ -257,7 +294,7 @@ test('frozen source ownership fixture matches content, report and original files
     assert.deepEqual(assets.map(({ order }) => order), expected.sha256.map((_, index) => index + 1), key);
     assert.deepEqual(assets.map(({ sha256: checksum }) => checksum), expected.sha256, key);
     assert.deepEqual(
-      [...new Set(imagesIn(record).map(({ src }) => src))],
+      [...new Set(imagesIn(record).map(({ src }) => src).filter((src) => !supplementSources.has(src)))],
       assets.map(({ src }) => src),
       key,
     );
@@ -276,14 +313,19 @@ test('frozen source ownership fixture matches content, report and original files
     ],
   }), /unapproved cross-owner reuse/iu);
 
-  for (const record of records.map(({ record: contentRecord }) => contentRecord)) {
+  const supplementsBySrc = new Map(supplements.map((asset) => [asset.src, asset]));
+  for (const { record, ownerType, ownerSlug } of records) {
     for (const image of imagesIn(record)) {
       assert.deepEqual(Object.keys(image).toSorted(), ['alt', 'height', 'src', 'width']);
       assert.match(image.src, /^\/assets\/(?:pages|articles)\//);
       assert.ok(image.alt.trim());
       assert.ok(image.width > 0 && image.height > 0, image.src);
-      const asset = assetsBySrc.get(image.src);
+      const asset = assetsBySrc.get(image.src) ?? supplementsBySrc.get(image.src);
       assert.ok(asset, `missing report asset for ${image.src}`);
+      if (supplementSources.has(image.src)) {
+        assert.equal(ownerType, asset.ownerType, image.src);
+        assert.equal(ownerSlug, asset.ownerSlug, image.src);
+      }
       assert.equal(image.width, asset.width, image.src);
       assert.equal(image.height, asset.height, image.src);
     }
@@ -338,13 +380,14 @@ test('editorial migration preserves the two Dzen articles after the eight Cargo 
   const { mergePreservedArticles } = await import('../../scripts/migrate-editorial-content.mjs');
   const articles = await json('../../public/content/articles.json');
   const cargoArticles = articles.filter(({ sourceUrl }) => sourceUrl.startsWith('https://iconamaster.cargo.site/'));
+  const dzenArticles = articles.filter(({ sourceUrl }) => sourceUrl.startsWith('https://dzen.ru/a/'));
 
   assert.equal(typeof mergePreservedArticles, 'function');
   const merged = mergePreservedArticles(cargoArticles, articles);
   assert.equal(cargoArticles.length, 8);
   assert.equal(merged.length, 10);
-  assert.deepEqual(merged.slice(8), articles.slice(8));
-  assert.deepEqual(merged.slice(8).map(({ slug }) => slug), [
+  assert.deepEqual(merged, [...cargoArticles, ...dzenArticles]);
+  assert.deepEqual(dzenArticles.map(({ slug }) => slug), [
     'restoration-murals-cleaning',
     'georgievsky-church-iconostasis',
   ]);
@@ -381,11 +424,13 @@ test('pinned cover encoder and derivative contract rejects identity and checksum
 });
 
 test('article cards use smaller derived covers while full originals and disk bijection remain intact', async () => {
-  const [pages, articles, report, fixture] = await Promise.all([
+  const [pages, articles, report, fixture, dzenReport, docxReport] = await Promise.all([
     json('../../public/content/pages.json'),
     json('../../public/content/articles.json'),
     json('../../reports/editorial-migration.json'),
     json('../fixtures/migration/editorial-cover-assets.json'),
+    json('../../reports/dzen-import.json'),
+    json('../../reports/docx-import.json'),
   ]);
   const originalsBySrc = new Map(report.assets.map((asset) => [asset.src, asset]));
   const coversByOwner = new Map((report.coverAssets ?? []).map((asset) => [asset.ownerSlug, asset]));
@@ -442,12 +487,13 @@ test('article cards use smaller derived covers while full originals and disk bij
     ...(await relativeFiles(new URL('../../public/assets/pages/', import.meta.url)))
       .map((file) => `/assets/pages/${file}`),
     ...(await relativeFiles(new URL('../../public/assets/articles/', import.meta.url)))
-      .map((file) => `/assets/articles/${file}`)
-      .filter((file) => !file.startsWith('/assets/articles/dzen/')),
+      .map((file) => `/assets/articles/${file}`),
   ].toSorted();
   const expectedDiskFiles = [
     ...report.assets.map(({ src }) => src),
     ...report.coverAssets.map(({ src }) => src),
+    ...dzenReport.assets.map(({ src }) => src),
+    ...docxReport.assets.map(({ src }) => src),
   ].toSorted();
   assert.deepEqual(actualDiskFiles, expectedDiskFiles);
   assert.equal(pages.length, 8);
@@ -491,7 +537,7 @@ test('durable editorial report accounts for exclusions, omissions, encoding and 
   assert.equal(report.schemaVersion, 1);
   assert.deepEqual(report.summary.records, {
     pages: 8,
-    articles: 10,
+    articles: 12,
     videos: 2,
     contacts: 1,
   });

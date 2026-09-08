@@ -123,9 +123,12 @@ function validatePublicationRecord(record, fields, label, errors, allowDzen = fa
   if (!Number.isInteger(record.order) || record.order <= 0) {
     errors.push(`${label} field order must be a positive integer`);
   }
-  if (!isCanonicalSourceUrl(record.sourceUrl) && !(allowDzen && isCanonicalDzenArticleSourceUrl(record.sourceUrl))) {
+  const approvedDocument = fields === ARTICLE_FIELDS
+    && ['history-of-cast-icons', 'cast-crosses'].includes(record.slug)
+    && record.sourceUrl === `docx:${record.slug}.docx`;
+  if (!isCanonicalSourceUrl(record.sourceUrl) && !(allowDzen && isCanonicalDzenArticleSourceUrl(record.sourceUrl)) && !approvedDocument) {
     errors.push(allowDzen
-      ? `${label} field sourceUrl must be an approved HTTPS publication URL`
+      ? `${label} field sourceUrl must be an approved HTTPS publication URL or imported document reference`
       : `${label} field sourceUrl must be an HTTPS iconamaster.cargo.site URL`);
   }
   return true;
@@ -979,7 +982,8 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
   }
   const combinedEditorialReport = {
     ...editorialReport,
-    assets: [...(editorialReport.assets ?? []), ...(dzenReport.assets ?? [])],
+    assets: [...(editorialReport.assets ?? []), ...(dzenReport.assets ?? []),
+      ...(await readJson(path.join(projectDirectory, 'reports', 'docx-import.json'))).assets],
   };
   validateSourceOwnershipFixture(editorialReport, sourceFixture, errors);
   const ownedFiles = validateOwnedMetadata(iconManifest, combinedEditorialReport, coverFixture, errors);
@@ -1006,6 +1010,8 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
         ...legacyArticleMap.map(({ slug }) => ({ slug, published: true })),
         { slug: 'restoration-murals-cleaning', published: true },
         { slug: 'georgievsky-church-iconostasis', published: true },
+        { slug: 'history-of-cast-icons', published: true },
+        { slug: 'cast-crosses', published: true },
       ],
       videos: [
         { provider: 'youtube', id: 'y10sw1KIOqQ', published: true },

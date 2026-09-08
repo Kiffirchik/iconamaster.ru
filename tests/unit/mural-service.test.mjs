@@ -19,7 +19,7 @@ test('mural-cleaning service content remains durable, verified, and renderable',
 
   assert.ok(service, 'missing mural-cleaning service page');
   assert.equal(pages.length, 8);
-  assert.equal(articles.length, 10);
+  assert.equal(articles.length, 12);
   assert.equal(service.template, 'service');
   assert.equal(service.consultationTopic, 'murals');
   assert.equal(service.relatedArticleSlug, 'restoration-murals-cleaning');
