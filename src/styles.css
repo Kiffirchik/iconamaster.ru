@@ -944,6 +944,11 @@ button {
   align-items: start;
 }
 
+[data-live-slot^="icon-detail:"],
+[data-live-slot^="passport"] {
+  display: contents;
+}
+
 .icon-detail-page__content {
   display: grid;
   align-content: start;

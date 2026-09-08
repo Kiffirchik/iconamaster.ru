@@ -67,7 +67,7 @@ export function HomePage({ icons = [], articles = [], onNavigate }) {
                 >
                   <FailureAwareImage image={article.image} />
                 </a>
-                <div className="home-story-card__content">
+                <div className="home-story-card__content" data-live-slot={`article-feature:${article.slug}`}>
                   <p className="eyebrow">Материал мастерской</p>
                   <h3><a href={`/articles/${article.slug}`} onClick={(event) => follow(event, `/articles/${article.slug}`)}>{article.title}</a></h3>
                   <p>{article.summary}</p>

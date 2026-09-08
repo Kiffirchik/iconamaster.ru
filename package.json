@@ -15,7 +15,7 @@
     "prerender": "node scripts/prerender.mjs",
     "build:static": "npm run build:client && npm run build:ssr && npm run prerender",
     "build": "npm run build:static && node scripts/prepare-sites-build.mjs",
-    "build:mtw": "npm run build:static && node scripts/prepare-mtw-build.mjs",
+    "build:mtw": "npm run build:static && node scripts/prepare-mtw-build.mjs && node scripts/prepare-live-editor.mjs",
     "preview": "vite preview",
     "check:portability": "node scripts/check-portability.mjs",
     "test:setup": "node --test tests/windows-setup.test.mjs",

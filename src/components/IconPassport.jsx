@@ -13,7 +13,6 @@ export function IconPassport({ icon, headingId }) {
   const fields = passportFields
     .map(([label, key]) => [label, key, getIconDisplayValue(icon?.[key])])
     .filter(([, , value]) => value);
-  if (!fields.length) return null;
 
   const passport = (
     <dl className="object-passport">
@@ -26,10 +25,11 @@ export function IconPassport({ icon, headingId }) {
     </dl>
   );
 
-  return headingId ? (
+  const content = !fields.length ? null : headingId ? (
     <section aria-labelledby={headingId}>
       <h2 id={headingId}>Паспорт предмета</h2>
       {passport}
     </section>
   ) : passport;
+  return <div data-live-slot={`passport${headingId ? '-detail' : ''}:${icon.slug}`}>{content}</div>;
 }

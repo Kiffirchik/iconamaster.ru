@@ -6,12 +6,12 @@ export function ArticlePage({ article, onNavigate }) {
   return (
     <main id="main-content" className="article-page editorial-page">
       <article>
-        <header className="editorial-page__header">
+        <header className="editorial-page__header" data-live-slot={`article-header:${article.slug}`}>
           <p className="eyebrow">Статья мастерской</p>
           <h1>{article.title}</h1>
           {introduction ? <p className="editorial-page__intro">{introduction}</p> : null}
         </header>
-        <ContentSections sections={article.sections} />
+        <ContentSections sections={article.sections} liveSlug={article.slug} />
         {article.sourceUrl?.startsWith('https://dzen.ru/') ? (
           <p className="editorial-page__source">
             Материал также опубликован в <a href={article.sourceUrl} target="_blank" rel="noreferrer">Дзене</a>.

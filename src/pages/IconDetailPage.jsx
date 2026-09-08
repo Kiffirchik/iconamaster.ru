@@ -36,10 +36,12 @@ export function IconDetailPage({ icon, icons, onNavigate }) {
       <div className="icon-detail-page__layout">
         <IconGallery images={icon.images ?? []} title={icon.title} />
         <article className="icon-detail-page__content">
+          <div data-live-slot={`icon-detail:${icon.slug}`}>
           {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
           <h1>{icon.title}</h1>
           <p className="icon-detail-page__price">{price}</p>
           {getIconDisplayValue(icon.description) ? <p className="icon-detail-page__description">{icon.description}</p> : null}
+          </div>
 
           <IconPassport icon={icon} headingId="passport-title" />
 

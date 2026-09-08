@@ -27,7 +27,7 @@ export function ArticlesPage({ articles = [], onNavigate }) {
             return (
               <article className="article-card" key={article.slug}>
                 <ArticleCover image={image} />
-                <div className="article-card__content">
+                <div className="article-card__content" data-live-slot={`article-card:${article.slug}`}>
                   <h2><a href={`/articles/${article.slug}`} onClick={(event) => follow(event, `/articles/${article.slug}`, onNavigate)}>{article.title}</a></h2>
                   {article.summary || article.intro || article.excerpt ? <p>{article.summary || article.intro || article.excerpt}</p> : null}
                 </div>

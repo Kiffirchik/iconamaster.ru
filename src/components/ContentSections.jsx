@@ -1,9 +1,9 @@
 import { ContentGallery } from './ContentGallery.jsx';
 import { renderableSections } from '../lib/content-selectors.js';
 
-export function ContentSections({ sections = [] }) {
+export function ContentSections({ sections = [], liveSlug }) {
   return (
-    <div className="content-sections">
+    <div className="content-sections" data-live-slot={liveSlug ? `article-sections:${liveSlug}` : undefined}>
       {renderableSections(sections).map((section, index) => {
         if (section.type === 'text') {
           const heading = typeof section.heading === 'string' ? section.heading.trim() : '';

@@ -45,7 +45,7 @@ export class IconCard extends Component {
             </a>
           )}
         </IconImage>
-        <div className="icon-card__content">
+        <div className="icon-card__content" data-live-slot={`icon-card:${icon.slug}`}>
           {period ? <p className="icon-card__period">{period}</p> : null}
           {title ? <h3><a href={path} onClick={this.follow}>{title}</a></h3> : null}
           {technique ? <p>{technique}</p> : null}

@@ -3,6 +3,7 @@ import { createRoot, hydrateRoot } from "react-dom/client";
 import { App } from "./App.jsx";
 import { loadContent } from "./content/load-content.js";
 import { normalizePath } from "./lib/routing.js";
+import { validateContentBundle } from "./content/schema.js";
 import "./styles.css";
 
 function appTree(props) {
@@ -33,7 +34,7 @@ export async function bootstrapApp({
   }
 
   const tree = appTree({ initialBundle: bundle, initialPath });
-  if (normalizedPath !== null && container.dataset.prerenderPath === normalizedPath) {
+  if (container.dataset.liveRendered !== 'true' && normalizedPath !== null && container.dataset.prerenderPath === normalizedPath) {
     return hydrateRootImpl(container, tree);
   }
 
@@ -46,6 +47,13 @@ if (typeof document !== 'undefined' && typeof window !== 'undefined') {
   document.documentElement.lang = 'ru';
   const container = document.getElementById('root');
   if (container) {
-    void bootstrapApp({ container, pathname: window.location.pathname });
+    const snapshot = document.getElementById('live-content');
+    const loadSnapshot = async () => {
+      if (!snapshot) return loadContent();
+      const bundle = JSON.parse(snapshot.textContent);
+      if (!validateContentBundle(bundle).ok) throw new Error('Invalid live content snapshot');
+      return bundle;
+    };
+    void bootstrapApp({ container, pathname: window.location.pathname, loadContentImpl: loadSnapshot });
   }
 }
