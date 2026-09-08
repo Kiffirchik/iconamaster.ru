@@ -26,7 +26,7 @@
 - [x] Review all period/purpose/size values against source quotations, retain missing values as empty strings.
 - [x] Test/render metadata consistently on detail/home/catalog; no provenance/authorship chips or empty passport values.
 - [x] Verify inventory/asset integrity, all unit/setup/static/MTW checks, and desktop/mobile browser behavior.
-- [ ] Commit and push verified source, stage MTW release, preserve current production root and CMS files, verify no-cache production pages/images and document rollback.
+- [x] Commit and push verified source, stage MTW release, preserve current production root and CMS files, verify no-cache production pages/images and document rollback. See `docs/deployments/2026-09-08-complete-cargo-catalog.md`.
 
 ## Acceptance checks
 
