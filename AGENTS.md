@@ -17,3 +17,4 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - Requested production changes are published directly to `https://iconamaster.ru` on MTW with a rollback copy preserved.
 - Do not publish subsequent changes to Sites unless the user explicitly requests it.
 - Before every MTW production deployment, commit and push the exact verified source to `https://github.com/Kiffirchik/iconamaster.ru`; deploy only after that push succeeds.
+- Live text editing is enabled at `/corona/admin/content.php`. Hosting `content/*.json` is authoritative for edited text: preserve it and `.editor-state` during subsequent deployments. Never overwrite live edits with a Cargo export or repository snapshot without explicit reconciliation. Use `npm run build:mtw` to include the PHP editor and live templates; preserve the existing Corona login and its credentials.
