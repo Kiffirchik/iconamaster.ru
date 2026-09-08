@@ -1,9 +1,8 @@
 import { getFilterOptions } from '../lib/catalog.js';
 
 const filterLabels = {
-  purpose: 'Назначение',
   period: 'Период',
-  availability: 'Наличие'
+  purpose: 'Назначение'
 };
 
 export function CatalogFilters({ items, filters, onChange, onReset }) {

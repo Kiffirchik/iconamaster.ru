@@ -5,9 +5,8 @@ import { publishedIcons } from '../content/schema.js';
 import { filterIcons } from '../lib/catalog.js';
 
 const initialFilters = {
-  purpose: 'all',
   period: 'all',
-  availability: 'all'
+  purpose: 'all'
 };
 
 export function CollectionPage({ icons = [], onNavigate }) {

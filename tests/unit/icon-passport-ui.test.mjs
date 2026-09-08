@@ -76,19 +76,21 @@ test('mixed passport fields omit only unavailable facts', async (context) => {
   }
 });
 
-test('catalog exposes purpose choices and sends purpose changes and resets to its owner', async (context) => {
+test('catalog exposes only period then purpose, combines choices and resets without hiding sold cards', async (context) => {
   const { CatalogFilters, CollectionPage } = await loadUI(context);
-  const items = [icon, { ...icon, slug: 'home', purpose: 'Домашняя' }];
-  let filters = { purpose: 'all', period: 'all', availability: 'all' };
+  const items = [icon, { ...icon, slug: 'home', purpose: 'Домашняя', period: 'XX век', availability: 'Продано' }];
+  let filters = { period: 'all', purpose: 'all' };
   const form = () => CatalogFilters({
     items, filters,
     onChange: (change) => { filters = { ...filters, ...change }; },
-    onReset: () => { filters = { purpose: 'all', period: 'all', availability: 'all' }; },
+    onReset: () => { filters = { period: 'all', purpose: 'all' }; },
   });
   const markup = renderToStaticMarkup(createElement(CollectionPage, { icons: items }));
   assert.match(markup, /<label for="catalog-filter-purpose">Назначение<\/label>/);
   assert.match(markup, /<option value="Храмовая">Храмовая<\/option>/);
-  assert.doesNotMatch(markup, /Тип иконы|Авторские|catalog-filter-type/);
+  assert.deepEqual([...markup.matchAll(/<select[^>]* name="([^"]+)"/g)].map((match) => match[1]), ['period', 'purpose']);
+  assert.doesNotMatch(markup, /Тип иконы|Авторские|catalog-filter-type|catalog-filter-availability/);
+  assert.match(markup, /Продано/);
   assert.equal((markup.match(/class="icon-card"/g) ?? []).length, 2);
 
   const purposeSelect = form().props.children[0]
@@ -96,11 +98,19 @@ test('catalog exposes purpose choices and sends purpose changes and resets to it
     .find((child) => child.type === 'select' && child.props.name === 'purpose');
   assert.ok(purposeSelect, 'purpose select exists');
   purposeSelect.props.onChange({ target: { value: 'Домашняя' } });
-  assert.deepEqual(filters, { purpose: 'Домашняя', period: 'all', availability: 'all' });
+  assert.deepEqual(filters, { period: 'all', purpose: 'Домашняя' });
   assert.deepEqual(filterIcons(items, filters).map(({ slug }) => slug), ['home']);
   const selectedMarkup = renderToStaticMarkup(form());
   assert.match(selectedMarkup, /<option value="Домашняя" selected="">Домашняя<\/option>/);
+  const periodSelect = form().props.children[0]
+    .flatMap((field) => field.props.children)
+    .find((child) => child.type === 'select' && child.props.name === 'period');
+  periodSelect.props.onChange({ target: { value: 'XIX век' } });
+  assert.equal(filterIcons(items, filters).length, 0, 'both selected filters apply');
+  periodSelect.props.onChange({ target: { value: 'XX век' } });
+  assert.deepEqual(filterIcons(items, filters).map(({ slug }) => slug), ['home']);
   form().props.children[1].props.onClick();
+  assert.deepEqual(filters, { period: 'all', purpose: 'all' });
   assert.equal(filterIcons(items, filters).length, 2);
   assert.doesNotMatch(renderToStaticMarkup(form()), /catalog-filters__reset/);
 });
