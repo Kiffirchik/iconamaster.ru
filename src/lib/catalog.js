@@ -1,15 +1,27 @@
-export function filterIcons(items, filters) {
-  return items.filter((item) =>
-    (filters.type === 'all' || item.type === filters.type) &&
-    (filters.period === 'all' || item.period === filters.period) &&
-    (filters.availability === 'all' || item.availability === filters.availability)
-  );
+export function getIconDisplayValue(value) {
+  if (typeof value !== 'string') return '';
+  const text = value.trim();
+  const normalized = text.toLowerCase().replace(/\s+/gu, ' ').replace(/[.!…]+$/u, '');
+  if (/^[-–—]+$/u.test(normalized) || [
+    '', 'уточняется при консультации', 'не указано', 'нет данных',
+  ].includes(normalized)) return '';
+  return text;
+}
+
+export function filterIcons(items, filters = {}) {
+  // Legacy callers may still explicitly filter by type; the UI uses purpose only.
+  return items.filter((item) => ['purpose', 'type', 'period', 'availability'].every((key) => {
+    const selected = filters[key];
+    if (selected == null || selected === 'all') return true;
+    const value = getIconDisplayValue(selected);
+    return Boolean(value) && getIconDisplayValue(item[key]) === value;
+  }));
 }
 
 export function getFilterOptions(items, key) {
   const values = items
-    .map((item) => item?.[key])
-    .filter((value) => typeof value === 'string' && value.trim());
+    .map((item) => getIconDisplayValue(item?.[key]))
+    .filter(Boolean);
 
   return ['all', ...new Set(values)];
 }

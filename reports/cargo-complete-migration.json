@@ -1,0 +1,852 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-08",
+  "sourceCards": 97,
+  "sourcePublished": 96,
+  "publishedCards": 95,
+  "originalAssets": 144,
+  "cardDuplicates": [
+    {
+      "sourceId": 9159882,
+      "canonicalId": 9159893,
+      "reason": "Unpublished copy uses the same Cargo image hash as the published copy; keep original visibility.",
+      "status": "confirmed",
+      "redirect": false
+    },
+    {
+      "sourceId": 9007373,
+      "canonicalId": 9007295,
+      "reason": "Byte-identical photograph, identical title and object size 40 x 30 cm. Owner confirmed merging and retaining 150000 RUB on 2026-09-08.",
+      "status": "owner-confirmed",
+      "redirect": true
+    }
+  ],
+  "possibleDuplicates": [
+    {
+      "sourceIds": [
+        9007316,
+        9153754
+      ],
+      "status": "keep-separate-pending-owner",
+      "reason": "Similar painted George panel, matching listed size and price, photographed with and without a kiot; object identity needs owner confirmation."
+    },
+    {
+      "sourceIds": [
+        9007346,
+        9160289
+      ],
+      "status": "keep-separate-pending-owner",
+      "reason": "Similar George icon in an ornamental metal cover, but different wooden kiots; object identity needs owner confirmation."
+    }
+  ],
+  "ownerConfirmedPrices": [
+    {
+      "sourceId": 9161198,
+      "price": 20000,
+      "confirmedOn": "2026-09-08",
+      "reason": "Owner confirmed 20,000 RUB; Cargo contains the typo 20 000 тыс. руб."
+    },
+    {
+      "sourceId": 9160368,
+      "price": 200000,
+      "confirmedOn": "2026-09-08",
+      "reason": "Owner supplied a new price of 200,000 RUB."
+    }
+  ],
+  "ownerConfirmedSizes": [
+    {
+      "sourceId": 9160368,
+      "size": "50 × 40 см; киот 64 × 54 см",
+      "confirmedOn": "2026-09-08",
+      "reason": "Owner corrected the kiot size to 64 x 54 cm; icon size 50 x 40 cm retained from source.",
+      "descriptionFrom": "киоте - книжка 45 х 40 см.",
+      "descriptionTo": "киоте - книжка 64 х 54 см."
+    }
+  ],
+  "imageExclusions": [
+    {
+      "cardId": 8969117,
+      "imageId": 46853697,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/bc99a1dba69c57bf9e07184abb4898f3931ca2c43ae1f627cd01402cd657235f/1_4.jpg",
+      "reason": "Byte-identical photo already retained",
+      "retainedSourceUrl": "https://freight.cargo.site/t/original/i/a754da07638f063493a3cb773a2d935409f1774113fb52458c383397f5f65c0e/1_4.jpg"
+    },
+    {
+      "cardId": 8987904,
+      "imageId": 80894028,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/ce6099cbca4a925ddc288a2ff55fbac0c613ed4679e67a540881f96c7791497e/_DSC0485.JPG",
+      "reason": "Byte-identical photo already retained",
+      "retainedSourceUrl": "https://freight.cargo.site/t/original/i/f4bb1fbf8200953886ca460ecfb0ed19619c31132ca777ccd979420a083badc0/_DSC0485.JPG"
+    },
+    {
+      "cardId": 8987906,
+      "imageId": 80899435,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/332ebd5dbf9d1ac3c7b12acd71887dc4c99268cd451bf6abed96ea4c37765785/-.JPG",
+      "reason": "Byte-identical photo already retained",
+      "retainedSourceUrl": "https://freight.cargo.site/t/original/i/084a0434919851c33cf67c710241f6d011007bbb807a8445ffa4e3648485341e/-.JPG"
+    },
+    {
+      "cardId": 9153811,
+      "imageId": 81215827,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/71f2820f9075a9cec9848cfbe3370fd3a02faf35ed42c344d29c1065e74f13e2/_DSC0483.JPG",
+      "reason": "Cargo reports zero dimensions and original URLs return HTTP 404. The live source card uses a different valid original; no empty slots imported."
+    },
+    {
+      "cardId": 9153811,
+      "imageId": 81215839,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/7943c6b1ffc8f10a86c1e9486b6549a78ee68b204829b84226142b0c449a2bb8/_DSC0483.JPG",
+      "reason": "Cargo reports zero dimensions and original URLs return HTTP 404. The live source card uses a different valid original; no empty slots imported."
+    },
+    {
+      "cardId": 9153811,
+      "imageId": 81216000,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/6aae281579149d127008a113de1733128bf3ccf3a772c85ec207d774726cefe4/_DSC0483.JPG",
+      "reason": "Cargo reports zero dimensions and original URLs return HTTP 404. The live source card uses a different valid original; no empty slots imported."
+    },
+    {
+      "cardId": 9153811,
+      "imageId": 81217281,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/476135dabf299e6dc44412120f1e92fe0919f4b41dd37f3fee34b189d03da56b/_DSC0483.JPG",
+      "reason": "Byte-identical photo already retained",
+      "retainedSourceUrl": "https://freight.cargo.site/t/original/i/f7045625e6041de0d36e8776d0c159dc1f7ae52c4b363e299c020daf833c01d6/_DSC0483.JPG"
+    }
+  ],
+  "metadataCoverage": {
+    "period": 21,
+    "purpose": 6,
+    "size": 79
+  },
+  "withoutDescription": [
+    {
+      "slug": "ikona-bogorodity-fedorovskoi",
+      "title": "Икона Богородицы Федоровской.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-FEDOROVSKOI"
+    },
+    {
+      "slug": "ikona-varvara-velikomucenita-v-zitie",
+      "title": "Икона Варвара Великомученица в житие.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-VARVARA-VELIKOMUCENITA-V-ZITIE"
+    },
+    {
+      "slug": "ikona-aleksandr-nevskii",
+      "title": "Икона Александр Невский.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-ALEKSANDR-NEVSKII"
+    },
+    {
+      "slug": "ikona-bogorodity-kazanskay-1",
+      "title": "Икона Богородицы Казанская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KAZANSKAY-1"
+    },
+    {
+      "slug": "ikona-bogorodity-utoli-moi-pecali",
+      "title": "Икона Богородицы Утоли мои печали.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-UTOLI-MOI-PECALI"
+    },
+    {
+      "slug": "ikona-bogorodity-utoli-moi-pecali-1",
+      "title": "Икона Богородицы Утоли мои печали.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-UTOLI-MOI-PECALI-1"
+    },
+    {
+      "slug": "ikona-bogorodity-utoli-moi-pecali-copy",
+      "title": "Икона Богородицы Утоли мои печали.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-UTOLI-MOI-PECALI-copy"
+    },
+    {
+      "slug": "ikona-prepodobnyi-sergii-radonezskii",
+      "title": "Икона Преподобный Сергий Радонежский.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNYI-SERGII-RADONEZSKII"
+    },
+    {
+      "slug": "ikona-cudo-georgiy-o-zmie-3",
+      "title": "Икона Чудо Георгия о змие.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-3"
+    },
+    {
+      "slug": "ikona-cudo-georgiy-o-zmie-4",
+      "title": "Икона Чудо Георгия о змие.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-4"
+    }
+  ],
+  "records": [
+    {
+      "sourceId": 8969117,
+      "sourcePath": "/KRAMOVAY-IKONA-VOSKRESENIE-KRISTOVO",
+      "publishedAtSource": true,
+      "canonical": "/icons/resurrection",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8969116,
+      "sourcePath": "/IKONY-NA-SVAD-BU",
+      "publishedAtSource": true,
+      "canonical": "/icons/wedding-icons",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8969119,
+      "sourcePath": "/IKONA-BOGORODITY-ZNAMENIE-V-DUBOVOM-KIOTE",
+      "publishedAtSource": true,
+      "canonical": "/icons/theotokos-znamenie-oak-kiot",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8969114,
+      "sourcePath": "/STARINNAY-IKONA-NIKOLAY-CUDOTVORTA",
+      "publishedAtSource": true,
+      "canonical": "/icons/antique-saint-nicholas",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8987900,
+      "sourcePath": "/IKONA-BLAGOVERNYI-TAR-IOANN-VASIL-EVIC-GROZNYI",
+      "publishedAtSource": true,
+      "canonical": "/icons/tsar-ivan-the-terrible",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8987901,
+      "sourcePath": "/IKONA-PREPODOBNYI-ALEKSANDR-PERESVET",
+      "publishedAtSource": true,
+      "canonical": "/icons/alexander-peresvet",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8987902,
+      "sourcePath": "/IKONA-NIKITA-BESOGON",
+      "publishedAtSource": true,
+      "canonical": "/icons/nikita-besogon",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8987904,
+      "sourcePath": "/IKONA-SERGII-RADONEZSKII",
+      "publishedAtSource": true,
+      "canonical": "/icons/sergius-of-radonezh",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8987905,
+      "sourcePath": "/FASADNAY-IKONA-CUDO-GEORGIY-O-ZMIE",
+      "publishedAtSource": true,
+      "canonical": "/icons/facade-george",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8987906,
+      "sourcePath": "/IKONA-BOGORODITY-MUROMSKAY",
+      "publishedAtSource": true,
+      "canonical": "/icons/theotokos-muromskaya",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8994257,
+      "sourcePath": "/IKONA-APOKALIPSIS-ILI-VIDENIE-IOANNA-BOGOSLOVA-PROSTAVLENIY-PECATI",
+      "publishedAtSource": true,
+      "canonical": "/icons/apocalypse-vision-of-john",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8994391,
+      "sourcePath": "/IKONA-SRETENIE-KRISTOVO",
+      "publishedAtSource": true,
+      "canonical": "/icons/sretenie",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8994393,
+      "sourcePath": "/IKONA-SPAS-VSEDERZITEL",
+      "publishedAtSource": true,
+      "canonical": "/icons/christ-pantocrator",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8994396,
+      "sourcePath": "/KRAMOVAY-IKONA-PETR-I-PAVEL",
+      "publishedAtSource": true,
+      "canonical": "/icons/temple-icon-peter-and-paul",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8994398,
+      "sourcePath": "/IKONA-NIKOLAI-CUDOTVORET-V-ZITII",
+      "publishedAtSource": true,
+      "canonical": "/icons/saint-nicholas-with-life",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8994402,
+      "sourcePath": "/IKONA-NIKOLAI-CUDOTVORET",
+      "publishedAtSource": true,
+      "canonical": "/icons/saint-nicholas",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8994405,
+      "sourcePath": "/IKONA-BOGORODITA-BOGOLYBSKAY-S-PREDSTOYSIMI-SVYTYMI",
+      "publishedAtSource": true,
+      "canonical": "/icons/bogolyubskaya-with-saints",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8994424,
+      "sourcePath": "/STARINNAY-IKONA-BOGORODITA-VLADIMIRSKAY",
+      "publishedAtSource": true,
+      "canonical": "/icons/antique-theotokos-vladimirskaya",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8994773,
+      "sourcePath": "/IKONA-SPAS-VSEDERZITEL-V-FARFOROVOM-OKLADE-I-REZNOM-KIOTE",
+      "publishedAtSource": true,
+      "canonical": "/icons/christ-pantocrator-porcelain-oklad",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8994778,
+      "sourcePath": "/IKONA-SOBOR-IZBRANNYK-SVYTYK",
+      "publishedAtSource": true,
+      "canonical": "/icons/synaxis-of-selected-saints",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8994792,
+      "sourcePath": "/STARINNAY-IKONA-BOGORODITA-KUPINA-NEOPALIMAY",
+      "publishedAtSource": true,
+      "canonical": "/icons/antique-theotokos-burning-bush",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8994828,
+      "sourcePath": "/IKONA-ROZDESTVO-PRESVYTOI-BOGORODITY",
+      "publishedAtSource": true,
+      "canonical": "/icons/nativity-of-the-theotokos",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8994849,
+      "sourcePath": "/IKONA-CUDO-SVYTOGO-GEORGIY-O-ZMIE",
+      "publishedAtSource": true,
+      "canonical": "/icons/miracle-of-saint-george-variant",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 8994887,
+      "sourcePath": "/IKONA-SPAS-VSEDERZITEL-V-STARINOM-LATUNNOM-OKLADE",
+      "publishedAtSource": true,
+      "canonical": "/icons/christ-pantocrator-brass-oklad",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9006474,
+      "sourcePath": "/STARINNAY-IKONA-ROZDESTVO-KRISTOVO-17-VEK",
+      "publishedAtSource": true,
+      "canonical": "/icons/nativity-of-christ-17th-century",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9006482,
+      "sourcePath": "/IKONA-SPAS-VSEDERZITEL-3",
+      "publishedAtSource": true,
+      "canonical": "/icons/christ-pantocrator-3",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9006496,
+      "sourcePath": "/IKONA-BOGORODITY-PETROVSKAY-V-REZNOM-KIOTE",
+      "publishedAtSource": true,
+      "canonical": "/icons/theotokos-petrovskaya-carved-kiot",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9006540,
+      "sourcePath": "/IKONA-BORIS-I-GLEB-SVYTYE-STRASTOTERPTY",
+      "publishedAtSource": true,
+      "canonical": "/icons/boris-and-gleb",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9006565,
+      "sourcePath": "/KIOT-SKLADEN",
+      "publishedAtSource": true,
+      "canonical": "/icons/folding-kiot",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9006598,
+      "sourcePath": "/IKONA-SPAS-VSEDERZITEL-4",
+      "publishedAtSource": true,
+      "canonical": "/icons/christ-pantocrator-4",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9006601,
+      "sourcePath": "/YVLENIE-BOGORODITY-SERGIY-RADONEZSKOMU-RUBEZ-18-19-VEK-ANALOI",
+      "publishedAtSource": true,
+      "canonical": "/icons/sergius-appearance",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9006610,
+      "sourcePath": "/IKONA-SVYTOI-NIKOLAI-CUDOTVORET",
+      "publishedAtSource": true,
+      "canonical": "/icons/saint-nicholas-wonderworker",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9006816,
+      "sourcePath": "/IKONA-BOGORODITY-TREK-RADOSTEI",
+      "publishedAtSource": true,
+      "canonical": "/icons/theotokos-three-joys",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9006836,
+      "sourcePath": "/IKONA-BOGORODITY-VZYGRANIE-MLADENTA",
+      "publishedAtSource": true,
+      "canonical": "/icons/theotokos-vzygranie-mladentsa",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9006852,
+      "sourcePath": "/IKONA-BOGORODITY-KAZANSKAY",
+      "publishedAtSource": true,
+      "canonical": "/icons/theotokos-kazanskaya",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9006874,
+      "sourcePath": "/IKONA-BOGORODITY-RUSSKAY",
+      "publishedAtSource": true,
+      "canonical": "/icons/theotokos-russkaya",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9006939,
+      "sourcePath": "/IKONA-SVYTYK-PETRA-I-FEVRONII-MUROMSKIK",
+      "publishedAtSource": true,
+      "canonical": "/icons/peter-and-fevronia-of-murom",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007219,
+      "sourcePath": "/IKONA-APOKALIPSIS",
+      "publishedAtSource": true,
+      "canonical": "/icons/apocalypse",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007229,
+      "sourcePath": "/IKONA-SPAS-VSEDERZITEL-V-DRAGOTENNOM-OKLADE-S-FARFOROVYMI-VSTAVKAMI-I",
+      "publishedAtSource": true,
+      "canonical": "/icons/christ-pantocrator-precious-oklad",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007236,
+      "sourcePath": "/IKONA-BOGRODITY-RADOST-VSEK-SKORBYSIK-V-STARINNOM-ZOLOCENOM-OKLADE",
+      "publishedAtSource": true,
+      "canonical": "/icons/joy-of-all-who-sorrow-gilded-oklad",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007240,
+      "sourcePath": "/IKONA-DVUNADESYTYE-PRAZDNIKII-VOSKRESENIE-KRISTOVO",
+      "publishedAtSource": true,
+      "canonical": "/icons/twelve-feasts-and-resurrection",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007262,
+      "sourcePath": "/IKONA-CUDO-AKISTRATIGA-MIKAILA",
+      "publishedAtSource": true,
+      "canonical": "/icons/archangel-michael",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007291,
+      "sourcePath": "/IKONA-PRESVYTAY-TROITA",
+      "publishedAtSource": true,
+      "canonical": "/icons/holy-trinity",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007295,
+      "sourcePath": "/IKONA-BOGORODITY-FEDOROVSKAY",
+      "publishedAtSource": true,
+      "canonical": "/icons/theotokos-feodorovskaya",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007311,
+      "sourcePath": "/IKONA-SVYTOI-KNYZ-VLADISLAV-CESSKII",
+      "publishedAtSource": true,
+      "canonical": "/icons/prince-vladislav-czech",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007316,
+      "sourcePath": "/IKONA-CUDO-SV-GEORGIY-O-ZMIE",
+      "publishedAtSource": true,
+      "canonical": "/icons/miracle-of-saint-george",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007320,
+      "sourcePath": "/IKONA-CUDO-GEORGIY-O-ZMIE",
+      "publishedAtSource": true,
+      "canonical": "/icons/miracle-of-george",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007323,
+      "sourcePath": "/IKONA-PREPODOBNYE-ZOSIMA-I-SAVVATII-SOLOVETKIE",
+      "publishedAtSource": true,
+      "canonical": "/icons/zosima-and-savvaty-solovetsky",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007325,
+      "sourcePath": "/IKONA-BOGORODITA-VSEK-SKORBYSIK-RADOST-MOSKOVSKII-IZVOD",
+      "publishedAtSource": true,
+      "canonical": "/icons/joy-of-all-who-sorrow-moscow",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007327,
+      "sourcePath": "/IKONA-BOGORODITY-TELITEL-NITA",
+      "publishedAtSource": true,
+      "canonical": "/icons/theotokos-healer",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007346,
+      "sourcePath": "/IKONA-CUDO-GEORGIY-O-ZMIE-1",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-cudo-georgiy-o-zmie-1",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007359,
+      "sourcePath": "/IKONA-SKLADEN-BOGORODITA-KAZANSKAY",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-skladen-bogorodita-kazanskay",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007360,
+      "sourcePath": "/IKONA-CUDO-VELIKOMUCENIKA-DIMITRIY-SOLUNSKOGO",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-cudo-velikomucenika-dimitriy-solunskogo",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007373,
+      "sourcePath": "/IKONA-BOGORODITY-FEDOROVSKAY-1",
+      "publishedAtSource": true,
+      "canonical": "/icons/theotokos-feodorovskaya",
+      "decision": "duplicate"
+    },
+    {
+      "sourceId": 9007376,
+      "sourcePath": "/IKONA-PRESVYTOI-TROITY",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-presvytoi-troity",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007381,
+      "sourcePath": "/IKONA-CUDO-ARKISTRATIGA-MIKAILA",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-cudo-arkistratiga-mikaila",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007404,
+      "sourcePath": "/IKONA-PREPODOBNAY-MARIY-KIDANSKAY",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-prepodobnay-mariy-kidanskay",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9007463,
+      "sourcePath": "/IKONA-PREPODOBNYI-SERAFIM-SAROVSKII",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-prepodobnyi-serafim-sarovskii",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9153665,
+      "sourcePath": "/IKONA-BOGORODITY-FEDOROVSKOI",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-fedorovskoi",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9153743,
+      "sourcePath": "/IKONA-VARVARA-VELIKOMUCENITA-V-ZITIE",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-varvara-velikomucenita-v-zitie",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9153754,
+      "sourcePath": "/IKONA-CUDO-GEORGIY-O-ZMIE-5",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-cudo-georgiy-o-zmie-5",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9153766,
+      "sourcePath": "/IKONA-NE-RYDAI-MENE-MATI",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-ne-rydai-mene-mati",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9153795,
+      "sourcePath": "/IKONA-SVYTAY-MATRONA-MOSKOVSKAY",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-svytay-matrona-moskovskay",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9153803,
+      "sourcePath": "/IKONA-ALEKSANDR-NEVSKII",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-aleksandr-nevskii",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9153811,
+      "sourcePath": "/IKONA-SPAS-VSEDERZITEL-V-STARINNOM-OKLADE-I-DUBOVOM-KIOTE",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-spas-vsederzitel-v-starinnom-oklade-i-dubovom-kiote",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9153844,
+      "sourcePath": "/IKONA-BOGORODITY-KAZANSKAY-1",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-kazanskay-1",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9153876,
+      "sourcePath": "/IKONA-BOGORODITY-UTOLI-MOI-PECALI",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-utoli-moi-pecali",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9159830,
+      "sourcePath": "/IKONA-BOGORODITY-UTOLI-MOI-PECALI-1",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-utoli-moi-pecali-1",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9159882,
+      "sourcePath": "/IKONA-BOGORODITY-UTOLI-MOI-PECALI-2",
+      "publishedAtSource": false,
+      "canonical": null,
+      "decision": "duplicate"
+    },
+    {
+      "sourceId": 9159893,
+      "sourcePath": "/IKONA-BOGORODITY-UTOLI-MOI-PECALI-copy",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-utoli-moi-pecali-copy",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9159915,
+      "sourcePath": "/IKONA-PREPODOBNYI-SERGII-RADONEZSKII",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-prepodobnyi-sergii-radonezskii",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9159923,
+      "sourcePath": "/IKONA-CUDO-GEORGIY-O-ZMIE-2",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-cudo-georgiy-o-zmie-2",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9159996,
+      "sourcePath": "/IKONA-CUDO-GEORGIY-O-ZMIE-3",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-cudo-georgiy-o-zmie-3",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9159998,
+      "sourcePath": "/IKONA-CUDO-MUCENIKA-TRIFONA-O-SOKOLE",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-cudo-mucenika-trifona-o-sokole",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9160289,
+      "sourcePath": "/IKONA-CUDO-GEORGIY-O-ZMIE-4",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-cudo-georgiy-o-zmie-4",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9160365,
+      "sourcePath": "/IKONA-IL-Y-MUROMET-V-ZITII",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-il-y-muromet-v-zitii",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9160368,
+      "sourcePath": "/IKONA-CUDO-SVYTOGO-GEORGIY",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-cudo-svytogo-georgiy",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9160370,
+      "sourcePath": "/IKONA-BOGORODITA-VLADIMIRSKAY",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodita-vladimirskay",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9160374,
+      "sourcePath": "/IKONA-OGNENNOE-VOSKOZDENIE-IL-I-PROROKA",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-ognennoe-voskozdenie-il-i-proroka",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9160379,
+      "sourcePath": "/IKONA-SVYTITEL-SPIRIDON-TRIMIFUNSKII",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-svytitel-spiridon-trimifunskii",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9160406,
+      "sourcePath": "/IKONA-PANTELEIMON-TELITEL",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-panteleimon-telitel",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9160565,
+      "sourcePath": "/IKONA-SPAS-NERUKOTVORNYI",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-spas-nerukotvornyi",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161046,
+      "sourcePath": "/IKONA-SPAS-NERUKOTVORNYI-1",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-spas-nerukotvornyi-1",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161053,
+      "sourcePath": "/IKONA-SVYTYK-BORIS-I-GLEB",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-svytyk-boris-i-gleb",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161072,
+      "sourcePath": "/IKONA-BOGORODITY-SPORUCNITA-GRESNYK",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-sporucnita-gresnyk",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161198,
+      "sourcePath": "/IKONA-BOGORODITY-SMOLENSKAY",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-smolenskay",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161302,
+      "sourcePath": "/IKONA-BOGORODITY-CASA-NEUPIVAEMAY-1",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-casa-neupivaemay-1",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161519,
+      "sourcePath": "/IKONA-PARSUNA-BLAGOVERNYI-TAR-IOANN-GROZNYI",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-parsuna-blagovernyi-tar-ioann-groznyi",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161563,
+      "sourcePath": "/IKONA-BOGORODITY-KORSUNSKAY",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-korsunskay",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161567,
+      "sourcePath": "/IKONA-BOGORODITY-KAZANSKAY-3",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-kazanskay-3",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161592,
+      "sourcePath": "/IKONA-BOGORODITY-ZIVONOSNYI-ISTOCNIK-1",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-zivonosnyi-istocnik-1",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161600,
+      "sourcePath": "/IKONA-BOGORODITY-ZNAMENIE",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-znamenie",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161603,
+      "sourcePath": "/IKONA-BOGORODITY-VLADIMIRSKAY",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-vladimirskay",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161624,
+      "sourcePath": "/IKONA-SPAS-BLAGOE-MOLCANIE-ILI-ANGEL-VELIKOGO-SOVETA",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-spas-blagoe-molcanie-ili-angel-velikogo-soveta",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161654,
+      "sourcePath": "/IKONA-BOGORODITY-KORSUNSKAY-1",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-korsunskay-1",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161658,
+      "sourcePath": "/IKONA-BOGORODITY-RUSSKAY-ILI-VZBRANNAY-VOEVODA",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-russkay-ili-vzbrannay-voevoda",
+      "decision": "migrated"
+    },
+    {
+      "sourceId": 9161696,
+      "sourcePath": "/IKONA-BOGORODITY-IVERSKAY",
+      "publishedAtSource": true,
+      "canonical": "/icons/ikona-bogorodity-iverskay",
+      "decision": "migrated"
+    }
+  ]
+}

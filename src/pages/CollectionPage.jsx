@@ -5,7 +5,7 @@ import { publishedIcons } from '../content/schema.js';
 import { filterIcons } from '../lib/catalog.js';
 
 const initialFilters = {
-  type: 'all',
+  purpose: 'all',
   period: 'all',
   availability: 'all'
 };

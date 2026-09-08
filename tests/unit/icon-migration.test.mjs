@@ -47,10 +47,10 @@ const buildAllowedOwners = (inventory) => {
   return ownersByUrl;
 };
 
-test('catalog migration contains all 50 source records and no duplicate slugs', async () => {
+test('catalog migration contains 95 distinct public cards after source duplicate review', async () => {
   const icons = await loadJson('../../public/content/icons.json');
-  assert.equal(icons.length, 50);
-  assert.equal(new Set(icons.map(({ slug }) => slug)).size, 50);
+  assert.equal(icons.length, 95);
+  assert.equal(new Set(icons.map(({ slug }) => slug)).size, 95);
 });
 
 test('migrated icon content preserves the original listed price and description', async () => {
@@ -135,8 +135,8 @@ test('tracked inventory fixture accounts for all source titles, paths, and alias
   const iconsBySourceUrl = new Map(icons.map((icon) => [icon.sourceUrl, icon]));
 
   assert.equal(inventory.schemaVersion, 2);
-  assert.equal(inventory.icons.length, 50);
-  assert.equal(inventory.icons.reduce((count, icon) => count + icon.originals.length, 0), 68);
+  assert.equal(inventory.icons.length, 95);
+  assert.equal(inventory.icons.reduce((count, icon) => count + icon.originals.length, 0), 133);
   for (const source of inventory.icons) {
     const icon = iconsBySourceUrl.get(source.sourceUrl);
     assert.ok(icon, source.sourcePath);
@@ -167,7 +167,7 @@ test('every manifest URL has exactly one pinned owner and rejects global scaffol
   for (const [sourceUrl, owners] of ownersByUrl) {
     assert.equal(owners.size, 1, `ambiguous owner for ${sourceUrl}: ${[...owners.keys()].join(', ')}`);
   }
-  assert.equal(ownersByUrl.size, 79, 'the pinned ownership allowlist must contain exactly 79 originals');
+  assert.equal(ownersByUrl.size, 144, 'the full pinned ownership allowlist includes validated Cargo additions');
   assert.equal(new Set(manifest.map(({ sourceUrl }) => sourceUrl)).size, manifest.length, 'manifest URLs must be unique');
   assert.deepEqual(
     sorted(manifest.map(({ sourceUrl }) => sourceUrl)),
@@ -180,7 +180,7 @@ test('every manifest URL has exactly one pinned owner and rejects global scaffol
     assert.equal(owners.size, 1, `manifest URL has ambiguous ownership: ${asset.sourceUrl}`);
     assert.equal(asset.legacyPath, [...owners.keys()][0], asset.sourceUrl);
   }
-  assert.equal(manifest.length, 79, 'global scaffolding media must not inflate the 79 owned originals');
+  assert.equal(manifest.length, 144, 'only individually owned originals belong in the manifest');
 });
 
 test('icon images, manifest entries, and immutable files form a bijection', async () => {
@@ -247,13 +247,19 @@ test('all seven recovery records retain every pinned owned asset and publication
   }
 });
 
-test('asset filenames are deterministic from slug and gallery order', async () => {
+test('asset filenames retain legacy gallery names or stable Cargo image ids', async () => {
   const icons = await loadJson('../../public/content/icons.json');
+  const source = await loadJson('../../scripts/data/cargo-catalog-20260908.json');
 
   for (const icon of icons) {
     icon.images.forEach((image, index) => {
       const file = image.src.split('/').at(-1);
       const stem = file.replace(/\.[^.]+$/u, '');
+      if(stem.includes('-cargo-')) {
+        const card=source.cards.find(c=>c.sourceUrl===icon.sourceUrl);
+        assert.ok(card.originals.some(a=>stem===`${icon.slug}-cargo-${a.id}`),image.src);
+        return;
+      }
       assert.equal(stem, index === 0 ? icon.slug : `${icon.slug}-${index + 1}`, image.src);
     });
   }

@@ -50,7 +50,7 @@ function sitemapUrls(xml) {
 }
 
 function assertAliasRedirects(apache, aliases, canonicalPaths) {
-  assert.equal(aliases.length, 78, 'current alias bundle must contain 78 redirects');
+  assert.equal(aliases.length, 124, 'current alias bundle must contain 124 redirects');
   const aliasRules = aliases.map(([source, target]) => (
     `RewriteRule ^${source.slice(1)}$ ${siteUrl}${target} [R=301,L,NE]`
   ));
@@ -63,8 +63,8 @@ function assertAliasRedirects(apache, aliases, canonicalPaths) {
 
   assert.equal(
     actualAliasRules.length,
-    78,
-    'generated Apache config must contain exactly 78 alias redirects',
+    124,
+    'generated Apache config must contain exactly 124 alias redirects',
   );
   assert.deepEqual(
     new Set(actualAliasRules),
@@ -84,7 +84,7 @@ test('static alias gate rejects an unexpected alias redirect', async () => {
       Object.entries(bundle.aliases),
       listCanonicalPaths(bundle),
     ),
-    /exactly 78 alias redirects/u,
+    /exactly 124 alias redirects/u,
   );
 });
 
@@ -206,13 +206,13 @@ test('static build publishes every canonical page with crawlable Russian SEO met
     + Number(hasVideo)
     + Number(hasContacts);
 
-  assert.equal(publishedIcons.length, 50, 'current bundle must publish 50 icon pages');
+  assert.equal(publishedIcons.length, 95, 'current bundle must publish 95 icon pages');
   assert.equal(publishedPages.length, 8, 'current bundle must publish 8 standard pages');
   assert.equal(publishedArticles.length, 10, 'current bundle must publish 10 article pages');
   assert.equal(hasVideo, true, 'current bundle must publish its video page');
   assert.equal(hasContacts, true, 'current bundle must publish its contacts page');
   assert.equal(expectedRouteCount, canonicalPaths.length, 'canonical paths must derive from published bundle records');
-  assert.equal(canonicalPaths.length, 73, 'current bundle must publish 73 canonical routes');
+  assert.equal(canonicalPaths.length, 118, 'current bundle must publish 118 canonical routes');
 
   const canonicalUrls = [];
   for (const pathname of canonicalPaths) {
@@ -234,11 +234,11 @@ test('static build publishes every canonical page with crawlable Russian SEO met
     canonicalUrls.push(url);
   }
 
-  assert.equal(new Set(canonicalUrls).size, 73, 'canonical pages must emit 73 unique canonical URLs');
+  assert.equal(new Set(canonicalUrls).size, 118, 'canonical pages must emit 118 unique canonical URLs');
 
   const sitemap = await readFile(path.join(clientRoot, 'sitemap.xml'), 'utf8');
   const urls = sitemapUrls(sitemap);
-  assert.equal(urls.length, 73, 'sitemap must contain every canonical URL exactly once');
+  assert.equal(urls.length, 118, 'sitemap must contain every canonical URL exactly once');
   assert.deepEqual(new Set(urls), new Set(canonicalUrls));
   for (const alias of Object.keys(bundle.aliases)) {
     assert.ok(!urls.includes(new URL(alias, `${siteUrl}/`).href), `sitemap must not include alias ${alias}`);

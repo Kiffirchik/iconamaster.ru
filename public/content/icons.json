@@ -5,16 +5,16 @@
     "title": "Фасадная икона Чудо Георгия о змие.",
     "published": true,
     "availability": "По запросу",
-    "size": "Уточняется при консультации",
-    "technique": "Уточняется при консультации",
-    "origin": "Уточняется при консультации",
-    "condition": "Уточняется при консультации",
-    "expertise": "Уточняется при консультации",
+    "size": "80 × 60 см",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
     "description": "80х60 см. \"Фасадная икона \" может заменить наружные монументальные настенные росписи или мозаичное панно на фасадной части храма. Она выдерживает изменчивые погодные условия и не поддается выцветанию на солнце. Икона пишется на цементостружечной плите, которая предварительно пропитывается акриловой смолой и олифой, покрывается особо прочной фасадной шпатлевкой. Образ пишется растертыми вручную цветными кристаллическими минералами на яйце и вине, декорируется листовым золотом, и пропитывается стойкой льняной олифой. Лицевая сторона фасадной иконы защищена стеклом, между поверхностями иконы и стекла сохраняется вентилируемое воздушное пространство. Таким образом достигается защищенность поверхности иконы от внешних воздействий, и не возникает конденсирование влаги и запотевание. Стоимость фасадной иконы сопоставима со стоимостью обычной иконы и гораздо меньше, чем стоимость мозаичной иконы такого же размера. Фасадная икона значительно легче мозаики, и ее можно легко установить на любой высоте.",
     "price": "100 000 руб.",
     "order": 1,
-    "type": "Фасадные",
-    "period": "Современные",
+    "type": "",
+    "period": "",
     "sourceUrl": "https://iconamaster.cargo.site/FASADNAY-IKONA-CUDO-GEORGIY-O-ZMIE",
     "images": [
       {
@@ -67,7 +67,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": "Фасадная"
   },
   {
     "id": "apocalypse",
@@ -75,7 +76,7 @@
     "title": "Икона Апокалипсис.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "80 × 60 см; киот 120 × 80 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -105,7 +106,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "apocalypse-vision-of-john",
@@ -113,7 +115,7 @@
     "title": "Икона Апокалипсис или видение Иоанна Богослова проставления печати антихриста.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "80 × 60 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -143,7 +145,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "tsar-ivan-the-terrible",
@@ -151,7 +154,7 @@
     "title": "Икона благоверный царь Иоанн Васильевич Грозный.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "31 × 27 см; киот 45 × 40 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -181,7 +184,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "bogolyubskaya-with-saints",
@@ -189,7 +193,7 @@
     "title": "Икона Богородица Боголюбская с предстоящими святыми.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "31 × 27 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -211,7 +215,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "joy-of-all-who-sorrow-moscow",
@@ -219,7 +224,7 @@
     "title": "Икона Богородица всех скорбящих радость (московский извод).",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "27 × 22 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -228,7 +233,7 @@
     "price": "35 000 руб.",
     "order": 6,
     "type": "",
-    "period": "",
+    "period": "Современная",
     "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITA-VSEK-SKORBYSIK-RADOST-MOSKOVSKII-IZVOD",
     "images": [
       {
@@ -241,7 +246,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "theotokos-feodorovskaya",
@@ -249,7 +255,7 @@
     "title": "Икона Богородицы Федоровская.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "40 × 30 см; киот 50 × 40 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -271,7 +277,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "theotokos-kazanskaya",
@@ -279,7 +286,7 @@
     "title": "Икона Богородицы Казанская.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -301,7 +308,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "theotokos-muromskaya",
@@ -309,7 +317,7 @@
     "title": "Икона Богородицы Муромская.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "50 × 40 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -347,7 +355,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "theotokos-petrovskaya-carved-kiot",
@@ -364,7 +373,7 @@
     "price": "200 000 руб.",
     "order": 10,
     "type": "",
-    "period": "",
+    "period": "1992 год",
     "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-PETROVSKAY-V-REZNOM-KIOTE",
     "images": [
       {
@@ -377,7 +386,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "theotokos-russkaya",
@@ -385,7 +395,7 @@
     "title": "Икона Богородицы Русская.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "21 × 17 см; киот 45 × 30 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -407,7 +417,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "theotokos-healer",
@@ -415,7 +426,7 @@
     "title": "Икона Богородицы Целительница.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -437,7 +448,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "theotokos-three-joys",
@@ -445,7 +457,7 @@
     "title": "Икона Богородицы Трех Радостей.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -467,7 +479,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "theotokos-vzygranie-mladentsa",
@@ -475,7 +488,7 @@
     "title": "Икона Богородицы Взыграние младенца.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -497,7 +510,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "theotokos-znamenie-oak-kiot",
@@ -505,7 +519,7 @@
     "title": "Икона Богородицы Знамение в дубовом киоте.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -527,7 +541,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "joy-of-all-who-sorrow-gilded-oklad",
@@ -535,7 +550,7 @@
     "title": "Икона Богородицы Радость всех скорбящих в старинном золоченом окладе",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "50 × 40 см; киот 65 × 55 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -554,10 +569,19 @@
         "height": 2439,
         "fit": "contain",
         "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/joy-of-all-who-sorrow-gilded-oklad-cargo-80900910.jpg",
+        "alt": "Икона Богородицы Радость всех скорбящих в старинном золоченом окладе, дополнительный вид 1",
+        "height": 2759,
+        "width": 2316,
+        "fit": "contain",
+        "position": "50% 50%"
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "boris-and-gleb",
@@ -565,7 +589,7 @@
     "title": "Икона Борис и Глеб, святые страстотерпцы.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "30 × 25 см; киот 45 × 40 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -587,7 +611,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "archangel-michael",
@@ -595,16 +620,16 @@
     "title": "Икона чудо Архистратига Михаила.",
     "published": true,
     "availability": "В наличии",
-    "size": "Уточняется при консультации",
-    "technique": "Уточняется при консультации",
-    "origin": "Уточняется при консультации",
-    "condition": "Уточняется при консультации",
-    "expertise": "Уточняется при консультации",
+    "size": "21 × 17 см",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
     "description": "21 х 17 см. доска липовая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, настоящая минеральная яичная темпера, золото сусальное, копаловый лак. Икона писана в одном экземпляре, высокохудожественная ручная авторская работа.",
     "price": "15 000 руб.",
     "order": 18,
-    "type": "Авторские",
-    "period": "Современные",
+    "type": "",
+    "period": "",
     "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-AKISTRATIGA-MIKAILA",
     "images": [
       {
@@ -641,7 +666,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "miracle-of-george",
@@ -649,7 +675,7 @@
     "title": "Икона Чудо Георгия о змие.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -658,7 +684,7 @@
     "price": "70 000 руб.",
     "order": 19,
     "type": "",
-    "period": "",
+    "period": "XIX век",
     "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE",
     "images": [
       {
@@ -671,7 +697,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "miracle-of-saint-george",
@@ -679,7 +706,7 @@
     "title": "Икона Чудо св. Георгия о змие.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "37 × 31 см; киот 52 × 47 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -701,7 +728,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "miracle-of-saint-george-variant",
@@ -709,7 +737,7 @@
     "title": "Икона Чудо Святого Георгия о змие.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "27 × 24 см; киот 40 × 35 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -718,7 +746,7 @@
     "price": "55 000 руб.",
     "order": 21,
     "type": "",
-    "period": "",
+    "period": "XIX век",
     "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-SVYTOGO-GEORGIY-O-ZMIE",
     "images": [
       {
@@ -728,10 +756,19 @@
         "height": 2855,
         "fit": "contain",
         "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/miracle-of-saint-george-variant-cargo-46852548.jpg",
+        "alt": "Икона Чудо Святого Георгия о змие., дополнительный вид 1",
+        "height": 500,
+        "width": 396,
+        "fit": "contain",
+        "position": "50% 50%"
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "twelve-feasts-and-resurrection",
@@ -739,7 +776,7 @@
     "title": "Икона Двунадесятые праздники Воскресение Христово.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "45 × 36 см; киот 59 × 49 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -777,7 +814,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "nikita-besogon",
@@ -785,7 +823,7 @@
     "title": "Икона Никита Бесогон.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "60 × 30 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -807,7 +845,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "saint-nicholas",
@@ -815,7 +854,7 @@
     "title": "Икона Николай Чудотворец.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "36 × 31 см; киот 49 × 45 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -842,10 +881,19 @@
         "height": 2498,
         "fit": "contain",
         "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/saint-nicholas-cargo-46849264.jpg",
+        "alt": "Икона Николай Чудотворец., дополнительный вид 2",
+        "height": 789,
+        "width": 641,
+        "fit": "contain",
+        "position": "50% 50%"
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "saint-nicholas-with-life",
@@ -853,7 +901,7 @@
     "title": "Икона Николай чудотворец в житии.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "31 × 27 см; киот 45 × 40 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -883,7 +931,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "zosima-and-savvaty-solovetsky",
@@ -891,7 +940,7 @@
     "title": "Икона Преподобные Зосима и Савватий Соловецкие.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "31 × 27",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -900,7 +949,7 @@
     "price": "50 000 руб.",
     "order": 26,
     "type": "",
-    "period": "",
+    "period": "Современная",
     "sourceUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNYE-ZOSIMA-I-SAVVATII-SOLOVETKIE",
     "images": [
       {
@@ -913,7 +962,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "alexander-peresvet",
@@ -923,14 +973,14 @@
     "availability": "В наличии",
     "size": "60 × 30 см",
     "technique": "Доска без ковчега, две врезные шпонки, меловой левкас, яичная минеральная темпера, сусальное и творёное золото",
-    "origin": "Авторская работа мастерской, один экземпляр",
-    "condition": "Уточняется при консультации",
-    "expertise": "Уточняется при консультации",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
     "description": "Икона преподобного Александра Пересвета в рост, 60 х 30 см., Тончайшее письмо в стиле Палех, червонное сусальное и твореное золото, доска без ковчега, две врезных шпонки, меловой левкас, яичная минеральная темпера. Авторская работа в одном экземпляре.",
     "price": "100 000 руб.",
     "order": 27,
-    "type": "Авторские",
-    "period": "Современные",
+    "type": "",
+    "period": "",
     "sourceUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNYI-ALEKSANDR-PERESVET",
     "images": [
       {
@@ -943,7 +993,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "holy-trinity",
@@ -951,7 +1002,7 @@
     "title": "Икона Пресвятая Троица.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "36 × 31 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -986,18 +1037,35 @@
         "height": 2939,
         "fit": "contain",
         "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/holy-trinity-cargo-46923193.jpg",
+        "alt": "Икона Пресвятая Троица., дополнительный вид 3",
+        "height": 500,
+        "width": 444,
+        "fit": "contain",
+        "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/holy-trinity-cargo-83913768.jpg",
+        "alt": "Икона Пресвятая Троица., дополнительный вид 4",
+        "height": 855,
+        "width": 760,
+        "fit": "contain",
+        "position": "50% 50%"
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "nativity-of-the-theotokos",
     "slug": "nativity-of-the-theotokos",
     "title": "Икона Рождество Пресвятой Богородицы.",
     "published": true,
-    "availability": "",
-    "size": "",
+    "availability": "Продано",
+    "size": "31 × 27 см; киот 45 × 40 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1006,7 +1074,7 @@
     "price": null,
     "order": 29,
     "type": "",
-    "period": "",
+    "period": "XIX век",
     "sourceUrl": "https://iconamaster.cargo.site/IKONA-ROZDESTVO-PRESVYTOI-BOGORODITY",
     "images": [
       {
@@ -1019,7 +1087,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "sergius-of-radonezh",
@@ -1027,7 +1096,7 @@
     "title": "Икона Сергий Радонежский.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "18 × 14 см; киот 32 × 28 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1036,7 +1105,7 @@
     "price": "150 000 руб.",
     "order": 30,
     "type": "",
-    "period": "",
+    "period": "Начало XX века",
     "sourceUrl": "https://iconamaster.cargo.site/IKONA-SERGII-RADONEZSKII",
     "images": [
       {
@@ -1046,10 +1115,19 @@
         "height": 1952,
         "fit": "contain",
         "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/sergius-of-radonezh-cargo-46848200.jpg",
+        "alt": "Икона Сергий Радонежский., дополнительный вид 1",
+        "height": 833,
+        "width": 675,
+        "fit": "contain",
+        "position": "50% 50%"
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "synaxis-of-selected-saints",
@@ -1057,7 +1135,7 @@
     "title": "Икона Собор избранных святых.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "31 × 27 см; киот 45 × 40 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1079,7 +1157,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "christ-pantocrator",
@@ -1087,7 +1166,7 @@
     "title": "Икона Спас Вседержитель.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "31 × 27 см; киот 45 × 40 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1096,7 +1175,7 @@
     "price": "100 000 руб.",
     "order": 32,
     "type": "",
-    "period": "",
+    "period": "XIX век",
     "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL",
     "images": [
       {
@@ -1109,7 +1188,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "christ-pantocrator-3",
@@ -1122,11 +1202,11 @@
     "origin": "",
     "condition": "",
     "expertise": "",
-    "description": "19 век.",
+    "description": "Старинная икона Спас Вседержитель в посеребренном латунном окладе и дубовом киоте. 19 век.",
     "price": "25 000 руб.",
     "order": 33,
     "type": "",
-    "period": "",
+    "period": "XIX век",
     "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-3",
     "images": [
       {
@@ -1139,7 +1219,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "christ-pantocrator-4",
@@ -1147,7 +1228,7 @@
     "title": "Икона Спас Вседержитель.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1169,7 +1250,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "christ-pantocrator-precious-oklad",
@@ -1177,7 +1259,7 @@
     "title": "Икона Спас Вседержитель в драгоценном окладе с фарфоровыми вставками и в резном киоте.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "27 × 23 см; киот 47 × 43 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1199,7 +1281,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "christ-pantocrator-porcelain-oklad",
@@ -1207,7 +1290,7 @@
     "title": "Икона Спас Вседержитель в фарфоровом окладе и резном киоте.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "31 × 27 см; киот 70 × 52 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1216,7 +1299,7 @@
     "price": "3 000 000 руб.",
     "order": 36,
     "type": "",
-    "period": "",
+    "period": "XIX век",
     "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-V-FARFOROVOM-OKLADE-I-REZNOM-KIOTE",
     "images": [
       {
@@ -1237,7 +1320,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "christ-pantocrator-brass-oklad",
@@ -1245,7 +1329,7 @@
     "title": "Икона Спас Вседержитель в старинном латунном окладе",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "37 × 31 см; киот 48 × 43 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1254,7 +1338,7 @@
     "price": "200 000 руб.",
     "order": 37,
     "type": "",
-    "period": "",
+    "period": "Современная",
     "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-V-STARINOM-LATUNNOM-OKLADE",
     "images": [
       {
@@ -1272,10 +1356,19 @@
         "height": 2845,
         "fit": "contain",
         "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/christ-pantocrator-brass-oklad-cargo-46852686.jpg",
+        "alt": "Икона Спас Вседержитель в старинном латунном окладе, дополнительный вид 2",
+        "height": 500,
+        "width": 408,
+        "fit": "contain",
+        "position": "50% 50%"
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "sretenie",
@@ -1283,16 +1376,16 @@
     "title": "Икона Сретение Христово.",
     "published": true,
     "availability": "В наличии",
-    "size": "Уточняется при консультации",
-    "technique": "Уточняется при консультации",
-    "origin": "Уточняется при консультации",
-    "condition": "Уточняется при консультации",
-    "expertise": "Уточняется при консультации",
+    "size": "45 × 30 см",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
     "description": "нач. 17 века. Доска, ковчег, паволока, меловой левкас, сусальное золото, незначительные реставрационные вставки, дописан золочённый фон. 45 х 30 см.",
     "price": "1 000 000 руб.",
     "order": 38,
-    "type": "Праздничные",
-    "period": "Современные",
+    "type": "",
+    "period": "Начало XVII века",
     "sourceUrl": "https://iconamaster.cargo.site/IKONA-SRETENIE-KRISTOVO",
     "images": [
       {
@@ -1305,7 +1398,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "prince-vladislav-czech",
@@ -1313,7 +1407,7 @@
     "title": "Икона Святой князь Владислав Чешский.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "31 × 27 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1343,7 +1437,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "saint-nicholas-wonderworker",
@@ -1351,7 +1446,7 @@
     "title": "Икона Святой Николай Чудотворец.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1373,7 +1468,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "peter-and-fevronia-of-murom",
@@ -1381,7 +1477,7 @@
     "title": "Икона святых Петра и Февронии Муромских.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1403,7 +1499,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "wedding-icons",
@@ -1433,7 +1530,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": "Венчальная"
   },
   {
     "id": "folding-kiot",
@@ -1441,7 +1539,7 @@
     "title": "Киот-складень.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "Киот-складень 113 × 83 см; средник 31 × 27 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1479,7 +1577,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "temple-icon-peter-and-paul",
@@ -1487,7 +1586,7 @@
     "title": "Храмовая икона Петр и Павел.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "150 × 70 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1496,7 +1595,7 @@
     "price": "1 500 000 руб.",
     "order": 44,
     "type": "",
-    "period": "",
+    "period": "XVIII век",
     "sourceUrl": "https://iconamaster.cargo.site/KRAMOVAY-IKONA-PETR-I-PAVEL",
     "images": [
       {
@@ -1509,7 +1608,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": "Храмовая"
   },
   {
     "id": "resurrection",
@@ -1517,16 +1617,16 @@
     "title": "Храмовая икона Воскресение Христово.",
     "published": true,
     "availability": "В наличии",
-    "size": "Уточняется при консультации",
-    "technique": "Уточняется при консультации",
-    "origin": "Уточняется при консультации",
-    "condition": "Уточняется при консультации",
-    "expertise": "Уточняется при консультации",
+    "size": "150 × 80 см",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
     "description": "18 век. 150х80 см.",
     "price": "2 000 000 руб.",
     "order": 45,
-    "type": "Храмовые",
-    "period": "Современные",
+    "type": "",
+    "period": "XVIII век",
     "sourceUrl": "https://iconamaster.cargo.site/KRAMOVAY-IKONA-VOSKRESENIE-KRISTOVO",
     "images": [
       {
@@ -1555,7 +1655,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": "Храмовая"
   },
   {
     "id": "antique-theotokos-burning-bush",
@@ -1563,7 +1664,7 @@
     "title": "Старинная икона Богородица Купина Неопалимая.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "31 × 27 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1572,7 +1673,7 @@
     "price": "300 000 руб.",
     "order": 46,
     "type": "",
-    "period": "",
+    "period": "XIX век",
     "sourceUrl": "https://iconamaster.cargo.site/STARINNAY-IKONA-BOGORODITA-KUPINA-NEOPALIMAY",
     "images": [
       {
@@ -1585,7 +1686,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "antique-theotokos-vladimirskaya",
@@ -1593,16 +1695,16 @@
     "title": "Старинная икона Богородица Владимирская.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "31 × 27 см; киот 45 × 40 см",
     "technique": "",
     "origin": "",
     "condition": "",
     "expertise": "",
-    "description": "31 х 27 см. икона, 45 х 40 см. дубовый киот, венец 19 века, латунь.",
+    "description": "Старинная икона Богородица Владимирская, 19 век. 31 х 27 см. икона, 45 х 40 см. дубовый киот, венец 19 века, латунь.",
     "price": "75 000 руб.",
     "order": 47,
     "type": "",
-    "period": "",
+    "period": "XIX век",
     "sourceUrl": "https://iconamaster.cargo.site/STARINNAY-IKONA-BOGORODITA-VLADIMIRSKAY",
     "images": [
       {
@@ -1615,7 +1717,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "antique-saint-nicholas",
@@ -1623,7 +1726,7 @@
     "title": "Старинная Икона Николая Чудотворца.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "31,4 × 24,5 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1632,7 +1735,7 @@
     "price": null,
     "order": 48,
     "type": "",
-    "period": "",
+    "period": "Конец XV века",
     "sourceUrl": "https://iconamaster.cargo.site/STARINNAY-IKONA-NIKOLAY-CUDOTVORTA",
     "images": [
       {
@@ -1661,7 +1764,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "nativity-of-christ-17th-century",
@@ -1669,7 +1773,7 @@
     "title": "Старинная икона Рождество Христово.17 век.",
     "published": true,
     "availability": "",
-    "size": "",
+    "size": "31 × 27 см",
     "technique": "",
     "origin": "",
     "condition": "",
@@ -1678,7 +1782,7 @@
     "price": "500 000 руб.",
     "order": 49,
     "type": "",
-    "period": "",
+    "period": "XVII век",
     "sourceUrl": "https://iconamaster.cargo.site/STARINNAY-IKONA-ROZDESTVO-KRISTOVO-17-VEK",
     "images": [
       {
@@ -1691,7 +1795,8 @@
       }
     ],
     "previewFit": "contain",
-    "previewPosition": "50% 50%"
+    "previewPosition": "50% 50%",
+    "purpose": ""
   },
   {
     "id": "sergius-appearance",
@@ -1699,16 +1804,16 @@
     "title": "Явление Богородицы сергию Радонежскому, рубеж 18-19 век, аналой.",
     "published": true,
     "availability": "В наличии",
-    "size": "31 × 23 см; киот 45 × 29 см",
+    "size": "31 × 23 см; киот 45 × 39 см",
     "technique": "Доска, левкас, яичная темпера",
-    "origin": "Мастерская Троице-Сергиевой лавры, рубеж XVIII–XIX век",
-    "condition": "Уточняется при консультации",
-    "expertise": "Уточняется при консультации",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
     "description": "31х23 см., доска, левкас, яичная темпера, дубовый киот 45х39 см., мастерская Троице-Сергиевой лавры. рубеж 18-19 век.",
     "price": "200 000 руб.",
     "order": 50,
-    "type": "Старинные",
-    "period": "XVIII–XIX век",
+    "type": "",
+    "period": "Рубеж XVIII–XIX веков",
     "sourceUrl": "https://iconamaster.cargo.site/YVLENIE-BOGORODITY-SERGIY-RADONEZSKOMU-RUBEZ-18-19-VEK-ANALOI",
     "images": [
       {
@@ -1724,6 +1829,1506 @@
         "alt": "Явление Богородицы преподобному Сергию Радонежскому, дополнительный вид",
         "width": 2442,
         "height": 2935,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%",
+    "purpose": "Аналойная"
+  },
+  {
+    "id": "ikona-cudo-georgiy-o-zmie-1",
+    "slug": "ikona-cudo-georgiy-o-zmie-1",
+    "title": "Икона Чудо Георгия о змие.",
+    "published": true,
+    "availability": "",
+    "size": "22 × 18 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Чудо георгия о змие, работы нашей мастерской, яичная минеральная темпера, в латунном посеребренном окладе конца 19 века с фарфоровыми накладками и венцом ручной лепки и росписью солями металлов и золотым люстром, 22х18 см., в дубовом киоте 36х31 см.",
+    "price": "100 000 руб.",
+    "order": 51,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-1",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-cudo-georgiy-o-zmie-1-cargo-163596291.jpg",
+        "alt": "Икона Чудо Георгия о змие., полный вид",
+        "height": 2271,
+        "width": 2018,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-skladen-bogorodita-kazanskay",
+    "slug": "ikona-skladen-bogorodita-kazanskay",
+    "title": "Икона складень Богородица Казанская.",
+    "published": true,
+    "availability": "",
+    "size": "59 × 47 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "59х47 см. Кузов с двумя створками, липа, металл, холст, натуральный левкас, настоящая минеральная яичная темпера, червонное золото сусальное, копаловый лак,вставка меднолитая старинная вершковая икона Троица, 17 века. Икона писана в одном экземпляре, высокохудожественная ручная авторская работа.",
+    "price": "150 000 руб.",
+    "order": 52,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-SKLADEN-BOGORODITA-KAZANSKAY",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-skladen-bogorodita-kazanskay-cargo-83914085.jpg",
+        "alt": "Икона складень Богородица Казанская., полный вид",
+        "height": 2241,
+        "width": 2820,
+        "fit": "contain",
+        "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/ikona-skladen-bogorodita-kazanskay-cargo-83914093.jpg",
+        "alt": "Икона складень Богородица Казанская., дополнительный вид 1",
+        "height": 2592,
+        "width": 3888,
+        "fit": "contain",
+        "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/ikona-skladen-bogorodita-kazanskay-cargo-83914125.jpg",
+        "alt": "Икона складень Богородица Казанская., дополнительный вид 2",
+        "height": 2573,
+        "width": 1998,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-cudo-velikomucenika-dimitriy-solunskogo",
+    "slug": "ikona-cudo-velikomucenika-dimitriy-solunskogo",
+    "title": "Икона Чудо великомученика Димитрия Солунского.",
+    "published": true,
+    "availability": "",
+    "size": "36 × 31 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Чудо великомученика Димитрия Солунского, 36 х 31см, доска липовая, ковчег, две встречные шпонки, паволока, меловой натуральный левкас, настоящая минеральная яичная темпера, червонное золото сусальное на полимент , червонное золото твореное в перо, олифа льняная, чернение по золоту, в дубовом профильном киоте - книжка. Икона писана в одном экземпляре, высокохудожественная ручная авторская работа. Великомученик Димитрий является покровителем русского войска с древнейших времен вместе с Георгием Победоносцем.",
+    "price": "150 000 руб.",
+    "order": 53,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-VELIKOMUCENIKA-DIMITRIY-SOLUNSKOGO",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-cudo-velikomucenika-dimitriy-solunskogo-cargo-46923552.jpg",
+        "alt": "Икона Чудо великомученика Димитрия Солунского., полный вид",
+        "height": 500,
+        "width": 415,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-presvytoi-troity",
+    "slug": "ikona-presvytoi-troity",
+    "title": "Икона Пресвятой Троицы.",
+    "published": true,
+    "availability": "",
+    "size": "37 × 31 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Пресвятой Троицы в старинном окладе нач. 19 века. Икона Пресвятой Троицы в старинном латунном окладе нач. 19 века с фарфоровыми ручной лепки венцами и дробницами, расписанными солями металлов и золотым люстром, 37х31 см., в профильном киоте из массива дуба с резной рамой ручной работы, 53х45 см.",
+    "price": "300 000 руб.",
+    "order": 54,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-PRESVYTOI-TROITY",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-presvytoi-troity-cargo-46923571.jpg",
+        "alt": "Икона Пресвятой Троицы., полный вид",
+        "height": 500,
+        "width": 468,
+        "fit": "contain",
+        "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/ikona-presvytoi-troity-cargo-46923572.jpg",
+        "alt": "Икона Пресвятой Троицы., дополнительный вид 1",
+        "height": 889,
+        "width": 760,
+        "fit": "contain",
+        "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/ikona-presvytoi-troity-cargo-46923573.jpg",
+        "alt": "Икона Пресвятой Троицы., дополнительный вид 2",
+        "height": 801,
+        "width": 703,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-cudo-arkistratiga-mikaila",
+    "slug": "ikona-cudo-arkistratiga-mikaila",
+    "title": "Икона Чудо Архистратига Михаила.",
+    "published": true,
+    "availability": "",
+    "size": "36 × 31 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "36 х 31см, доска липовая, ковчег, две встречные шпонки, паволока, меловой натуральный левкас, настоящая минеральная яичная темпера, золото сусальное на полимент , золото твореное в перо, олифа льняная, чернение по золоту, в дубовом профильном киоте - книжка. Икона писана в одном экземпляре, высокохудожественная ручная авторская работа.",
+    "price": "200 000 руб.",
+    "order": 55,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-ARKISTRATIGA-MIKAILA",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-cudo-arkistratiga-mikaila-cargo-46923689.jpg",
+        "alt": "Икона Чудо Архистратига Михаила., полный вид",
+        "height": 500,
+        "width": 445,
+        "fit": "contain",
+        "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/ikona-cudo-arkistratiga-mikaila-cargo-46923690.jpg",
+        "alt": "Икона Чудо Архистратига Михаила., дополнительный вид 1",
+        "height": 3014,
+        "width": 2542,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-prepodobnay-mariy-kidanskay",
+    "slug": "ikona-prepodobnay-mariy-kidanskay",
+    "title": "Икона преподобная Мария Хиданская.",
+    "published": true,
+    "availability": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона преподобная Мария Хиданская в дубовом киоте . 21х17см., в профильном киоте-книжка из массива дуба 35х30 см., доска сосновая с ковчегом и двумя врезными шпонками, льняной холст, натуральный левкас, золото сусальное, яичная минеральная темпера, льняная олифа. Икона писана в одном экземпляре, уникальная авторская ручная работа.",
+    "price": "30 000 руб.",
+    "order": 56,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNAY-MARIY-KIDANSKAY",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-prepodobnay-mariy-kidanskay-cargo-46923709.jpg",
+        "alt": "Икона преподобная Мария Хиданская., полный вид",
+        "height": 500,
+        "width": 439,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-prepodobnyi-serafim-sarovskii",
+    "slug": "ikona-prepodobnyi-serafim-sarovskii",
+    "title": "Икона преподобный Серафим Саровский.",
+    "published": true,
+    "availability": "",
+    "size": "31 × 27 см; киот 45 × 40 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "31х27 см., в профильном киоте с открывающейся дверкой из массива дуба 45х40 см., доска липа с ковчегом и двумя врезными шпонками, холст, натуральный левкас, настоящая минеральная яичная темпера, золото сусальное, копаловый лак. Икона писана в одном экземпляре, высокохудожественная ручная авторская работа.",
+    "price": "60 000 руб.",
+    "order": 57,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNYI-SERAFIM-SAROVSKII",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-prepodobnyi-serafim-sarovskii-cargo-47799352.jpg",
+        "alt": "Икона преподобный Серафим Саровский., полный вид",
+        "height": 500,
+        "width": 457,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-fedorovskoi",
+    "slug": "ikona-bogorodity-fedorovskoi",
+    "title": "Икона Богородицы Федоровской.",
+    "published": true,
+    "availability": "",
+    "size": "",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "",
+    "price": null,
+    "order": 58,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-FEDOROVSKOI",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-fedorovskoi-cargo-47799488.jpg",
+        "alt": "Икона Богородицы Федоровской., полный вид",
+        "height": 499,
+        "width": 362,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-varvara-velikomucenita-v-zitie",
+    "slug": "ikona-varvara-velikomucenita-v-zitie",
+    "title": "Икона Варвара Великомученица в житие.",
+    "published": true,
+    "availability": "",
+    "size": "",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "",
+    "price": null,
+    "order": 59,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-VARVARA-VELIKOMUCENITA-V-ZITIE",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-varvara-velikomucenita-v-zitie-cargo-47799916.jpg",
+        "alt": "Икона Варвара Великомученица в житие., полный вид",
+        "height": 500,
+        "width": 464,
+        "fit": "contain",
+        "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/ikona-varvara-velikomucenita-v-zitie-cargo-47799917.jpg",
+        "alt": "Икона Варвара Великомученица в житие., дополнительный вид 1",
+        "height": 2382,
+        "width": 1952,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-cudo-georgiy-o-zmie-5",
+    "slug": "ikona-cudo-georgiy-o-zmie-5",
+    "title": "Икона Чудо Георгия о змие.",
+    "published": true,
+    "availability": "",
+    "size": "37 × 31 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Чудо Георгия о змие. икона 37 х 31 см, ковчег, две встречные шпонки, паволока, меловой натуральный левкас, настоящая минеральная яичная темпера, золото сусальное на полимент, разделки твореном золотом в перо, чернь по золоту, в стиле Оружейной палаты 17 века. Икона писана в одном экземпляре, уникальная высокохудожественная ручная авторская работа.",
+    "price": "150 000 руб.",
+    "order": 60,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-5",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-cudo-georgiy-o-zmie-5-cargo-83916838.jpg",
+        "alt": "Икона Чудо Георгия о змие., полный вид",
+        "height": 1806,
+        "width": 1541,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-ne-rydai-mene-mati",
+    "slug": "ikona-ne-rydai-mene-mati",
+    "title": "Икона Не рыдай мене мати.",
+    "published": true,
+    "availability": "",
+    "size": "105 × 70 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Не рыдай Мене Мати зряще во гроб..., 105 х 70 см, сосновая доска, ковчег, две встречные шпонки, паволока, меловой натуральный левкас, настоящая минеральная яичная темпера, золото сусальное. Икона писана в одном экземпляре, высокохудожественная ручная авторская работа.",
+    "price": "150 000 руб.",
+    "order": 61,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-NE-RYDAI-MENE-MATI",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-ne-rydai-mene-mati-cargo-47800160.jpg",
+        "alt": "Икона Не рыдай мене мати., полный вид",
+        "height": 500,
+        "width": 361,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-svytay-matrona-moskovskay",
+    "slug": "ikona-svytay-matrona-moskovskay",
+    "title": "Икона Святая Матрона Московская.",
+    "published": true,
+    "availability": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Матрона Московская в дубовом киоте 21х17см., в профильном киоте-книжка из массива дуба 35х30 см., Доска сосновая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, золото сусальное, масло, лак. Икона писана в одном экземпляре, подписная. Высокохудожественная ручная авторская работа.",
+    "price": "20 000 руб.",
+    "order": 62,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-SVYTAY-MATRONA-MOSKOVSKAY",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-svytay-matrona-moskovskay-cargo-80926815.jpg",
+        "alt": "Икона Святая Матрона Московская., полный вид",
+        "height": 2846,
+        "width": 2582,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-aleksandr-nevskii",
+    "slug": "ikona-aleksandr-nevskii",
+    "title": "Икона Александр Невский.",
+    "published": true,
+    "availability": "",
+    "size": "",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "",
+    "price": "260 000 руб.",
+    "order": 63,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-ALEKSANDR-NEVSKII",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-aleksandr-nevskii-cargo-47800231.jpg",
+        "alt": "Икона Александр Невский., полный вид",
+        "height": 500,
+        "width": 319,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-spas-vsederzitel-v-starinnom-oklade-i-dubovom-kiote",
+    "slug": "ikona-spas-vsederzitel-v-starinnom-oklade-i-dubovom-kiote",
+    "title": "Икона Спас Вседержитель в старинном окладе и дубовом киоте.",
+    "published": true,
+    "availability": "",
+    "size": "31 × 27 см; киот 45 × 40 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "31 х 27 см., Оклад 19 века, латунь, позолота. Липовая доска, двойной ковчег, две встречные шпонки, паволока, меловой натуральный левкас, настоящая минеральная яичная темпера, золото сусальное и твореное, в дубовом профильном киоте - книжка 45 х 40 см. Икона писана в одном экземпляре, высокохудожественная ручная авторская работа.",
+    "price": "100 000 руб.",
+    "order": 64,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-V-STARINNOM-OKLADE-I-DUBOVOM-KIOTE",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-spas-vsederzitel-v-starinnom-oklade-i-dubovom-kiote-cargo-81216832.jpg",
+        "alt": "Икона Спас Вседержитель в старинном окладе и дубовом киоте., полный вид",
+        "height": 2694,
+        "width": 2438,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-kazanskay-1",
+    "slug": "ikona-bogorodity-kazanskay-1",
+    "title": "Икона Богородицы Казанская.",
+    "published": true,
+    "availability": "",
+    "size": "",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "",
+    "price": null,
+    "order": 65,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KAZANSKAY-1",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-kazanskay-1-cargo-47800413.jpg",
+        "alt": "Икона Богородицы Казанская., полный вид",
+        "height": 500,
+        "width": 452,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-utoli-moi-pecali",
+    "slug": "ikona-bogorodity-utoli-moi-pecali",
+    "title": "Икона Богородицы Утоли мои печали.",
+    "published": true,
+    "availability": "",
+    "size": "",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "",
+    "price": "39 000 руб.",
+    "order": 66,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-UTOLI-MOI-PECALI",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-utoli-moi-pecali-cargo-47801022.jpg",
+        "alt": "Икона Богородицы Утоли мои печали., полный вид",
+        "height": 500,
+        "width": 444,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-utoli-moi-pecali-1",
+    "slug": "ikona-bogorodity-utoli-moi-pecali-1",
+    "title": "Икона Богородицы Утоли мои печали.",
+    "published": true,
+    "availability": "",
+    "size": "",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "",
+    "price": null,
+    "order": 67,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-UTOLI-MOI-PECALI-1",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-utoli-moi-pecali-1-cargo-47833299.jpg",
+        "alt": "Икона Богородицы Утоли мои печали., полный вид",
+        "height": 500,
+        "width": 404,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-utoli-moi-pecali-copy",
+    "slug": "ikona-bogorodity-utoli-moi-pecali-copy",
+    "title": "Икона Богородицы Утоли мои печали.",
+    "published": true,
+    "availability": "",
+    "size": "",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "",
+    "price": null,
+    "order": 68,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-UTOLI-MOI-PECALI-copy",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-utoli-moi-pecali-copy-cargo-47833689.jpg",
+        "alt": "Икона Богородицы Утоли мои печали., полный вид",
+        "height": 499,
+        "width": 427,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-prepodobnyi-sergii-radonezskii",
+    "slug": "ikona-prepodobnyi-sergii-radonezskii",
+    "title": "Икона Преподобный Сергий Радонежский.",
+    "published": true,
+    "availability": "",
+    "size": "",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "",
+    "price": "49 000 руб.",
+    "order": 69,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNYI-SERGII-RADONEZSKII",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-prepodobnyi-sergii-radonezskii-cargo-47833814.jpg",
+        "alt": "Икона Преподобный Сергий Радонежский., полный вид",
+        "height": 500,
+        "width": 436,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-cudo-georgiy-o-zmie-2",
+    "slug": "ikona-cudo-georgiy-o-zmie-2",
+    "title": "Икона Чудо Георгия о змие.",
+    "published": true,
+    "availability": "",
+    "size": "31 × 27 см; киот 45 × 40 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "31х27 см., в профильном киоте с открывающейся дверкой из массива дуба 45х40 см., доска липа с ковчегом и двумя врезными шпонками, холст, натуральный левкас, настоящая минеральная яичная темпера, золото сусальное, копаловый лак. Икона писана в одном экземпляре, высокохудожественная ручная авторская работа",
+    "price": "50 000 руб.",
+    "order": 70,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-2",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-cudo-georgiy-o-zmie-2-cargo-47833937.jpg",
+        "alt": "Икона Чудо Георгия о змие., полный вид",
+        "height": 500,
+        "width": 436,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-cudo-georgiy-o-zmie-3",
+    "slug": "ikona-cudo-georgiy-o-zmie-3",
+    "title": "Икона Чудо Георгия о змие.",
+    "published": true,
+    "availability": "",
+    "size": "",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "",
+    "price": null,
+    "order": 71,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-3",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-cudo-georgiy-o-zmie-3-cargo-47834350.jpg",
+        "alt": "Икона Чудо Георгия о змие., полный вид",
+        "height": 500,
+        "width": 441,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-cudo-mucenika-trifona-o-sokole",
+    "slug": "ikona-cudo-mucenika-trifona-o-sokole",
+    "title": "Икона Чудо мученика Трифона о соколе.",
+    "published": true,
+    "availability": "Продано",
+    "size": "",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Продано.",
+    "price": null,
+    "order": 72,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-MUCENIKA-TRIFONA-O-SOKOLE",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-cudo-mucenika-trifona-o-sokole-cargo-47836096.jpg",
+        "alt": "Икона Чудо мученика Трифона о соколе., полный вид",
+        "height": 500,
+        "width": 428,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-cudo-georgiy-o-zmie-4",
+    "slug": "ikona-cudo-georgiy-o-zmie-4",
+    "title": "Икона Чудо Георгия о змие.",
+    "published": true,
+    "availability": "",
+    "size": "",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "",
+    "price": null,
+    "order": 73,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-4",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-cudo-georgiy-o-zmie-4-cargo-47836371.jpg",
+        "alt": "Икона Чудо Георгия о змие., полный вид",
+        "height": 500,
+        "width": 447,
+        "fit": "contain",
+        "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/ikona-cudo-georgiy-o-zmie-4-cargo-47836372.jpg",
+        "alt": "Икона Чудо Георгия о змие., дополнительный вид 1",
+        "height": 731,
+        "width": 578,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-il-y-muromet-v-zitii",
+    "slug": "ikona-il-y-muromet-v-zitii",
+    "title": "Икона Илья Муромец в житии.",
+    "published": true,
+    "availability": "Продано",
+    "size": "",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Илья Муромец в житие.Продано.",
+    "price": null,
+    "order": 74,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-IL-Y-MUROMET-V-ZITII",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-il-y-muromet-v-zitii-cargo-47836397.jpg",
+        "alt": "Икона Илья Муромец в житии., полный вид",
+        "height": 953,
+        "width": 791,
+        "fit": "contain",
+        "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/ikona-il-y-muromet-v-zitii-cargo-47836398.jpg",
+        "alt": "Икона Илья Муромец в житии., дополнительный вид 1",
+        "height": 400,
+        "width": 600,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-cudo-svytogo-georgiy",
+    "slug": "ikona-cudo-svytogo-georgiy",
+    "title": "Икона Чудо Святого Георгия.",
+    "published": true,
+    "availability": "",
+    "size": "50 × 40 см; киот 64 × 54 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "50 х 40 см., Липовая доска, двойной ковчег, две встречные шпонки, паволока, меловой натуральный левкас, настоящая минеральная яичная темпера, золото сусальное и твореное, в дубовом профильном киоте - книжка 64 х 54 см. Икона писана в одном экземпляре, высокохудожественная ручная авторская работа.",
+    "price": "200 000 руб.",
+    "order": 75,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-SVYTOGO-GEORGIY",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-cudo-svytogo-georgiy-cargo-47836406.jpg",
+        "alt": "Икона Чудо Святого Георгия., полный вид",
+        "height": 500,
+        "width": 403,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodita-vladimirskay",
+    "slug": "ikona-bogorodita-vladimirskay",
+    "title": "Икона Богородица Владимирская.",
+    "published": true,
+    "availability": "",
+    "size": "31 × 27 см; киот 81 × 56 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Богородица Владимирская в фарфоровом окладе и резном киоте. Икона 31 х 27 см, 19 век, доска липа, без ковчега, масло. Фарфоровый оклад ручной лепки и росписью солями металлов и золотым люстром из саксонского фарфора, авторская работа в одном экземпляре. Резной киот из липы ручной авторской работы в одном экземпляре, 81 х 56 см.",
+    "price": "1 500 000 руб.",
+    "order": 76,
+    "type": "",
+    "period": "XIX век",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITA-VLADIMIRSKAY",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodita-vladimirskay-cargo-47836412.jpg",
+        "alt": "Икона Богородица Владимирская., полный вид",
+        "height": 500,
+        "width": 333,
+        "fit": "contain",
+        "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/ikona-bogorodita-vladimirskay-cargo-47836413.jpg",
+        "alt": "Икона Богородица Владимирская., дополнительный вид 1",
+        "height": 2098,
+        "width": 1719,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-ognennoe-voskozdenie-il-i-proroka",
+    "slug": "ikona-ognennoe-voskozdenie-il-i-proroka",
+    "title": "Икона Огненное восхождение Ильи пророка.",
+    "published": true,
+    "availability": "Продано",
+    "size": "80 × 60 см; киот 120 × 80 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Продано Икона Огненное восхождение Ильи пророка 80 х 60 см, сосновая доска, ковчег, две встречные шпонки, паволока, меловой натуральный левкас, настоящая минеральная яичная темпера, золото сусальное, в резном липовом киоте ручной авторской работы 120 х 80 см. Икона писана в одном экземпляре, высокохудожественная ручная авторская работа.",
+    "price": "120 000 руб.",
+    "order": 77,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-OGNENNOE-VOSKOZDENIE-IL-I-PROROKA",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-ognennoe-voskozdenie-il-i-proroka-cargo-47836431.jpg",
+        "alt": "Икона Огненное восхождение Ильи пророка., полный вид",
+        "height": 500,
+        "width": 377,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-svytitel-spiridon-trimifunskii",
+    "slug": "ikona-svytitel-spiridon-trimifunskii",
+    "title": "Икона Святитель Спиридон Тримифунский.",
+    "published": true,
+    "availability": "",
+    "size": "31 × 27 см; киот 45 × 40 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Святитель Спиридон Тримифунский в дубовом киоте. 31 х 27 см, доска липовая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, настоящая минеральная яичная темпера, золото сусальное, копаловый лак. Икона писана в одном экземпляре, высокохудожественная ручная авторская работа. 45 х 40 см. киот.",
+    "price": "55 000 руб.",
+    "order": 78,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-SVYTITEL-SPIRIDON-TRIMIFUNSKII",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-svytitel-spiridon-trimifunskii-cargo-47836513.jpg",
+        "alt": "Икона Святитель Спиридон Тримифунский., полный вид",
+        "height": 500,
+        "width": 431,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-panteleimon-telitel",
+    "slug": "ikona-panteleimon-telitel",
+    "title": "Икона Пантелеймон целитель.",
+    "published": true,
+    "availability": "",
+    "size": "21 × 17 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "21х17см., доска сосновая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, золото сусальное, масло, лак. Икона писана в одном экземпляре, подписная. Высокохудожественная ручная авторская работа",
+    "price": "15 000 руб.",
+    "order": 79,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-PANTELEIMON-TELITEL",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-panteleimon-telitel-cargo-47837753.jpg",
+        "alt": "Икона Пантелеймон целитель., полный вид",
+        "height": 500,
+        "width": 393,
+        "fit": "contain",
+        "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/ikona-panteleimon-telitel-cargo-47837754.jpg",
+        "alt": "Икона Пантелеймон целитель., дополнительный вид 1",
+        "height": 599,
+        "width": 486,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-spas-nerukotvornyi",
+    "slug": "ikona-spas-nerukotvornyi",
+    "title": "Икона Спас Нерукотворный.",
+    "published": true,
+    "availability": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "21х17см., в профильном киоте-книжка из массива дуба 35х30 см., доска сосновая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, золото сусальное, масло, лак. Икона писана в одном экземпляре, подписная. Высокохудожественная ручная авторская работа",
+    "price": "20 000 руб.",
+    "order": 80,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-NERUKOTVORNYI",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-spas-nerukotvornyi-cargo-47837860.jpg",
+        "alt": "Икона Спас Нерукотворный., полный вид",
+        "height": 500,
+        "width": 440,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-spas-nerukotvornyi-1",
+    "slug": "ikona-spas-nerukotvornyi-1",
+    "title": "Икона Спас Нерукотворный.",
+    "published": true,
+    "availability": "",
+    "size": "60 × 50 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Спас Нерукотворный в басменном позолоченном окладе с полудрагоценными камнями в кастах, в дубовом киоте. Доска с ковчегом и двумя врезными шпонками 60 х 50 см, льняная паволока, натуральный левкас , настоящая минеральная темпера, басма латунь позолоченная. Украшена подвесным бордовым бархатным пароманом, ручной вышевки. Уникальная по тонкости и убедительности образа авторская работа, с точным соблюдением древнего православного канона",
+    "price": "500 000 руб.",
+    "order": 81,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-NERUKOTVORNYI-1",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-spas-nerukotvornyi-1-cargo-47840404.jpg",
+        "alt": "Икона Спас Нерукотворный., полный вид",
+        "height": 500,
+        "width": 228,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-svytyk-boris-i-gleb",
+    "slug": "ikona-svytyk-boris-i-gleb",
+    "title": "Икона Святых Борис и Глеб.",
+    "published": true,
+    "availability": "",
+    "size": "31 × 27 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Святых Борис и Глеб , 31 х 27 см, доска липовая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, настоящая минеральная яичная темпера, золото сусальное, копаловый лак. Икона писана в одном экземпляре, высокохудожественная ручная авторская работа. 2011 г Борис и Глеб (в крещении Роман и Давид; убиты в 1015 году) — русские князья, сыновья киевского великого князя Владимира Святославича от брака с византийской царевной Анной из Македонской династии. В междоусобной борьбе, вспыхнувшей в 1015 году после смерти их отца, были убиты своим старшим братом Святополком Окаянным. Борис и Глеб стали первыми русскими святыми, их канонизировали в лике мучеников-страстотерпцев, сделав их заступниками Русской земли и небесными помощниками русских князей.",
+    "price": "40 000 руб.",
+    "order": 82,
+    "type": "",
+    "period": "2011 год",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-SVYTYK-BORIS-I-GLEB",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-svytyk-boris-i-gleb-cargo-47840455.jpg",
+        "alt": "Икона Святых Борис и Глеб., полный вид",
+        "height": 500,
+        "width": 430,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-sporucnita-gresnyk",
+    "slug": "ikona-bogorodity-sporucnita-gresnyk",
+    "title": "Икона Богородицы Споручница Грешных.",
+    "published": true,
+    "availability": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "21х17см., в профильном киоте-книжка из массива дуба 35х30 см., доска сосновая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, золото сусальное, масло, лак. Икона писана в одном экземпляре, подписная. Высокохудожественная ручная авторская работа. С чудотворный иконы из монастыря был сделан список, который в 1848 году подполковник Бонческул пожертвовал в приходскую Николаевскую церковь в Хамовниках в Москве. Где новая икона прославилась обильным мироточением и диакон, стоящий при иконе, отирал влагу бумагою и раздавал миро народу. Вскоре мироточение прекратилось, но в алтаре церкви начались явления необычного света в виде появлявшихся и исчезавших звёзд. Икона прославилась многими официально зафиксированными исцелениями.",
+    "price": "20 000 руб.",
+    "order": 83,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-SPORUCNITA-GRESNYK",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-sporucnita-gresnyk-cargo-47841599.jpg",
+        "alt": "Икона Богородицы Споручница Грешных., полный вид",
+        "height": 832,
+        "width": 731,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-smolenskay",
+    "slug": "ikona-bogorodity-smolenskay",
+    "title": "Икона Богородицы Смоленская.",
+    "published": true,
+    "availability": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "21х17см., в профильном киоте-книжка из массива дуба 35х30 см., доска сосновая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, золото сусальное, масло, лак. Икона писана в одном экземпляре, подписная. Высокохудожественная ручная авторская работа",
+    "price": "20 000 руб.",
+    "order": 84,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-SMOLENSKAY",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-smolenskay-cargo-47842345.jpg",
+        "alt": "Икона Богородицы Смоленская., полный вид",
+        "height": 899,
+        "width": 784,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-casa-neupivaemay-1",
+    "slug": "ikona-bogorodity-casa-neupivaemay-1",
+    "title": "Икона Богородицы Чаша неупиваемая.",
+    "published": true,
+    "availability": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "21х17см., в профильном киоте-книжка из массива дуба 35х30 см., доска сосновая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, золото сусальное, масло, лак. Икона писана в одном экземпляре, подписная. Высокохудожественная ручная авторская работа 30 мая 1997 года по благословению Святейшего Патриарха икона \"Неупиваемая Чаша\" была впервые внесена в Православный церковный календарь, что явилось официальным признанием всероссийского почитания этого образа Богоматери.",
+    "price": "20 000 руб.",
+    "order": 85,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-CASA-NEUPIVAEMAY-1",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-casa-neupivaemay-1-cargo-47842466.jpg",
+        "alt": "Икона Богородицы Чаша неупиваемая., полный вид",
+        "height": 500,
+        "width": 445,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-parsuna-blagovernyi-tar-ioann-groznyi",
+    "slug": "ikona-parsuna-blagovernyi-tar-ioann-groznyi",
+    "title": "Икона - парсуна Благоверный Царь Иоанн Грозный.",
+    "published": true,
+    "availability": "",
+    "size": "16 × 13 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона - парсуна Благоверный Царь Иоанн Грозный , 16 х 13 см, дерево, левкас, паволока, настоящая минеральная яичная темпера, золото, в киоте. Авторская ручная работа в одном экземпляре. До сего дня дошло несколько иконографических изображений Ивана Грозного, причем на некоторых из них Царь изображен с нимбом. Это – фреска Царя Иоанна в Грановитой палате Московского Кремля (Х I Х в. по образцу XVI в.), «Моление Царя Иоанна Грозного с сыновьями Феодором и Димитрием перед иконой Владимирской Божией Матери» (XVI в.), фреска «Царь Иоанн» в Спасо-Преображенском соборе Новоспасского монастыря ( XIX в. по образцу XVII в). Кроме того, существует изображение с нимбом великого князя Василия III, отца Иоанна Грозного, на иконе св. Василия Парийского (XVI век, собрание Государственного исторического музея). На Руси, следуя византийской традиции, изображали с нимбами всех крещеных Великих Князей. В качестве примера можно привести фрески в Архангельском соборе Московского Кремля с изображением князей из династии Рюриковичей, а также рисунки из «Царского Титулярника» 1672 года, напечатанные в издании «Н.И.Костомаров. Русская история в жизнеописаниях ее главнейших деятелей». Многие православные русские люди почитают царя всея Руси Иоанна Грозного местночтимым святым. Вот основные аргументы сторонников канонизации Иоанна Грозного.: 1. По учению Православной Церкви, православный царь свят сам по себе, в силу совершенного над ним венчания на царство, священного миропомазания и особого служения в Христовой Церкви. 2. О почитании Ивана IV в лике святых также свидетельствуют его древние иконографические изображения. 3. Иван Грозный назван «святым великомучеником» в святцах Коряжемского монастыря с указанием и дня его памяти. 4. Факт его почитания отмечает знаменитый церковный историк Е. Е. Голубинский 5. Имя Ивана IV помещено в «Полном месяцеслове Востока» архиепископа Сергия (Спасского). 6. Перед 1917 г. в Синоде шла подготовка и к общецерковному прославлению царя Ивана Грозного.",
+    "price": "20 000 руб.",
+    "order": 86,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-PARSUNA-BLAGOVERNYI-TAR-IOANN-GROZNYI",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-parsuna-blagovernyi-tar-ioann-groznyi-cargo-47843613.jpg",
+        "alt": "Икона - парсуна Благоверный Царь Иоанн Грозный., полный вид",
+        "height": 500,
+        "width": 405,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-korsunskay",
+    "slug": "ikona-bogorodity-korsunskay",
+    "title": "Икона Богородицы Корсунская.",
+    "published": true,
+    "availability": "",
+    "size": "31 × 27 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Богородицы Корсунская или Ефесская, 31х27см., доска сосновая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, золото сусальное, настоящая минеральная яичная темпера, олифа льняная. Икона писана в одном экземпляре, авторская, высокохудожественная работа. Празднование иконы установлено 9 / 22 октября. Согласно одному преданию, сей образ написан самим евангелистом Лукой. На Русь Ефесская, или Корсунская, икона попала в 988 году, — была принесена крестителем Руси святым равноапостольным великим князем Владимиром из Корсуни в Киев. Позднее образ попал в Великий Новгород, затем в Москву и до 1918 года находился в Успенском соборе Московского Кремля, за престолом. Икона была одной из древнейшей хоругвей русского воинства.",
+    "price": "50 000 руб.",
+    "order": 87,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KORSUNSKAY",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-korsunskay-cargo-47843752.jpg",
+        "alt": "Икона Богородицы Корсунская., полный вид",
+        "height": 500,
+        "width": 428,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-kazanskay-3",
+    "slug": "ikona-bogorodity-kazanskay-3",
+    "title": "Икона Богородицы Казанская.",
+    "published": true,
+    "availability": "",
+    "size": "31 × 27 см; киот 46 × 41 см",
+    "purpose": "Венчальная",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Богородицы Казанская в золоченом чеканном окладе 19 века с фарфоровыми ручной лепки венцом и дробницами современной авторской работы, расписанных золотым люстром и солями металлов, 31х27 см в профильном киоте из массива дуба, 46 х 41 см., икона писана настоящими минералами. Уникальная художественная работа, выполненная целым коллективом авторов. Празднование иконы Богородицы Казанской установлено 4 ноября и 21 июля по новому стилю. Явление великой чудотворной иконы произошло после пожара в Казани в 1579 году, уничтожившего часть города. Десятилетней Матроне во сне явилась Богородица, велевшая откопать её икону на пепелище. Соучастником этого события стал будущий патриарх Гермоген (в то время священник Гостинодворской церкви Казани Ермолай). В указанном месте на глубине около метра действительно была найдена икона. День явления Казанской иконы — 8 июля 1579года по старому стилю — ныне ежегодный общецерковный праздник в Русской Церкви. На месте явления иконы был построен Богородицкий девичий монастырь , первой монахиней которого стала Матрона, принявшая имя Мавры. Особую роль икона сыграла в Смутное время, став боевой хоругвью Кузьмы Минина и Дмитрия Пожарского. В продолжение последующих 300 лет десятки официально чтимых местных списков Казанской иконы распространились по многим епархиям Русской церкви . Казанской иконе ныне посвящены сотни храмов и монастырей, разбросанных по бывшим провинциям Российской империи. В 1768 году императрица Екатерина II украсила оклад Казанской иконы Богородицы в Казанском Богородицком монастыре своей бриллиантовою короной. К XIX веку казанский образ почитался в России не меньше, чем древние иконы Владимирская и Смоленская. В конце XX века получили распространение городские легенды, связывающие икону с митрополитом Гор Ливанских Илией, и об особой роли иконы в Великой Отечественной войне. В народе стало принято благословлять этой иконой молодых на брак, как венчальным образом.",
+    "price": "150 000 руб.",
+    "order": 88,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KAZANSKAY-3",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-kazanskay-3-cargo-47843817.jpg",
+        "alt": "Икона Богородицы Казанская., полный вид",
+        "height": 853,
+        "width": 738,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-zivonosnyi-istocnik-1",
+    "slug": "ikona-bogorodity-zivonosnyi-istocnik-1",
+    "title": "Икона Богородицы Живоносный источник.",
+    "published": true,
+    "availability": "",
+    "size": "",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Иконографически образ Божией Матери Живоносный Источник восходит к византийским изображением типа Владычица Победодательница, который в свою очередь восходит к изображению типа Знамение. Первоначально икона Живоносный Источник передавалась в списках без изображения источника, позднее в композицию была включена чаша (фиала), а после — также и водоем и фонтан.",
+    "price": "25 000 руб.",
+    "order": 89,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-ZIVONOSNYI-ISTOCNIK-1",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-zivonosnyi-istocnik-1-cargo-47844098.jpg",
+        "alt": "Икона Богородицы Живоносный источник., полный вид",
+        "height": 2369,
+        "width": 1900,
+        "fit": "contain",
+        "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/ikona-bogorodity-zivonosnyi-istocnik-1-cargo-47844099.jpg",
+        "alt": "Икона Богородицы Живоносный источник., дополнительный вид 1",
+        "height": 500,
+        "width": 445,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-znamenie",
+    "slug": "ikona-bogorodity-znamenie",
+    "title": "Икона Богородицы Знамение.",
+    "published": true,
+    "availability": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Богородицы Знамение, 21 х 17см, в профильном киоте-книжка из массива дуба 35 х 30 см, доска сосновая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, золото сусальное, масло, лак. Икона писана в одном экземпляре, подписная. Празднование иконы отмечается 10 декабря по новому стилю, по старому 27 ноября. Чудо неразрывно связано с этой иконой. Чудесным образом новгородцы 12 века получили от иконы помощь при осаде города суздальцами. В 1356 году пожар, возникший в церкви, утих после молебна перед этой иконой. В 1611 году из Знаменского собора были выброшены шведы, пытавшиеся его ограбить. Сравнительно недавно многие присутствовавшие были свидетелями небесного явления: 15 августа 1991 года при передаче иконы из музея, где она долго хранилась, Новгородской епархии, радуга окружила кольцом золотой купол Софийского собора, а потом стала подниматься и растворилась в чистом, без единого облачка, небе. Самым древним на Руси образом Божией Матери «Знамение» является новгородская икона, написанная во второй четверти – середине XII века. Но название «Знамение» начинает связываться с ней, как ни странно, только в конце XV столетия, особенно четко – с XVI века, а окончательно закрепляется в XVII. Отмечать праздник иконы 27 ноября стали, по всей видимости, еще до явления ею чуда новгородцам, что случилось 25 февраля 1169 года (1170). В Новгородской первой летописи сообщается, что новгородцы одолели суздальцев «силою крестною и «святою Богородицею», то есть какое-либо наименование с иконой еще не связывается. Икону летописец называет просто «святою Богородицею».",
+    "price": "20 000 руб.",
+    "order": 90,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-ZNAMENIE",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-znamenie-cargo-47844135.jpg",
+        "alt": "Икона Богородицы Знамение., полный вид",
+        "height": 923,
+        "width": 804,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-vladimirskay",
+    "slug": "ikona-bogorodity-vladimirskay",
+    "title": "Икона Богородицы Владимирская.",
+    "published": true,
+    "availability": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Богородицы Владимирская, 21х17см., в дубовом киоте книжка 35х30 см., доска сосновая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, золото сусальное, масло, лак. Икона писана в одном экземпляре, подписная. Владимирская икона Божией Матери, главная чудотворная икона России, величайшая национальная русская святыня. Она написана Евангелистом Лукой на доске от стола, за которым трапезовал Спаситель с Пречистой Матерью и праведным Иосифом. Божия Матерь, увидев этот образ, произнесла: \"Отныне ублажат Меня все роды. Благодать Рождшегося от Меня и Моя с этой иконой да будет\". Не единожды Отечество наше было спасаемо молитвой народной пред чудотворным образом Владимирской. В память об этих избавлений и установлено празднование Владимирской иконе:21 мая – в память спасения Москвы от нашествия хана Махмет-Гирея в 1521 году;23 июня – в память спасения Москвы от нашествия хана Ахмата в 1480 году;26 августа – в память спасения Москвы от нашествия Тамерлана в 1395 году.",
+    "price": "20 000 руб.",
+    "order": 91,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-VLADIMIRSKAY",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-vladimirskay-cargo-47844182.jpg",
+        "alt": "Икона Богородицы Владимирская., полный вид",
+        "height": 763,
+        "width": 690,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-spas-blagoe-molcanie-ili-angel-velikogo-soveta",
+    "slug": "ikona-spas-blagoe-molcanie-ili-angel-velikogo-soveta",
+    "title": "Икона Спас Благое Молчание или Ангел Великого Совета.",
+    "published": true,
+    "availability": "",
+    "size": "21 × 17 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Спас Благое Молчание или Ангел Великого Совета, 21х17см., доска сосновая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, золото сусальное, масло, лак. Икона писана в одном экземпляре, подписная. «Спас Благое Молчание» — это Христос в образе Ангела, до Своего воплощения. Икона пользовалась особым почитанием среди монашества, служа примером по­двига молчания и «умственной молитвы», процветавших на святой горе Афон в средние века. Этот сюжет появляется на Руси в XV веке, он восходит к византийской иконографии Ангела Великого Совета. Спаситель представлен в ангельском чине, в виде юноши с крыльями за спиной, в белой далматике с широкими рукавами. Для Христа в таком изображении характерны «нетленная красота кроткого и молчаливого духа», умеренность, которая «не возопиет и не возвысит голоса своего, и не даст услышать его на улицах», кротость того, кто «страдал добровольно и не открывал уст Своих; как овца, веден Он был на заклание, и как агнец пред стригущим его безгласен». Отсутствие свитка или книги в руках, сложенные крест-накрест и прижатые к груди руки, как в причастии, жест покоя, смирения и молитвы, свидетельствуют о жертвенной миссии Спасителя. В Его молчании — приглашение к внутренней молитве, к которой призывал псалмописец Давид: «Положи, Господи, охрану устам моим и огради двери уст моих». Нимб Спасителя еще не крестчатый, а подобен восьмиконечной звезде (единственный иконографический тип изображения Христа с нимбом Господа Саваофа). Звезду образуют два квадрата, один из которых обозначает божественность Творца-Вседержителя, другой знаменует собой мрак непостижимости Божества. Икона Благое молчание особо распространена среди монашества, служа примером молчания и «умственной молитвы».",
+    "price": "15 000 руб.",
+    "order": 92,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-BLAGOE-MOLCANIE-ILI-ANGEL-VELIKOGO-SOVETA",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-spas-blagoe-molcanie-ili-angel-velikogo-soveta-cargo-47844366.jpg",
+        "alt": "Икона Спас Благое Молчание или Ангел Великого Совета., полный вид",
+        "height": 500,
+        "width": 404,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-korsunskay-1",
+    "slug": "ikona-bogorodity-korsunskay-1",
+    "title": "Икона Богородицы Корсунская.",
+    "published": true,
+    "availability": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Богородицы Корсунская или Ефесская, 21х17см., в дубовом киоте книжка 35х30 см., доска сосновая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, золото сусальное, масло, лак. Икона писана в одном экземпляре, подписная. Согласно одному преданию, сей образ написан самим евангелистом Лукой. На Русь Ефесская, или Корсунская, икона попала в 988 году, — была принесена крестителем Руси святым равноапостольным великим князем Владимиром из Корсуни в Киев. Позднее образ попал в Великий Новгород, затем в Москву и до 1918 года находился в Успенском соборе Московского Кремля, за престолом. Икона была одной из древнейшей хоругвей русского воинства.",
+    "price": "20 000 руб.",
+    "order": 93,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KORSUNSKAY-1",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-korsunskay-1-cargo-47844397.jpg",
+        "alt": "Икона Богородицы Корсунская., полный вид",
+        "height": 499,
+        "width": 426,
+        "fit": "contain",
+        "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/ikona-bogorodity-korsunskay-1-cargo-47844398.jpg",
+        "alt": "Икона Богородицы Корсунская., дополнительный вид 1",
+        "height": 732,
+        "width": 578,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-russkay-ili-vzbrannay-voevoda",
+    "slug": "ikona-bogorodity-russkay-ili-vzbrannay-voevoda",
+    "title": "Икона Богородицы Русская или Взбранная Воевода.",
+    "published": true,
+    "availability": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Богородицы Русская или Взбранная Воевода, 21х17 см., в дубовом киоте книжка 35х30 см., доска сосновая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, золото сусальное, масло, лак. Икона писана в одном экземпляре, подписная. Икона была написана в 2003 году в женском Введенском Верхне-теченском монастыре Курганской епархии по благословению старца схиигумена Серафима, которому это указала Сама Богородица, во время Ее чудесного явления. Богородица вышла из иконы Ченстоховской, во время молитвы за судьбу России , и облачившись в воинские доспехи, приказала написать такую икону и назвать ее Русской. Иконы Богородицы Русской приняты некоторыми воинскими подразделениями как святые полковые хоругви. А многие воины носят с собой полиграфические иконы Богородицы Русской как личные святыни, а обращавшиеся с молитвой к Пресвятой Богородице перед этим образом, замечали особую благодать вразумления в трудных обстояниях и защиту от опасности.",
+    "price": "20 000 руб.",
+    "order": 94,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-RUSSKAY-ILI-VZBRANNAY-VOEVODA",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-russkay-ili-vzbrannay-voevoda-cargo-47844442.jpg",
+        "alt": "Икона Богородицы Русская или Взбранная Воевода., полный вид",
+        "height": 623,
+        "width": 537,
+        "fit": "contain",
+        "position": "50% 50%"
+      },
+      {
+        "src": "/assets/icons/ikona-bogorodity-russkay-ili-vzbrannay-voevoda-cargo-47844443.jpg",
+        "alt": "Икона Богородицы Русская или Взбранная Воевода., дополнительный вид 1",
+        "height": 789,
+        "width": 628,
+        "fit": "contain",
+        "position": "50% 50%"
+      }
+    ],
+    "previewFit": "contain",
+    "previewPosition": "50% 50%"
+  },
+  {
+    "id": "ikona-bogorodity-iverskay",
+    "slug": "ikona-bogorodity-iverskay",
+    "title": "Икона Богородицы Иверская.",
+    "published": true,
+    "availability": "",
+    "size": "21 × 17 см; киот 35 × 30 см",
+    "purpose": "",
+    "technique": "",
+    "origin": "",
+    "condition": "",
+    "expertise": "",
+    "description": "Икона Богородицы Иверская, 21х17см., в профильном киоте-книжка из массива дуба 35х30 см., доска сосновая с ковчегом и двумя врезными шпонками, холст, натуральный левкас, золото сусальное, масло, лак. Икона писана в одном экземпляре, подписная. Празднование иконы Богородицы Иверская совершаются : 25 февраля (12 февраля по старому стилю)- в этот день произошло перенесение списка Иверской иконы в монастырь на Валдае, 26 октября (13 октября по старому стилю) — день торжественной встречи, когда Афонская Иверская икона появилась в Москве в 1648 году Во вторник Светлой седмицы — по преданиям именно во вторник Светлой седмицы монахи Иверского монастыря увидели, что по воде к ним плывет икона Божьей Матери. Существуют различные версии происхождения иконы, которые по содержанию коренным образом отличаются друг от друга. Одна из версий происхождения иконы гласит, что в IX веке во время царствования императора Феофила с целью спасти икону от иконоборцев образ был опущен в море женщиной, проживавшей около города Никея. Через два века монахи грузинского Иверского монастыря на Афоне увидели в море икону, поддерживаемую огненным столбом. Преподобный Гавриил Святогорец, получив во сне указание от Богородицы, пешком пошёл по воде и принес икону в храм, но утром она была обнаружена над воротами обители. Предание сообщает, что так повторилось несколько раз, поэтому икону оставили у ворот и назвали Вратарницей или Привратницей, а от имени обители — Иверский монастырь — она получила наименование Иверская. Первоначально икона находилась снаружи, в киоте непосредственно над входом, однако позднее был построен специальный небольшой храм внутри монастыря, слева от ворот, в котором она и пребывает сегодня.",
+    "price": "20 000 руб.",
+    "order": 95,
+    "type": "",
+    "period": "",
+    "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-IVERSKAY",
+    "images": [
+      {
+        "src": "/assets/icons/ikona-bogorodity-iverskay-cargo-47844539.jpg",
+        "alt": "Икона Богородицы Иверская., полный вид",
+        "height": 870,
+        "width": 778,
         "fit": "contain",
         "position": "50% 50%"
       }

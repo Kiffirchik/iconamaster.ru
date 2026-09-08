@@ -1,7 +1,7 @@
 import { getFilterOptions } from '../lib/catalog.js';
 
 const filterLabels = {
-  type: 'Тип иконы',
+  purpose: 'Назначение',
   period: 'Период',
   availability: 'Наличие'
 };

@@ -1,16 +1,9 @@
 import { IconCard } from '../components/IconCard.jsx';
 import { IconImage } from '../components/IconImage.jsx';
+import { IconPassport } from '../components/IconPassport.jsx';
 import { FailureAwareImage } from '../components/FailureAwareImage.jsx';
 import { publishedIcons } from '../content/schema.js';
 import { homeContent } from '../data/home-content.js';
-
-const passportLabels = [
-  ['Происхождение', 'origin'],
-  ['Датировка', 'period'],
-  ['Техника', 'technique'],
-  ['Состояние', 'condition'],
-  ['Экспертное заключение', 'expertise']
-];
 
 export function HomePage({ icons = [], articles = [], onNavigate }) {
   const catalogIcons = publishedIcons({ icons });
@@ -51,14 +44,7 @@ export function HomePage({ icons = [], articles = [], onNavigate }) {
             <a className="button button--primary" href="/collection" onClick={(event) => follow(event, '/collection')}>Открыть коллекцию</a>
             <a className="button button--quiet" href="/contacts" onClick={(event) => follow(event, '/contacts')}>Назначить личный просмотр</a>
           </div>
-          {heroIcon ? <dl className="object-passport">
-            {passportLabels.filter(([, key]) => String(heroIcon[key] || '').trim()).map(([label, key]) => (
-              <div key={key}>
-                <dt>{label}</dt>
-                <dd>{heroIcon[key]}</dd>
-              </div>
-            ))}
-          </dl> : null}
+          {heroIcon ? <IconPassport icon={heroIcon} /> : null}
           <p className="home-hero__trust">Мастерская работает с {homeContent.established} года</p>
         </div>
       </section>

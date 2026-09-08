@@ -7,6 +7,8 @@ dist/
 /tmp/migration-inventory.json
 /tmp/icon-migration-run.json
 /tmp/editorial-migration-run.json
+/tmp/cargo-*
+/tmp/audit-cargo-images.py
 
 # Local credentials (never commit)
 mtw-creds.txt

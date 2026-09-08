@@ -9,32 +9,32 @@
     {
       "id": "icons",
       "path": "public/content/icons.json",
-      "records": 50,
-      "bytes": 83553,
-      "sha256": "8bf6c9393f48aa89f44c3167080a8850346db1476b45cf18168169a32e2e8bfd"
+      "records": 95,
+      "bytes": 171571,
+      "sha256": "23a5dbb22682c0224157d6bfd7243af899e9f228289feea90d08e2fdf02a08ab"
     },
     {
       "id": "aliases",
       "path": "public/content/aliases.json",
-      "records": 78,
-      "bytes": 5109,
-      "sha256": "20909e6845bb557b68129fbe5b22efaf0635a3bd9026135b8fa1186f10d74339"
+      "records": 124,
+      "bytes": 8860,
+      "sha256": "27ff117fe7ae7d0105dc00877a49ed9f841095cb4853da3448aefdfc70424ef2"
     },
     {
       "id": "asset-manifest",
       "path": "public/assets/icons/manifest.json",
-      "records": 79,
-      "bytes": 42840,
-      "sha256": "678a207ac28be9faa3786e312e1ab595be4f40bf00b5181c199aca9015f12686"
+      "records": 144,
+      "bytes": 82263,
+      "sha256": "4b674f28df123f01aeab4e5aac535243cbbf3c676da658bb07dccfd987f6461e"
     }
   ],
   "summary": {
-    "mappedRecords": 50,
-    "uniqueSlugs": 50,
-    "publishedRecords": 50,
+    "mappedRecords": 95,
+    "uniqueSlugs": 95,
+    "publishedRecords": 95,
     "unpublishedRecords": 0,
-    "assetFiles": 79,
-    "assetBytes": 79585655,
+    "assetFiles": 144,
+    "assetBytes": 120940525,
     "recoveredRequiredRecords": 7,
     "unresolvedRecoveryRecords": 0
   },
@@ -438,6 +438,21 @@
       ]
     },
     {
+      "id": "christ-pantocrator-brass-oklad-cargo-46852686",
+      "file": "christ-pantocrator-brass-oklad-cargo-46852686.jpg",
+      "height": 500,
+      "width": 408,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/13f773346ec2109d26ca6e1ab37c1343c52b616f1e56826183917cd809d45ebc/25.jpg",
+      "bytes": 96458,
+      "sha256": "9b67cb5d9e90eb34d2c56ca190c59c395b7cc1d07ad06ab2f2f18b5e38bc49b9",
+      "legacyPath": "/IKONA-SPAS-VSEDERZITEL-V-STARINOM-LATUNNOM-OKLADE",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
       "id": "christ-pantocrator-brass-oklad-main",
       "file": "christ-pantocrator-brass-oklad.jpg",
       "width": 2171,
@@ -683,6 +698,36 @@
       ]
     },
     {
+      "id": "holy-trinity-cargo-46923193",
+      "file": "holy-trinity-cargo-46923193.jpg",
+      "height": 500,
+      "width": 444,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/cbca8c5f03b3b211164ffccc4f9221c4d16dc041dff2877d80dfee0dd734e517/22.jpg",
+      "bytes": 80588,
+      "sha256": "4c6554e1fc7160e0e2a070f6c9442af374a53f1870db655f9ea0823ade4e9808",
+      "legacyPath": "/IKONA-PRESVYTAY-TROITA",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "holy-trinity-cargo-83913768",
+      "file": "holy-trinity-cargo-83913768.jpg",
+      "height": 855,
+      "width": 760,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/f923e8db474388d5e12eb627d33a98a39e0a20e0a6684f124cbeb25793f179e4/150--000-----37--31----51--44.jpg",
+      "bytes": 331281,
+      "sha256": "ad2b1e19cb32cc57240d5dc18f0d01baca6758c15cd05953a0495c5d8c6b1996",
+      "legacyPath": "/IKONA-PRESVYTAY-TROITA",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
       "id": "holy-trinity-main",
       "file": "holy-trinity.jpg",
       "width": 2152,
@@ -695,6 +740,891 @@
       "provenance": "local-page-html",
       "evidence": [
         "local-page-html"
+      ]
+    },
+    {
+      "id": "ikona-aleksandr-nevskii-cargo-47800231",
+      "file": "ikona-aleksandr-nevskii-cargo-47800231.jpg",
+      "height": 500,
+      "width": 319,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/da347d64b52bd1bbd9bf806cfb762a128d369d46904d9acb3839d9ccd2995fbe/8.jpg",
+      "bytes": 66225,
+      "sha256": "57bcd9307874d53a9322d0afc6fbcd900851ff02e09a8c111646c1a2810c164b",
+      "legacyPath": "/IKONA-ALEKSANDR-NEVSKII",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodita-vladimirskay-cargo-47836412",
+      "file": "ikona-bogorodita-vladimirskay-cargo-47836412.jpg",
+      "height": 500,
+      "width": 333,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/ba22b2fb427d0cfa89553ef55742d723076d335302dbfc73c4835d2dc8da8871/21_1.jpg",
+      "bytes": 71910,
+      "sha256": "f7a72b47cf18834e9cd5998f3d795d72729ae217d24ee06e068b5583d413a590",
+      "legacyPath": "/IKONA-BOGORODITA-VLADIMIRSKAY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodita-vladimirskay-cargo-47836413",
+      "file": "ikona-bogorodita-vladimirskay-cargo-47836413.jpg",
+      "height": 2098,
+      "width": 1719,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/75bfc7d188e752826812773f65ea753be86d98ab2d6a3520e6e8e3fa834cd265/21_2.jpg",
+      "bytes": 734008,
+      "sha256": "a3dcc51f12d14f811f0335dd83d149f7e603615112e0c4d426acffc10c9a78cc",
+      "legacyPath": "/IKONA-BOGORODITA-VLADIMIRSKAY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-casa-neupivaemay-1-cargo-47842466",
+      "file": "ikona-bogorodity-casa-neupivaemay-1-cargo-47842466.jpg",
+      "height": 500,
+      "width": 445,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/1716a776c9b16b5a4662e2dd1d1cb1c673fac6ce623a8599d72ebc41079ba1de/30.jpg",
+      "bytes": 87956,
+      "sha256": "4e6bb704d5986dc9bb8fd791fcf4bb9025e9492f2a0e4b539baa26963d751615",
+      "legacyPath": "/IKONA-BOGORODITY-CASA-NEUPIVAEMAY-1",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-fedorovskoi-cargo-47799488",
+      "file": "ikona-bogorodity-fedorovskoi-cargo-47799488.jpg",
+      "height": 499,
+      "width": 362,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/ea93bb72d3ccf1d0a2e70c93b033cb78c63fec62d410c0c0537efae24de32fa0/2.jpg",
+      "bytes": 55559,
+      "sha256": "7c624893dd9fba97f82f139580e71bcb58c77a2672519283bf3dc3bdec17fe95",
+      "legacyPath": "/IKONA-BOGORODITY-FEDOROVSKOI",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-iverskay-cargo-47844539",
+      "file": "ikona-bogorodity-iverskay-cargo-47844539.jpg",
+      "height": 870,
+      "width": 778,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/f67f02a38f3904e72bc9a8f39c9750093ecd2206686e127be27eba622d1176f7/40_1.jpg",
+      "bytes": 290228,
+      "sha256": "176ba011cf1fb86b9722f02706b8091b5d59267544fd248101fc792a4eecd4ba",
+      "legacyPath": "/IKONA-BOGORODITY-IVERSKAY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-kazanskay-1-cargo-47800413",
+      "file": "ikona-bogorodity-kazanskay-1-cargo-47800413.jpg",
+      "height": 500,
+      "width": 452,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/601e0b3c5e7139fa4487a73cd2c8a663a72c5e6b6de865c95fe03042bbb90f34/10.jpg",
+      "bytes": 94722,
+      "sha256": "ae1e62ad5b41eda4717d872a0f16163b4307c890ef2c162a6d345e4965d8c6be",
+      "legacyPath": "/IKONA-BOGORODITY-KAZANSKAY-1",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-kazanskay-3-cargo-47843817",
+      "file": "ikona-bogorodity-kazanskay-3-cargo-47843817.jpg",
+      "height": 853,
+      "width": 738,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/3396de87d31c37807e677d2f0baa9e555c32171d633675c2d5009c147e4f3e6f/33.jpg",
+      "bytes": 422577,
+      "sha256": "ee6f8313f3d5e3ebacbde9b7a0589f0ae322901e2bea1b11c4f4858f3cbb273b",
+      "legacyPath": "/IKONA-BOGORODITY-KAZANSKAY-3",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-korsunskay-1-cargo-47844397",
+      "file": "ikona-bogorodity-korsunskay-1-cargo-47844397.jpg",
+      "height": 499,
+      "width": 426,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/c4951a74417445f33b2765828a4fbc90efd2bad0f1600de60ceb5b934cd32e99/38_1.jpg",
+      "bytes": 76535,
+      "sha256": "b682bbb6ba551d15f04e7065d751a086cab1beea8bba49e39a5fcd0fa553bfc4",
+      "legacyPath": "/IKONA-BOGORODITY-KORSUNSKAY-1",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-korsunskay-1-cargo-47844398",
+      "file": "ikona-bogorodity-korsunskay-1-cargo-47844398.jpg",
+      "height": 732,
+      "width": 578,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/94946dd3f8bfdc9623af6f9d1868f1fe2813bc92ccbc85dd0097e7fe0456b190/38_2.jpg",
+      "bytes": 253359,
+      "sha256": "c0729d1637d04dd9783e1a13a046876c8493ebda5fbf43d0ea3fff24d05dee33",
+      "legacyPath": "/IKONA-BOGORODITY-KORSUNSKAY-1",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-korsunskay-cargo-47843752",
+      "file": "ikona-bogorodity-korsunskay-cargo-47843752.jpg",
+      "height": 500,
+      "width": 428,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/c084603d8509d2fb00670b336b75d128ade585615810e341dd9be63db33b5c0c/32.jpg",
+      "bytes": 63888,
+      "sha256": "d7378200c4ee3029dacb8331a70939b708df1882f0eda8eb3eb1b11ad7e51084",
+      "legacyPath": "/IKONA-BOGORODITY-KORSUNSKAY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-russkay-ili-vzbrannay-voevoda-cargo-47844442",
+      "file": "ikona-bogorodity-russkay-ili-vzbrannay-voevoda-cargo-47844442.jpg",
+      "height": 623,
+      "width": 537,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/1dcd4ef291161ba7ff7828e2b1032b791748d981a38a38d978ef3ee4ac2bad66/39_1.jpg",
+      "bytes": 157829,
+      "sha256": "8fd5fbc759d38de1409c9e66f855c1df25898be540d752fa5f3319953659377e",
+      "legacyPath": "/IKONA-BOGORODITY-RUSSKAY-ILI-VZBRANNAY-VOEVODA",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-russkay-ili-vzbrannay-voevoda-cargo-47844443",
+      "file": "ikona-bogorodity-russkay-ili-vzbrannay-voevoda-cargo-47844443.jpg",
+      "height": 789,
+      "width": 628,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/bdbb20112b973f96f2c2cdab37758c207b36270e9abae7857851715b14ada44c/39_2.jpg",
+      "bytes": 282112,
+      "sha256": "96f2770c2bc42792281556a34100c468b889031ed000440cf563deca1a7279eb",
+      "legacyPath": "/IKONA-BOGORODITY-RUSSKAY-ILI-VZBRANNAY-VOEVODA",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-smolenskay-cargo-47842345",
+      "file": "ikona-bogorodity-smolenskay-cargo-47842345.jpg",
+      "height": 899,
+      "width": 784,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/16325b880dd5d1b29b5a97ebdfe537f199f7e99618b3724eee61ad5f8493d293/29.jpg",
+      "bytes": 296880,
+      "sha256": "d61913a28512be1ff4b309d51ff505572aff8b1d2c00dc892ec75881564beffb",
+      "legacyPath": "/IKONA-BOGORODITY-SMOLENSKAY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-sporucnita-gresnyk-cargo-47841599",
+      "file": "ikona-bogorodity-sporucnita-gresnyk-cargo-47841599.jpg",
+      "height": 832,
+      "width": 731,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/b527675d1d8771a8262ac1d7cbac4006eaa2fa9392431230ca8e2d05421f7281/28.jpg",
+      "bytes": 258058,
+      "sha256": "fbf4feff9934dc53e155fdde5a105772feed33be56f65514dc6508e74bdbb10e",
+      "legacyPath": "/IKONA-BOGORODITY-SPORUCNITA-GRESNYK",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-utoli-moi-pecali-1-cargo-47833299",
+      "file": "ikona-bogorodity-utoli-moi-pecali-1-cargo-47833299.jpg",
+      "height": 500,
+      "width": 404,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/5b03c3ac22f2c47430996bfc0fb02b472150bb2c2b0b72af77322e66c0d500f5/12.jpg",
+      "bytes": 75984,
+      "sha256": "7246aa16d2274a9135dd131b34b6b4677ee01a490bf0b169d85b5717cfa46499",
+      "legacyPath": "/IKONA-BOGORODITY-UTOLI-MOI-PECALI-1",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-utoli-moi-pecali-cargo-47801022",
+      "file": "ikona-bogorodity-utoli-moi-pecali-cargo-47801022.jpg",
+      "height": 500,
+      "width": 444,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/d524b780117a3dc00044d9bc5c13235d1726fff0226775e70b7251af098e9b1b/11.jpg",
+      "bytes": 73627,
+      "sha256": "133d4da924982eb7f962c489e4e9981158ced3d6dc6142744ae484b82509ab8d",
+      "legacyPath": "/IKONA-BOGORODITY-UTOLI-MOI-PECALI",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-utoli-moi-pecali-copy-cargo-47833689",
+      "file": "ikona-bogorodity-utoli-moi-pecali-copy-cargo-47833689.jpg",
+      "height": 499,
+      "width": 427,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/2e8999091849650c112175a67ec7c042a073b148f672473f4da5723a0aa6c1f5/13.jpg",
+      "bytes": 56802,
+      "sha256": "5da33c8029bfa0435f37d7374c29eaf4774f01b83c4329c01e4b25885fa58c96",
+      "legacyPath": "/IKONA-BOGORODITY-UTOLI-MOI-PECALI-copy",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-vladimirskay-cargo-47844182",
+      "file": "ikona-bogorodity-vladimirskay-cargo-47844182.jpg",
+      "height": 763,
+      "width": 690,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/a0d3238457bea4806e8e37cb85b88c4d0f1f09eb3e5801fa06595b8cd8ccc96c/36.jpg",
+      "bytes": 219599,
+      "sha256": "8064c2f8c8a0bf491b5561ce12f8f5ace47e0cd7156d6ffc86433ff9faac4bbf",
+      "legacyPath": "/IKONA-BOGORODITY-VLADIMIRSKAY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-zivonosnyi-istocnik-1-cargo-47844098",
+      "file": "ikona-bogorodity-zivonosnyi-istocnik-1-cargo-47844098.jpg",
+      "height": 2369,
+      "width": 1900,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/a5687b6c36e0ab67048116ed66d42b241ef3ca60dce583bb1d8578c1653b0abb/34_1.jpg",
+      "bytes": 1161329,
+      "sha256": "0d3c4cafc324784894cee9ff4e2debb9084005ed242336bf5d9115ef272362dc",
+      "legacyPath": "/IKONA-BOGORODITY-ZIVONOSNYI-ISTOCNIK-1",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-zivonosnyi-istocnik-1-cargo-47844099",
+      "file": "ikona-bogorodity-zivonosnyi-istocnik-1-cargo-47844099.jpg",
+      "height": 500,
+      "width": 445,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/1fbec52baf5cca95a0c050c147a6ddafa1a27269fe0aa240e5ca8394b9c197b9/34_2.jpg",
+      "bytes": 84245,
+      "sha256": "e6a8ed9829a555a5536c3e544db711a3c3305e9e09123d0d2cfd10de56076087",
+      "legacyPath": "/IKONA-BOGORODITY-ZIVONOSNYI-ISTOCNIK-1",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-bogorodity-znamenie-cargo-47844135",
+      "file": "ikona-bogorodity-znamenie-cargo-47844135.jpg",
+      "height": 923,
+      "width": 804,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/43cb776d2a8fb2486a750b04ed02291cfb85ce1e677e6b6609fb65eb047b5a8d/35.jpg",
+      "bytes": 305471,
+      "sha256": "454120f651662cbcdaf7b0a84bc87332bec95c1f4a5e6c69b887a82afc41c644",
+      "legacyPath": "/IKONA-BOGORODITY-ZNAMENIE",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-cudo-arkistratiga-mikaila-cargo-46923689",
+      "file": "ikona-cudo-arkistratiga-mikaila-cargo-46923689.jpg",
+      "height": 500,
+      "width": 445,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/03edcc7250d4373f043ab9a0f05941986532a4a3d880147c322a8c465ca4a4eb/35_1.jpg",
+      "bytes": 79354,
+      "sha256": "8c7a723ad99bb13a1aa4b445fd52bed872b8b58b119b99cadb5d93f49639be13",
+      "legacyPath": "/IKONA-CUDO-ARKISTRATIGA-MIKAILA",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-cudo-arkistratiga-mikaila-cargo-46923690",
+      "file": "ikona-cudo-arkistratiga-mikaila-cargo-46923690.jpg",
+      "height": 3014,
+      "width": 2542,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/81cae804860c7fdb6829492e66fee5b36d24ad1a218316f4f47aaea1f1ff194e/35_2.jpg",
+      "bytes": 1345344,
+      "sha256": "ab0b69033d80b4eee90088c625cef16a4b6e41cc5ff6c51c74a2aec3937d7620",
+      "legacyPath": "/IKONA-CUDO-ARKISTRATIGA-MIKAILA",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-cudo-georgiy-o-zmie-1-cargo-163596291",
+      "file": "ikona-cudo-georgiy-o-zmie-1-cargo-163596291.jpg",
+      "height": 2271,
+      "width": 2018,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/f1781136f0a09361139d26a63e6c3e2972170b3c123ce96661a3267fe5cd3f2d/-------19------2218------3631---.JPG",
+      "bytes": 2403447,
+      "sha256": "19d37face47828be1e97684c4e00092395c9320ea58f8e5a4385f828996d96c5",
+      "legacyPath": "/IKONA-CUDO-GEORGIY-O-ZMIE-1",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-cudo-georgiy-o-zmie-2-cargo-47833937",
+      "file": "ikona-cudo-georgiy-o-zmie-2-cargo-47833937.jpg",
+      "height": 500,
+      "width": 436,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/ecf6227a754803ffc630c09617257c49bbc777cc468a0838e7bd4df38cc7df68/15.jpg",
+      "bytes": 76537,
+      "sha256": "16aaa7827ab0792825956d293ef5e74a53f495e5315d4c787d15e4ad21139cf5",
+      "legacyPath": "/IKONA-CUDO-GEORGIY-O-ZMIE-2",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-cudo-georgiy-o-zmie-3-cargo-47834350",
+      "file": "ikona-cudo-georgiy-o-zmie-3-cargo-47834350.jpg",
+      "height": 500,
+      "width": 441,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/32518977493cfd191e8912863ed527313095e60dfa0bc32ea489bf62f752423c/16.jpg",
+      "bytes": 111746,
+      "sha256": "b11e98200788e125925a1e27fe50640e8dec75409ac20a728f36656eba8827f4",
+      "legacyPath": "/IKONA-CUDO-GEORGIY-O-ZMIE-3",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-cudo-georgiy-o-zmie-4-cargo-47836371",
+      "file": "ikona-cudo-georgiy-o-zmie-4-cargo-47836371.jpg",
+      "height": 500,
+      "width": 447,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/9e8bb061384908737d55336191ace3cad6a7cef27c6eaef5edaca95ed920d909/18_1.jpg",
+      "bytes": 111949,
+      "sha256": "67318ea615eeb746b4615b9690277b7154d3713064e89e88eecc4924e3de18c2",
+      "legacyPath": "/IKONA-CUDO-GEORGIY-O-ZMIE-4",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-cudo-georgiy-o-zmie-4-cargo-47836372",
+      "file": "ikona-cudo-georgiy-o-zmie-4-cargo-47836372.jpg",
+      "height": 731,
+      "width": 578,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/effccc4696a1a7ac8b6c7b44fd95a194a21b1b088bd2a019800b89fb5952955e/18_2.jpg",
+      "bytes": 410633,
+      "sha256": "d7573f4553db9a71f4f6b9423f024326f5e6225545169726fc7e42cbb5cfbc27",
+      "legacyPath": "/IKONA-CUDO-GEORGIY-O-ZMIE-4",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-cudo-georgiy-o-zmie-5-cargo-83916838",
+      "file": "ikona-cudo-georgiy-o-zmie-5-cargo-83916838.jpg",
+      "height": 1806,
+      "width": 1541,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/26ac722cf7d30d0e65d51f386d19ec30fb2977dab88e07da4286a4c9c059d29d/_DSC0714.JPG",
+      "bytes": 1876502,
+      "sha256": "ae40f8a0e55c646702a47a3773e387cf6aa5ae5a2df7776980e2a96db63561dc",
+      "legacyPath": "/IKONA-CUDO-GEORGIY-O-ZMIE-5",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-cudo-mucenika-trifona-o-sokole-cargo-47836096",
+      "file": "ikona-cudo-mucenika-trifona-o-sokole-cargo-47836096.jpg",
+      "height": 500,
+      "width": 428,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/5ac6b6e720d5205629cbfcd2ce7b659cba5a11c05159e7ae065dcffd88a2ba8b/17.jpg",
+      "bytes": 101574,
+      "sha256": "b58f1bd609ac888a1456c25e1cff1b6dade132b9a3d9126acaef551c98df1a37",
+      "legacyPath": "/IKONA-CUDO-MUCENIKA-TRIFONA-O-SOKOLE",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-cudo-svytogo-georgiy-cargo-47836406",
+      "file": "ikona-cudo-svytogo-georgiy-cargo-47836406.jpg",
+      "height": 500,
+      "width": 403,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/8345583805b5383e40b4dc81a28c5e5dde82bb77d69029d41713163bd873d891/20.jpg",
+      "bytes": 86638,
+      "sha256": "7244e66bded3e12389babad7805a1888a88b56da278d32ded460b5cdac9685f2",
+      "legacyPath": "/IKONA-CUDO-SVYTOGO-GEORGIY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-cudo-velikomucenika-dimitriy-solunskogo-cargo-46923552",
+      "file": "ikona-cudo-velikomucenika-dimitriy-solunskogo-cargo-46923552.jpg",
+      "height": 500,
+      "width": 415,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/df440c0bdea849c2e22879b06d05016ec8d46d68d48db1af7d28da10f7435de6/32.jpg",
+      "bytes": 80282,
+      "sha256": "c16f515c13e3bc142c402300f8550df486751144f10500b9d90313ce29ce4007",
+      "legacyPath": "/IKONA-CUDO-VELIKOMUCENIKA-DIMITRIY-SOLUNSKOGO",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-il-y-muromet-v-zitii-cargo-47836397",
+      "file": "ikona-il-y-muromet-v-zitii-cargo-47836397.jpg",
+      "height": 953,
+      "width": 791,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/75b5cfb2d12ef125fd34693d8b51c6fa9b70f9d8c27424d0bd6e06def813d9ef/19_1.jpg",
+      "bytes": 732312,
+      "sha256": "58207c52c1f726f551708c4cff8c44bb8ac682df1cc287f639cc89053d075dba",
+      "legacyPath": "/IKONA-IL-Y-MUROMET-V-ZITII",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-il-y-muromet-v-zitii-cargo-47836398",
+      "file": "ikona-il-y-muromet-v-zitii-cargo-47836398.jpg",
+      "height": 400,
+      "width": 600,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/c052f6c909b58ef5bdda3d4558dab764a0f8665b7b0eb3c1d72f340a52ca0bf2/19_2.jpg",
+      "bytes": 51678,
+      "sha256": "3f30450a2cf090eea3de0a9efc8a93b25320e2fccd8d764d31c0266f12f0f996",
+      "legacyPath": "/IKONA-IL-Y-MUROMET-V-ZITII",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-ne-rydai-mene-mati-cargo-47800160",
+      "file": "ikona-ne-rydai-mene-mati-cargo-47800160.jpg",
+      "height": 500,
+      "width": 361,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/c7d430b3e8d468844c576d9c08aa833c9460e108c32173e22326ea89e98d0174/6.jpg",
+      "bytes": 82005,
+      "sha256": "753b5815246ca72aff85800d1bb348733ff35a0d683902e29049a7fcb7bbc16b",
+      "legacyPath": "/IKONA-NE-RYDAI-MENE-MATI",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-ognennoe-voskozdenie-il-i-proroka-cargo-47836431",
+      "file": "ikona-ognennoe-voskozdenie-il-i-proroka-cargo-47836431.jpg",
+      "height": 500,
+      "width": 377,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/d6c8a6ea09e3607d1e2dddbf7a6965a68f1734bb1067dfc2886564d40ad2d7a3/22.jpg",
+      "bytes": 65752,
+      "sha256": "b0d6ebc080aa941abaa2e7c339342fc8380e274c801d5c8c04719f4275aa289d",
+      "legacyPath": "/IKONA-OGNENNOE-VOSKOZDENIE-IL-I-PROROKA",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-panteleimon-telitel-cargo-47837753",
+      "file": "ikona-panteleimon-telitel-cargo-47837753.jpg",
+      "height": 500,
+      "width": 393,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/87c617b53db8adfb79c2eae299502222ee5567b72d3fb02c3b718bd2a57b26c2/24.jpg",
+      "bytes": 70591,
+      "sha256": "2376d77bb5f5aed4ae4cf9feebf218ba75f2515aadec7a53e7e0b27eb1452faf",
+      "legacyPath": "/IKONA-PANTELEIMON-TELITEL",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-panteleimon-telitel-cargo-47837754",
+      "file": "ikona-panteleimon-telitel-cargo-47837754.jpg",
+      "height": 599,
+      "width": 486,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/da3cf6e5e57174dd804048c78b2819c3e1516c1b32350797efe0f3ad708ae26f/24_2.jpg",
+      "bytes": 187768,
+      "sha256": "522d6fec7477ae9bb3e55eb84346f1db92a92e96b68b6226925e306dd863428c",
+      "legacyPath": "/IKONA-PANTELEIMON-TELITEL",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-parsuna-blagovernyi-tar-ioann-groznyi-cargo-47843613",
+      "file": "ikona-parsuna-blagovernyi-tar-ioann-groznyi-cargo-47843613.jpg",
+      "height": 500,
+      "width": 405,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/d3c1d9c4d404e329e0be7974ef692a560cabc582f9faffd00fec652063222853/31.jpg",
+      "bytes": 72650,
+      "sha256": "7de99b4bfd1b6285e3ba86006d9201f1e57f898d5d8d36c514a4d1b40e08636e",
+      "legacyPath": "/IKONA-PARSUNA-BLAGOVERNYI-TAR-IOANN-GROZNYI",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-prepodobnay-mariy-kidanskay-cargo-46923709",
+      "file": "ikona-prepodobnay-mariy-kidanskay-cargo-46923709.jpg",
+      "height": 500,
+      "width": 439,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/19cc6ed6861d395ba78b9eeb7d2b39f28e0cb79c12d9f74e854ff56329b76fee/36.jpg",
+      "bytes": 71605,
+      "sha256": "d88b18880c8ecc43916add3e8b6a788854a8995ce8f4fd2ccc7e52bfcc6da6b5",
+      "legacyPath": "/IKONA-PREPODOBNAY-MARIY-KIDANSKAY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-prepodobnyi-serafim-sarovskii-cargo-47799352",
+      "file": "ikona-prepodobnyi-serafim-sarovskii-cargo-47799352.jpg",
+      "height": 500,
+      "width": 457,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/0e032213bf9357032f55035aeb8095d8aacf8b6b6fea330dda8acb8c5d8d4e23/1.jpg",
+      "bytes": 82817,
+      "sha256": "9ac48a8edb2e15244fe56593dcea9273ab545b3c7d68d40db2e165bde5181e1a",
+      "legacyPath": "/IKONA-PREPODOBNYI-SERAFIM-SAROVSKII",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-prepodobnyi-sergii-radonezskii-cargo-47833814",
+      "file": "ikona-prepodobnyi-sergii-radonezskii-cargo-47833814.jpg",
+      "height": 500,
+      "width": 436,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/bb732390b601e84bdfea59098bb65aa69bac48bf98e71cc0170a5c841e5b8525/14.jpg",
+      "bytes": 67346,
+      "sha256": "809b8f1d2a12d5cc67190b57b3fc0c0f7d595b68950e64dea5e41ea31bab853f",
+      "legacyPath": "/IKONA-PREPODOBNYI-SERGII-RADONEZSKII",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-presvytoi-troity-cargo-46923571",
+      "file": "ikona-presvytoi-troity-cargo-46923571.jpg",
+      "height": 500,
+      "width": 468,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/3a8f898b27afe466d0f7cb596d749410f0feb04f5ce6efc430cb42041285c17d/34_1.jpg",
+      "bytes": 115332,
+      "sha256": "957c5ed30f5e971b8f97da003f3a770d2358931ce23532a68a33ef5b0942d022",
+      "legacyPath": "/IKONA-PRESVYTOI-TROITY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-presvytoi-troity-cargo-46923572",
+      "file": "ikona-presvytoi-troity-cargo-46923572.jpg",
+      "height": 889,
+      "width": 760,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/3f1b1dbb9c8b2a2d51c1fcc3d31f5b17e0e7d80b226f2866517c7a8b18ed4c52/34_2.jpg",
+      "bytes": 621449,
+      "sha256": "9e4f8deb60889a67aa460e08f82e687be50d0c4d48610e180ec81a02cb250415",
+      "legacyPath": "/IKONA-PRESVYTOI-TROITY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-presvytoi-troity-cargo-46923573",
+      "file": "ikona-presvytoi-troity-cargo-46923573.jpg",
+      "height": 801,
+      "width": 703,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/d4011cc93fb625bc613e2fdf966e53940a5b439b031644da708c77a4aa5a1a08/34_3.jpg",
+      "bytes": 574751,
+      "sha256": "45bf96b97ef61744b12c971382db89a72f00efa9c5f0182511b5d3d6034e4fff",
+      "legacyPath": "/IKONA-PRESVYTOI-TROITY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-skladen-bogorodita-kazanskay-cargo-83914085",
+      "file": "ikona-skladen-bogorodita-kazanskay-cargo-83914085.jpg",
+      "height": 2241,
+      "width": 2820,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/85b00f38a5f0afeb9ad75c8dd05d6e4b2002db2edb7235a545c7b87edc29f271/_DSC0786.JPG",
+      "bytes": 3407976,
+      "sha256": "f3c7bcfdfd4db897cdc7602b2430e4ad6641d933be1801d13d45eb93aef3296d",
+      "legacyPath": "/IKONA-SKLADEN-BOGORODITA-KAZANSKAY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-skladen-bogorodita-kazanskay-cargo-83914093",
+      "file": "ikona-skladen-bogorodita-kazanskay-cargo-83914093.jpg",
+      "height": 2592,
+      "width": 3888,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/59628dac002fa03b64e47bbfd72bb2fa1ab9fb822500623132d2e2ec7e8aa52e/_DSC0466.JPG",
+      "bytes": 4445653,
+      "sha256": "9ac14b718c6db4b4db921ad9f13a01fdd64dd9c2899deee5e3a0ce8778c59517",
+      "legacyPath": "/IKONA-SKLADEN-BOGORODITA-KAZANSKAY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-skladen-bogorodita-kazanskay-cargo-83914125",
+      "file": "ikona-skladen-bogorodita-kazanskay-cargo-83914125.jpg",
+      "height": 2573,
+      "width": 1998,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/dd8f68e2dde41ea71eda88e7f1ae70bd1a4dfc7a466a0aafcb95eb293811f248/_DSC0468.JPG",
+      "bytes": 2738003,
+      "sha256": "a44bab0e68ac1590b9618434020f10fbda9c808bd69a7887c11282ebcaecf156",
+      "legacyPath": "/IKONA-SKLADEN-BOGORODITA-KAZANSKAY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-spas-blagoe-molcanie-ili-angel-velikogo-soveta-cargo-47844366",
+      "file": "ikona-spas-blagoe-molcanie-ili-angel-velikogo-soveta-cargo-47844366.jpg",
+      "height": 500,
+      "width": 404,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/cb6abf004bc9e9631d916da2db0f489d267903cb3517e44f8179740fe363b3ba/37.jpg",
+      "bytes": 73949,
+      "sha256": "f18ffd6e2aa47b17953079ac3af1ddee374f54fbeb6a49130f5583e2e30374b0",
+      "legacyPath": "/IKONA-SPAS-BLAGOE-MOLCANIE-ILI-ANGEL-VELIKOGO-SOVETA",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-spas-nerukotvornyi-1-cargo-47840404",
+      "file": "ikona-spas-nerukotvornyi-1-cargo-47840404.jpg",
+      "height": 500,
+      "width": 228,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/6027350a96bc41a32e6a229b527fe59e83d2547d6cee7b278194120b8ba9e4b9/26.jpg",
+      "bytes": 47828,
+      "sha256": "b53306c10fd1d6ff13742e4c15022c958420977a0cad3205de5322d2028399c1",
+      "legacyPath": "/IKONA-SPAS-NERUKOTVORNYI-1",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-spas-nerukotvornyi-cargo-47837860",
+      "file": "ikona-spas-nerukotvornyi-cargo-47837860.jpg",
+      "height": 500,
+      "width": 440,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/565e93116fe1ffa3e5c35da5be5808503dfd12814e3836eece06129ad01f8bbe/25.jpg",
+      "bytes": 78052,
+      "sha256": "5e84d4391badfb618d0c789e6becff7c5d6a22c306bac24051ed2e8772ee7996",
+      "legacyPath": "/IKONA-SPAS-NERUKOTVORNYI",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-spas-vsederzitel-v-starinnom-oklade-i-dubovom-kiote-cargo-81216832",
+      "file": "ikona-spas-vsederzitel-v-starinnom-oklade-i-dubovom-kiote-cargo-81216832.jpg",
+      "height": 2694,
+      "width": 2438,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/f7045625e6041de0d36e8776d0c159dc1f7ae52c4b363e299c020daf833c01d6/_DSC0483.JPG",
+      "bytes": 3222643,
+      "sha256": "479490b0ef7823f23f486418575069ad0f3560396649be5793472c824ae6564b",
+      "legacyPath": "/IKONA-SPAS-VSEDERZITEL-V-STARINNOM-OKLADE-I-DUBOVOM-KIOTE",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-svytay-matrona-moskovskay-cargo-80926815",
+      "file": "ikona-svytay-matrona-moskovskay-cargo-80926815.jpg",
+      "height": 2846,
+      "width": 2582,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/9f8ddc492e15b16eda1ecf1e4004e5e720e75b3a6f973d972af656f25fc38702/---2117----3530-----------------.JPG",
+      "bytes": 3774139,
+      "sha256": "deb5a2d98bd833bffc8f0eada1d45298d05de52c2ee9c95f7f3fe5c6ae59df26",
+      "legacyPath": "/IKONA-SVYTAY-MATRONA-MOSKOVSKAY",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-svytitel-spiridon-trimifunskii-cargo-47836513",
+      "file": "ikona-svytitel-spiridon-trimifunskii-cargo-47836513.jpg",
+      "height": 500,
+      "width": 431,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/aa790b4d59ba2bd73531ff27ddeb823bccc26b4327351e24b8ca33fc169b7745/23.jpg",
+      "bytes": 75158,
+      "sha256": "a1919f2ab010d831865425087df97a2ca9c42a861cdc909b0deae296ea265694",
+      "legacyPath": "/IKONA-SVYTITEL-SPIRIDON-TRIMIFUNSKII",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-svytyk-boris-i-gleb-cargo-47840455",
+      "file": "ikona-svytyk-boris-i-gleb-cargo-47840455.jpg",
+      "height": 500,
+      "width": 430,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/cd8dcbfc8b4c64793e34965a8cd79fd0fc62e179fe5e71ae8043a76489b7fbbb/27.jpg",
+      "bytes": 66075,
+      "sha256": "304141a5c1161c6759008571ba194b30f6e366b2b7e6629c33fd5747d5857fb3",
+      "legacyPath": "/IKONA-SVYTYK-BORIS-I-GLEB",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-varvara-velikomucenita-v-zitie-cargo-47799916",
+      "file": "ikona-varvara-velikomucenita-v-zitie-cargo-47799916.jpg",
+      "height": 500,
+      "width": 464,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/5493c73d4b08fb25876108aa136453901575c5ade092676b6ac3866392e5dcc8/3_1.jpg",
+      "bytes": 90716,
+      "sha256": "c9b91cb38dbab3facb2a985bb206852807d46246024a9ff614e2735e9ab5234c",
+      "legacyPath": "/IKONA-VARVARA-VELIKOMUCENITA-V-ZITIE",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "ikona-varvara-velikomucenita-v-zitie-cargo-47799917",
+      "file": "ikona-varvara-velikomucenita-v-zitie-cargo-47799917.jpg",
+      "height": 2382,
+      "width": 1952,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/5f79401a0e1fe24ef39b7a2585547dcf5e984eaf38e7f7300fc743b945b5651e/3_2.jpg",
+      "bytes": 686341,
+      "sha256": "3408a57e6470df768dd462f443875b81e427bff08f27d11e34d952332e14e69b",
+      "legacyPath": "/IKONA-VARVARA-VELIKOMUCENITA-V-ZITIE",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
+      "id": "joy-of-all-who-sorrow-gilded-oklad-cargo-80900910",
+      "file": "joy-of-all-who-sorrow-gilded-oklad-cargo-80900910.jpg",
+      "height": 2759,
+      "width": 2316,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/8925ca4b0560dadb09f78e555e8d7129a7a0fce08c1bf842b9e8d25d25b35128/_DSC0687.JPG",
+      "bytes": 6652049,
+      "sha256": "20255efacd6d7df9639cb0a138df906122fb167254a759d7f66492fecdf4f10f",
+      "legacyPath": "/IKONA-BOGRODITY-RADOST-VSEK-SKORBYSIK-V-STARINNOM-ZOLOCENOM-OKLADE",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
       ]
     },
     {
@@ -755,6 +1685,21 @@
       "provenance": "local-page-html",
       "evidence": [
         "local-page-html"
+      ]
+    },
+    {
+      "id": "miracle-of-saint-george-variant-cargo-46852548",
+      "file": "miracle-of-saint-george-variant-cargo-46852548.jpg",
+      "height": 500,
+      "width": 396,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/5e9d003ceab7220cd223e31159858bda86ae36b4aea9a8a228751dcd6cc9cfe2/24.jpg",
+      "bytes": 94422,
+      "sha256": "ffafdf6096360ea5c5caccd1a0cb52e893171a6464eacface562441f4d392a18",
+      "legacyPath": "/IKONA-CUDO-SVYTOGO-GEORGIY-O-ZMIE",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
       ]
     },
     {
@@ -924,6 +1869,21 @@
       ]
     },
     {
+      "id": "saint-nicholas-cargo-46849264",
+      "file": "saint-nicholas-cargo-46849264.jpg",
+      "height": 789,
+      "width": 641,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/89c7b979b9b77cbc544cf546739d07ed2255649f1683e407b0e1401bea596d1a/17.jpg",
+      "bytes": 330184,
+      "sha256": "40cc72fc23b75c9929d428970b3258f549cfe7482606c33315f2887fc4a7472f",
+      "legacyPath": "/IKONA-NIKOLAI-CUDOTVORET",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
+      ]
+    },
+    {
       "id": "saint-nicholas-main",
       "file": "saint-nicholas.jpg",
       "width": 2267,
@@ -1013,6 +1973,21 @@
       "evidence": [
         "local-page-html",
         "verified-existing-original"
+      ]
+    },
+    {
+      "id": "sergius-of-radonezh-cargo-46848200",
+      "file": "sergius-of-radonezh-cargo-46848200.jpg",
+      "height": 833,
+      "width": 675,
+      "sourceUrl": "https://freight.cargo.site/t/original/i/fc32b3ad21578b2d71c1103c1b65cb64d92bb411dcd43ab9d2f5f034ab1172a3/9.jpg",
+      "bytes": 394390,
+      "sha256": "cc9bcac302aa2a3a4a1be1c965f2b8b98f25b16707e16abe21ad70cb9abf72c4",
+      "legacyPath": "/IKONA-SERGII-RADONEZSKII",
+      "role": "original",
+      "provenance": "cargo-public-page-api-2026-09-08",
+      "evidence": [
+        "cargo-public-page-api-2026-09-08"
       ]
     },
     {
@@ -1515,7 +2490,8 @@
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGRODITY-RADOST-VSEK-SKORBYSIK-V-STARINNOM-ZOLOCENOM-OKLADE",
       "published": true,
       "assetFiles": [
-        "joy-of-all-who-sorrow-gilded-oklad.jpg"
+        "joy-of-all-who-sorrow-gilded-oklad.jpg",
+        "joy-of-all-who-sorrow-gilded-oklad-cargo-80900910.jpg"
       ]
     },
     {
@@ -1568,7 +2544,8 @@
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-SVYTOGO-GEORGIY-O-ZMIE",
       "published": true,
       "assetFiles": [
-        "miracle-of-saint-george-variant.jpg"
+        "miracle-of-saint-george-variant.jpg",
+        "miracle-of-saint-george-variant-cargo-46852548.jpg"
       ]
     },
     {
@@ -1601,7 +2578,8 @@
       "published": true,
       "assetFiles": [
         "saint-nicholas.jpg",
-        "saint-nicholas-2.jpg"
+        "saint-nicholas-2.jpg",
+        "saint-nicholas-cargo-46849264.jpg"
       ]
     },
     {
@@ -1644,7 +2622,9 @@
       "assetFiles": [
         "holy-trinity.jpg",
         "holy-trinity-2.jpg",
-        "holy-trinity-3.jpg"
+        "holy-trinity-3.jpg",
+        "holy-trinity-cargo-46923193.jpg",
+        "holy-trinity-cargo-83913768.jpg"
       ]
     },
     {
@@ -1664,7 +2644,8 @@
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-SERGII-RADONEZSKII",
       "published": true,
       "assetFiles": [
-        "sergius-of-radonezh.jpg"
+        "sergius-of-radonezh.jpg",
+        "sergius-of-radonezh-cargo-46848200.jpg"
       ]
     },
     {
@@ -1736,7 +2717,8 @@
       "published": true,
       "assetFiles": [
         "christ-pantocrator-brass-oklad.jpg",
-        "christ-pantocrator-brass-oklad-2.jpg"
+        "christ-pantocrator-brass-oklad-2.jpg",
+        "christ-pantocrator-brass-oklad-cargo-46852686.jpg"
       ]
     },
     {
@@ -1876,6 +2858,473 @@
         "sergius-appearance.jpg",
         "sergius-appearance-2.jpg"
       ]
+    },
+    {
+      "legacyPath": "/IKONA-CUDO-GEORGIY-O-ZMIE-1",
+      "slug": "ikona-cudo-georgiy-o-zmie-1",
+      "title": "Икона Чудо Георгия о змие.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-1",
+      "published": true,
+      "assetFiles": [
+        "ikona-cudo-georgiy-o-zmie-1-cargo-163596291.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SKLADEN-BOGORODITA-KAZANSKAY",
+      "slug": "ikona-skladen-bogorodita-kazanskay",
+      "title": "Икона складень Богородица Казанская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SKLADEN-BOGORODITA-KAZANSKAY",
+      "published": true,
+      "assetFiles": [
+        "ikona-skladen-bogorodita-kazanskay-cargo-83914085.jpg",
+        "ikona-skladen-bogorodita-kazanskay-cargo-83914093.jpg",
+        "ikona-skladen-bogorodita-kazanskay-cargo-83914125.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-CUDO-VELIKOMUCENIKA-DIMITRIY-SOLUNSKOGO",
+      "slug": "ikona-cudo-velikomucenika-dimitriy-solunskogo",
+      "title": "Икона Чудо великомученика Димитрия Солунского.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-VELIKOMUCENIKA-DIMITRIY-SOLUNSKOGO",
+      "published": true,
+      "assetFiles": [
+        "ikona-cudo-velikomucenika-dimitriy-solunskogo-cargo-46923552.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-PRESVYTOI-TROITY",
+      "slug": "ikona-presvytoi-troity",
+      "title": "Икона Пресвятой Троицы.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PRESVYTOI-TROITY",
+      "published": true,
+      "assetFiles": [
+        "ikona-presvytoi-troity-cargo-46923571.jpg",
+        "ikona-presvytoi-troity-cargo-46923572.jpg",
+        "ikona-presvytoi-troity-cargo-46923573.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-CUDO-ARKISTRATIGA-MIKAILA",
+      "slug": "ikona-cudo-arkistratiga-mikaila",
+      "title": "Икона Чудо Архистратига Михаила.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-ARKISTRATIGA-MIKAILA",
+      "published": true,
+      "assetFiles": [
+        "ikona-cudo-arkistratiga-mikaila-cargo-46923689.jpg",
+        "ikona-cudo-arkistratiga-mikaila-cargo-46923690.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-PREPODOBNAY-MARIY-KIDANSKAY",
+      "slug": "ikona-prepodobnay-mariy-kidanskay",
+      "title": "Икона преподобная Мария Хиданская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNAY-MARIY-KIDANSKAY",
+      "published": true,
+      "assetFiles": [
+        "ikona-prepodobnay-mariy-kidanskay-cargo-46923709.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-PREPODOBNYI-SERAFIM-SAROVSKII",
+      "slug": "ikona-prepodobnyi-serafim-sarovskii",
+      "title": "Икона преподобный Серафим Саровский.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNYI-SERAFIM-SAROVSKII",
+      "published": true,
+      "assetFiles": [
+        "ikona-prepodobnyi-serafim-sarovskii-cargo-47799352.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-FEDOROVSKOI",
+      "slug": "ikona-bogorodity-fedorovskoi",
+      "title": "Икона Богородицы Федоровской.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-FEDOROVSKOI",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-fedorovskoi-cargo-47799488.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-VARVARA-VELIKOMUCENITA-V-ZITIE",
+      "slug": "ikona-varvara-velikomucenita-v-zitie",
+      "title": "Икона Варвара Великомученица в житие.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-VARVARA-VELIKOMUCENITA-V-ZITIE",
+      "published": true,
+      "assetFiles": [
+        "ikona-varvara-velikomucenita-v-zitie-cargo-47799916.jpg",
+        "ikona-varvara-velikomucenita-v-zitie-cargo-47799917.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-CUDO-GEORGIY-O-ZMIE-5",
+      "slug": "ikona-cudo-georgiy-o-zmie-5",
+      "title": "Икона Чудо Георгия о змие.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-5",
+      "published": true,
+      "assetFiles": [
+        "ikona-cudo-georgiy-o-zmie-5-cargo-83916838.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-NE-RYDAI-MENE-MATI",
+      "slug": "ikona-ne-rydai-mene-mati",
+      "title": "Икона Не рыдай мене мати.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-NE-RYDAI-MENE-MATI",
+      "published": true,
+      "assetFiles": [
+        "ikona-ne-rydai-mene-mati-cargo-47800160.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SVYTAY-MATRONA-MOSKOVSKAY",
+      "slug": "ikona-svytay-matrona-moskovskay",
+      "title": "Икона Святая Матрона Московская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SVYTAY-MATRONA-MOSKOVSKAY",
+      "published": true,
+      "assetFiles": [
+        "ikona-svytay-matrona-moskovskay-cargo-80926815.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-ALEKSANDR-NEVSKII",
+      "slug": "ikona-aleksandr-nevskii",
+      "title": "Икона Александр Невский.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-ALEKSANDR-NEVSKII",
+      "published": true,
+      "assetFiles": [
+        "ikona-aleksandr-nevskii-cargo-47800231.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SPAS-VSEDERZITEL-V-STARINNOM-OKLADE-I-DUBOVOM-KIOTE",
+      "slug": "ikona-spas-vsederzitel-v-starinnom-oklade-i-dubovom-kiote",
+      "title": "Икона Спас Вседержитель в старинном окладе и дубовом киоте.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-V-STARINNOM-OKLADE-I-DUBOVOM-KIOTE",
+      "published": true,
+      "assetFiles": [
+        "ikona-spas-vsederzitel-v-starinnom-oklade-i-dubovom-kiote-cargo-81216832.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-KAZANSKAY-1",
+      "slug": "ikona-bogorodity-kazanskay-1",
+      "title": "Икона Богородицы Казанская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KAZANSKAY-1",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-kazanskay-1-cargo-47800413.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-UTOLI-MOI-PECALI",
+      "slug": "ikona-bogorodity-utoli-moi-pecali",
+      "title": "Икона Богородицы Утоли мои печали.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-UTOLI-MOI-PECALI",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-utoli-moi-pecali-cargo-47801022.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-UTOLI-MOI-PECALI-1",
+      "slug": "ikona-bogorodity-utoli-moi-pecali-1",
+      "title": "Икона Богородицы Утоли мои печали.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-UTOLI-MOI-PECALI-1",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-utoli-moi-pecali-1-cargo-47833299.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-UTOLI-MOI-PECALI-copy",
+      "slug": "ikona-bogorodity-utoli-moi-pecali-copy",
+      "title": "Икона Богородицы Утоли мои печали.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-UTOLI-MOI-PECALI-copy",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-utoli-moi-pecali-copy-cargo-47833689.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-PREPODOBNYI-SERGII-RADONEZSKII",
+      "slug": "ikona-prepodobnyi-sergii-radonezskii",
+      "title": "Икона Преподобный Сергий Радонежский.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNYI-SERGII-RADONEZSKII",
+      "published": true,
+      "assetFiles": [
+        "ikona-prepodobnyi-sergii-radonezskii-cargo-47833814.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-CUDO-GEORGIY-O-ZMIE-2",
+      "slug": "ikona-cudo-georgiy-o-zmie-2",
+      "title": "Икона Чудо Георгия о змие.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-2",
+      "published": true,
+      "assetFiles": [
+        "ikona-cudo-georgiy-o-zmie-2-cargo-47833937.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-CUDO-GEORGIY-O-ZMIE-3",
+      "slug": "ikona-cudo-georgiy-o-zmie-3",
+      "title": "Икона Чудо Георгия о змие.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-3",
+      "published": true,
+      "assetFiles": [
+        "ikona-cudo-georgiy-o-zmie-3-cargo-47834350.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-CUDO-MUCENIKA-TRIFONA-O-SOKOLE",
+      "slug": "ikona-cudo-mucenika-trifona-o-sokole",
+      "title": "Икона Чудо мученика Трифона о соколе.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-MUCENIKA-TRIFONA-O-SOKOLE",
+      "published": true,
+      "assetFiles": [
+        "ikona-cudo-mucenika-trifona-o-sokole-cargo-47836096.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-CUDO-GEORGIY-O-ZMIE-4",
+      "slug": "ikona-cudo-georgiy-o-zmie-4",
+      "title": "Икона Чудо Георгия о змие.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-4",
+      "published": true,
+      "assetFiles": [
+        "ikona-cudo-georgiy-o-zmie-4-cargo-47836371.jpg",
+        "ikona-cudo-georgiy-o-zmie-4-cargo-47836372.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-IL-Y-MUROMET-V-ZITII",
+      "slug": "ikona-il-y-muromet-v-zitii",
+      "title": "Икона Илья Муромец в житии.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-IL-Y-MUROMET-V-ZITII",
+      "published": true,
+      "assetFiles": [
+        "ikona-il-y-muromet-v-zitii-cargo-47836397.jpg",
+        "ikona-il-y-muromet-v-zitii-cargo-47836398.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-CUDO-SVYTOGO-GEORGIY",
+      "slug": "ikona-cudo-svytogo-georgiy",
+      "title": "Икона Чудо Святого Георгия.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-SVYTOGO-GEORGIY",
+      "published": true,
+      "assetFiles": [
+        "ikona-cudo-svytogo-georgiy-cargo-47836406.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITA-VLADIMIRSKAY",
+      "slug": "ikona-bogorodita-vladimirskay",
+      "title": "Икона Богородица Владимирская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITA-VLADIMIRSKAY",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodita-vladimirskay-cargo-47836412.jpg",
+        "ikona-bogorodita-vladimirskay-cargo-47836413.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-OGNENNOE-VOSKOZDENIE-IL-I-PROROKA",
+      "slug": "ikona-ognennoe-voskozdenie-il-i-proroka",
+      "title": "Икона Огненное восхождение Ильи пророка.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-OGNENNOE-VOSKOZDENIE-IL-I-PROROKA",
+      "published": true,
+      "assetFiles": [
+        "ikona-ognennoe-voskozdenie-il-i-proroka-cargo-47836431.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SVYTITEL-SPIRIDON-TRIMIFUNSKII",
+      "slug": "ikona-svytitel-spiridon-trimifunskii",
+      "title": "Икона Святитель Спиридон Тримифунский.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SVYTITEL-SPIRIDON-TRIMIFUNSKII",
+      "published": true,
+      "assetFiles": [
+        "ikona-svytitel-spiridon-trimifunskii-cargo-47836513.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-PANTELEIMON-TELITEL",
+      "slug": "ikona-panteleimon-telitel",
+      "title": "Икона Пантелеймон целитель.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PANTELEIMON-TELITEL",
+      "published": true,
+      "assetFiles": [
+        "ikona-panteleimon-telitel-cargo-47837753.jpg",
+        "ikona-panteleimon-telitel-cargo-47837754.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SPAS-NERUKOTVORNYI",
+      "slug": "ikona-spas-nerukotvornyi",
+      "title": "Икона Спас Нерукотворный.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-NERUKOTVORNYI",
+      "published": true,
+      "assetFiles": [
+        "ikona-spas-nerukotvornyi-cargo-47837860.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SPAS-NERUKOTVORNYI-1",
+      "slug": "ikona-spas-nerukotvornyi-1",
+      "title": "Икона Спас Нерукотворный.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-NERUKOTVORNYI-1",
+      "published": true,
+      "assetFiles": [
+        "ikona-spas-nerukotvornyi-1-cargo-47840404.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SVYTYK-BORIS-I-GLEB",
+      "slug": "ikona-svytyk-boris-i-gleb",
+      "title": "Икона Святых Борис и Глеб.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SVYTYK-BORIS-I-GLEB",
+      "published": true,
+      "assetFiles": [
+        "ikona-svytyk-boris-i-gleb-cargo-47840455.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-SPORUCNITA-GRESNYK",
+      "slug": "ikona-bogorodity-sporucnita-gresnyk",
+      "title": "Икона Богородицы Споручница Грешных.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-SPORUCNITA-GRESNYK",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-sporucnita-gresnyk-cargo-47841599.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-SMOLENSKAY",
+      "slug": "ikona-bogorodity-smolenskay",
+      "title": "Икона Богородицы Смоленская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-SMOLENSKAY",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-smolenskay-cargo-47842345.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-CASA-NEUPIVAEMAY-1",
+      "slug": "ikona-bogorodity-casa-neupivaemay-1",
+      "title": "Икона Богородицы Чаша неупиваемая.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-CASA-NEUPIVAEMAY-1",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-casa-neupivaemay-1-cargo-47842466.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-PARSUNA-BLAGOVERNYI-TAR-IOANN-GROZNYI",
+      "slug": "ikona-parsuna-blagovernyi-tar-ioann-groznyi",
+      "title": "Икона - парсуна Благоверный Царь Иоанн Грозный.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PARSUNA-BLAGOVERNYI-TAR-IOANN-GROZNYI",
+      "published": true,
+      "assetFiles": [
+        "ikona-parsuna-blagovernyi-tar-ioann-groznyi-cargo-47843613.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-KORSUNSKAY",
+      "slug": "ikona-bogorodity-korsunskay",
+      "title": "Икона Богородицы Корсунская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KORSUNSKAY",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-korsunskay-cargo-47843752.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-KAZANSKAY-3",
+      "slug": "ikona-bogorodity-kazanskay-3",
+      "title": "Икона Богородицы Казанская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KAZANSKAY-3",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-kazanskay-3-cargo-47843817.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-ZIVONOSNYI-ISTOCNIK-1",
+      "slug": "ikona-bogorodity-zivonosnyi-istocnik-1",
+      "title": "Икона Богородицы Живоносный источник.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-ZIVONOSNYI-ISTOCNIK-1",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-zivonosnyi-istocnik-1-cargo-47844098.jpg",
+        "ikona-bogorodity-zivonosnyi-istocnik-1-cargo-47844099.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-ZNAMENIE",
+      "slug": "ikona-bogorodity-znamenie",
+      "title": "Икона Богородицы Знамение.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-ZNAMENIE",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-znamenie-cargo-47844135.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-VLADIMIRSKAY",
+      "slug": "ikona-bogorodity-vladimirskay",
+      "title": "Икона Богородицы Владимирская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-VLADIMIRSKAY",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-vladimirskay-cargo-47844182.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-SPAS-BLAGOE-MOLCANIE-ILI-ANGEL-VELIKOGO-SOVETA",
+      "slug": "ikona-spas-blagoe-molcanie-ili-angel-velikogo-soveta",
+      "title": "Икона Спас Благое Молчание или Ангел Великого Совета.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-BLAGOE-MOLCANIE-ILI-ANGEL-VELIKOGO-SOVETA",
+      "published": true,
+      "assetFiles": [
+        "ikona-spas-blagoe-molcanie-ili-angel-velikogo-soveta-cargo-47844366.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-KORSUNSKAY-1",
+      "slug": "ikona-bogorodity-korsunskay-1",
+      "title": "Икона Богородицы Корсунская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KORSUNSKAY-1",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-korsunskay-1-cargo-47844397.jpg",
+        "ikona-bogorodity-korsunskay-1-cargo-47844398.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-RUSSKAY-ILI-VZBRANNAY-VOEVODA",
+      "slug": "ikona-bogorodity-russkay-ili-vzbrannay-voevoda",
+      "title": "Икона Богородицы Русская или Взбранная Воевода.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-RUSSKAY-ILI-VZBRANNAY-VOEVODA",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-russkay-ili-vzbrannay-voevoda-cargo-47844442.jpg",
+        "ikona-bogorodity-russkay-ili-vzbrannay-voevoda-cargo-47844443.jpg"
+      ]
+    },
+    {
+      "legacyPath": "/IKONA-BOGORODITY-IVERSKAY",
+      "slug": "ikona-bogorodity-iverskay",
+      "title": "Икона Богородицы Иверская.",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-IVERSKAY",
+      "published": true,
+      "assetFiles": [
+        "ikona-bogorodity-iverskay-cargo-47844539.jpg"
+      ]
     }
-  ]
+  ],
+  "supplementalSource": {
+    "snapshot": "scripts/data/cargo-catalog-20260908.json",
+    "observedAt": "2026-09-08"
+  }
 }

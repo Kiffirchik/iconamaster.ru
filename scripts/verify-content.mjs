@@ -16,6 +16,7 @@ const CANONICAL_CONTACTS = {
   email: 'iconamaster@yandex.ru',
 };
 const STATIC_ALIASES = {
+  '/IKONA-BOGORODITY-FEDOROVSKAY-1': '/icons/theotokos-feodorovskaya',
   '/IKONY': '/collection',
   '/IKONY-V-NALICIE': '/collection',
   '/KONTAKTY': '/contacts',

@@ -155,7 +155,7 @@ const jpegDimensions = (bytes) => {
   throw new Error('JPEG dimensions are unavailable');
 };
 
-const imageDimensions = (bytes) => {
+export const imageDimensions = (bytes) => {
   if (bytes[0] === 0xff && bytes[1] === 0xd8) return jpegDimensions(bytes);
   if (bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))) {
     return { width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20) };

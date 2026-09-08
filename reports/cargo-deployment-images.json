@@ -1,0 +1,1746 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-08T11:36:37.830726+00:00",
+  "runtime": {
+    "library": "Pillow",
+    "version": "12.3.0"
+  },
+  "settings": {
+    "maxLongEdge": 1600,
+    "qualityCeiling": 90,
+    "qualityFloor": 75,
+    "qualityPolicy": "highest-smaller-among-candidates",
+    "qualityCandidates": [
+      90,
+      88,
+      85,
+      82,
+      80,
+      78,
+      75
+    ],
+    "subsampling": "4:4:4",
+    "progressive": true,
+    "optimize": true,
+    "resampling": "LANCZOS",
+    "crop": false,
+    "upscale": false,
+    "colorTransforms": false,
+    "preserveIcc": true,
+    "preserveExif": true
+  },
+  "protectedSha256": {
+    "originals": {
+      "public/assets/icons/alexander-peresvet.jpg": "2571efec0fe9f24173e2be5dcf5e6264cd845af34b4695fec7369b73ee4e1fe0",
+      "public/assets/icons/antique-saint-nicholas-2.jpg": "d8d3dccbc7da380343f712b4d1133b002691ccbbed5678a11e1f82199beb3e5e",
+      "public/assets/icons/antique-saint-nicholas-3.jpg": "72b3e350c24de54d971398d8d659f9963289978f0e14b1b9fa42130ba0cdc40d",
+      "public/assets/icons/antique-saint-nicholas.jpg": "c7717caa4441d5cbb5a4f9ce78b79643fb8c42d33469d33190c9966f69b8458c",
+      "public/assets/icons/antique-theotokos-burning-bush.jpg": "6f79a37fc3ef74c6b8243ab832046c0b8dba23589c48d8be3d76420316199f8b",
+      "public/assets/icons/antique-theotokos-vladimirskaya.jpg": "932e1b689c646028ec905530a6a2ed151487bd7bd8e096f1283694fa28abf703",
+      "public/assets/icons/apocalypse-2.jpg": "bc8bc5b4a9a4f4a9ce264d5beb57c0caa991f2d49ccce9d1f39d5279d6909389",
+      "public/assets/icons/apocalypse-vision-of-john-2.jpg": "40b7fc514c493c8e690274ea8601922f1da959c64fc39b0808792ae8dbd1bbc6",
+      "public/assets/icons/apocalypse-vision-of-john.jpg": "4a04baa32164b31f5f11549282eb2dec0958197e335a16f9d899ff1efeff4981",
+      "public/assets/icons/apocalypse.jpg": "6fb66dcb3aa1aa1d5cce027eb1176707512e1949c1d9a01be98b6fa758c60c1b",
+      "public/assets/icons/archangel-michael-2.jpg": "47622954e509e1692bc6b329dcbd1b3089cc332f396c0c32e76b29ff9be15957",
+      "public/assets/icons/archangel-michael-3.jpg": "0c966821f5d2317db1140ee20288f0aa1bdf0ee607e74491710089313a99efac",
+      "public/assets/icons/archangel-michael-4.jpg": "80b5b6eecec190bf3f48091c70a5d3b4044d4544af25666446076309dc8f671a",
+      "public/assets/icons/archangel-michael.jpg": "49dafda6e6371ed3d5febefd16aea0deb47c20b2849b8e6ab921b17f43e21ae6",
+      "public/assets/icons/bogolyubskaya-with-saints.jpg": "47e0c30a46eeea968b23afac9d47735095ff2be5ba601efab99b807a82635bf9",
+      "public/assets/icons/boris-and-gleb.jpg": "593b276ba555988a6aa99bd37dcb63ea24307f14a17f88587e1dd3a57df65890",
+      "public/assets/icons/christ-pantocrator-3.jpg": "9decacaa0d0ec36207afcc6d6446ddb5400050e6ce5dfebe5ac88912c201734b",
+      "public/assets/icons/christ-pantocrator-4.jpg": "4f9c64147f92a695d138dfa326eaa5d6fc2ef3fd27ede4c8b512149893a414a3",
+      "public/assets/icons/christ-pantocrator-brass-oklad-2.jpg": "1bc090a282913300b4f0d2efe77a6a618d790b047f43c720862ae46229bbb7ba",
+      "public/assets/icons/christ-pantocrator-brass-oklad-cargo-46852686.jpg": "9b67cb5d9e90eb34d2c56ca190c59c395b7cc1d07ad06ab2f2f18b5e38bc49b9",
+      "public/assets/icons/christ-pantocrator-brass-oklad.jpg": "9e61bb72922fc47147d86790af89da125da8e511b628404d52b08cf331d4b5c5",
+      "public/assets/icons/christ-pantocrator-porcelain-oklad-2.jpg": "7369a73d6550482b4206e71bbfdaa900948bb2f7ac44fcd24a3bd448f9c8636f",
+      "public/assets/icons/christ-pantocrator-porcelain-oklad.jpg": "984184c575e744ab43fae3d49a44a6430ddb33409b2671ee33dc68e103b669dc",
+      "public/assets/icons/christ-pantocrator-precious-oklad.jpg": "c56678ae1c524f99eef17da33f6049efb5ab2e01e113990c405148674ab6def7",
+      "public/assets/icons/christ-pantocrator.jpg": "96816e03ebfc743f73bb36e6634218f0c05e7cf949a41e12c75a8b1fa7e671fe",
+      "public/assets/icons/facade-george-2.jpg": "c35d9295e7cc3f3bafaeee15a422ca1a666b7cfce113c20f466ba5afbbe80893",
+      "public/assets/icons/facade-george-3.jpg": "a3a6664472673b8c91b89a36df4ff718dae3322e9a86a6feeb30542747be67d6",
+      "public/assets/icons/facade-george-4.jpg": "e314ad524751a4d54ea52f65e7ed8809f45a277fd7dde58ec812cbbe842db572",
+      "public/assets/icons/facade-george-5.jpg": "86dd62efa3b5eb772ea6489161a5bba34a7f3cc9f265f957da98846bfa60d71d",
+      "public/assets/icons/facade-george-6.jpg": "c379f20f2f82b0224fbb37dc2cf691b6900cb5ef083c94674f30861eda16d08d",
+      "public/assets/icons/facade-george.jpg": "5fbfcf514957cc669f225c58c6555ababd9cec86f78a1a9858705a4d685fe6bf",
+      "public/assets/icons/folding-kiot-2.jpg": "a880fc5c71f0f9349418cf126fa84f9901d1190b3301c2f163af5066e3150f7b",
+      "public/assets/icons/folding-kiot-3.jpg": "793994f3161cba0e7722161c724ec185dcb66d4d3641cca3ce96f565a8f6b6ee",
+      "public/assets/icons/folding-kiot.jpg": "93c521c4ad59da47e440856cc980ac727971647af54f6a90df4587f06aabe8a0",
+      "public/assets/icons/holy-trinity-2.jpg": "a26c35dc18f9b64b82e2eb162f97375d465eacb66c1d28ff21afe3212956a46f",
+      "public/assets/icons/holy-trinity-3.jpg": "9b7f05f86b1415ff0a7607e3347494fb07911bdc505d8a181234162253db8bcf",
+      "public/assets/icons/holy-trinity-cargo-46923193.jpg": "4c6554e1fc7160e0e2a070f6c9442af374a53f1870db655f9ea0823ade4e9808",
+      "public/assets/icons/holy-trinity-cargo-83913768.jpg": "ad2b1e19cb32cc57240d5dc18f0d01baca6758c15cd05953a0495c5d8c6b1996",
+      "public/assets/icons/holy-trinity.jpg": "58c694b61d0ed4e0f3b8d6befd80cb089ada5375f8a77542f3cc653e7cb975bd",
+      "public/assets/icons/ikona-aleksandr-nevskii-cargo-47800231.jpg": "57bcd9307874d53a9322d0afc6fbcd900851ff02e09a8c111646c1a2810c164b",
+      "public/assets/icons/ikona-bogorodita-vladimirskay-cargo-47836412.jpg": "f7a72b47cf18834e9cd5998f3d795d72729ae217d24ee06e068b5583d413a590",
+      "public/assets/icons/ikona-bogorodita-vladimirskay-cargo-47836413.jpg": "a3dcc51f12d14f811f0335dd83d149f7e603615112e0c4d426acffc10c9a78cc",
+      "public/assets/icons/ikona-bogorodity-casa-neupivaemay-1-cargo-47842466.jpg": "4e6bb704d5986dc9bb8fd791fcf4bb9025e9492f2a0e4b539baa26963d751615",
+      "public/assets/icons/ikona-bogorodity-fedorovskoi-cargo-47799488.jpg": "7c624893dd9fba97f82f139580e71bcb58c77a2672519283bf3dc3bdec17fe95",
+      "public/assets/icons/ikona-bogorodity-iverskay-cargo-47844539.jpg": "176ba011cf1fb86b9722f02706b8091b5d59267544fd248101fc792a4eecd4ba",
+      "public/assets/icons/ikona-bogorodity-kazanskay-1-cargo-47800413.jpg": "ae1e62ad5b41eda4717d872a0f16163b4307c890ef2c162a6d345e4965d8c6be",
+      "public/assets/icons/ikona-bogorodity-kazanskay-3-cargo-47843817.jpg": "ee6f8313f3d5e3ebacbde9b7a0589f0ae322901e2bea1b11c4f4858f3cbb273b",
+      "public/assets/icons/ikona-bogorodity-korsunskay-1-cargo-47844397.jpg": "b682bbb6ba551d15f04e7065d751a086cab1beea8bba49e39a5fcd0fa553bfc4",
+      "public/assets/icons/ikona-bogorodity-korsunskay-1-cargo-47844398.jpg": "c0729d1637d04dd9783e1a13a046876c8493ebda5fbf43d0ea3fff24d05dee33",
+      "public/assets/icons/ikona-bogorodity-korsunskay-cargo-47843752.jpg": "d7378200c4ee3029dacb8331a70939b708df1882f0eda8eb3eb1b11ad7e51084",
+      "public/assets/icons/ikona-bogorodity-russkay-ili-vzbrannay-voevoda-cargo-47844442.jpg": "8fd5fbc759d38de1409c9e66f855c1df25898be540d752fa5f3319953659377e",
+      "public/assets/icons/ikona-bogorodity-russkay-ili-vzbrannay-voevoda-cargo-47844443.jpg": "96f2770c2bc42792281556a34100c468b889031ed000440cf563deca1a7279eb",
+      "public/assets/icons/ikona-bogorodity-smolenskay-cargo-47842345.jpg": "d61913a28512be1ff4b309d51ff505572aff8b1d2c00dc892ec75881564beffb",
+      "public/assets/icons/ikona-bogorodity-sporucnita-gresnyk-cargo-47841599.jpg": "fbf4feff9934dc53e155fdde5a105772feed33be56f65514dc6508e74bdbb10e",
+      "public/assets/icons/ikona-bogorodity-utoli-moi-pecali-1-cargo-47833299.jpg": "7246aa16d2274a9135dd131b34b6b4677ee01a490bf0b169d85b5717cfa46499",
+      "public/assets/icons/ikona-bogorodity-utoli-moi-pecali-cargo-47801022.jpg": "133d4da924982eb7f962c489e4e9981158ced3d6dc6142744ae484b82509ab8d",
+      "public/assets/icons/ikona-bogorodity-utoli-moi-pecali-copy-cargo-47833689.jpg": "5da33c8029bfa0435f37d7374c29eaf4774f01b83c4329c01e4b25885fa58c96",
+      "public/assets/icons/ikona-bogorodity-vladimirskay-cargo-47844182.jpg": "8064c2f8c8a0bf491b5561ce12f8f5ace47e0cd7156d6ffc86433ff9faac4bbf",
+      "public/assets/icons/ikona-bogorodity-zivonosnyi-istocnik-1-cargo-47844098.jpg": "0d3c4cafc324784894cee9ff4e2debb9084005ed242336bf5d9115ef272362dc",
+      "public/assets/icons/ikona-bogorodity-zivonosnyi-istocnik-1-cargo-47844099.jpg": "e6a8ed9829a555a5536c3e544db711a3c3305e9e09123d0d2cfd10de56076087",
+      "public/assets/icons/ikona-bogorodity-znamenie-cargo-47844135.jpg": "454120f651662cbcdaf7b0a84bc87332bec95c1f4a5e6c69b887a82afc41c644",
+      "public/assets/icons/ikona-cudo-arkistratiga-mikaila-cargo-46923689.jpg": "8c7a723ad99bb13a1aa4b445fd52bed872b8b58b119b99cadb5d93f49639be13",
+      "public/assets/icons/ikona-cudo-arkistratiga-mikaila-cargo-46923690.jpg": "ab0b69033d80b4eee90088c625cef16a4b6e41cc5ff6c51c74a2aec3937d7620",
+      "public/assets/icons/ikona-cudo-georgiy-o-zmie-1-cargo-163596291.jpg": "19d37face47828be1e97684c4e00092395c9320ea58f8e5a4385f828996d96c5",
+      "public/assets/icons/ikona-cudo-georgiy-o-zmie-2-cargo-47833937.jpg": "16aaa7827ab0792825956d293ef5e74a53f495e5315d4c787d15e4ad21139cf5",
+      "public/assets/icons/ikona-cudo-georgiy-o-zmie-3-cargo-47834350.jpg": "b11e98200788e125925a1e27fe50640e8dec75409ac20a728f36656eba8827f4",
+      "public/assets/icons/ikona-cudo-georgiy-o-zmie-4-cargo-47836371.jpg": "67318ea615eeb746b4615b9690277b7154d3713064e89e88eecc4924e3de18c2",
+      "public/assets/icons/ikona-cudo-georgiy-o-zmie-4-cargo-47836372.jpg": "d7573f4553db9a71f4f6b9423f024326f5e6225545169726fc7e42cbb5cfbc27",
+      "public/assets/icons/ikona-cudo-georgiy-o-zmie-5-cargo-83916838.jpg": "ae40f8a0e55c646702a47a3773e387cf6aa5ae5a2df7776980e2a96db63561dc",
+      "public/assets/icons/ikona-cudo-mucenika-trifona-o-sokole-cargo-47836096.jpg": "b58f1bd609ac888a1456c25e1cff1b6dade132b9a3d9126acaef551c98df1a37",
+      "public/assets/icons/ikona-cudo-svytogo-georgiy-cargo-47836406.jpg": "7244e66bded3e12389babad7805a1888a88b56da278d32ded460b5cdac9685f2",
+      "public/assets/icons/ikona-cudo-velikomucenika-dimitriy-solunskogo-cargo-46923552.jpg": "c16f515c13e3bc142c402300f8550df486751144f10500b9d90313ce29ce4007",
+      "public/assets/icons/ikona-il-y-muromet-v-zitii-cargo-47836397.jpg": "58207c52c1f726f551708c4cff8c44bb8ac682df1cc287f639cc89053d075dba",
+      "public/assets/icons/ikona-il-y-muromet-v-zitii-cargo-47836398.jpg": "3f30450a2cf090eea3de0a9efc8a93b25320e2fccd8d764d31c0266f12f0f996",
+      "public/assets/icons/ikona-ne-rydai-mene-mati-cargo-47800160.jpg": "753b5815246ca72aff85800d1bb348733ff35a0d683902e29049a7fcb7bbc16b",
+      "public/assets/icons/ikona-ognennoe-voskozdenie-il-i-proroka-cargo-47836431.jpg": "b0d6ebc080aa941abaa2e7c339342fc8380e274c801d5c8c04719f4275aa289d",
+      "public/assets/icons/ikona-panteleimon-telitel-cargo-47837753.jpg": "2376d77bb5f5aed4ae4cf9feebf218ba75f2515aadec7a53e7e0b27eb1452faf",
+      "public/assets/icons/ikona-panteleimon-telitel-cargo-47837754.jpg": "522d6fec7477ae9bb3e55eb84346f1db92a92e96b68b6226925e306dd863428c",
+      "public/assets/icons/ikona-parsuna-blagovernyi-tar-ioann-groznyi-cargo-47843613.jpg": "7de99b4bfd1b6285e3ba86006d9201f1e57f898d5d8d36c514a4d1b40e08636e",
+      "public/assets/icons/ikona-prepodobnay-mariy-kidanskay-cargo-46923709.jpg": "d88b18880c8ecc43916add3e8b6a788854a8995ce8f4fd2ccc7e52bfcc6da6b5",
+      "public/assets/icons/ikona-prepodobnyi-serafim-sarovskii-cargo-47799352.jpg": "9ac48a8edb2e15244fe56593dcea9273ab545b3c7d68d40db2e165bde5181e1a",
+      "public/assets/icons/ikona-prepodobnyi-sergii-radonezskii-cargo-47833814.jpg": "809b8f1d2a12d5cc67190b57b3fc0c0f7d595b68950e64dea5e41ea31bab853f",
+      "public/assets/icons/ikona-presvytoi-troity-cargo-46923571.jpg": "957c5ed30f5e971b8f97da003f3a770d2358931ce23532a68a33ef5b0942d022",
+      "public/assets/icons/ikona-presvytoi-troity-cargo-46923572.jpg": "9e4f8deb60889a67aa460e08f82e687be50d0c4d48610e180ec81a02cb250415",
+      "public/assets/icons/ikona-presvytoi-troity-cargo-46923573.jpg": "45bf96b97ef61744b12c971382db89a72f00efa9c5f0182511b5d3d6034e4fff",
+      "public/assets/icons/ikona-skladen-bogorodita-kazanskay-cargo-83914085.jpg": "f3c7bcfdfd4db897cdc7602b2430e4ad6641d933be1801d13d45eb93aef3296d",
+      "public/assets/icons/ikona-skladen-bogorodita-kazanskay-cargo-83914093.jpg": "9ac14b718c6db4b4db921ad9f13a01fdd64dd9c2899deee5e3a0ce8778c59517",
+      "public/assets/icons/ikona-skladen-bogorodita-kazanskay-cargo-83914125.jpg": "a44bab0e68ac1590b9618434020f10fbda9c808bd69a7887c11282ebcaecf156",
+      "public/assets/icons/ikona-spas-blagoe-molcanie-ili-angel-velikogo-soveta-cargo-47844366.jpg": "f18ffd6e2aa47b17953079ac3af1ddee374f54fbeb6a49130f5583e2e30374b0",
+      "public/assets/icons/ikona-spas-nerukotvornyi-1-cargo-47840404.jpg": "b53306c10fd1d6ff13742e4c15022c958420977a0cad3205de5322d2028399c1",
+      "public/assets/icons/ikona-spas-nerukotvornyi-cargo-47837860.jpg": "5e84d4391badfb618d0c789e6becff7c5d6a22c306bac24051ed2e8772ee7996",
+      "public/assets/icons/ikona-spas-vsederzitel-v-starinnom-oklade-i-dubovom-kiote-cargo-81216832.jpg": "479490b0ef7823f23f486418575069ad0f3560396649be5793472c824ae6564b",
+      "public/assets/icons/ikona-svytay-matrona-moskovskay-cargo-80926815.jpg": "deb5a2d98bd833bffc8f0eada1d45298d05de52c2ee9c95f7f3fe5c6ae59df26",
+      "public/assets/icons/ikona-svytitel-spiridon-trimifunskii-cargo-47836513.jpg": "a1919f2ab010d831865425087df97a2ca9c42a861cdc909b0deae296ea265694",
+      "public/assets/icons/ikona-svytyk-boris-i-gleb-cargo-47840455.jpg": "304141a5c1161c6759008571ba194b30f6e366b2b7e6629c33fd5747d5857fb3",
+      "public/assets/icons/ikona-varvara-velikomucenita-v-zitie-cargo-47799916.jpg": "c9b91cb38dbab3facb2a985bb206852807d46246024a9ff614e2735e9ab5234c",
+      "public/assets/icons/ikona-varvara-velikomucenita-v-zitie-cargo-47799917.jpg": "3408a57e6470df768dd462f443875b81e427bff08f27d11e34d952332e14e69b",
+      "public/assets/icons/joy-of-all-who-sorrow-gilded-oklad-cargo-80900910.jpg": "20255efacd6d7df9639cb0a138df906122fb167254a759d7f66492fecdf4f10f",
+      "public/assets/icons/joy-of-all-who-sorrow-gilded-oklad.jpg": "958778e2ced00b8104f89415b626b29732640213216893f0ba136b8c09228e00",
+      "public/assets/icons/joy-of-all-who-sorrow-moscow.jpg": "39e348993990257003277103854293d2f8e6d73d2eaf9d5b56b9215116c8f0b2",
+      "public/assets/icons/miracle-of-george.jpg": "82ff55b925b937198e4643b77fcf1a3786c904f3411d1eb0384d6dbee59e26f8",
+      "public/assets/icons/miracle-of-saint-george-variant-cargo-46852548.jpg": "ffafdf6096360ea5c5caccd1a0cb52e893171a6464eacface562441f4d392a18",
+      "public/assets/icons/miracle-of-saint-george-variant.jpg": "03ff5dc6a8dab37bf9140ebca8044370e49b6c1fab0d5e2720d3a6ce92050daa",
+      "public/assets/icons/miracle-of-saint-george.jpg": "b43cc53281a16c661f9bec9cbef5745745b2e1607316b441e7a59c9d17ef1390",
+      "public/assets/icons/nativity-of-christ-17th-century.jpg": "c9ded0239fc523e142150679b5e40f33af59eb83e4f5e2de234dd389ec2f9f49",
+      "public/assets/icons/nativity-of-the-theotokos.jpg": "c71fae4d06af6b995d35e2200a2eff646d8fc14c0c5259a7543cf63028d82a79",
+      "public/assets/icons/nikita-besogon.jpg": "1155927a97220aa3401aa66828ba15569ce27829cfb2d737344583d23180fade",
+      "public/assets/icons/peter-and-fevronia-of-murom.jpg": "05b36ab2c95a8229e66a8ba942890d59281c04629fb0a56df4cf7a87efe94fbf",
+      "public/assets/icons/prince-vladislav-czech-2.jpg": "08070f0c98178c3beaca4a2f899183912de3c8ccb92de36d7439bc1890834d83",
+      "public/assets/icons/prince-vladislav-czech.jpg": "1d772490a1cc2a2c511ea3a8fb25e8282abe0a6e836a95b7b4e65eaf4a45f117",
+      "public/assets/icons/resurrection-2.jpg": "78f0afbd91a275ad3d1f27c8ec6a5e3dcf7f74b3886fb973f27c0b07a04341a4",
+      "public/assets/icons/resurrection-3.jpg": "0a3053944c6304e525e14cac7a727a0c0812332575961643bcabce66a0595244",
+      "public/assets/icons/resurrection.jpg": "0c5ad14de30e7770f402ff3dbec54ace767265bc320d4c23f0f5a8e008dec69b",
+      "public/assets/icons/saint-nicholas-2.jpg": "c3a6d4e2002a11ce966f1270ac772f05c8ab33bfcd702dc27546f6b499123481",
+      "public/assets/icons/saint-nicholas-cargo-46849264.jpg": "40cc72fc23b75c9929d428970b3258f549cfe7482606c33315f2887fc4a7472f",
+      "public/assets/icons/saint-nicholas-with-life-2.jpg": "b4b902a01394f05cd99abe9620c54b419f34d801ff3a4a525163fc3165827559",
+      "public/assets/icons/saint-nicholas-with-life.jpg": "8bc1aaa88fa68b0e7c80b571c3c0fb19a273989c6c05b97f5e228f5084f80696",
+      "public/assets/icons/saint-nicholas-wonderworker.jpg": "449f7d2a9c7c69aeba28e1dcbac14380fe8c3c16d7516ea8182a49da57defeaa",
+      "public/assets/icons/saint-nicholas.jpg": "aba15e9bd3e74169cd663a6ddc270bd415df54e8dc9bdf0c675924ed1c4e1f78",
+      "public/assets/icons/sergius-appearance-2.jpg": "2d916e478544810749f073ed5c7047604d6de6a49355224465b087bea7a04b52",
+      "public/assets/icons/sergius-appearance.jpg": "029a55fd1c64e419ed6021c2e4e2fd6357a4e49d78c128cecbd467a5b78042fd",
+      "public/assets/icons/sergius-of-radonezh-cargo-46848200.jpg": "cc9bcac302aa2a3a4a1be1c965f2b8b98f25b16707e16abe21ad70cb9abf72c4",
+      "public/assets/icons/sergius-of-radonezh.jpg": "273804f35a6435242cc6307ad250a282e8361f6ce700d11250703569584a2330",
+      "public/assets/icons/sretenie.jpg": "584dd1130780033d1b04805498a91dbbfeca1c3d545d0d60e59d34cb4ddb93d8",
+      "public/assets/icons/synaxis-of-selected-saints.jpg": "4f0f01cd01c96145ae32a8af7883f8d3506f30709eac37985e423d1601dd6808",
+      "public/assets/icons/temple-icon-peter-and-paul.jpg": "a23b348b81b50dbee11c8fb50e4ac859288454c76ae9f32af95711e08aa856af",
+      "public/assets/icons/theotokos-feodorovskaya.jpg": "a3b8d3018187626b7325ffcbaef4e3a2659b43cd6d408013b803e9f5a236f55d",
+      "public/assets/icons/theotokos-healer.jpg": "1c568025319e3fca223247baf62b682001e6d824dafbeece7daa434a610236ae",
+      "public/assets/icons/theotokos-kazanskaya.jpg": "a7c7a0e921341647e70e4d4b5ea5ba416d0c474cb7074bd1b650dc27a5d3fff9",
+      "public/assets/icons/theotokos-muromskaya-2.jpg": "59bd1a501a82d72f40cdbaaccadafa47c9fe5882d1ab80f9da26e20beca83973",
+      "public/assets/icons/theotokos-muromskaya-3.jpeg": "53142917433f36d9aa3f85fd805d08703c1e5e983ef79bf2fad55f0c2cc14adf",
+      "public/assets/icons/theotokos-muromskaya.jpg": "aabd0581b7a619c03b0d5728738cb586922258835c6ccd229e3e122913317d63",
+      "public/assets/icons/theotokos-petrovskaya-carved-kiot.jpg": "fa28b80195e7ae5e888aac80e455860403f6487cd17f91601143a76a03f33fe2",
+      "public/assets/icons/theotokos-russkaya.jpg": "080415f97b11fb040d83b5e7ed7db50e04a0c7ec4d145503fb510c316db459f1",
+      "public/assets/icons/theotokos-three-joys.jpg": "c376999d22ca32a5a737138348d97fa478f1e7403fc72c519470815b5fb39448",
+      "public/assets/icons/theotokos-vzygranie-mladentsa.jpg": "56a81b19f2bd9bea299da63ce300b7da05dcc4f6b2a7ece9c9c2232694d80641",
+      "public/assets/icons/theotokos-znamenie-oak-kiot.jpg": "b33e45b29e18166e83dc365a3450f0830ed982207cf7b9e0decccb5171efdeac",
+      "public/assets/icons/tsar-ivan-the-terrible-2.jpg": "394145f01f7b835aefb94a634f075e01764164347ead290be8ca1e6c34d437b0",
+      "public/assets/icons/tsar-ivan-the-terrible.jpg": "f9ccfc23e696cfcea3624f66fec1896b87db8c90ffd8c2715499baf010ecfa3e",
+      "public/assets/icons/twelve-feasts-and-resurrection-2.jpg": "90035965cf8bf495a15af8700ac3968163b9f10d483881079cff25cc822a2840",
+      "public/assets/icons/twelve-feasts-and-resurrection-3.jpg": "b849f9c0879f6ddf4f38c273dc76297aabf3228303c375470626ad1027bd785f",
+      "public/assets/icons/twelve-feasts-and-resurrection.jpg": "85602e3dd9e297d1046a30ecad6dc0e4305f4394233fc5c7fd21fe16faad67a7",
+      "public/assets/icons/wedding-icons.jpg": "b23d1dd62a64385006a05e666606eed4b761e94a8de80bb85f4dcec9d9c3ef89",
+      "public/assets/icons/zosima-and-savvaty-solovetsky.jpg": "6a4f16d6639646eb521e7161a9d1e09d807ecbcdbe8217086b121a81c821ead1"
+    },
+    "existingDerivatives": {
+      "release/optimized-assets/assets/articles/covers/gorbunov-icons-kholuy.jpg": "80cae2a50740f85f9756f20134253e789ebad3df3001527e51d36f14822730f1",
+      "release/optimized-assets/assets/articles/covers/guslitsa.jpg": "d27a1f715e557261728f7ac12d3bd2282b67b90c56c9ff72107017f88320108b",
+      "release/optimized-assets/assets/articles/covers/history-of-icon-oklads.jpg": "b719193ba7eec44b599be9f1c3946951493962badb7ce48361ab3d294160959d",
+      "release/optimized-assets/assets/articles/covers/icon-painting-canon.jpg": "fecaec0eac9c58c42103912e5f8cbeae6baf7ba007a5759d54089b3280df485a",
+      "release/optimized-assets/assets/articles/covers/kineshma-icon-painting.jpg": "3437029a05b0a4bfa6197fb61ecd8f485025825ee23d8231ff7994e302bd7d0f",
+      "release/optimized-assets/assets/articles/covers/panteleimon-monastery-icons.jpg": "c4a740de5da3c021344c45ef7e12fa15fc78ef5a51b9b5f465209a02ef5e71d9",
+      "release/optimized-assets/assets/articles/covers/pavlovo-na-oke.jpg": "cbe2309963a3a000f626b41ccf4695ccc34da76ffb5c15ae93e689e95e52f357",
+      "release/optimized-assets/assets/articles/covers/theotokos-russkaya.jpg": "04e3992af972afaeff16172108fc17b987781c5d2e435d6826a782b16af97f03",
+      "release/optimized-assets/assets/articles/gorbunov-icons-kholuy-2.jpg": "2e97270598325df423bd7a26ff93d5197b370bd3f5ad366d62af77e3444f7c71",
+      "release/optimized-assets/assets/articles/gorbunov-icons-kholuy-5.jpg": "66b4f5b011662c1b1f16b1ff87d85a29e63e51abe6ad5620a06254be3ff55763",
+      "release/optimized-assets/assets/articles/gorbunov-icons-kholuy-6.jpg": "c8fa2818619b4828cfe77d55753c8d4a5443af6c8b9029bd18a8d3b7c821ef9d",
+      "release/optimized-assets/assets/articles/gorbunov-icons-kholuy-7.jpg": "486eadfeda870e89113cd32291c6af18e7e32c5be05ef528a0302d6a4c21be22",
+      "release/optimized-assets/assets/articles/gorbunov-icons-kholuy.jpg": "b9a0f84ef5ce7f447fb82d0c1e7640664766556d452031815701a9af3949d005",
+      "release/optimized-assets/assets/articles/guslitsa-10.jpg": "f35cb482752a77de17fc87f19da626efcecf2cdca1cd2723dee7ea7517b37e4c",
+      "release/optimized-assets/assets/articles/guslitsa-11.jpg": "6eaf4829c5ccdc374882b38dbb821594058f8184727856623388a00a98bce720",
+      "release/optimized-assets/assets/articles/guslitsa-12.jpg": "ae03805151d18b1e23284b8834f1809ee730c08e8ee4c9b507cd69ccc3a5a41d",
+      "release/optimized-assets/assets/articles/guslitsa-3.jpg": "00bf1364c3398e003e8585898e6111297c741943e324917dbb2c688a43222d80",
+      "release/optimized-assets/assets/articles/guslitsa-4.jpg": "78788cf829a239401b1e853ec2bf0e1feb2eebf44c7558ba5bee8fc4c4301f0b",
+      "release/optimized-assets/assets/articles/guslitsa-5.jpg": "e049d8ef8bdcadd788625e14a13bfee88daa8aa31e41883a6ab33549c794cfc0",
+      "release/optimized-assets/assets/articles/guslitsa-6.jpg": "a1ac39703966d90b6ae7b98525f8c91ab3338e0ecca4d25633308a896f7f582e",
+      "release/optimized-assets/assets/articles/guslitsa-7.jpg": "19370c3a3939fafe8090831c948131b783e93a9eb222d52489623e1d395b4ad3",
+      "release/optimized-assets/assets/articles/guslitsa-8.jpg": "6b6fe17e57d8b2f2e3e662db055b5c4e92c8a059d137f9ac0fe864adc6e8b159",
+      "release/optimized-assets/assets/articles/guslitsa-9.jpg": "6a20d46ed37fd87917f16acb3d6b9a38bbb9d9f5e8394fb76dfdcabf00a649c5",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-10.jpg": "b5b62f4634f059dd094edabdd794f3d9261f49662fb6318b32ddd821ca6d4cf8",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-11.jpg": "1a510382c78230724cda554662a202c74086916c3ac9ca7259e59447ad3ac3ba",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-12.jpg": "8827065deecdfee2cdb573a9218d6aa157f310bacbb6d2897fc7359d14361365",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-13.jpg": "e2e1560abfe4c859516e14875b6cd2a241c0c40007cbcfe2d3ffaee007f49940",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-14.jpg": "90a27f50179a78a879953de7425d52cee6c37a78b2e589d1d8c6960938eec501",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-15.jpg": "e51cef2e8434f912f327cae015026b1f171b68977506a8f7a20fa28aca195f90",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-16.jpg": "a32b8465250aaf4530967df844da6261b09cdc930de914ee95c86a7f138122cb",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-17.jpg": "839c644de5d9f43d713aeaf4f7517e230978658ff8b6f13fb60d22efeb75b073",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-18.jpg": "f6d97d74a7f90a9ec2ad8a4e4e4832ed92f164d5520c2f280ee2ec8f7025bb4b",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-19.jpg": "a63c8c08a3971f4d6406d0090e23f85311a801a9124addc92df7656df7b2eaec",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-2.jpg": "1d075e26097ca5c409c8c1763d93c5bc53d7b4046d23d6446e4260f2af006786",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-20.jpg": "f0080593e005f2050a49161b6a00630706a3e6698854936fc437b79373ac997f",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-21.jpg": "323f0a15acf4dfc8b3a3b1a4a843d4285f3e8ac13bda7ede9ea39a2fd205287b",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-22.jpg": "a4341547eda5559a49a14a62cecb794d42bdb591c6d311d5888839f8fba52397",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-23.jpg": "1e562f37ec52105cbb115b6e64f0edb409a28f9859ae11176947d6d5dd7c0a5a",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-24.jpg": "9ffe0272cc0e68e383123a9c7dfe4539dcc8ab4104861e1b35012645cce119f4",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-25.jpg": "3077ac5b29f30bce1b683a857df408693e2f549fde4aa5207baff43a23490689",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-26.jpg": "72a171d2590c127732f8415def7ee2c465978b66af4eb43a271668c81aa41ef7",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-27.jpg": "7418102f9b839fcec0fc696fa752c01b32d225394164e97bf7d199b8de6e76d9",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-28.jpg": "f0cc6983d628b486a2d8c230bae21135aa846412d431e0d53d62b4af3d63f8ab",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-29.jpg": "da6ad0a2068685d194d9fb2f391ecf6b8e0bb9f0c8927771394483db6dabc8a3",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-3.jpg": "09e9a04a711c3b662b6c2cbbeffba09cb670cfa267b0e8f820b0e109346d2cd0",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-30.jpg": "6fd3ffcd2dabd6b82fe32e57c7aa2128d1aedd756e74ca73c19b309f44eee962",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-31.jpg": "fdfee14c190dacb2b3a9960f2a5edb91e5de01666a36be4e32dd58bc1f8d18e5",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-32.jpg": "a3a1027495fb743b47ce423b9e736a6950119590b24b978e22221fb2f43085e5",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-33.jpg": "830e3d8ca58768cbf1c3a335e7c088c9d3305ab8fe781e810195c60b27a143f9",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-34.jpg": "d4f45a53a976a1f9ec6a29e40ff8f7a53ad12aa500bb46718ca94a09ecdbd213",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-35.jpg": "f1c7d6b86690ecffc89bf0c39eb8ce8da52ca25530b249324fafbed31fe8fb18",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-36.jpg": "835cb6141c049e195702ff7061dd29f88bd433499ef4c32e1fe637cb271f4c27",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-37.jpg": "981a9f8ef2829a5009de0e7839bce88a52df6747b2db1ba6bcf3cfda325dd88f",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-38.jpg": "fc98be2be367f0e302417b0840a4bfba9603950b5190bdaddbeaf3a945ed776c",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-39.jpg": "5cedcaa9f2ea4976eb73d7e3d5e4037ecabb3d47c5a2574d47a345cfec14594b",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-4.jpg": "b127b90a920a98e86578c51bc5b883ba7bc74b1a123742528aa0b3edda75106c",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-40.jpg": "b4c316f287e7e54785ec10b4c8dce262a34624896337efd61539c4d09e2df064",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-41.jpg": "da5e8501f76235ad21a44fd7331f7952d9846cd6bef1b9e6da66428ba42fcd65",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-42.jpg": "c9fbf66c93331f66ebf8b78960b53f2785096e64e8abd32ab1eba6860fd4b036",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-43.jpg": "1019d9a6d9f491889bc3bbf7af972c61b27210394c902fbb2d1f9ea16c66adac",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-44.jpg": "4db4f55428c08657a51171c873253f4dc48c8e5c4204cbc0fca07e59896e2938",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-45.jpg": "6ded86dae3f771b9edddb5e4851fb14f3898a119c757ebf9ad4b7e2c454e3489",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-46.jpg": "fc9a055a5aa6191670b921a01b020b1eb062895a215fca07cf01e8dbae366f7b",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-47.jpg": "1a89202dbf8dd6e0869669786017a207317cec6b8dbc3d2acbb4a00729a5e916",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-48.jpg": "e516adcaacedead6a43f2f8031aa8063c253a39576247ffb3bf8eb70a19f59b8",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-5.jpg": "f9e9e4024aa11e99163e841d72d9b652e4ce2faf4b8c84c551a4a2231aee9b13",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-6.jpg": "c255227fbf68fef81dc7a1e2e3653d37fcc12281bca2e7edffc00afee0da3b92",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-7.jpg": "e39ce20e93564f6a83e92fae3d3caa3b60a215d8b9ece3cb5b0f69695e835b04",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-8.jpg": "e97df522947b403e7dbc8fe5de5f2f7a92be2a6955d710d633396eb42bebbba1",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads-9.jpg": "557959934b4ba34e05622dfafaa42890f9149f8fbce6d45f12cb89019567a0e4",
+      "release/optimized-assets/assets/articles/history-of-icon-oklads.jpg": "783e5aeac127f0a5234352c4e84055ab571e142389307fd31e15280d85f9877d",
+      "release/optimized-assets/assets/articles/icon-painting-canon-2.jpg": "9e16af4696e2533d6e10d9823379604fd7e067f77eb590a221c9b1da46df9234",
+      "release/optimized-assets/assets/articles/icon-painting-canon-3.jpg": "61199f4a1a859519160308076014c8929bcd3a2101ae60a534b2246d1fe79721",
+      "release/optimized-assets/assets/articles/icon-painting-canon-4.jpg": "9f18ae947330c3bd57714cad3c47f0ecbf95c99121976ddc77bb923cad3c00c2",
+      "release/optimized-assets/assets/articles/icon-painting-canon-5.jpg": "8aed45b9ae1d06c301e305a0bf942897120f153f01e4968c0ed60ddd69d0e139",
+      "release/optimized-assets/assets/articles/icon-painting-canon-6.jpg": "9a685291367120dc2f709060b4de3ac161b903c175b581a389b5332261f56a6c",
+      "release/optimized-assets/assets/articles/icon-painting-canon-7.jpg": "0f4962ad505d0a362e1593228226db0fbf2c4c5ced0ef4ab57a343b617508b41",
+      "release/optimized-assets/assets/articles/icon-painting-canon-8.jpg": "8eb838df72a2010d7f9de1a1c2592b33add6e97f38b1ac643102babde4a3646f",
+      "release/optimized-assets/assets/articles/icon-painting-canon.jpg": "2cc46f4f98247698d75c0b3a187e7035325f55ef2770cc2d5b6d87c16ba6b94a",
+      "release/optimized-assets/assets/articles/kineshma-icon-painting-2.jpg": "15907828053df885f70cef32d9177803d2156f8a88b40dcf8054028a27e98343",
+      "release/optimized-assets/assets/articles/kineshma-icon-painting-3.jpg": "5b4117cbbb8bc535a237826b3654009f603cb2069497b82003515b43395686b3",
+      "release/optimized-assets/assets/articles/kineshma-icon-painting-4.jpg": "bbe3637921160ccac1406b51e50e9960b03da72c8fb569b4bf2dc52c69c3db76",
+      "release/optimized-assets/assets/articles/kineshma-icon-painting.jpg": "80f1c07435cd8405bc49b320afb3fb6e644b3d7153c2b7812d6ff47b9373e248",
+      "release/optimized-assets/assets/articles/panteleimon-monastery-icons-2.jpg": "0c5a7b9285bf444408c22ab03410bfdbd0abedae1fa469d7c71ec8e648eff9be",
+      "release/optimized-assets/assets/articles/panteleimon-monastery-icons-3.jpg": "a5f0d05fece18ad5aa61fab18afbf3fe0037f5b708f3533fe3e4dab065cd58a3",
+      "release/optimized-assets/assets/articles/panteleimon-monastery-icons-4.jpg": "ade8a0c4ab0c5d811286f90b2d8c5ebf1da6e77de444070fb74072344f323f18",
+      "release/optimized-assets/assets/articles/panteleimon-monastery-icons-5.jpg": "331f1ccaa9de212b88e07ccb220406144cba25287acb0c622363977e4b85bed0",
+      "release/optimized-assets/assets/articles/panteleimon-monastery-icons.jpg": "2aecfc2cd3970cd05f7bc0d52c2000c7f1a62974e237e09199fbe691005a4681",
+      "release/optimized-assets/assets/articles/pavlovo-na-oke-2.jpg": "8115db717d009d5a4c63c35ae94da523d2cb0f310c0ffb46726edff02bee9625",
+      "release/optimized-assets/assets/articles/pavlovo-na-oke-3.jpg": "735a088db26eb7615497ef3c9744ef1866d309b504707e844f8f8ab7eb524254",
+      "release/optimized-assets/assets/articles/pavlovo-na-oke-4.jpg": "c90300a38b58bbca977a15ba81d3a9d4a6a328f73fcfb59b9e506f840b10b6a9",
+      "release/optimized-assets/assets/articles/pavlovo-na-oke-5.jpg": "8411da2bcd48cdd9b9cc65067640e60514d3b983c9c3cb93f80b720a57f8e675",
+      "release/optimized-assets/assets/articles/pavlovo-na-oke-6.jpg": "78d876029b0673bd3d2c902f726da63bcfd97350c70e710f11956ceb5c3cd979",
+      "release/optimized-assets/assets/articles/pavlovo-na-oke-7.jpg": "8ed666e90f59eccdd8be76b86356de51752805262935dbc95df3f7789c7d5ca7",
+      "release/optimized-assets/assets/articles/pavlovo-na-oke.jpg": "5f2b37e32b0de3d91ecdc397abcf7f234c23fcd1b58288920359813beceb3576",
+      "release/optimized-assets/assets/articles/theotokos-russkaya-2.jpg": "c5ef59fa951ffb2720dcfe2035f5056db7ed3eb75f2d610fcb1c3cb95a01a5a9",
+      "release/optimized-assets/assets/articles/theotokos-russkaya-3.jpg": "a6c84a7764928aadabf5323676e8713aa6a981a04592158c24dd1e9f3e8fd4d8",
+      "release/optimized-assets/assets/articles/theotokos-russkaya-4.jpg": "f86d9c1dc705089797db437269febf47c0a5bb3bbc7f8e6e9d94f7d2a05d97cb",
+      "release/optimized-assets/assets/articles/theotokos-russkaya-5.jpg": "b93d154850a6af021709e129e74b77bfd1560e3ad5790dfbe948f8be2c65cf10",
+      "release/optimized-assets/assets/articles/theotokos-russkaya-6.jpg": "b97d14cc7e131f5343d341f420f9139b70b9e531657d136faa188c37182f602f",
+      "release/optimized-assets/assets/articles/theotokos-russkaya.jpg": "ea763d3fe52545d9eedd94525f13fcd05abe8a037aefa4e6fe50bfd6b403960a",
+      "release/optimized-assets/assets/icons/alexander-peresvet.jpg": "fcdbfb9d52ee7973362bc8f5ccd503141654fde54dd84cb3dcb321d22aeff760",
+      "release/optimized-assets/assets/icons/antique-saint-nicholas-2.jpg": "bfe397faa63027e721ead8c2d2a5061edf4c288d8f74e3fc85e86917d9e6fda8",
+      "release/optimized-assets/assets/icons/antique-saint-nicholas-3.jpg": "aea1aa221a066d070ef8f4e41ccdddb7b94346a5fc16c3097f3e2c259280c5fb",
+      "release/optimized-assets/assets/icons/antique-saint-nicholas.jpg": "8cb7655c51a773db7e5e06d3936c9f7ee20b0070d2f34e386cd29bb25324bcb2",
+      "release/optimized-assets/assets/icons/antique-theotokos-burning-bush.jpg": "e7fa61d907398ad55ac74df8933af441f70938db4defc3e613598edcb63497b6",
+      "release/optimized-assets/assets/icons/antique-theotokos-vladimirskaya.jpg": "7604b2b8bf47033c853aa624c03689c376889d7ca251486edb6a2277817a915c",
+      "release/optimized-assets/assets/icons/apocalypse-2.jpg": "80a8d9817257cf79edb9e8cc329b6cbcb2d6bad7d4e08092b0b4ea0dd64f8bd5",
+      "release/optimized-assets/assets/icons/apocalypse-vision-of-john-2.jpg": "5a4d2e195292c9890c39d5d0c24d5a0d11274c90a800982637f7dd0eb3f2a426",
+      "release/optimized-assets/assets/icons/apocalypse-vision-of-john.jpg": "e2b7c42e0ab637fff08ebc93c01d197cdff5ab47c4cbd81a5229275625caea1b",
+      "release/optimized-assets/assets/icons/apocalypse.jpg": "926fda98103d62a1aedf4c807de6da55c64fade0728117b8d20b3dd836601273",
+      "release/optimized-assets/assets/icons/archangel-michael-2.jpg": "480276d8335424fc614fbeedad60f3b9acf2c6be2da2c29b69034b145922a225",
+      "release/optimized-assets/assets/icons/archangel-michael-3.jpg": "6652733a8c980b84fa61da64e1776eada492a5a742edc139f4a3bf7eed128dfc",
+      "release/optimized-assets/assets/icons/archangel-michael-4.jpg": "dc7c3b28a88cee15e024eae22347ab02bea4c1e2ccdacedf50fcead3a3fe3965",
+      "release/optimized-assets/assets/icons/archangel-michael.jpg": "087dbb515bc25f19cae14d5456e1ebd38b1b87d7cc7ae2898288ac28dd8742b7",
+      "release/optimized-assets/assets/icons/bogolyubskaya-with-saints.jpg": "2fce3c03fa1d7b31e1a84438eed60f740535bcb767df216b159cf003e5843881",
+      "release/optimized-assets/assets/icons/boris-and-gleb.jpg": "41eaa2563c651ff07b6645d73a62b8b2d44f7cc4a121ebe0f9347a0477da6415",
+      "release/optimized-assets/assets/icons/christ-pantocrator-3.jpg": "d8878bfba466055e0a886c5215411f5cceee40835e5cc6d8ba651404d70dd079",
+      "release/optimized-assets/assets/icons/christ-pantocrator-4.jpg": "4a25e7fc81a905f62f0f34ae4e23331946959343f80943d6f250bf1c031b704e",
+      "release/optimized-assets/assets/icons/christ-pantocrator-brass-oklad-2.jpg": "590e6da502bf17106acfae01981c5e227ea9dee8a002a38fd2e8602376dbe4f5",
+      "release/optimized-assets/assets/icons/christ-pantocrator-brass-oklad.jpg": "c91a57ce8c4b59a4bfbbf323085fa325bfd7959550c46fc0e9ed46098a3def7b",
+      "release/optimized-assets/assets/icons/christ-pantocrator-porcelain-oklad-2.jpg": "c04144872532b53ab1554708fbef174c707354590932523ff8375f934228bb6d",
+      "release/optimized-assets/assets/icons/christ-pantocrator-porcelain-oklad.jpg": "6347f4675fc8ced7509d808f0c2005be9f2cbda4371ed459709a678b32d22d3b",
+      "release/optimized-assets/assets/icons/christ-pantocrator-precious-oklad.jpg": "375e1b76bad806c0ab40a287b4230e5dfefdc157473359395bb29b59d5952d94",
+      "release/optimized-assets/assets/icons/christ-pantocrator.jpg": "f1b6b7d529cef1b5944ea40f5b3029fe98e9fb2f811160a3bf69ffcb3dfa1dc4",
+      "release/optimized-assets/assets/icons/facade-george-2.jpg": "42e7f22175dff1517bb9cb56939d04cb87b6a3ca06162f17cedda0e81094ab29",
+      "release/optimized-assets/assets/icons/facade-george-3.jpg": "08b13b431da78bea5a339191690b5532a35f1de40031dfa96fa69552d1e39017",
+      "release/optimized-assets/assets/icons/facade-george-4.jpg": "3605c2dcbff80384603118829072ec820ca5e4d8b379c18583e5e7683ecd2996",
+      "release/optimized-assets/assets/icons/facade-george-5.jpg": "66609d7291e0e4a578c5935da4045b2298f007d2b9a699b1a67f56964ec9f88e",
+      "release/optimized-assets/assets/icons/facade-george-6.jpg": "3162d678f1f2edf7684fec59dc3ee1e1f9cec81cbc77b3f3d0fe62905f567e33",
+      "release/optimized-assets/assets/icons/facade-george.jpg": "98c40e35f3198c888681082844586abcba9c707662724161247d4f5388d7cfa8",
+      "release/optimized-assets/assets/icons/folding-kiot-2.jpg": "1c5982807c0c67054cf1eb7f04702d3b53f931e5be05bfe3121fea657c4af899",
+      "release/optimized-assets/assets/icons/folding-kiot-3.jpg": "efd9a4e9894a62483e221fe0dc44af429cd7f48b4ec0f59389c3f1090c0a6704",
+      "release/optimized-assets/assets/icons/folding-kiot.jpg": "2c6f91d5f7813990be530b0a000ef873afa4cb47b395ae623487fa98c2e955b6",
+      "release/optimized-assets/assets/icons/holy-trinity-2.jpg": "52c57bf3d5124c2401ecb435ee1d2e49a1828d10162b8fbc31d021b779efd258",
+      "release/optimized-assets/assets/icons/holy-trinity-3.jpg": "2813e1ddda989647f759b30d19a58f2b05b1eb18050f7e2551352e12aa9dc4b2",
+      "release/optimized-assets/assets/icons/holy-trinity.jpg": "6826a99d3bc4adb281fb64ecd8927d89b7631342c53e1f5aff9334ba37b87932",
+      "release/optimized-assets/assets/icons/joy-of-all-who-sorrow-gilded-oklad.jpg": "b6e3e56c067d1a9efec398ba9099953de575ead6881159f436d0c44459be80e2",
+      "release/optimized-assets/assets/icons/joy-of-all-who-sorrow-moscow.jpg": "ed08f74ff4b204340d32b1e600419556466462c4487f34b8eb23cd0b438f7a1b",
+      "release/optimized-assets/assets/icons/miracle-of-george.jpg": "2b2dcd14de7b58971bf74d91a8512c67763bba9fe454657b472a84e05f10be79",
+      "release/optimized-assets/assets/icons/miracle-of-saint-george-variant.jpg": "8747fdda67b8af8243c09d18fc13f3ac1ebcc24496052c9ed6f798ff028ffc17",
+      "release/optimized-assets/assets/icons/miracle-of-saint-george.jpg": "d3e3a7d1a5d09c29da4ab78ca3d6b39d811fefb4a29c3b81d9b9377d9a7a82c4",
+      "release/optimized-assets/assets/icons/nativity-of-christ-17th-century.jpg": "fbf2faacb9aafc96d1a53861f8d93cf070250c4e652da5271d162fd3a14ae048",
+      "release/optimized-assets/assets/icons/nativity-of-the-theotokos.jpg": "0f1e28564869560e99b981700c738a083e5d40318b17de77c9a7a4540c34730d",
+      "release/optimized-assets/assets/icons/nikita-besogon.jpg": "71abd07bdc0ab9a33db48d9c7b1699a651721fc7fb934bf06cb31e58657fa872",
+      "release/optimized-assets/assets/icons/peter-and-fevronia-of-murom.jpg": "eeafb6904fa86b15d2bfc5f9506f374a93bba311612cbc88b729862a570082aa",
+      "release/optimized-assets/assets/icons/prince-vladislav-czech-2.jpg": "fe03e0262dccfdda4cbed92385b9cb692a9f00c6b86311fe98d0e41de51da28f",
+      "release/optimized-assets/assets/icons/prince-vladislav-czech.jpg": "6d696b60ebc8b1e92199ab66af8a3e39c452a8f05a177aec40ec2be56a5f2076",
+      "release/optimized-assets/assets/icons/resurrection-2.jpg": "5f739659beaea627f4f26eb6573c4d7d9ac64ae98f70b6b693a2738b24195deb",
+      "release/optimized-assets/assets/icons/resurrection-3.jpg": "b2dd3475fbdab81d74c593aab3c9a60ab82616d8f6b19e498551a5d5e7d0c16a",
+      "release/optimized-assets/assets/icons/resurrection.jpg": "2803a22fe57bc807c0501dd7344573f71c6719a5f4a043a5643c2e6b93ecb9c2",
+      "release/optimized-assets/assets/icons/saint-nicholas-2.jpg": "537c584b3d40c26705674dcdc8844ecc7b3af6b99e2d12646ddea56b94b04f3e",
+      "release/optimized-assets/assets/icons/saint-nicholas-with-life-2.jpg": "ff7c76ff43d6ad702b56717ce0b362e269b3a6ce759038ea03b003b9ed70c8ad",
+      "release/optimized-assets/assets/icons/saint-nicholas-with-life.jpg": "68d940846bcde30d0b43e028c42e8a6c45341dd193ba7738abe072018a329bca",
+      "release/optimized-assets/assets/icons/saint-nicholas-wonderworker.jpg": "8433967ec7e9639ff73cf948c76aa4beb84d6d7a065882cdfc5665077ab5d12b",
+      "release/optimized-assets/assets/icons/saint-nicholas.jpg": "484f95d8a022fe34a65a5a83327e538dac42bc8aee163c8ca68fd6588c65da49",
+      "release/optimized-assets/assets/icons/sergius-appearance-2.jpg": "e89e9f4b197b267d45a00e6266dc1d74d9a1d96210b9550c385f5b8f6b8a0ee2",
+      "release/optimized-assets/assets/icons/sergius-appearance.jpg": "d831d9aff5ef64427db54a4cb512bab4a9794d93bf7988e6914e69fab79c5ff2",
+      "release/optimized-assets/assets/icons/sergius-of-radonezh.jpg": "45717ca48e10d5ff967789c15eb444a9a47b42f35c7f09c0274237593100ebdf",
+      "release/optimized-assets/assets/icons/sretenie.jpg": "bde14e78c0e8cc0d21ff7cda96a59df7a6683b4e344ac76376708754f3011b8e",
+      "release/optimized-assets/assets/icons/synaxis-of-selected-saints.jpg": "ef843ec76e02aaf2b4be83108a7eaa3c369c50cc736388b729ab805c5368ff75",
+      "release/optimized-assets/assets/icons/temple-icon-peter-and-paul.jpg": "350c4fc3349b65ab1ae600f740f0d1aa2056beb17ba912260c14653ae956cc9f",
+      "release/optimized-assets/assets/icons/theotokos-feodorovskaya.jpg": "7c5a3a011f90a45ab8f4e6056c10a35316e1c73a4c4b694925a527a7ccc36a69",
+      "release/optimized-assets/assets/icons/theotokos-healer.jpg": "846cdf13591d1b3487c2e93b2286b775173df174fe0c2f843dd1d1d7c9a1eb79",
+      "release/optimized-assets/assets/icons/theotokos-kazanskaya.jpg": "caa7f792a55959b568b16486ce3645f68695944f3e8303a5ced8543317d883f7",
+      "release/optimized-assets/assets/icons/theotokos-muromskaya-2.jpg": "af8b9e411e20d94e7c8a1e9eeb9b1dec52a3d019f98c90bec39ee66e0ff13853",
+      "release/optimized-assets/assets/icons/theotokos-muromskaya-3.jpeg": "13672f1b910ee3c31ee823d8241cd9047c07c5aaee0b3a0b20b264c6fe192506",
+      "release/optimized-assets/assets/icons/theotokos-muromskaya.jpg": "ae25c11ca206f9e519af267dbba95f3ff1d247a68ccd0608ba5cc20f71dd754f",
+      "release/optimized-assets/assets/icons/theotokos-petrovskaya-carved-kiot.jpg": "39907dedac824bf919b037641b11bb2297d0efffcd8537ae34371a7bd1c59ae9",
+      "release/optimized-assets/assets/icons/theotokos-russkaya.jpg": "d2bbe4ae73ae4ef5f645a6c866fecb0107d532dfc7fc48abec48a78f2aff5168",
+      "release/optimized-assets/assets/icons/theotokos-three-joys.jpg": "da99f441ed3fed931864c5c37dfa697c4a82f353302776e52e83af5f30a70390",
+      "release/optimized-assets/assets/icons/theotokos-vzygranie-mladentsa.jpg": "ea5eb8884d170f2bbee80c4ad72aecf7bb4f9e0e1a88335db043287be8d7e5a2",
+      "release/optimized-assets/assets/icons/theotokos-znamenie-oak-kiot.jpg": "5f2a8dc2aa53cc354e4a9fe8f8b3b877e4f3f3493950d38947c51c1d984e3192",
+      "release/optimized-assets/assets/icons/tsar-ivan-the-terrible-2.jpg": "8618c95f31f77edad4dcf4b10ce0214a8f04c947000e78f389bd257099f139af",
+      "release/optimized-assets/assets/icons/tsar-ivan-the-terrible.jpg": "2bdf30d3d736667cc6461c1c91ac4546589a2bb41401d6f0ec871191267c9295",
+      "release/optimized-assets/assets/icons/twelve-feasts-and-resurrection-2.jpg": "c5bfcce8ac1d54af5893f89c2bb0baaf22150ca308e1aa5334f7a1f51c6fa768",
+      "release/optimized-assets/assets/icons/twelve-feasts-and-resurrection-3.jpg": "07970d4c0a0a2b1c3220856b0d657a50c28b2381fa2e272555682802021ac07b",
+      "release/optimized-assets/assets/icons/twelve-feasts-and-resurrection.jpg": "f56f92b31d56ed040355b402396913283db08bfb7faf94dff5785de811128ea7",
+      "release/optimized-assets/assets/icons/wedding-icons.jpg": "c811d78728d54815710dcf681f202e5de703f7fc6991a7c7c53a724ed8fbdec7",
+      "release/optimized-assets/assets/icons/zosima-and-savvaty-solovetsky.jpg": "b6c54579421c63451b4a676217c1ee1c9afef9c1ff0f921aa4ee2feae006ce92",
+      "release/optimized-assets/assets/pages/excursions-2.jpg": "cbd52cf3411b3932a6a42bd3892a09aa66a9009d60deb3546b42aea92476f434",
+      "release/optimized-assets/assets/pages/excursions-3.jpg": "2ca8e1358944d2b9b73ad9df6ead4ac8fc3aea30067dc33a176e8dd06c40c63d",
+      "release/optimized-assets/assets/pages/excursions-4.jpg": "59f137af968d21ca7d565fa55bb43a59b7769c7f6d8237d25689bb80fdd73f23",
+      "release/optimized-assets/assets/pages/excursions-5.jpg": "7f8f0e05b38b7139799ce0e90aa1ee726caf26ce3919e42a42003e9f089f5e7c",
+      "release/optimized-assets/assets/pages/excursions-6.jpg": "7c64a8dc49c344ff8c5f39e95d57cee150e389210c417c3a63d550b16ac1aade",
+      "release/optimized-assets/assets/pages/excursions-7.jpg": "207d909f8893fc643fd2bbd9e81e8f03d8dfa812d9a525069b5da23055dd2ea8",
+      "release/optimized-assets/assets/pages/excursions.jpg": "8a5ed80604f220530434ef60a94eefd2681b115033c60808d5876e72c68181ae",
+      "release/optimized-assets/assets/pages/iconostases-10.jpg": "6e12a6fb6afae9dff1dd7b9d5f33e0a2183e4910602c1dfd85b3695ddfcc3601",
+      "release/optimized-assets/assets/pages/iconostases-11.jpg": "6cc2c44fce3afa64e7222decac401c1d9233828401b64c6b99394c46e1645513",
+      "release/optimized-assets/assets/pages/iconostases-12.jpg": "5750ab2911fc23a9c4574f55196268396119b3bb5f8ee6ee90121bfa3776dc38",
+      "release/optimized-assets/assets/pages/iconostases-13.jpg": "d3609e1d0936fe51aae4f41875d3890b00c1c22ff2d1cdedc31de3a4042581de",
+      "release/optimized-assets/assets/pages/iconostases-14.jpg": "fa377f114176e478545ff286e5c845ea2f4c6f5889624a243812715ffc2b8a02",
+      "release/optimized-assets/assets/pages/iconostases-15.jpg": "c752826b7c9b11a95410aa1803cd13db03163264c843413e2f6b56050f3afb58",
+      "release/optimized-assets/assets/pages/iconostases-16.jpg": "591710de91bc100024573399629cc2e9e84d41d2b0e9369fd181c6c07860d9ca",
+      "release/optimized-assets/assets/pages/iconostases-17.jpg": "116de12dca852616bdc7a8eab3db0f2c0cfa90951658b993bf8a572c750ced2f",
+      "release/optimized-assets/assets/pages/iconostases-2.jpg": "4de079d63b4d78a4abd662f687878fe0efb9ebebc3b2f1c23a5bde2688bcf256",
+      "release/optimized-assets/assets/pages/iconostases-3.jpg": "bfd1a36472cbd767bfbc657028d573a562df9fa67bc26552af39800df318ad6d",
+      "release/optimized-assets/assets/pages/iconostases-4.jpg": "d77800f2dec4e4559de8be81ad910eb23075313501bb4a619c2a579ddcc05f78",
+      "release/optimized-assets/assets/pages/iconostases-5.jpg": "c76863591e5a43d9a526a710c289d7a3bc7b3b5eb8d90765f67bfa73320008df",
+      "release/optimized-assets/assets/pages/iconostases-6.jpg": "db67ec97e400f264f35a45e851d30a00e4c6ba837b683501ec98f0255276d431",
+      "release/optimized-assets/assets/pages/iconostases-7.jpg": "1e90fdf22a7e33ed7eea858f2e04460200266741607c9c018fac242e1b809b47",
+      "release/optimized-assets/assets/pages/iconostases-8.jpg": "b3d8489fa5a9f4976175f57af01c2a27d2f6ec24f0410487e8e5cd773be7c0c1",
+      "release/optimized-assets/assets/pages/iconostases-9.jpg": "9969d7532106e33996e1313a80994e2c177f6553077276d7acef2bd493c6c865",
+      "release/optimized-assets/assets/pages/iconostases.jpg": "d6f9c411d084a5fb705a794361aa783d47d7960daf2b3f84a86d384e06252a29",
+      "release/optimized-assets/assets/pages/kiots-10.jpg": "20194b7dced62ab977873e6e48c0cc1bddc8aac60c63ad122e6e20e458fab306",
+      "release/optimized-assets/assets/pages/kiots-11.jpg": "1d43e76a5b8bdcbe575173753ee86027f3e67893726495ee7ff533900c8ad499",
+      "release/optimized-assets/assets/pages/kiots-12.jpg": "bafe643a922b3a7abac1c7a97d8174df64ad5ede64f2c3f58221ecafb829ffe1",
+      "release/optimized-assets/assets/pages/kiots-13.jpg": "c5b07b4512a669511490ccaf6931d0c96e98f6235c879ab669f55800cd14869e",
+      "release/optimized-assets/assets/pages/kiots-14.jpg": "152e7c693d7914b13e15515ed206d4bcb8345ab3b008005d35c787d8c177a972",
+      "release/optimized-assets/assets/pages/kiots-15.jpg": "94e34a803895474528210dc56dc63378cde06ce78c304ebdc201e213cd0d3552",
+      "release/optimized-assets/assets/pages/kiots-2.jpg": "47bb61c6e6531656ee4a609ef905cf146635b848b1fb0f54b49c8d13e2e8e5f1",
+      "release/optimized-assets/assets/pages/kiots-3.jpg": "75c6ecf2a1cc6c42d3941dab77045d241ee9c985c03913757baae0116a86a2df",
+      "release/optimized-assets/assets/pages/kiots-4.jpg": "18c40b5abd44c432ecef7da38d3b5568091491e2a41cdc46a28ee23a35db6ae8",
+      "release/optimized-assets/assets/pages/kiots-5.jpg": "85f5a33017e015584e79f2d907d796e3e875c6ea8f47a121f9091b2b496857ca",
+      "release/optimized-assets/assets/pages/kiots-6.jpg": "7d241c2464d03058467053a67aec2f52699d768734af259c146af726c6519052",
+      "release/optimized-assets/assets/pages/kiots-7.jpg": "49865bf3e412ad9e1bd34c85a6cb39c246267173f65d39e97a5fc686c6aec636",
+      "release/optimized-assets/assets/pages/kiots-8.jpg": "a4203ee72725d45bb5c1f628646d584e8ee89c2883e18e3e7e2ffda345649524",
+      "release/optimized-assets/assets/pages/kiots-9.jpg": "96f73986a53e2bd5197771feb814ed750653416654940eacaacf4b227ea2ebf0",
+      "release/optimized-assets/assets/pages/kiots.jpg": "e6d762ba3f6d8d316f3571785f7b25b109863a5f66fc5d1199cb1e927842f4e1",
+      "release/optimized-assets/assets/pages/measure-icon-2.jpg": "c7e1981668328b87a9638358fddbf7dc9a3f83aa8d8391ee8498f7a2212d7d4b",
+      "release/optimized-assets/assets/pages/measure-icon-3.jpg": "2f8fff6d58e7aa6adfb2e2b942b6476f965c355a63cf2b63d2032b3f45ad9b1a",
+      "release/optimized-assets/assets/pages/measure-icon-4.jpg": "64206abf2f3e02af29db28a3569a6898de343a1482c290a1eff9e81620c521fb",
+      "release/optimized-assets/assets/pages/measure-icon-5.jpg": "c2ee69a3e5850630762180a2aff0d2701aa01361fa61b94d2868451067c7c53e",
+      "release/optimized-assets/assets/pages/measure-icon-6.jpg": "62fdead7e50af06853151586d350d28cbca390489f5e1f10313845f5df8cf36c",
+      "release/optimized-assets/assets/pages/measure-icon-7.jpg": "b5b8165a4c414e64b06178f75fdfc7917c139ceda928ecd6762406f3c1090159",
+      "release/optimized-assets/assets/pages/measure-icon-8.jpg": "a9c1be4a7cc0e56516820647562e7e2ec3c753be7b4aa6d9780b0c4499dc4ce3",
+      "release/optimized-assets/assets/pages/measure-icon.jpg": "e6492d860180acea6a9d1f179d38a9fcec75dba5c22b040f419793901b4f6810",
+      "release/optimized-assets/assets/pages/oklads-14.jpg": "61b81a71a02e7ee18399cdfcf8eccab9f94ade6e2a7785e36b913cf6e53c45e2",
+      "release/optimized-assets/assets/pages/oklads-2.jpg": "4333108a0e3679af861412ac6fee13eb232f9a5c8e9947ab377c1ae72cf843aa",
+      "release/optimized-assets/assets/pages/oklads-3.jpg": "5d4929637ec188e0a03b4427008ade63d01c22b3627ae4b9559e9f3daeea3396",
+      "release/optimized-assets/assets/pages/oklads-4.jpg": "e1d682f9e75976a90d852dd93eee728e9984c595133f21fac80cdeef7c65eb1d",
+      "release/optimized-assets/assets/pages/oklads-5.jpg": "e7a2e2c14fca78cd51412a66efd87dcd520808bffbe942cd1a36f06c4e518e7c",
+      "release/optimized-assets/assets/pages/oklads-6.jpg": "9d834df50ee594d35febd0dad723aad05e41ed8720cdb258ba0e031630cc51d1",
+      "release/optimized-assets/assets/pages/oklads-7.jpg": "e546f3ff36e672860bfcfef8cfe7e93423ab210758908abc1c86de51cab145f3",
+      "release/optimized-assets/assets/pages/oklads.jpg": "224accbbce3a3920c5dd1cec21387e168a6d4595a4663acf5be05682b1572029",
+      "release/optimized-assets/assets/pages/restoration-10.jpg": "1bc7a4f39ce46d393e1571bcbec4aac40060a957489a68a5ab702c68516782fe",
+      "release/optimized-assets/assets/pages/restoration-11.jpg": "df3a990071dd81f171152cffad55b50d3a1f428f64327a130cce025d88cd5daf",
+      "release/optimized-assets/assets/pages/restoration-12.jpg": "288658135fdae65d729b9316f07f220b9130561392c546f87a4b4df7a9137e6b",
+      "release/optimized-assets/assets/pages/restoration-13.jpg": "14c72fdd0739203a9e7d4975442cbd9f3b6a99ae3ba68868786cf714a0f43964",
+      "release/optimized-assets/assets/pages/restoration-2.jpg": "7aa64572615ad8f1b11bcb3cab7343d796c416d6c4356f7940f44e32c91ed798",
+      "release/optimized-assets/assets/pages/restoration-3.jpg": "2a710644144135b978adee640cc7ae4d8a58aacc3539ecff533b431b8fc240f3",
+      "release/optimized-assets/assets/pages/restoration-4.jpg": "98f0f4c140ce770a0d9f36ae75a99e95514107662e3976289bddf236508639e4",
+      "release/optimized-assets/assets/pages/restoration-5.jpg": "ca3c194bf7632d8617729d7065622ac2d2b631502dfcd65495fdd73d511abb4b",
+      "release/optimized-assets/assets/pages/restoration-6.jpg": "85a808a8a37794deae8d06e0d6662ff153eccae1ca12d3ddc0709aac02cd44a7",
+      "release/optimized-assets/assets/pages/restoration-7.jpg": "6d68314fb3e8411fe9f4d13abe2f0f07dd8b0962736dcc6ce4b4f41d10f99c8c",
+      "release/optimized-assets/assets/pages/restoration-8.jpg": "d65fbd462f8e93c93071662ebe36fbb9b1711a6f1f40b3f7075c12f044915d0c",
+      "release/optimized-assets/assets/pages/restoration.jpg": "2915792b4a552e9f0e5d2a57a582cc0b298834d5f73c5925fa1987aaf9912df2"
+    }
+  },
+  "images": [
+    {
+      "source": "public/assets/icons/christ-pantocrator-brass-oklad-cargo-46852686.jpg",
+      "output": "release/optimized-assets/assets/icons/christ-pantocrator-brass-oklad-cargo-46852686.jpg",
+      "sourceSha256": "9b67cb5d9e90eb34d2c56ca190c59c395b7cc1d07ad06ab2f2f18b5e38bc49b9",
+      "outputSha256": "be2feee62c5b320acc02a75f5a64c5e834a47f186bacb26263a0905ac71f9d99",
+      "sourceDimensions": [
+        408,
+        500
+      ],
+      "outputDimensions": [
+        408,
+        500
+      ],
+      "sourceBytes": 96458,
+      "outputBytes": 95869,
+      "savedBytes": 589,
+      "quality": 88,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/holy-trinity-cargo-46923193.jpg",
+      "output": "release/optimized-assets/assets/icons/holy-trinity-cargo-46923193.jpg",
+      "sourceSha256": "4c6554e1fc7160e0e2a070f6c9442af374a53f1870db655f9ea0823ade4e9808",
+      "outputSha256": "94cb570c5de6acd445199d3d7cc75690887bbb462596fdca55d765f448b052cd",
+      "sourceDimensions": [
+        444,
+        500
+      ],
+      "outputDimensions": [
+        444,
+        500
+      ],
+      "sourceBytes": 80588,
+      "outputBytes": 77019,
+      "savedBytes": 3569,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/holy-trinity-cargo-83913768.jpg",
+      "output": "release/optimized-assets/assets/icons/holy-trinity-cargo-83913768.jpg",
+      "sourceSha256": "ad2b1e19cb32cc57240d5dc18f0d01baca6758c15cd05953a0495c5d8c6b1996",
+      "outputSha256": "2cd5fc67614d00782337f083e2c02513c1224e6d9905ad05cc1322e8c21ae4cf",
+      "sourceDimensions": [
+        760,
+        855
+      ],
+      "outputDimensions": [
+        760,
+        855
+      ],
+      "sourceBytes": 331281,
+      "outputBytes": 298607,
+      "savedBytes": 32674,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-aleksandr-nevskii-cargo-47800231.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-aleksandr-nevskii-cargo-47800231.jpg",
+      "sourceSha256": "57bcd9307874d53a9322d0afc6fbcd900851ff02e09a8c111646c1a2810c164b",
+      "outputSha256": "51542e87111b0ce581d896c2863926329fc7974cf5a4996d56f1ef6d1f3ff1a0",
+      "sourceDimensions": [
+        319,
+        500
+      ],
+      "outputDimensions": [
+        319,
+        500
+      ],
+      "sourceBytes": 66225,
+      "outputBytes": 63730,
+      "savedBytes": 2495,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodita-vladimirskay-cargo-47836412.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodita-vladimirskay-cargo-47836412.jpg",
+      "sourceSha256": "f7a72b47cf18834e9cd5998f3d795d72729ae217d24ee06e068b5583d413a590",
+      "outputSha256": "0e289f4419c2757ed2cb5556f061819bcd3f060205f74aa4e1cf014b9a81f320",
+      "sourceDimensions": [
+        333,
+        500
+      ],
+      "outputDimensions": [
+        333,
+        500
+      ],
+      "sourceBytes": 71910,
+      "outputBytes": 66278,
+      "savedBytes": 5632,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodita-vladimirskay-cargo-47836413.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodita-vladimirskay-cargo-47836413.jpg",
+      "sourceSha256": "a3dcc51f12d14f811f0335dd83d149f7e603615112e0c4d426acffc10c9a78cc",
+      "outputSha256": "3450cbd335c420c54bddb32c289af114bc5eb7c0c08160f2095c613588524498",
+      "sourceDimensions": [
+        1719,
+        2098
+      ],
+      "outputDimensions": [
+        1311,
+        1600
+      ],
+      "sourceBytes": 734008,
+      "outputBytes": 696184,
+      "savedBytes": 37824,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-casa-neupivaemay-1-cargo-47842466.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-casa-neupivaemay-1-cargo-47842466.jpg",
+      "sourceSha256": "4e6bb704d5986dc9bb8fd791fcf4bb9025e9492f2a0e4b539baa26963d751615",
+      "outputSha256": "cad25d2a9949ab5af37f290c74c6bcfe977863007357643c984ea5e938fe9d5d",
+      "sourceDimensions": [
+        445,
+        500
+      ],
+      "outputDimensions": [
+        445,
+        500
+      ],
+      "sourceBytes": 87956,
+      "outputBytes": 80005,
+      "savedBytes": 7951,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-fedorovskoi-cargo-47799488.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-fedorovskoi-cargo-47799488.jpg",
+      "sourceSha256": "7c624893dd9fba97f82f139580e71bcb58c77a2672519283bf3dc3bdec17fe95",
+      "outputSha256": "4842e6bc1d87267b653d7eaa92dd394bac5a11cc4c938603966658aa25c44789",
+      "sourceDimensions": [
+        362,
+        499
+      ],
+      "outputDimensions": [
+        362,
+        499
+      ],
+      "sourceBytes": 55559,
+      "outputBytes": 51298,
+      "savedBytes": 4261,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-iverskay-cargo-47844539.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-iverskay-cargo-47844539.jpg",
+      "sourceSha256": "176ba011cf1fb86b9722f02706b8091b5d59267544fd248101fc792a4eecd4ba",
+      "outputSha256": "fd2a8f2822533b295d57cf5ac4e50225d4ffe629dbcc142e32e1e8ef42d657d6",
+      "sourceDimensions": [
+        778,
+        870
+      ],
+      "outputDimensions": [
+        778,
+        870
+      ],
+      "sourceBytes": 290228,
+      "outputBytes": 286489,
+      "savedBytes": 3739,
+      "quality": 88,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-kazanskay-1-cargo-47800413.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-kazanskay-1-cargo-47800413.jpg",
+      "sourceSha256": "ae1e62ad5b41eda4717d872a0f16163b4307c890ef2c162a6d345e4965d8c6be",
+      "outputSha256": "27fa27bfd1c0d96df329f0863baa08975a5ecf517f12b38f2408923350b80883",
+      "sourceDimensions": [
+        452,
+        500
+      ],
+      "outputDimensions": [
+        452,
+        500
+      ],
+      "sourceBytes": 94722,
+      "outputBytes": 90019,
+      "savedBytes": 4703,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-kazanskay-3-cargo-47843817.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-kazanskay-3-cargo-47843817.jpg",
+      "sourceSha256": "ee6f8313f3d5e3ebacbde9b7a0589f0ae322901e2bea1b11c4f4858f3cbb273b",
+      "outputSha256": "a792c34212955b66cbfd9b53da10260ce4b10babf15d1a9b7ec1189de11b91f1",
+      "sourceDimensions": [
+        738,
+        853
+      ],
+      "outputDimensions": [
+        738,
+        853
+      ],
+      "sourceBytes": 422577,
+      "outputBytes": 371001,
+      "savedBytes": 51576,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-korsunskay-1-cargo-47844397.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-korsunskay-1-cargo-47844397.jpg",
+      "sourceSha256": "b682bbb6ba551d15f04e7065d751a086cab1beea8bba49e39a5fcd0fa553bfc4",
+      "outputSha256": "91542fda53660efb243d3ac1d8f31afeda277ead06a70f7ec8ac4c9d8beff15e",
+      "sourceDimensions": [
+        426,
+        499
+      ],
+      "outputDimensions": [
+        426,
+        499
+      ],
+      "sourceBytes": 76535,
+      "outputBytes": 72029,
+      "savedBytes": 4506,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-korsunskay-1-cargo-47844398.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-korsunskay-1-cargo-47844398.jpg",
+      "sourceSha256": "c0729d1637d04dd9783e1a13a046876c8493ebda5fbf43d0ea3fff24d05dee33",
+      "outputSha256": "7dd2b840c767777e6faed91db8984a5dca0abbbe0b852808129df26f3cfd4417",
+      "sourceDimensions": [
+        578,
+        732
+      ],
+      "outputDimensions": [
+        578,
+        732
+      ],
+      "sourceBytes": 253359,
+      "outputBytes": 229680,
+      "savedBytes": 23679,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-korsunskay-cargo-47843752.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-korsunskay-cargo-47843752.jpg",
+      "sourceSha256": "d7378200c4ee3029dacb8331a70939b708df1882f0eda8eb3eb1b11ad7e51084",
+      "outputSha256": "ddc0994979df75e0ea9a2708c9f0acfc3653604c5ff25c1609aaff7ab502e62a",
+      "sourceDimensions": [
+        428,
+        500
+      ],
+      "outputDimensions": [
+        428,
+        500
+      ],
+      "sourceBytes": 63888,
+      "outputBytes": 63513,
+      "savedBytes": 375,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-russkay-ili-vzbrannay-voevoda-cargo-47844442.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-russkay-ili-vzbrannay-voevoda-cargo-47844442.jpg",
+      "sourceSha256": "8fd5fbc759d38de1409c9e66f855c1df25898be540d752fa5f3319953659377e",
+      "outputSha256": "73a62fc291b8d50070a7bfbf8613bcb343fa4e47656d965704c5eec8f9ccbe20",
+      "sourceDimensions": [
+        537,
+        623
+      ],
+      "outputDimensions": [
+        537,
+        623
+      ],
+      "sourceBytes": 157829,
+      "outputBytes": 154416,
+      "savedBytes": 3413,
+      "quality": 88,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-russkay-ili-vzbrannay-voevoda-cargo-47844443.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-russkay-ili-vzbrannay-voevoda-cargo-47844443.jpg",
+      "sourceSha256": "96f2770c2bc42792281556a34100c468b889031ed000440cf563deca1a7279eb",
+      "outputSha256": "629442c59579b344ee9e9a0a5251a724baf69d3d5bd7e19ab0115f306def0dc3",
+      "sourceDimensions": [
+        628,
+        789
+      ],
+      "outputDimensions": [
+        628,
+        789
+      ],
+      "sourceBytes": 282112,
+      "outputBytes": 255725,
+      "savedBytes": 26387,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-smolenskay-cargo-47842345.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-smolenskay-cargo-47842345.jpg",
+      "sourceSha256": "d61913a28512be1ff4b309d51ff505572aff8b1d2c00dc892ec75881564beffb",
+      "outputSha256": "33bd9dbb74cef217646609e4cc56681daa267b7768c06f1190fcb60a6ad225c7",
+      "sourceDimensions": [
+        784,
+        899
+      ],
+      "outputDimensions": [
+        784,
+        899
+      ],
+      "sourceBytes": 296880,
+      "outputBytes": 293170,
+      "savedBytes": 3710,
+      "quality": 88,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-sporucnita-gresnyk-cargo-47841599.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-sporucnita-gresnyk-cargo-47841599.jpg",
+      "sourceSha256": "fbf4feff9934dc53e155fdde5a105772feed33be56f65514dc6508e74bdbb10e",
+      "outputSha256": "9478449080432b9994243d5d85512a3a341fa6f67420ae215bd83822c57fa283",
+      "sourceDimensions": [
+        731,
+        832
+      ],
+      "outputDimensions": [
+        731,
+        832
+      ],
+      "sourceBytes": 258058,
+      "outputBytes": 255283,
+      "savedBytes": 2775,
+      "quality": 88,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-utoli-moi-pecali-1-cargo-47833299.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-utoli-moi-pecali-1-cargo-47833299.jpg",
+      "sourceSha256": "7246aa16d2274a9135dd131b34b6b4677ee01a490bf0b169d85b5717cfa46499",
+      "outputSha256": "8fa4ea550ef873f2f3614764b4f2a195d9f06c4d4ddeeb525f7ee8af3e70b222",
+      "sourceDimensions": [
+        404,
+        500
+      ],
+      "outputDimensions": [
+        404,
+        500
+      ],
+      "sourceBytes": 75984,
+      "outputBytes": 73596,
+      "savedBytes": 2388,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-utoli-moi-pecali-cargo-47801022.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-utoli-moi-pecali-cargo-47801022.jpg",
+      "sourceSha256": "133d4da924982eb7f962c489e4e9981158ced3d6dc6142744ae484b82509ab8d",
+      "outputSha256": "0fd88a22bdf1b759f37f515a96eab1955d1b30d618969a1728c1532bb0262f34",
+      "sourceDimensions": [
+        444,
+        500
+      ],
+      "outputDimensions": [
+        444,
+        500
+      ],
+      "sourceBytes": 73627,
+      "outputBytes": 72750,
+      "savedBytes": 877,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-utoli-moi-pecali-copy-cargo-47833689.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-utoli-moi-pecali-copy-cargo-47833689.jpg",
+      "sourceSha256": "5da33c8029bfa0435f37d7374c29eaf4774f01b83c4329c01e4b25885fa58c96",
+      "outputSha256": "1bdc4ecd3a9e222daa9a75f876c6b2719962c1e627e71e77ed2ba6c9dd1f71f3",
+      "sourceDimensions": [
+        427,
+        499
+      ],
+      "outputDimensions": [
+        427,
+        499
+      ],
+      "sourceBytes": 56802,
+      "outputBytes": 55176,
+      "savedBytes": 1626,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-vladimirskay-cargo-47844182.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-vladimirskay-cargo-47844182.jpg",
+      "sourceSha256": "8064c2f8c8a0bf491b5561ce12f8f5ace47e0cd7156d6ffc86433ff9faac4bbf",
+      "outputSha256": "4b8f3c416e86d264c288fa3562bd82930c3516b546f4ef529b775a43d7eba2e5",
+      "sourceDimensions": [
+        690,
+        763
+      ],
+      "outputDimensions": [
+        690,
+        763
+      ],
+      "sourceBytes": 219599,
+      "outputBytes": 218096,
+      "savedBytes": 1503,
+      "quality": 88,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-zivonosnyi-istocnik-1-cargo-47844098.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-zivonosnyi-istocnik-1-cargo-47844098.jpg",
+      "sourceSha256": "0d3c4cafc324784894cee9ff4e2debb9084005ed242336bf5d9115ef272362dc",
+      "outputSha256": "9ec0fc733df606297b121a2198ecd2fb0e5d05cf3251f329d7966d1821ec2204",
+      "sourceDimensions": [
+        1900,
+        2369
+      ],
+      "outputDimensions": [
+        1283,
+        1600
+      ],
+      "sourceBytes": 1161329,
+      "outputBytes": 757356,
+      "savedBytes": 403973,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-zivonosnyi-istocnik-1-cargo-47844099.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-zivonosnyi-istocnik-1-cargo-47844099.jpg",
+      "sourceSha256": "e6a8ed9829a555a5536c3e544db711a3c3305e9e09123d0d2cfd10de56076087",
+      "outputSha256": "ee44c6911855ff36ca2220008e689e07a32974019588beb7b66559c64569944e",
+      "sourceDimensions": [
+        445,
+        500
+      ],
+      "outputDimensions": [
+        445,
+        500
+      ],
+      "sourceBytes": 84245,
+      "outputBytes": 78560,
+      "savedBytes": 5685,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-bogorodity-znamenie-cargo-47844135.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-bogorodity-znamenie-cargo-47844135.jpg",
+      "sourceSha256": "454120f651662cbcdaf7b0a84bc87332bec95c1f4a5e6c69b887a82afc41c644",
+      "outputSha256": "67f455b52bc7ebb89d1e19de6de980d5f5ad23a6d324ceee783da28e5f008278",
+      "sourceDimensions": [
+        804,
+        923
+      ],
+      "outputDimensions": [
+        804,
+        923
+      ],
+      "sourceBytes": 305471,
+      "outputBytes": 302636,
+      "savedBytes": 2835,
+      "quality": 88,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-cudo-arkistratiga-mikaila-cargo-46923689.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-cudo-arkistratiga-mikaila-cargo-46923689.jpg",
+      "sourceSha256": "8c7a723ad99bb13a1aa4b445fd52bed872b8b58b119b99cadb5d93f49639be13",
+      "outputSha256": "f7b0abaf8e49db29329cc4a584d11c3a73cc1c671e55a1b4e61b187f4852f89b",
+      "sourceDimensions": [
+        445,
+        500
+      ],
+      "outputDimensions": [
+        445,
+        500
+      ],
+      "sourceBytes": 79354,
+      "outputBytes": 74512,
+      "savedBytes": 4842,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-cudo-arkistratiga-mikaila-cargo-46923690.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-cudo-arkistratiga-mikaila-cargo-46923690.jpg",
+      "sourceSha256": "ab0b69033d80b4eee90088c625cef16a4b6e41cc5ff6c51c74a2aec3937d7620",
+      "outputSha256": "eecc37df91e69167dcea47cda63daa1575cfb300ccd70f9107206a67d08cae96",
+      "sourceDimensions": [
+        2542,
+        3014
+      ],
+      "outputDimensions": [
+        1349,
+        1600
+      ],
+      "sourceBytes": 1345344,
+      "outputBytes": 913962,
+      "savedBytes": 431382,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-cudo-georgiy-o-zmie-1-cargo-163596291.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-cudo-georgiy-o-zmie-1-cargo-163596291.jpg",
+      "sourceSha256": "19d37face47828be1e97684c4e00092395c9320ea58f8e5a4385f828996d96c5",
+      "outputSha256": "bd3743e79c9e5cd6923af13c14ce56ad3e0afcb4b3b9bd57cec845212821a6c0",
+      "sourceDimensions": [
+        2018,
+        2271
+      ],
+      "outputDimensions": [
+        1422,
+        1600
+      ],
+      "sourceBytes": 2403447,
+      "outputBytes": 817662,
+      "savedBytes": 1585785,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-cudo-georgiy-o-zmie-2-cargo-47833937.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-cudo-georgiy-o-zmie-2-cargo-47833937.jpg",
+      "sourceSha256": "16aaa7827ab0792825956d293ef5e74a53f495e5315d4c787d15e4ad21139cf5",
+      "outputSha256": "38d37e0129321b6b077abcc1978cbde776d13948929d8267f8ad2a2c1345b587",
+      "sourceDimensions": [
+        436,
+        500
+      ],
+      "outputDimensions": [
+        436,
+        500
+      ],
+      "sourceBytes": 76537,
+      "outputBytes": 74078,
+      "savedBytes": 2459,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-cudo-georgiy-o-zmie-3-cargo-47834350.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-cudo-georgiy-o-zmie-3-cargo-47834350.jpg",
+      "sourceSha256": "b11e98200788e125925a1e27fe50640e8dec75409ac20a728f36656eba8827f4",
+      "outputSha256": "86a75faa9d7a9e6ad1ad14777aa06b21acb4943187cad9ade08276fa6df4f2e0",
+      "sourceDimensions": [
+        441,
+        500
+      ],
+      "outputDimensions": [
+        441,
+        500
+      ],
+      "sourceBytes": 111746,
+      "outputBytes": 104103,
+      "savedBytes": 7643,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-cudo-georgiy-o-zmie-4-cargo-47836371.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-cudo-georgiy-o-zmie-4-cargo-47836371.jpg",
+      "sourceSha256": "67318ea615eeb746b4615b9690277b7154d3713064e89e88eecc4924e3de18c2",
+      "outputSha256": "452c2b75e9943813acd2301d432a54f40b27adee2affebe4e0c8300b762a1ac5",
+      "sourceDimensions": [
+        447,
+        500
+      ],
+      "outputDimensions": [
+        447,
+        500
+      ],
+      "sourceBytes": 111949,
+      "outputBytes": 103009,
+      "savedBytes": 8940,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-cudo-georgiy-o-zmie-4-cargo-47836372.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-cudo-georgiy-o-zmie-4-cargo-47836372.jpg",
+      "sourceSha256": "d7573f4553db9a71f4f6b9423f024326f5e6225545169726fc7e42cbb5cfbc27",
+      "outputSha256": "55b0d0a8a6e1aaf868b453f8a88d37fa19861a4d71b7ce329619bfb20f74792b",
+      "sourceDimensions": [
+        578,
+        731
+      ],
+      "outputDimensions": [
+        578,
+        731
+      ],
+      "sourceBytes": 410633,
+      "outputBytes": 194604,
+      "savedBytes": 216029,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-cudo-georgiy-o-zmie-5-cargo-83916838.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-cudo-georgiy-o-zmie-5-cargo-83916838.jpg",
+      "sourceSha256": "ae40f8a0e55c646702a47a3773e387cf6aa5ae5a2df7776980e2a96db63561dc",
+      "outputSha256": "8f8d7e212923afe79b95f3057dcfdcd3d0c6d36c3dd8cb908528e0dc7f39f78f",
+      "sourceDimensions": [
+        1541,
+        1806
+      ],
+      "outputDimensions": [
+        1365,
+        1600
+      ],
+      "sourceBytes": 1876502,
+      "outputBytes": 899729,
+      "savedBytes": 976773,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-cudo-mucenika-trifona-o-sokole-cargo-47836096.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-cudo-mucenika-trifona-o-sokole-cargo-47836096.jpg",
+      "sourceSha256": "b58f1bd609ac888a1456c25e1cff1b6dade132b9a3d9126acaef551c98df1a37",
+      "outputSha256": "76a8e52e111fb526466b8ba33fd58cd04e1c12ca74511083561b1572edd1ba64",
+      "sourceDimensions": [
+        428,
+        500
+      ],
+      "outputDimensions": [
+        428,
+        500
+      ],
+      "sourceBytes": 101574,
+      "outputBytes": 97251,
+      "savedBytes": 4323,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-cudo-svytogo-georgiy-cargo-47836406.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-cudo-svytogo-georgiy-cargo-47836406.jpg",
+      "sourceSha256": "7244e66bded3e12389babad7805a1888a88b56da278d32ded460b5cdac9685f2",
+      "outputSha256": "605c3bb570fa44324e70bef0214a99de12eba0b98f2f8fdf040ac049b550bf65",
+      "sourceDimensions": [
+        403,
+        500
+      ],
+      "outputDimensions": [
+        403,
+        500
+      ],
+      "sourceBytes": 86638,
+      "outputBytes": 82405,
+      "savedBytes": 4233,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-cudo-velikomucenika-dimitriy-solunskogo-cargo-46923552.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-cudo-velikomucenika-dimitriy-solunskogo-cargo-46923552.jpg",
+      "sourceSha256": "c16f515c13e3bc142c402300f8550df486751144f10500b9d90313ce29ce4007",
+      "outputSha256": "e1175ed11934b0bb54611a6740fbf9d38e5f0a6dc5b3244e014fefe9d350d9ed",
+      "sourceDimensions": [
+        415,
+        500
+      ],
+      "outputDimensions": [
+        415,
+        500
+      ],
+      "sourceBytes": 80282,
+      "outputBytes": 77583,
+      "savedBytes": 2699,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-il-y-muromet-v-zitii-cargo-47836397.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-il-y-muromet-v-zitii-cargo-47836397.jpg",
+      "sourceSha256": "58207c52c1f726f551708c4cff8c44bb8ac682df1cc287f639cc89053d075dba",
+      "outputSha256": "ec596a1d7acf016edeb36ece67d75d36ce0b265a2212e5fd6baef16d18788c9c",
+      "sourceDimensions": [
+        791,
+        953
+      ],
+      "outputDimensions": [
+        791,
+        953
+      ],
+      "sourceBytes": 732312,
+      "outputBytes": 346714,
+      "savedBytes": 385598,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-il-y-muromet-v-zitii-cargo-47836398.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-il-y-muromet-v-zitii-cargo-47836398.jpg",
+      "sourceSha256": "3f30450a2cf090eea3de0a9efc8a93b25320e2fccd8d764d31c0266f12f0f996",
+      "outputSha256": "2f20e86ecb868dd6ec5a91f30e6d2792217ae50ed28c5cdd3d56d7ba3c3a64c2",
+      "sourceDimensions": [
+        600,
+        400
+      ],
+      "outputDimensions": [
+        600,
+        400
+      ],
+      "sourceBytes": 51678,
+      "outputBytes": 50995,
+      "savedBytes": 683,
+      "quality": 75,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-ne-rydai-mene-mati-cargo-47800160.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-ne-rydai-mene-mati-cargo-47800160.jpg",
+      "sourceSha256": "753b5815246ca72aff85800d1bb348733ff35a0d683902e29049a7fcb7bbc16b",
+      "outputSha256": "1648aa2ad7d8c1e246db27395789f4b47a959f27b31cdc862f35f2267c912650",
+      "sourceDimensions": [
+        361,
+        500
+      ],
+      "outputDimensions": [
+        361,
+        500
+      ],
+      "sourceBytes": 82005,
+      "outputBytes": 77678,
+      "savedBytes": 4327,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-ognennoe-voskozdenie-il-i-proroka-cargo-47836431.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-ognennoe-voskozdenie-il-i-proroka-cargo-47836431.jpg",
+      "sourceSha256": "b0d6ebc080aa941abaa2e7c339342fc8380e274c801d5c8c04719f4275aa289d",
+      "outputSha256": "a19fbe367b24cd6d77bce4c87fa31c095ebf39b9e75245c61229c0242b92c5aa",
+      "sourceDimensions": [
+        377,
+        500
+      ],
+      "outputDimensions": [
+        377,
+        500
+      ],
+      "sourceBytes": 65752,
+      "outputBytes": 61866,
+      "savedBytes": 3886,
+      "quality": 82,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-panteleimon-telitel-cargo-47837753.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-panteleimon-telitel-cargo-47837753.jpg",
+      "sourceSha256": "2376d77bb5f5aed4ae4cf9feebf218ba75f2515aadec7a53e7e0b27eb1452faf",
+      "outputSha256": "bb1bc68c6768cf2c08ebe16bdc11fa71c0543829ee998b390a0692555fbefb11",
+      "sourceDimensions": [
+        393,
+        500
+      ],
+      "outputDimensions": [
+        393,
+        500
+      ],
+      "sourceBytes": 70591,
+      "outputBytes": 66826,
+      "savedBytes": 3765,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-panteleimon-telitel-cargo-47837754.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-panteleimon-telitel-cargo-47837754.jpg",
+      "sourceSha256": "522d6fec7477ae9bb3e55eb84346f1db92a92e96b68b6226925e306dd863428c",
+      "outputSha256": "9fbb6829f5128b21065067477b212c060ef3ef9f852d8476f34a979e24ffba45",
+      "sourceDimensions": [
+        486,
+        599
+      ],
+      "outputDimensions": [
+        486,
+        599
+      ],
+      "sourceBytes": 187768,
+      "outputBytes": 168866,
+      "savedBytes": 18902,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-parsuna-blagovernyi-tar-ioann-groznyi-cargo-47843613.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-parsuna-blagovernyi-tar-ioann-groznyi-cargo-47843613.jpg",
+      "sourceSha256": "7de99b4bfd1b6285e3ba86006d9201f1e57f898d5d8d36c514a4d1b40e08636e",
+      "outputSha256": "c9e409f6e3318f63c7141096ca2d099cf541cbef631b4fc0840d46d40650349f",
+      "sourceDimensions": [
+        405,
+        500
+      ],
+      "outputDimensions": [
+        405,
+        500
+      ],
+      "sourceBytes": 72650,
+      "outputBytes": 71485,
+      "savedBytes": 1165,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-prepodobnay-mariy-kidanskay-cargo-46923709.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-prepodobnay-mariy-kidanskay-cargo-46923709.jpg",
+      "sourceSha256": "d88b18880c8ecc43916add3e8b6a788854a8995ce8f4fd2ccc7e52bfcc6da6b5",
+      "outputSha256": "553166981ee21508b0d49935c6d486167d6bc570987523c8c8586b73c262255e",
+      "sourceDimensions": [
+        439,
+        500
+      ],
+      "outputDimensions": [
+        439,
+        500
+      ],
+      "sourceBytes": 71605,
+      "outputBytes": 69636,
+      "savedBytes": 1969,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-prepodobnyi-serafim-sarovskii-cargo-47799352.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-prepodobnyi-serafim-sarovskii-cargo-47799352.jpg",
+      "sourceSha256": "9ac48a8edb2e15244fe56593dcea9273ab545b3c7d68d40db2e165bde5181e1a",
+      "outputSha256": "1e6690cf41939f733f2347419df0596cb3761bdeffb0063de54e2bebb3e31c6b",
+      "sourceDimensions": [
+        457,
+        500
+      ],
+      "outputDimensions": [
+        457,
+        500
+      ],
+      "sourceBytes": 82817,
+      "outputBytes": 79032,
+      "savedBytes": 3785,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-prepodobnyi-sergii-radonezskii-cargo-47833814.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-prepodobnyi-sergii-radonezskii-cargo-47833814.jpg",
+      "sourceSha256": "809b8f1d2a12d5cc67190b57b3fc0c0f7d595b68950e64dea5e41ea31bab853f",
+      "outputSha256": "ea4053595a9aa7bd2d169327e7a7ecc1347edf1767f556cb0b6b46bf910a6714",
+      "sourceDimensions": [
+        436,
+        500
+      ],
+      "outputDimensions": [
+        436,
+        500
+      ],
+      "sourceBytes": 67346,
+      "outputBytes": 65382,
+      "savedBytes": 1964,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-presvytoi-troity-cargo-46923571.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-presvytoi-troity-cargo-46923571.jpg",
+      "sourceSha256": "957c5ed30f5e971b8f97da003f3a770d2358931ce23532a68a33ef5b0942d022",
+      "outputSha256": "98002ce0923f9c8571b63beb63a86af2be19a62338c22cdffd8f54044d950b3c",
+      "sourceDimensions": [
+        468,
+        500
+      ],
+      "outputDimensions": [
+        468,
+        500
+      ],
+      "sourceBytes": 115332,
+      "outputBytes": 106424,
+      "savedBytes": 8908,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-presvytoi-troity-cargo-46923572.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-presvytoi-troity-cargo-46923572.jpg",
+      "sourceSha256": "9e4f8deb60889a67aa460e08f82e687be50d0c4d48610e180ec81a02cb250415",
+      "outputSha256": "2702986c2357812c1e23306bd9962209078fa9751b84a26263f37fb8af503972",
+      "sourceDimensions": [
+        760,
+        889
+      ],
+      "outputDimensions": [
+        760,
+        889
+      ],
+      "sourceBytes": 621449,
+      "outputBytes": 294502,
+      "savedBytes": 326947,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-presvytoi-troity-cargo-46923573.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-presvytoi-troity-cargo-46923573.jpg",
+      "sourceSha256": "45bf96b97ef61744b12c971382db89a72f00efa9c5f0182511b5d3d6034e4fff",
+      "outputSha256": "eaf0c7817de2c49f2bb8cf5f0eb438479d5b10f93a4f68e9a090f1126b59cc05",
+      "sourceDimensions": [
+        703,
+        801
+      ],
+      "outputDimensions": [
+        703,
+        801
+      ],
+      "sourceBytes": 574751,
+      "outputBytes": 288327,
+      "savedBytes": 286424,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-skladen-bogorodita-kazanskay-cargo-83914085.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-skladen-bogorodita-kazanskay-cargo-83914085.jpg",
+      "sourceSha256": "f3c7bcfdfd4db897cdc7602b2430e4ad6641d933be1801d13d45eb93aef3296d",
+      "outputSha256": "3a49943518d16ae4c8d756d808923847bbd6733f1552b86eab3018b81148d6a5",
+      "sourceDimensions": [
+        2820,
+        2241
+      ],
+      "outputDimensions": [
+        1600,
+        1271
+      ],
+      "sourceBytes": 3407976,
+      "outputBytes": 819013,
+      "savedBytes": 2588963,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-skladen-bogorodita-kazanskay-cargo-83914093.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-skladen-bogorodita-kazanskay-cargo-83914093.jpg",
+      "sourceSha256": "9ac14b718c6db4b4db921ad9f13a01fdd64dd9c2899deee5e3a0ce8778c59517",
+      "outputSha256": "f3c44d51eabb0bfac985617f348ff56d5d34c88d0e8ad318a0471e8fe83e2cb6",
+      "sourceDimensions": [
+        3888,
+        2592
+      ],
+      "outputDimensions": [
+        1600,
+        1067
+      ],
+      "sourceBytes": 4445653,
+      "outputBytes": 662445,
+      "savedBytes": 3783208,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-skladen-bogorodita-kazanskay-cargo-83914125.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-skladen-bogorodita-kazanskay-cargo-83914125.jpg",
+      "sourceSha256": "a44bab0e68ac1590b9618434020f10fbda9c808bd69a7887c11282ebcaecf156",
+      "outputSha256": "4b506c7ee4a49f9b27b4932b3cc1d6ace1644de842e9f2cc47e330c97ea951e9",
+      "sourceDimensions": [
+        1998,
+        2573
+      ],
+      "outputDimensions": [
+        1242,
+        1600
+      ],
+      "sourceBytes": 2738003,
+      "outputBytes": 676659,
+      "savedBytes": 2061344,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-spas-blagoe-molcanie-ili-angel-velikogo-soveta-cargo-47844366.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-spas-blagoe-molcanie-ili-angel-velikogo-soveta-cargo-47844366.jpg",
+      "sourceSha256": "f18ffd6e2aa47b17953079ac3af1ddee374f54fbeb6a49130f5583e2e30374b0",
+      "outputSha256": "575cbc98e63abe88e1c0a69101e405879c64231a943095bf0c0ad4f4109144f6",
+      "sourceDimensions": [
+        404,
+        500
+      ],
+      "outputDimensions": [
+        404,
+        500
+      ],
+      "sourceBytes": 73949,
+      "outputBytes": 71626,
+      "savedBytes": 2323,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-spas-nerukotvornyi-1-cargo-47840404.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-spas-nerukotvornyi-1-cargo-47840404.jpg",
+      "sourceSha256": "b53306c10fd1d6ff13742e4c15022c958420977a0cad3205de5322d2028399c1",
+      "outputSha256": "12d0a0130a1499f28b99f89ad77627dfb60005a58174e99106aa788d0db95cc2",
+      "sourceDimensions": [
+        228,
+        500
+      ],
+      "outputDimensions": [
+        228,
+        500
+      ],
+      "sourceBytes": 47828,
+      "outputBytes": 45154,
+      "savedBytes": 2674,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-spas-nerukotvornyi-cargo-47837860.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-spas-nerukotvornyi-cargo-47837860.jpg",
+      "sourceSha256": "5e84d4391badfb618d0c789e6becff7c5d6a22c306bac24051ed2e8772ee7996",
+      "outputSha256": "5056e08c4f2bfd5c3941811a884d541dab3ea106eb76386282f92efff7d6ea8e",
+      "sourceDimensions": [
+        440,
+        500
+      ],
+      "outputDimensions": [
+        440,
+        500
+      ],
+      "sourceBytes": 78052,
+      "outputBytes": 72772,
+      "savedBytes": 5280,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-spas-vsederzitel-v-starinnom-oklade-i-dubovom-kiote-cargo-81216832.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-spas-vsederzitel-v-starinnom-oklade-i-dubovom-kiote-cargo-81216832.jpg",
+      "sourceSha256": "479490b0ef7823f23f486418575069ad0f3560396649be5793472c824ae6564b",
+      "outputSha256": "80d9f434c5684a477d08f92b39fc3cddb8e045b11c04e8ba257f678c8afee66b",
+      "sourceDimensions": [
+        2438,
+        2694
+      ],
+      "outputDimensions": [
+        1448,
+        1600
+      ],
+      "sourceBytes": 3222643,
+      "outputBytes": 832700,
+      "savedBytes": 2389943,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-svytay-matrona-moskovskay-cargo-80926815.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-svytay-matrona-moskovskay-cargo-80926815.jpg",
+      "sourceSha256": "deb5a2d98bd833bffc8f0eada1d45298d05de52c2ee9c95f7f3fe5c6ae59df26",
+      "outputSha256": "0a880c88b199bde5ec0a4ac18415a4c499e335c86582daf65cc97391321a4638",
+      "sourceDimensions": [
+        2582,
+        2846
+      ],
+      "outputDimensions": [
+        1452,
+        1600
+      ],
+      "sourceBytes": 3774139,
+      "outputBytes": 885229,
+      "savedBytes": 2888910,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-svytitel-spiridon-trimifunskii-cargo-47836513.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-svytitel-spiridon-trimifunskii-cargo-47836513.jpg",
+      "sourceSha256": "a1919f2ab010d831865425087df97a2ca9c42a861cdc909b0deae296ea265694",
+      "outputSha256": "076a5bbe854fe21a293db1dc9ada39bfa9c0bb4dd40f6013e99c8bd7813a6c29",
+      "sourceDimensions": [
+        431,
+        500
+      ],
+      "outputDimensions": [
+        431,
+        500
+      ],
+      "sourceBytes": 75158,
+      "outputBytes": 72770,
+      "savedBytes": 2388,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-svytyk-boris-i-gleb-cargo-47840455.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-svytyk-boris-i-gleb-cargo-47840455.jpg",
+      "sourceSha256": "304141a5c1161c6759008571ba194b30f6e366b2b7e6629c33fd5747d5857fb3",
+      "outputSha256": "e8c7dae6ff430508f4ff362ae4d71f038dd57f8ac0c15d975cf2408d081582b6",
+      "sourceDimensions": [
+        430,
+        500
+      ],
+      "outputDimensions": [
+        430,
+        500
+      ],
+      "sourceBytes": 66075,
+      "outputBytes": 65008,
+      "savedBytes": 1067,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-varvara-velikomucenita-v-zitie-cargo-47799916.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-varvara-velikomucenita-v-zitie-cargo-47799916.jpg",
+      "sourceSha256": "c9b91cb38dbab3facb2a985bb206852807d46246024a9ff614e2735e9ab5234c",
+      "outputSha256": "751fca55120800534506c179ffc1462c077987c6893d4c9b67068e87e9b01f1e",
+      "sourceDimensions": [
+        464,
+        500
+      ],
+      "outputDimensions": [
+        464,
+        500
+      ],
+      "sourceBytes": 90716,
+      "outputBytes": 86524,
+      "savedBytes": 4192,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/ikona-varvara-velikomucenita-v-zitie-cargo-47799917.jpg",
+      "output": "release/optimized-assets/assets/icons/ikona-varvara-velikomucenita-v-zitie-cargo-47799917.jpg",
+      "sourceSha256": "3408a57e6470df768dd462f443875b81e427bff08f27d11e34d952332e14e69b",
+      "outputSha256": "25c167f8409d7bf235d05b6c5d1cd8f76701feac4dfea41807b052fde8a92360",
+      "sourceDimensions": [
+        1952,
+        2382
+      ],
+      "outputDimensions": [
+        1311,
+        1600
+      ],
+      "sourceBytes": 686341,
+      "outputBytes": 648138,
+      "savedBytes": 38203,
+      "quality": 88,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/joy-of-all-who-sorrow-gilded-oklad-cargo-80900910.jpg",
+      "output": "release/optimized-assets/assets/icons/joy-of-all-who-sorrow-gilded-oklad-cargo-80900910.jpg",
+      "sourceSha256": "20255efacd6d7df9639cb0a138df906122fb167254a759d7f66492fecdf4f10f",
+      "outputSha256": "f3f484ea827b71b6f48d59848ad2c61a5e4f1241470b93129b2aeab7b3714144",
+      "sourceDimensions": [
+        2316,
+        2759
+      ],
+      "outputDimensions": [
+        1343,
+        1600
+      ],
+      "sourceBytes": 6652049,
+      "outputBytes": 1308731,
+      "savedBytes": 5343318,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/miracle-of-saint-george-variant-cargo-46852548.jpg",
+      "output": "release/optimized-assets/assets/icons/miracle-of-saint-george-variant-cargo-46852548.jpg",
+      "sourceSha256": "ffafdf6096360ea5c5caccd1a0cb52e893171a6464eacface562441f4d392a18",
+      "outputSha256": "aec005ae2aade42a376654ee1cd27ed03025fe45494eec8bf42a5ca74b1ec28e",
+      "sourceDimensions": [
+        396,
+        500
+      ],
+      "outputDimensions": [
+        396,
+        500
+      ],
+      "sourceBytes": 94422,
+      "outputBytes": 88936,
+      "savedBytes": 5486,
+      "quality": 85,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/saint-nicholas-cargo-46849264.jpg",
+      "output": "release/optimized-assets/assets/icons/saint-nicholas-cargo-46849264.jpg",
+      "sourceSha256": "40cc72fc23b75c9929d428970b3258f549cfe7482606c33315f2887fc4a7472f",
+      "outputSha256": "a02bcea76bae4fd565579b12cdc7d4e68a35ca0655beb8e1cf86a812695e6571",
+      "sourceDimensions": [
+        641,
+        789
+      ],
+      "outputDimensions": [
+        641,
+        789
+      ],
+      "sourceBytes": 330184,
+      "outputBytes": 289314,
+      "savedBytes": 40870,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    },
+    {
+      "source": "public/assets/icons/sergius-of-radonezh-cargo-46848200.jpg",
+      "output": "release/optimized-assets/assets/icons/sergius-of-radonezh-cargo-46848200.jpg",
+      "sourceSha256": "cc9bcac302aa2a3a4a1be1c965f2b8b98f25b16707e16abe21ad70cb9abf72c4",
+      "outputSha256": "d95b7cdf1eb39228285244db19ffe656f69a2668262bbcaaaa36e91052757d36",
+      "sourceDimensions": [
+        675,
+        833
+      ],
+      "outputDimensions": [
+        675,
+        833
+      ],
+      "sourceBytes": 394390,
+      "outputBytes": 347342,
+      "savedBytes": 47048,
+      "quality": 90,
+      "iccSha256": null,
+      "exifOrientation": 1
+    }
+  ],
+  "summary": {
+    "imageCount": 65,
+    "protectedOriginals": 144,
+    "protectedExistingDerivatives": 247,
+    "sourceBytes": 41354870,
+    "outputBytes": 17217477
+  },
+  "verification": {
+    "originalHashesUnchanged": true,
+    "existingDerivativeHashesUnchanged": true,
+    "allOutputsDecodable": true,
+    "allOutputsSmaller": true,
+    "fullCompositionAndAspectPreserved": true,
+    "iccAndExifPreserved": true
+  }
+}

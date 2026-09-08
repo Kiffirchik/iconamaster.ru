@@ -39,6 +39,18 @@
       ]
     },
     {
+      "sourcePath": "/IKONA-ALEKSANDR-NEVSKII",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-ALEKSANDR-NEVSKII",
+      "title": "Икона Александр Невский.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/da347d64b52bd1bbd9bf806cfb762a128d369d46904d9acb3839d9ccd2995fbe/8.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
       "sourcePath": "/IKONA-APOKALIPSIS",
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-APOKALIPSIS",
       "title": "Икона Апокалипсис.",
@@ -99,6 +111,22 @@
       ]
     },
     {
+      "sourcePath": "/IKONA-BOGORODITA-VLADIMIRSKAY",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITA-VLADIMIRSKAY",
+      "title": "Икона Богородица Владимирская.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/ba22b2fb427d0cfa89553ef55742d723076d335302dbfc73c4835d2dc8da8871/21_1.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/75bfc7d188e752826812773f65ea753be86d98ab2d6a3520e6e8e3fa834cd265/21_2.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
       "sourcePath": "/IKONA-BOGORODITA-VSEK-SKORBYSIK-RADOST-MOSKOVSKII-IZVOD",
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITA-VSEK-SKORBYSIK-RADOST-MOSKOVSKII-IZVOD",
       "title": "Икона Богородица всех скорбящих радость (московский извод).",
@@ -107,6 +135,18 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/e56d97209c3a38323ad7f53dcf7c27688831fe3a37fa4ae3eef72b7777fd5ed4/28.jpg",
           "provenance": "local-page-html"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-BOGORODITY-CASA-NEUPIVAEMAY-1",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-CASA-NEUPIVAEMAY-1",
+      "title": "Икона Богородицы Чаша неупиваемая.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/1716a776c9b16b5a4662e2dd1d1cb1c673fac6ce623a8599d72ebc41079ba1de/30.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -123,6 +163,30 @@
       ]
     },
     {
+      "sourcePath": "/IKONA-BOGORODITY-FEDOROVSKOI",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-FEDOROVSKOI",
+      "title": "Икона Богородицы Федоровской.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/ea93bb72d3ccf1d0a2e70c93b033cb78c63fec62d410c0c0537efae24de32fa0/2.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-BOGORODITY-IVERSKAY",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-IVERSKAY",
+      "title": "Икона Богородицы Иверская.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/f67f02a38f3904e72bc9a8f39c9750093ecd2206686e127be27eba622d1176f7/40_1.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
       "sourcePath": "/IKONA-BOGORODITY-KAZANSKAY",
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KAZANSKAY",
       "title": "Икона Богородицы Казанская.",
@@ -131,6 +195,58 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/582f1e808efd0c1c96f2954b979c9f410d48ccc899d5793bc5263a524a46aef7/11.jpg",
           "provenance": "local-page-html"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-BOGORODITY-KAZANSKAY-1",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KAZANSKAY-1",
+      "title": "Икона Богородицы Казанская.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/601e0b3c5e7139fa4487a73cd2c8a663a72c5e6b6de865c95fe03042bbb90f34/10.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-BOGORODITY-KAZANSKAY-3",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KAZANSKAY-3",
+      "title": "Икона Богородицы Казанская.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/3396de87d31c37807e677d2f0baa9e555c32171d633675c2d5009c147e4f3e6f/33.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-BOGORODITY-KORSUNSKAY",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KORSUNSKAY",
+      "title": "Икона Богородицы Корсунская.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/c084603d8509d2fb00670b336b75d128ade585615810e341dd9be63db33b5c0c/32.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-BOGORODITY-KORSUNSKAY-1",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-KORSUNSKAY-1",
+      "title": "Икона Богородицы Корсунская.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/c4951a74417445f33b2765828a4fbc90efd2bad0f1600de60ceb5b934cd32e99/38_1.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/94946dd3f8bfdc9623af6f9d1868f1fe2813bc92ccbc85dd0097e7fe0456b190/38_2.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -169,6 +285,46 @@
       "originals": []
     },
     {
+      "sourcePath": "/IKONA-BOGORODITY-RUSSKAY-ILI-VZBRANNAY-VOEVODA",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-RUSSKAY-ILI-VZBRANNAY-VOEVODA",
+      "title": "Икона Богородицы Русская или Взбранная Воевода.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/1dcd4ef291161ba7ff7828e2b1032b791748d981a38a38d978ef3ee4ac2bad66/39_1.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/bdbb20112b973f96f2c2cdab37758c207b36270e9abae7857851715b14ada44c/39_2.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-BOGORODITY-SMOLENSKAY",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-SMOLENSKAY",
+      "title": "Икона Богородицы Смоленская.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/16325b880dd5d1b29b5a97ebdfe537f199f7e99618b3724eee61ad5f8493d293/29.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-BOGORODITY-SPORUCNITA-GRESNYK",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-SPORUCNITA-GRESNYK",
+      "title": "Икона Богородицы Споручница Грешных.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/b527675d1d8771a8262ac1d7cbac4006eaa2fa9392431230ca8e2d05421f7281/28.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
       "sourcePath": "/IKONA-BOGORODITY-TELITEL-NITA",
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-TELITEL-NITA",
       "title": "Икона Богородицы Целительница.",
@@ -188,6 +344,54 @@
       "originals": []
     },
     {
+      "sourcePath": "/IKONA-BOGORODITY-UTOLI-MOI-PECALI",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-UTOLI-MOI-PECALI",
+      "title": "Икона Богородицы Утоли мои печали.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/d524b780117a3dc00044d9bc5c13235d1726fff0226775e70b7251af098e9b1b/11.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-BOGORODITY-UTOLI-MOI-PECALI-1",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-UTOLI-MOI-PECALI-1",
+      "title": "Икона Богородицы Утоли мои печали.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/5b03c3ac22f2c47430996bfc0fb02b472150bb2c2b0b72af77322e66c0d500f5/12.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-BOGORODITY-UTOLI-MOI-PECALI-copy",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-UTOLI-MOI-PECALI-copy",
+      "title": "Икона Богородицы Утоли мои печали.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/2e8999091849650c112175a67ec7c042a073b148f672473f4da5723a0aa6c1f5/13.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-BOGORODITY-VLADIMIRSKAY",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-VLADIMIRSKAY",
+      "title": "Икона Богородицы Владимирская.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/a0d3238457bea4806e8e37cb85b88c4d0f1f09eb3e5801fa06595b8cd8ccc96c/36.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
       "sourcePath": "/IKONA-BOGORODITY-VZYGRANIE-MLADENTA",
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-VZYGRANIE-MLADENTA",
       "title": "Икона Богородицы Взыграние младенца.",
@@ -196,6 +400,34 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/f1120eb39337ff98f6a1a97313213eb6ccaf23041d472b4e40cca3c2b079838a/10.jpg",
           "provenance": "local-page-html"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-BOGORODITY-ZIVONOSNYI-ISTOCNIK-1",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-ZIVONOSNYI-ISTOCNIK-1",
+      "title": "Икона Богородицы Живоносный источник.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/a5687b6c36e0ab67048116ed66d42b241ef3ca60dce583bb1d8578c1653b0abb/34_1.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/1fbec52baf5cca95a0c050c147a6ddafa1a27269fe0aa240e5ca8394b9c197b9/34_2.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-BOGORODITY-ZNAMENIE",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-BOGORODITY-ZNAMENIE",
+      "title": "Икона Богородицы Знамение.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/43cb776d2a8fb2486a750b04ed02291cfb85ce1e677e6b6609fb65eb047b5a8d/35.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -220,6 +452,10 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/bd14dd401e8c7453df8e7dc827300e145a0aa15b32ecff38bcf98ba1e3ab6d3c/_DSC0687.JPG",
           "provenance": "local-page-html"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/8925ca4b0560dadb09f78e555e8d7129a7a0fce08c1bf842b9e8d25d25b35128/_DSC0687.JPG",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -243,6 +479,22 @@
       "originals": []
     },
     {
+      "sourcePath": "/IKONA-CUDO-ARKISTRATIGA-MIKAILA",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-ARKISTRATIGA-MIKAILA",
+      "title": "Икона Чудо Архистратига Михаила.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/03edcc7250d4373f043ab9a0f05941986532a4a3d880147c322a8c465ca4a4eb/35_1.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/81cae804860c7fdb6829492e66fee5b36d24ad1a218316f4f47aaea1f1ff194e/35_2.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
       "sourcePath": "/IKONA-CUDO-GEORGIY-O-ZMIE",
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE",
       "title": "Икона Чудо Георгия о змие.",
@@ -251,6 +503,82 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/9e2c80f0a039bca983d59d0625a6bf7c819e762e1e0b7ef378a04524c353a020/-----2117------3530---19-----2.JPG",
           "provenance": "local-page-html"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-CUDO-GEORGIY-O-ZMIE-1",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-1",
+      "title": "Икона Чудо Георгия о змие.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/f1781136f0a09361139d26a63e6c3e2972170b3c123ce96661a3267fe5cd3f2d/-------19------2218------3631---.JPG",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-CUDO-GEORGIY-O-ZMIE-2",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-2",
+      "title": "Икона Чудо Георгия о змие.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/ecf6227a754803ffc630c09617257c49bbc777cc468a0838e7bd4df38cc7df68/15.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-CUDO-GEORGIY-O-ZMIE-3",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-3",
+      "title": "Икона Чудо Георгия о змие.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/32518977493cfd191e8912863ed527313095e60dfa0bc32ea489bf62f752423c/16.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-CUDO-GEORGIY-O-ZMIE-4",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-4",
+      "title": "Икона Чудо Георгия о змие.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/9e8bb061384908737d55336191ace3cad6a7cef27c6eaef5edaca95ed920d909/18_1.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/effccc4696a1a7ac8b6c7b44fd95a194a21b1b088bd2a019800b89fb5952955e/18_2.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-CUDO-GEORGIY-O-ZMIE-5",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-GEORGIY-O-ZMIE-5",
+      "title": "Икона Чудо Георгия о змие.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/26ac722cf7d30d0e65d51f386d19ec30fb2977dab88e07da4286a4c9c059d29d/_DSC0714.JPG",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-CUDO-MUCENIKA-TRIFONA-O-SOKOLE",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-MUCENIKA-TRIFONA-O-SOKOLE",
+      "title": "Икона Чудо мученика Трифона о соколе.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/5ac6b6e720d5205629cbfcd2ce7b659cba5a11c05159e7ae065dcffd88a2ba8b/17.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -267,6 +595,18 @@
       ]
     },
     {
+      "sourcePath": "/IKONA-CUDO-SVYTOGO-GEORGIY",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-SVYTOGO-GEORGIY",
+      "title": "Икона Чудо Святого Георгия.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/8345583805b5383e40b4dc81a28c5e5dde82bb77d69029d41713163bd873d891/20.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
       "sourcePath": "/IKONA-CUDO-SVYTOGO-GEORGIY-O-ZMIE",
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-SVYTOGO-GEORGIY-O-ZMIE",
       "title": "Икона Чудо Святого Георгия о змие.",
@@ -275,6 +615,22 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/f356fee6f0e548e31c1bcaf3887e151b9584d3285d6e49cfd2f24ef01d9e2ac4/----19--2822----4236.JPG",
           "provenance": "local-page-html"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/5e9d003ceab7220cd223e31159858bda86ae36b4aea9a8a228751dcd6cc9cfe2/24.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-CUDO-VELIKOMUCENIKA-DIMITRIY-SOLUNSKOGO",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-CUDO-VELIKOMUCENIKA-DIMITRIY-SOLUNSKOGO",
+      "title": "Икона Чудо великомученика Димитрия Солунского.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/df440c0bdea849c2e22879b06d05016ec8d46d68d48db1af7d28da10f7435de6/32.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -295,6 +651,34 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/a1bd7d6f2e4d27bbd16dca3336f2a737d1ccfdb1d53e8b9e5f718f0ef7814bfe/20.jpg",
           "provenance": "local-page-html"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-IL-Y-MUROMET-V-ZITII",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-IL-Y-MUROMET-V-ZITII",
+      "title": "Икона Илья Муромец в житии.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/75b5cfb2d12ef125fd34693d8b51c6fa9b70f9d8c27424d0bd6e06def813d9ef/19_1.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/c052f6c909b58ef5bdda3d4558dab764a0f8665b7b0eb3c1d72f340a52ca0bf2/19_2.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-NE-RYDAI-MENE-MATI",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-NE-RYDAI-MENE-MATI",
+      "title": "Икона Не рыдай мене мати.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/c7d430b3e8d468844c576d9c08aa833c9460e108c32173e22326ea89e98d0174/6.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -323,6 +707,10 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/9541c4942164326f27cb5296dac950fdd372b7eee61a9e1b8f3d1102c694efa2/_DSC0777.JPG",
           "provenance": "local-page-html"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/89c7b979b9b77cbc544cf546739d07ed2255649f1683e407b0e1401bea596d1a/17.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -339,6 +727,58 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/e2346f8e8babfbe8de5943b14ad89426cc2d6db1df8f7152a77e802d06435eb7/16.jpg",
           "provenance": "local-page-html"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-OGNENNOE-VOSKOZDENIE-IL-I-PROROKA",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-OGNENNOE-VOSKOZDENIE-IL-I-PROROKA",
+      "title": "Икона Огненное восхождение Ильи пророка.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/d6c8a6ea09e3607d1e2dddbf7a6965a68f1734bb1067dfc2886564d40ad2d7a3/22.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-PANTELEIMON-TELITEL",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PANTELEIMON-TELITEL",
+      "title": "Икона Пантелеймон целитель.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/87c617b53db8adfb79c2eae299502222ee5567b72d3fb02c3b718bd2a57b26c2/24.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/da3cf6e5e57174dd804048c78b2819c3e1516c1b32350797efe0f3ad708ae26f/24_2.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-PARSUNA-BLAGOVERNYI-TAR-IOANN-GROZNYI",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PARSUNA-BLAGOVERNYI-TAR-IOANN-GROZNYI",
+      "title": "Икона - парсуна Благоверный Царь Иоанн Грозный.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/d3c1d9c4d404e329e0be7974ef692a560cabc582f9faffd00fec652063222853/31.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-PREPODOBNAY-MARIY-KIDANSKAY",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNAY-MARIY-KIDANSKAY",
+      "title": "Икона преподобная Мария Хиданская.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/19cc6ed6861d395ba78b9eeb7d2b39f28e0cb79c12d9f74e854ff56329b76fee/36.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -362,6 +802,30 @@
       ]
     },
     {
+      "sourcePath": "/IKONA-PREPODOBNYI-SERAFIM-SAROVSKII",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNYI-SERAFIM-SAROVSKII",
+      "title": "Икона преподобный Серафим Саровский.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/0e032213bf9357032f55035aeb8095d8aacf8b6b6fea330dda8acb8c5d8d4e23/1.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-PREPODOBNYI-SERGII-RADONEZSKII",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PREPODOBNYI-SERGII-RADONEZSKII",
+      "title": "Икона Преподобный Сергий Радонежский.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/bb732390b601e84bdfea59098bb65aa69bac48bf98e71cc0170a5c841e5b8525/14.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
       "sourcePath": "/IKONA-PRESVYTAY-TROITA",
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-PRESVYTAY-TROITA",
       "title": "Икона Пресвятая Троица.",
@@ -378,6 +842,34 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/fc6a674fdf49f6f47f7888f48709bd34a3b49b9f89c158eceb2a4c95c5de1e61/150--3731.JPG",
           "provenance": "local-page-html"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/cbca8c5f03b3b211164ffccc4f9221c4d16dc041dff2877d80dfee0dd734e517/22.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/f923e8db474388d5e12eb627d33a98a39e0a20e0a6684f124cbeb25793f179e4/150--000-----37--31----51--44.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-PRESVYTOI-TROITY",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-PRESVYTOI-TROITY",
+      "title": "Икона Пресвятой Троицы.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/3a8f898b27afe466d0f7cb596d749410f0feb04f5ce6efc430cb42041285c17d/34_1.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/3f1b1dbb9c8b2a2d51c1fcc3d31f5b17e0e7d80b226f2866517c7a8b18ed4c52/34_2.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/d4011cc93fb625bc613e2fdf966e53940a5b439b031644da708c77a4aa5a1a08/34_3.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -402,6 +894,30 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/f4bb1fbf8200953886ca460ecfb0ed19619c31132ca777ccd979420a083badc0/_DSC0485.JPG",
           "provenance": "local-page-html"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/fc32b3ad21578b2d71c1103c1b65cb64d92bb411dcd43ab9d2f5f034ab1172a3/9.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-SKLADEN-BOGORODITA-KAZANSKAY",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SKLADEN-BOGORODITA-KAZANSKAY",
+      "title": "Икона складень Богородица Казанская.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/85b00f38a5f0afeb9ad75c8dd05d6e4b2002db2edb7235a545c7b87edc29f271/_DSC0786.JPG",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/59628dac002fa03b64e47bbfd72bb2fa1ab9fb822500623132d2e2ec7e8aa52e/_DSC0466.JPG",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/dd8f68e2dde41ea71eda88e7f1ae70bd1a4dfc7a466a0aafcb95eb293811f248/_DSC0468.JPG",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -414,6 +930,42 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/b04df98a68b5388c3003a8a7e72500ad94e9837c045de81c6e94c8baa3602b8a/21.jpg",
           "provenance": "local-page-html"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-SPAS-BLAGOE-MOLCANIE-ILI-ANGEL-VELIKOGO-SOVETA",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-BLAGOE-MOLCANIE-ILI-ANGEL-VELIKOGO-SOVETA",
+      "title": "Икона Спас Благое Молчание или Ангел Великого Совета.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/cb6abf004bc9e9631d916da2db0f489d267903cb3517e44f8179740fe363b3ba/37.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-SPAS-NERUKOTVORNYI",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-NERUKOTVORNYI",
+      "title": "Икона Спас Нерукотворный.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/565e93116fe1ffa3e5c35da5be5808503dfd12814e3836eece06129ad01f8bbe/25.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-SPAS-NERUKOTVORNYI-1",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-NERUKOTVORNYI-1",
+      "title": "Икона Спас Нерукотворный.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/6027350a96bc41a32e6a229b527fe59e83d2547d6cee7b278194120b8ba9e4b9/26.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -477,6 +1029,18 @@
       ]
     },
     {
+      "sourcePath": "/IKONA-SPAS-VSEDERZITEL-V-STARINNOM-OKLADE-I-DUBOVOM-KIOTE",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-V-STARINNOM-OKLADE-I-DUBOVOM-KIOTE",
+      "title": "Икона Спас Вседержитель в старинном окладе и дубовом киоте.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/f7045625e6041de0d36e8776d0c159dc1f7ae52c4b363e299c020daf833c01d6/_DSC0483.JPG",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
       "sourcePath": "/IKONA-SPAS-VSEDERZITEL-V-STARINOM-LATUNNOM-OKLADE",
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-SPAS-VSEDERZITEL-V-STARINOM-LATUNNOM-OKLADE",
       "title": "Икона Спас Вседержитель в старином латунном окладе",
@@ -489,6 +1053,10 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/d3a57c36c4f8d992e03a24bd68c03ee8386e402f94eca63ef706a352cba92107/----19-.JPG",
           "provenance": "local-page-html"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/13f773346ec2109d26ca6e1ab37c1343c52b616f1e56826183917cd809d45ebc/25.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -501,6 +1069,30 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/f4dd4828ddffb5fceaa9ac85aebf164474186767ebeccf7f96d869870e14853b/13.jpg",
           "provenance": "local-page-html"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-SVYTAY-MATRONA-MOSKOVSKAY",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SVYTAY-MATRONA-MOSKOVSKAY",
+      "title": "Икона Святая Матрона Московская.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/9f8ddc492e15b16eda1ecf1e4004e5e720e75b3a6f973d972af656f25fc38702/---2117----3530-----------------.JPG",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-SVYTITEL-SPIRIDON-TRIMIFUNSKII",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SVYTITEL-SPIRIDON-TRIMIFUNSKII",
+      "title": "Икона Святитель Спиридон Тримифунский.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/aa790b4d59ba2bd73531ff27ddeb823bccc26b4327351e24b8ca33fc169b7745/23.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -524,6 +1116,18 @@
       ]
     },
     {
+      "sourcePath": "/IKONA-SVYTYK-BORIS-I-GLEB",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-SVYTYK-BORIS-I-GLEB",
+      "title": "Икона Святых Борис и Глеб.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/cd8dcbfc8b4c64793e34965a8cd79fd0fc62e179fe5e71ae8043a76489b7fbbb/27.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        }
+      ]
+    },
+    {
       "sourcePath": "/IKONA-SVYTYK-PETRA-I-FEVRONII-MUROMSKIK",
       "sourceUrl": "https://iconamaster.cargo.site/IKONA-SVYTYK-PETRA-I-FEVRONII-MUROMSKIK",
       "title": "Икона святых Петра и Февронии Муромских.",
@@ -532,6 +1136,22 @@
         {
           "sourceUrl": "https://freight.cargo.site/t/original/i/70386920c0a9fe7d11c9afed97d0651933c45b0171bf6775ea71339b8d410d09/13.jpg",
           "provenance": "local-page-html"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/IKONA-VARVARA-VELIKOMUCENITA-V-ZITIE",
+      "sourceUrl": "https://iconamaster.cargo.site/IKONA-VARVARA-VELIKOMUCENITA-V-ZITIE",
+      "title": "Икона Варвара Великомученица в житие.",
+      "mediaRecovery": "not-required",
+      "originals": [
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/5493c73d4b08fb25876108aa136453901575c5ade092676b6ac3866392e5dcc8/3_1.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
+        },
+        {
+          "sourceUrl": "https://freight.cargo.site/t/original/i/5f79401a0e1fe24ef39b7a2585547dcf5e984eaf38e7f7300fc743b945b5651e/3_2.jpg",
+          "provenance": "cargo-public-page-api-2026-09-08"
         }
       ]
     },
@@ -671,5 +1291,9 @@
         }
       ]
     }
-  ]
+  ],
+  "supplementalSource": {
+    "snapshot": "scripts/data/cargo-catalog-20260908.json",
+    "observedAt": "2026-09-08"
+  }
 }

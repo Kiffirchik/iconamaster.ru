@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { IconImage } from './IconImage.jsx';
+import { getIconDisplayValue } from '../lib/catalog.js';
 
 export class IconCard extends Component {
   state = { failedSources: new Set() };
@@ -27,9 +28,9 @@ export class IconCard extends Component {
 
     const path = `/icons/${icon.slug}`;
     const title = String(icon.title || '').trim();
-    const period = String(icon.period || '').trim();
-    const technique = String(icon.technique || '').trim();
-    const size = String(icon.size || '').trim();
+    const period = getIconDisplayValue(icon.period);
+    const technique = getIconDisplayValue(icon.technique);
+    const size = getIconDisplayValue(icon.size);
     const price = String(icon.price || '').trim() || 'Цена по запросу';
     const availability = String(icon.availability || '').trim();
 

@@ -1,0 +1,23 @@
+{
+  "cardDuplicates": [
+    {"sourceId":9159882,"canonicalId":9159893,"reason":"Unpublished copy uses the same Cargo image hash as the published copy; keep original visibility.","status":"confirmed","redirect":false},
+    {"sourceId":9007373,"canonicalId":9007295,"reason":"Byte-identical photograph, identical title and object size 40 x 30 cm. Owner confirmed merging and retaining 150000 RUB on 2026-09-08.","status":"owner-confirmed","redirect":true}
+  ],
+  "possibleDuplicates": [
+    {"sourceIds":[9007316,9153754],"status":"keep-separate-pending-owner","reason":"Similar painted George panel, matching listed size and price, photographed with and without a kiot; object identity needs owner confirmation."},
+    {"sourceIds":[9007346,9160289],"status":"keep-separate-pending-owner","reason":"Similar George icon in an ornamental metal cover, but different wooden kiots; object identity needs owner confirmation."}
+  ],
+  "ownerConfirmedPrices": [
+    {"sourceId":9161198,"price":20000,"confirmedOn":"2026-09-08","reason":"Owner confirmed 20,000 RUB; Cargo contains the typo 20 000 тыс. руб."},
+    {"sourceId":9160368,"price":200000,"confirmedOn":"2026-09-08","reason":"Owner supplied a new price of 200,000 RUB."}
+  ],
+  "ownerConfirmedSizes": [{"sourceId":9160368,"size":"50 × 40 см; киот 64 × 54 см","confirmedOn":"2026-09-08","reason":"Owner corrected the kiot size to 64 x 54 cm; icon size 50 x 40 cm retained from source.","descriptionFrom":"киоте - книжка 45 х 40 см.","descriptionTo":"киоте - книжка 64 х 54 см."}],
+  "photoDuplicates": [
+    {"cardId":8969117,"imageId":46853697,"retainedSourceUrl":"https://freight.cargo.site/t/original/i/a754da07638f063493a3cb773a2d935409f1774113fb52458c383397f5f65c0e/1_4.jpg"},
+    {"cardId":8987904,"imageId":80894028,"retainedSourceUrl":"https://freight.cargo.site/t/original/i/f4bb1fbf8200953886ca460ecfb0ed19619c31132ca777ccd979420a083badc0/_DSC0485.JPG"},
+    {"cardId":8987906,"imageId":80899435,"retainedSourceUrl":"https://freight.cargo.site/t/original/i/084a0434919851c33cf67c710241f6d011007bbb807a8445ffa4e3648485341e/-.JPG"},
+    {"cardId":9153811,"imageId":81217281,"retainedSourceUrl":"https://freight.cargo.site/t/original/i/f7045625e6041de0d36e8776d0c159dc1f7ae52c4b363e299c020daf833c01d6/_DSC0483.JPG"}
+  ],
+  "unavailableImageIds": [81215827,81215839,81216000],
+  "unavailableImageReason": "Cargo reports zero dimensions and original URLs return HTTP 404. The live source card uses a different valid original; no empty slots imported."
+}

@@ -1,16 +1,8 @@
 import { ConsultationLinks } from '../components/ConsultationLinks.jsx';
 import { IconGallery } from '../components/IconGallery.jsx';
+import { IconPassport } from '../components/IconPassport.jsx';
 import { publishedIcons } from '../content/schema.js';
-import { getNextIcon } from '../lib/catalog.js';
-
-const passportFields = [
-  ['Датировка', 'period'],
-  ['Происхождение', 'origin'],
-  ['Техника', 'technique'],
-  ['Размер', 'size'],
-  ['Состояние', 'condition'],
-  ['Реставрация', 'expertise']
-];
+import { getIconDisplayValue, getNextIcon } from '../lib/catalog.js';
 
 export function IconDetailPage({ icon, icons, onNavigate }) {
   if (!icon) {
@@ -27,9 +19,8 @@ export function IconDetailPage({ icon, icons, onNavigate }) {
 
   const catalogIcons = publishedIcons({ icons });
   const nextIcon = catalogIcons.length > 0 ? getNextIcon(catalogIcons, icon.slug) : null;
-  const visiblePassportFields = passportFields.filter(([, key]) => String(icon[key] || '').trim());
-  const eyebrow = [icon.type, icon.period]
-    .map((value) => String(value || '').trim())
+  const eyebrow = [icon.purpose, icon.period]
+    .map(getIconDisplayValue)
     .filter(Boolean)
     .join(' · ');
   const price = String(icon.price || '').trim() || 'Цена по запросу';
@@ -48,19 +39,9 @@ export function IconDetailPage({ icon, icons, onNavigate }) {
           {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
           <h1>{icon.title}</h1>
           <p className="icon-detail-page__price">{price}</p>
-          {String(icon.description || '').trim() ? <p className="icon-detail-page__description">{icon.description}</p> : null}
+          {getIconDisplayValue(icon.description) ? <p className="icon-detail-page__description">{icon.description}</p> : null}
 
-          {visiblePassportFields.length > 0 ? <section aria-labelledby="passport-title">
-            <h2 id="passport-title">Паспорт предмета</h2>
-            <dl className="object-passport">
-              {visiblePassportFields.map(([label, key]) => (
-                <div key={key}>
-                  <dt>{label}</dt>
-                  <dd>{icon[key]}</dd>
-                </div>
-              ))}
-            </dl>
-          </section> : null}
+          <IconPassport icon={icon} headingId="passport-title" />
 
           <nav className="icon-detail-page__navigation" aria-label="Навигация по коллекции">
             <a href="/collection" onClick={(event) => navigateTo(event, '/collection')}>← В каталог</a>
