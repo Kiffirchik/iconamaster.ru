@@ -22,6 +22,9 @@ const expectedArticleTitles = [
 ];
 
 const approvedDocxSources = new Map([
+  ['vetka-icon-painting', 'docx:vetka-icon-painting.docx'],
+  ['palekh-icon-painting', 'docx:palekh-icon-painting.docx'],
+  ['peshekhonov-icon-painting', 'docx:peshekhonov-icon-painting.docx'],
   ['history-of-cast-icons', 'docx:history-of-cast-icons.docx'],
   ['cast-crosses', 'docx:cast-crosses.docx'],
 ]);
@@ -537,7 +540,7 @@ test('durable editorial report accounts for exclusions, omissions, encoding and 
   assert.equal(report.schemaVersion, 1);
   assert.deepEqual(report.summary.records, {
     pages: 8,
-    articles: 12,
+    articles: 15,
     videos: 2,
     contacts: 1,
   });

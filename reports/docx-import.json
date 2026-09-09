@@ -300,6 +300,227 @@
       "ownerType": "article",
       "ownerSlug": "panteleimon-monastery-icons",
       "order": 6
+    },
+    {
+      "src": "/assets/articles/docx/vetka-icon-painting-1.png",
+      "alt": "Иконописная традиция Ветки",
+      "width": 518,
+      "height": 553,
+      "bytes": 856287,
+      "sha256": "7dbcc2f81236713c14c0c054f0de679ee9497b7101f2784af4c974000ad9aded",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Ветковская школа иконописи..docx#/word/media/image1.png",
+      "ownerType": "article",
+      "ownerSlug": "vetka-icon-painting",
+      "order": 1
+    },
+    {
+      "src": "/assets/articles/docx/vetka-icon-painting-2.jpg",
+      "alt": "Иконописная традиция Ветки",
+      "width": 675,
+      "height": 812,
+      "bytes": 312427,
+      "sha256": "83685556bc6c61683a47f18b8f79f2312e9cbeea743e666c9a2acf14a9e92886",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Ветковская школа иконописи..docx#/word/media/image2.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "vetka-icon-painting",
+      "order": 2
+    },
+    {
+      "src": "/assets/articles/docx/vetka-icon-painting-3.jpg",
+      "alt": "Иконописная традиция Ветки",
+      "width": 803,
+      "height": 1006,
+      "bytes": 385926,
+      "sha256": "7572fa7aa0cc150e9c1edd3448dfdd06fd065e85d2b707cbb6c982b5d20e0de6",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Ветковская школа иконописи..docx#/word/media/image3.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "vetka-icon-painting",
+      "order": 3
+    },
+    {
+      "src": "/assets/articles/docx/vetka-icon-painting-4.jpg",
+      "alt": "Иконописная традиция Ветки",
+      "width": 980,
+      "height": 1170,
+      "bytes": 896546,
+      "sha256": "6b686ffca7184442dea7eca91cb498cabefabc570802fc2c50fd60d8004853c3",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Ветковская школа иконописи..docx#/word/media/image4.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "vetka-icon-painting",
+      "order": 4
+    },
+    {
+      "src": "/assets/articles/docx/vetka-icon-painting-5.png",
+      "alt": "Иконописная традиция Ветки",
+      "width": 640,
+      "height": 786,
+      "bytes": 980962,
+      "sha256": "927e46903c9426e4e02fa968fe0746e09b73e39364276f8a5f01905fb8d6da1e",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Ветковская школа иконописи..docx#/word/media/image5.png",
+      "ownerType": "article",
+      "ownerSlug": "vetka-icon-painting",
+      "order": 5
+    },
+    {
+      "src": "/assets/articles/docx/vetka-icon-painting-6.png",
+      "alt": "Иконописная традиция Ветки",
+      "width": 370,
+      "height": 315,
+      "bytes": 197941,
+      "sha256": "b91c8e488558502e91da357e7f794620fe54f0c4221f9441f6363b850a14cc45",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Ветковская школа иконописи..docx#/word/media/image6.png",
+      "ownerType": "article",
+      "ownerSlug": "vetka-icon-painting",
+      "order": 6
+    },
+    {
+      "src": "/assets/articles/docx/vetka-icon-painting-7.jpg",
+      "alt": "Иконописная традиция Ветки",
+      "width": 927,
+      "height": 1040,
+      "bytes": 487620,
+      "sha256": "459a8d3adc0f6bbf487e8b2a71191a0fc4f3f2183666d1fea5deeae3733619af",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Ветковская школа иконописи..docx#/word/media/image7.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "vetka-icon-painting",
+      "order": 7
+    },
+    {
+      "src": "/assets/articles/docx/palekh-icon-painting-1.jpg",
+      "alt": "Иконописные традиции села Палех",
+      "width": 906,
+      "height": 1091,
+      "bytes": 491275,
+      "sha256": "b1f7a25f105bf285bca81260c53006a407781f1b0afaa0600138ae67fb35d711",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Иконописные традиции села Палех.docx#/word/media/image1.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "palekh-icon-painting",
+      "order": 1
+    },
+    {
+      "src": "/assets/articles/docx/palekh-icon-painting-2.jpg",
+      "alt": "Иконописные традиции села Палех",
+      "width": 761,
+      "height": 900,
+      "bytes": 398163,
+      "sha256": "1b58796c8a4897515f7cb873f6e130c706006454c78b271f79d38f893afb9e8e",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Иконописные традиции села Палех.docx#/word/media/image2.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "palekh-icon-painting",
+      "order": 2
+    },
+    {
+      "src": "/assets/articles/docx/palekh-icon-painting-3.jpg",
+      "alt": "Иконописные традиции села Палех",
+      "width": 742,
+      "height": 989,
+      "bytes": 296954,
+      "sha256": "2c56e989701b66593fd1051d43b01d353c421927b06e809c92947211df313fd5",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Иконописные традиции села Палех.docx#/word/media/image3.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "palekh-icon-painting",
+      "order": 3
+    },
+    {
+      "src": "/assets/articles/docx/palekh-icon-painting-4.jpg",
+      "alt": "Иконописные традиции села Палех",
+      "width": 720,
+      "height": 833,
+      "bytes": 311256,
+      "sha256": "9e097249668655c48d0d6f0834ae6719c9adb2fc0869746bc672e94d5c7e39e4",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Иконописные традиции села Палех.docx#/word/media/image4.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "palekh-icon-painting",
+      "order": 4
+    },
+    {
+      "src": "/assets/articles/docx/palekh-icon-painting-5.jpg",
+      "alt": "Иконописные традиции села Палех",
+      "width": 977,
+      "height": 1555,
+      "bytes": 264583,
+      "sha256": "95c61a5196149b754d7c265d128fc847912cb36c8a4c333065a1e89e29ae6a3a",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Иконописные традиции села Палех.docx#/word/media/image5.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "palekh-icon-painting",
+      "order": 5
+    },
+    {
+      "src": "/assets/articles/docx/palekh-icon-painting-6.jpg",
+      "alt": "Иконописные традиции села Палех",
+      "width": 1314,
+      "height": 1200,
+      "bytes": 248413,
+      "sha256": "8e2c25e8860f5bb41e0668fe22fbf2729715d47c9f4160b6b07c24fc1363792d",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Иконописные традиции села Палех.docx#/word/media/image6.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "palekh-icon-painting",
+      "order": 6
+    },
+    {
+      "src": "/assets/articles/docx/palekh-icon-painting-7.jpg",
+      "alt": "Иконописные традиции села Палех",
+      "width": 1128,
+      "height": 1280,
+      "bytes": 257547,
+      "sha256": "def382d273c478923c624b8128ff4ff40dcf56d01ce756f4d0c956fdbd103614",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Иконописные традиции села Палех.docx#/word/media/image7.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "palekh-icon-painting",
+      "order": 7
+    },
+    {
+      "src": "/assets/articles/docx/peshekhonov-icon-painting-1.jpg",
+      "alt": "Пешехоновская икона. Византийский стиль",
+      "width": 1063,
+      "height": 943,
+      "bytes": 244803,
+      "sha256": "368e668fd3859e751b37d6005b74f6d83615ded52dae844d7fad096c9d46014f",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Пешехоновская икона. Византийский стиль.docx#/word/media/image1.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "peshekhonov-icon-painting",
+      "order": 1
+    },
+    {
+      "src": "/assets/articles/docx/peshekhonov-icon-painting-2.jpg",
+      "alt": "Пешехоновская икона. Византийский стиль",
+      "width": 502,
+      "height": 995,
+      "bytes": 147034,
+      "sha256": "a79e4cba2388b4c15b5cc39b884bd887d1e2a3d30713ea654e4eb11c21e5ebd1",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Пешехоновская икона. Византийский стиль.docx#/word/media/image2.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "peshekhonov-icon-painting",
+      "order": 2
+    },
+    {
+      "src": "/assets/articles/docx/peshekhonov-icon-painting-3.jpg",
+      "alt": "Пешехоновская икона. Византийский стиль",
+      "width": 744,
+      "height": 672,
+      "bytes": 162635,
+      "sha256": "fddc63829edddf7fb6ace4888bfd43ebf7d163ed4e5c717334d69b8faeea0d96",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Пешехоновская икона. Византийский стиль.docx#/word/media/image3.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "peshekhonov-icon-painting",
+      "order": 3
     }
   ],
   "documents": [
@@ -354,6 +575,50 @@
         "/assets/articles/docx/panteleimon-monastery-icons-4.jpg",
         "/assets/articles/panteleimon-monastery-icons-2.jpg",
         "/assets/articles/docx/panteleimon-monastery-icons-6.jpg"
+      ]
+    },
+    {
+      "filename": "Ветковская школа иконописи..docx",
+      "slug": "vetka-icon-painting",
+      "sha256": "eaf6172496efa08712580f5452e44feb4212a3e968d3e067666d63c6f02b6587",
+      "paragraphs": 49,
+      "images": 7,
+      "embeddedImageSources": [
+        "/assets/articles/docx/vetka-icon-painting-1.png",
+        "/assets/articles/docx/vetka-icon-painting-2.jpg",
+        "/assets/articles/docx/vetka-icon-painting-3.jpg",
+        "/assets/articles/docx/vetka-icon-painting-4.jpg",
+        "/assets/articles/docx/vetka-icon-painting-5.png",
+        "/assets/articles/docx/vetka-icon-painting-6.png",
+        "/assets/articles/docx/vetka-icon-painting-7.jpg"
+      ]
+    },
+    {
+      "filename": "Иконописные традиции села Палех.docx",
+      "slug": "palekh-icon-painting",
+      "sha256": "de65256cb227f036efe0092aea3eb6d91382666694451731fbca1f67368ac086",
+      "paragraphs": 38,
+      "images": 7,
+      "embeddedImageSources": [
+        "/assets/articles/docx/palekh-icon-painting-1.jpg",
+        "/assets/articles/docx/palekh-icon-painting-2.jpg",
+        "/assets/articles/docx/palekh-icon-painting-3.jpg",
+        "/assets/articles/docx/palekh-icon-painting-4.jpg",
+        "/assets/articles/docx/palekh-icon-painting-5.jpg",
+        "/assets/articles/docx/palekh-icon-painting-6.jpg",
+        "/assets/articles/docx/palekh-icon-painting-7.jpg"
+      ]
+    },
+    {
+      "filename": "Пешехоновская икона. Византийский стиль.docx",
+      "slug": "peshekhonov-icon-painting",
+      "sha256": "3caeed513aec1c2bc6b86467e673453ed723006981feb79197ed72c6a9567375",
+      "paragraphs": 36,
+      "images": 3,
+      "embeddedImageSources": [
+        "/assets/articles/docx/peshekhonov-icon-painting-1.jpg",
+        "/assets/articles/docx/peshekhonov-icon-painting-2.jpg",
+        "/assets/articles/docx/peshekhonov-icon-painting-3.jpg"
       ]
     }
   ]

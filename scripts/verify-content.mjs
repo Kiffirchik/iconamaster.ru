@@ -23,6 +23,13 @@ const STATIC_ALIASES = {
   '/STAT-I': '/articles',
   '/VIDEO': '/video',
 };
+const APPROVED_DOCX_ARTICLE_SOURCES = new Map([
+  ['vetka-icon-painting', 'docx:vetka-icon-painting.docx'],
+  ['palekh-icon-painting', 'docx:palekh-icon-painting.docx'],
+  ['peshekhonov-icon-painting', 'docx:peshekhonov-icon-painting.docx'],
+  ['history-of-cast-icons', 'docx:history-of-cast-icons.docx'],
+  ['cast-crosses', 'docx:cast-crosses.docx'],
+]);
 const EXCLUDED_ARTICLE_PATH = '/IKONY-V-OKLADAK-TRADITIY-I-ISTORIY';
 const RAW_HTML = /<(?:\/?[A-Za-z][^>]*|!DOCTYPE[^>]*)>/iu;
 const EXECUTABLE_TEXT = /(?:javascript\s*:|\bon[a-z]+\s*=)/iu;
@@ -124,8 +131,7 @@ function validatePublicationRecord(record, fields, label, errors, allowDzen = fa
     errors.push(`${label} field order must be a positive integer`);
   }
   const approvedDocument = fields === ARTICLE_FIELDS
-    && ['history-of-cast-icons', 'cast-crosses'].includes(record.slug)
-    && record.sourceUrl === `docx:${record.slug}.docx`;
+    && APPROVED_DOCX_ARTICLE_SOURCES.get(record.slug) === record.sourceUrl;
   if (!isCanonicalSourceUrl(record.sourceUrl) && !(allowDzen && isCanonicalDzenArticleSourceUrl(record.sourceUrl)) && !approvedDocument) {
     errors.push(allowDzen
       ? `${label} field sourceUrl must be an approved HTTPS publication URL or imported document reference`
@@ -1010,6 +1016,9 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
         ...legacyArticleMap.map(({ slug }) => ({ slug, published: true })),
         { slug: 'restoration-murals-cleaning', published: true },
         { slug: 'georgievsky-church-iconostasis', published: true },
+        { slug: 'vetka-icon-painting', published: true },
+        { slug: 'palekh-icon-painting', published: true },
+        { slug: 'peshekhonov-icon-painting', published: true },
         { slug: 'history-of-cast-icons', published: true },
         { slug: 'cast-crosses', published: true },
       ],

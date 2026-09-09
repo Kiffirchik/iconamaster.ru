@@ -521,11 +521,11 @@ test('clean checkout content, aliases, ownership inventories, and local assets p
     icons: 95,
     publishedIcons: 95,
     pages: 8,
-    articles: 12,
+    articles: 15,
     videos: 2,
     aliases: 124,
-    referencedAssets: 360,
-    ownedAssets: 360,
+    referencedAssets: 377,
+    ownedAssets: 377,
   });
 });
 
