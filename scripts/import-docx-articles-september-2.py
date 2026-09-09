@@ -19,6 +19,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 RELATIONSHIP = '{http://schemas.openxmlformats.org/officeDocument/2006/relationships}'
+VML_NAMESPACE = 'urn:schemas-microsoft-com:vml'
 SOURCE_DEBRIS = ' elib.rshu.ru +1'
 
 EXPECTED_BASELINE_SLUGS = {
@@ -104,6 +105,34 @@ def append_image(sections, image):
         sections.append({'type': 'image', 'image': image})
 
 
+def paragraph_text(paragraph):
+    parts = []
+    for node in paragraph.xpath('.//*[local-name()="t" or local-name()="tab"]'):
+        parts.append(' ' if E.QName(node).localname == 'tab' else (node.text or ''))
+    return ''.join(parts).strip()
+
+
+def clean_paragraph(text, slug):
+    if slug == 'vetka-icon-painting' and text.endswith(SOURCE_DEBRIS):
+        return text[:-len(SOURCE_DEBRIS)]
+    return text
+
+
+def has_vml_rotation(document):
+    for node in document.xpath('//*[namespace-uri()=$namespace]', namespace=VML_NAMESPACE):
+        for attribute, value in node.attrib.items():
+            name = E.QName(attribute).localname.casefold()
+            if name in {'rotation', 'rot'}:
+                return True
+            if name == 'style' and any(
+                declaration.partition(':')[0].strip().casefold().endswith('rotation')
+                for declaration in value.split(';')
+                if ':' in declaration
+            ):
+                return True
+    return False
+
+
 def parse_job(job, incoming, next_order):
     filename, slug, title, expected_paragraphs, expected_images, heading_indices = job
     source_path = incoming / filename
@@ -121,13 +150,15 @@ def parse_job(job, incoming, next_order):
             raise ValueError('Unsupported tracked changes in ' + filename)
         if document.xpath('//*[local-name()="xfrm"]/@rot'):
             raise ValueError('Rotation requires explicit handling in ' + filename)
+        if has_vml_rotation(document):
+            raise ValueError('VML rotation requires explicit handling in ' + filename)
 
         relationships_xml = E.fromstring(archive.read('word/_rels/document.xml.rels'))
         relationships = {relationship.get('Id'): relationship for relationship in relationships_xml}
         for index, paragraph in enumerate(document.xpath('//*[local-name()="body"]//*[local-name()="p"]'), 1):
-            text = ''.join(paragraph.xpath('.//*[local-name()="t"]/text()')).strip()
+            text = paragraph_text(paragraph)
             if text:
-                cleaned = text.replace(SOURCE_DEBRIS, '')
+                cleaned = clean_paragraph(text, slug)
                 paragraphs.append((index, cleaned))
                 records.append(('text', index, cleaned))
 
@@ -254,6 +285,18 @@ def main():
     if duplicates:
         raise ValueError('Destination slugs already exist in DOCX report: ' + ', '.join(sorted(duplicates)))
 
+    editorial_path = ROOT / 'reports/editorial-migration.json'
+    editorial = json.loads(editorial_path.read_text(encoding='utf-8'))
+    article_output = next(
+        (output for output in editorial.get('outputs', []) if output.get('path') == 'public/content/articles.json'),
+        None,
+    )
+    if article_output is None:
+        raise ValueError('Editorial report does not describe public/content/articles.json')
+    editorial_records = editorial.get('summary', {}).get('records')
+    if not isinstance(editorial_records, dict):
+        raise ValueError('Editorial report does not contain a records summary')
+
     next_order = max(article.get('order', 0) for article in baseline) + 1
     new_articles = []
     new_documents = []
@@ -286,18 +329,10 @@ def main():
     save_json(ROOT / 'public/content/articles.json', final_articles)
     save_json(report_path, report)
 
-    editorial_path = ROOT / 'reports/editorial-migration.json'
-    editorial = json.loads(editorial_path.read_text(encoding='utf-8'))
     article_path = ROOT / 'public/content/articles.json'
     article_bytes = article_path.read_bytes()
-    article_output = next(
-        (output for output in editorial.get('outputs', []) if output.get('path') == 'public/content/articles.json'),
-        None,
-    )
-    if article_output is None:
-        raise ValueError('Editorial report does not describe public/content/articles.json')
     article_output.update(records=len(final_articles), bytes=len(article_bytes), sha256=sha256(article_bytes))
-    editorial['summary']['records']['articles'] = len(final_articles)
+    editorial_records['articles'] = len(final_articles)
     save_json(editorial_path, editorial)
 
     print(json.dumps(
