@@ -3,9 +3,12 @@
 $root=$argv[1]; require $root.'/corona/admin/text-editor/render.php';
 $bundle=ce_bundle($root); $map=ce_read($root.'/.live-templates/routes.json');
 function normalized_main($html) {
-    preg_match('~<main\b.*?</main>~s',$html,$m);
-    if (!$m) throw new RuntimeException('Missing main');
-    return str_replace('&#039;','&#x27;',preg_replace('~<!--.*?-->~s','',$m[0]));
+    // PHP 5.2's default PCRE backtrack limit is smaller than a full catalog page.
+    $start = strpos($html, '<main ');
+    $end = $start === false ? false : strpos($html, '</main>', $start);
+    if ($start === false || $end === false) throw new RuntimeException('Missing main');
+    $main = substr($html, $start, $end - $start + 7);
+    return str_replace('&#039;','&#x27;',preg_replace('~<!--.*?-->~s','',$main));
 }
 $count=0;
 foreach($map as $route=>$file) {
