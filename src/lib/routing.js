@@ -17,6 +17,7 @@ export function parseRoute(pathname, aliases = {}) {
   if (canonicalPath === '/articles') return { name: 'articles' };
   if (canonicalPath === '/video') return { name: 'video' };
   if (canonicalPath === '/contacts') return { name: 'contacts' };
+  if (canonicalPath === '/privacy') return { name: 'privacy' };
 
   const icon = canonicalPath.match(/^\/icons\/([^/]+)$/);
   if (icon) return { name: 'icon', slug: icon[1] };

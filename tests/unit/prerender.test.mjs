@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import test from 'node:test';
+import vm from 'node:vm';
 
 import { siteConfig } from '../../src/data/site-config.js';
 import {
@@ -70,7 +71,7 @@ test('renderDocument emits one safely escaped managed SEO graph and prerendered 
   assert.doesNotMatch(document, /<script>alert\("unsafe"\)<\/script>/u);
 });
 
-test('renderDocument inserts exactly one current Metrica initialization and fallback image', () => {
+test('renderDocument inserts consent-gated Metrica without an unconditional tracking pixel', () => {
   const document = renderDocument(template, {
     pathname: '/',
     appHtml: '<main><h1>Главная</h1></main>',
@@ -81,8 +82,48 @@ test('renderDocument inserts exactly one current Metrica initialization and fall
   assert.equal(siteConfig.metrikaId, 112185835);
   assert.equal((document.match(/data-metrika="112185835"/gu) ?? []).length, 1);
   assert.equal((document.match(/ym\(112185835,'init'/gu) ?? []).length, 1);
-  assert.equal((document.match(/https:\/\/mc\.yandex\.ru\/watch\/112185835/gu) ?? []).length, 1);
+  assert.doesNotMatch(document, /https:\/\/mc\.yandex\.ru\/watch\//u);
   assert.doesNotMatch(document, /17785549/u);
+});
+
+test('Metrica waits for permission, initializes once, and stops on withdrawal', () => {
+  const html = renderDocument(template, { pathname: '/', appHtml: '', seo, metrikaId: siteConfig.metrikaId });
+  const script = html.match(/<script data-metrika="112185835">([\s\S]*?)<\/script>/u)[1];
+  const events = new Map(), inserted = [];
+  let reloads = 0;
+  const window = { addEventListener: (name, fn) => events.set(name, fn), location: { reload: () => reloads++ } };
+  const context = vm.createContext({ window, Date, localStorage: { getItem: () => null }, document: {
+    createElement: () => ({}), getElementsByTagName: () => [{ parentNode: { insertBefore: node => inserted.push(node) } }],
+  } });
+  Object.defineProperty(context, 'ym', { get: () => window.ym });
+  vm.runInContext(script, context);
+  assert.equal(inserted.length, 0);
+  events.get('iconamaster:analytics-choice')({ detail: 'denied' });
+  assert.equal(inserted.length, 0);
+  events.get('iconamaster:analytics-choice')({ detail: 'granted' });
+  events.get('iconamaster:analytics-choice')({ detail: 'granted' });
+  assert.equal(inserted.length, 1);
+  assert.equal(window.ym.a[0][0], 112185835);
+  assert.equal(window.ym.a[0][2].webvisor, false);
+  const queued = window.ym.a;
+  events.get('iconamaster:analytics-choice')({ detail: 'denied' });
+  assert.equal(queued[1][1], 'destruct');
+  assert.equal(window.ym, undefined);
+  assert.equal(reloads, 1);
+});
+
+test('Metrica honors saved permission and fails closed with blocked storage', () => {
+  const html = renderDocument(template, { pathname: '/', appHtml: '', seo, metrikaId: siteConfig.metrikaId });
+  const script = html.match(/<script data-metrika="112185835">([\s\S]*?)<\/script>/u)[1];
+  for (const choice of ['granted', 'denied', 'broken']) {
+    const inserted = [], window = { addEventListener() {} };
+    const context = vm.createContext({ window, Date, localStorage: { getItem() { if (choice === 'broken') throw new Error('blocked'); return choice; } }, document: {
+      createElement: () => ({}), getElementsByTagName: () => [{ parentNode: { insertBefore: node => inserted.push(node) } }],
+    } });
+    Object.defineProperty(context, 'ym', { get: () => window.ym });
+    vm.runInContext(script, context);
+    assert.equal(inserted.length, choice === 'granted' ? 1 : 0);
+  }
 });
 
 test('renderDocument rejects missing or duplicate injection markers', () => {

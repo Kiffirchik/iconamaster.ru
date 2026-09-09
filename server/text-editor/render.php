@@ -46,8 +46,9 @@ function ce_slot($type, $row) {
     if ($type === 'passport' || $type === 'passport-detail') return ce_passport($row, $type === 'passport-detail');
     if ($type === 'icon-detail') {
         $eyebrow = array_filter(array(ce_display($row, 'purpose'), ce_display($row, 'period')), 'strlen');
-        return ce_p(implode(' · ', $eyebrow), 'eyebrow').'<h1>'.$title.'</h1>'.ce_p(ce_text($row, 'price') !== '' ? ce_text($row, 'price') : 'Цена по запросу', 'icon-detail-page__price').ce_p(ce_display($row, 'description'), 'icon-detail-page__description');
+        return ce_p(implode(' · ', $eyebrow), 'eyebrow').'<h1>'.$title.'</h1>'.ce_p(ce_text($row, 'price') !== '' ? ce_text($row, 'price') : 'Цена по запросу', 'icon-detail-page__price').ce_p(ce_display($row, 'availability') !== '' ? ce_display($row, 'availability') : 'Наличие уточняется', 'icon-detail-page__availability');
     }
+    if ($type === 'icon-description') return ce_p(ce_display($row, 'description'), 'icon-detail-page__description');
     if ($type === 'icon-card') {
         $url = '/icons/'.rawurlencode($row['slug']);
         $price = ce_text($row, 'price') !== '' ? ce_text($row, 'price') : 'Цена по запросу';

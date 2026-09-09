@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { SiteFooter } from './components/SiteFooter.jsx';
+import { PrivacyNotice } from './components/PrivacyNotice.jsx';
+import { PrivacyPage } from './pages/PrivacyPage.jsx';
 import { SiteHeader } from './components/SiteHeader.jsx';
 import { ContentProvider, useContent } from './content/ContentProvider.jsx';
 import { findIconBySlug } from './lib/catalog.js';
@@ -29,6 +31,7 @@ export function NotFoundPage({ onNavigate }) {
 }
 
 export function renderReadyRoute(route, bundle, onNavigate) {
+  if (route.name === 'privacy') return <PrivacyPage />;
   if (route.name === 'home') return <HomePage icons={bundle.icons} articles={bundle.articles} onNavigate={onNavigate} />;
   if (route.name === 'collection') return <CollectionPage icons={bundle.icons} onNavigate={onNavigate} />;
   if (route.name === 'icon') {
@@ -106,6 +109,7 @@ export function AppView({ status, bundle, error, retry, route, onNavigate }) {
       <SiteHeader onNavigate={onNavigate} />
       {page}
       <SiteFooter onNavigate={onNavigate} />
+      <PrivacyNotice />
     </div>
   );
 }
