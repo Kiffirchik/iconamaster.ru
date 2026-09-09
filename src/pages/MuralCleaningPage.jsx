@@ -8,12 +8,9 @@ export function MuralCleaningPage({ page }) {
         <p className="eyebrow">Услуга мастерской</p>
         <h1>{page.title}</h1>
         <p className="editorial-page__intro">{page.intro}</p>
-      </header>
-      <section className="editorial-page__consultation mural-service-page__consultation">
-        <h2>Получить предварительную консультацию</h2>
-        <p>Опишите состояние росписей и приложите фотографии — мастерская уточнит возможный порядок работ.</p>
         <ConsultationLinks topic="murals" />
-      </section>
+        <p className="mural-service-page__hint">Опишите состояние росписей и приложите фотографии — мастерская уточнит возможный порядок работ.</p>
+      </header>
       <ContentSections sections={page.sections} />
       <section className="mural-service-page__related">
         <h2>Подробный материал о технологии</h2>

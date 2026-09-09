@@ -776,6 +776,28 @@ button {
   border-block: 1px solid var(--line);
 }
 
+.mural-service-page {
+  padding-top: clamp(1.5rem, 3vw, 3rem);
+}
+
+.mural-service-page .editorial-page__header h1 {
+  max-width: 27ch;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.1;
+}
+
+.mural-service-page__hint {
+  max-width: 65ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.icon-card__details {
+  display: grid;
+  gap: 0.65rem;
+}
+
 .mural-service-page__related h2,
 .mural-service-page__related p {
   margin: 0;

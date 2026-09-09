@@ -49,11 +49,11 @@ test('mural-cleaning service content remains durable, verified, and renderable',
   const markup = renderToStaticMarkup(createElement(muralModule.MuralCleaningPage, { page: service }));
 
   assert.match(markup, /от одного до двух месяцев/u);
-  assert.match(markup, /Получить предварительную консультацию/u);
+  assert.match(markup, /Опишите состояние росписей/u);
   assert.match(markup, /Подробный материал о технологии/u);
   assert.match(markup, /href="\/articles\/restoration-murals-cleaning"/u);
   assert.doesNotMatch(markup, /target=/u);
-  assert.equal((markup.match(/class="[^"]*mural-service-page__consultation[^"]*"/gu) ?? []).length, 2);
+  assert.equal((markup.match(/class="[^"]*mural-service-page__consultation[^"]*"/gu) ?? []).length, 1);
   assert.deepEqual(consultationElements.map(({ props }) => props.topic), ['murals', 'murals']);
 
   const headerMarkup = renderToStaticMarkup(createElement(headerModule.SiteHeader, { onNavigate() {} }));

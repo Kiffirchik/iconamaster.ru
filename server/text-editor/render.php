@@ -53,7 +53,7 @@ function ce_slot($type, $row) {
         $url = '/icons/'.rawurlencode($row['slug']);
         $price = ce_text($row, 'price') !== '' ? ce_text($row, 'price') : 'Цена по запросу';
         $availability = ce_text($row, 'availability');
-        return ce_p(ce_display($row, 'period'), 'icon-card__period').'<h3><a href="'.$url.'">'.$title.'</a></h3>'.ce_p(ce_display($row, 'technique')).ce_p(ce_display($row, 'size')).ce_p($price.($availability !== '' ? ' · '.$availability : ''), 'icon-card__price').'<a class="icon-card__more" href="'.$url.'">Подробнее</a>';
+        return ce_p(ce_display($row, 'period'), 'icon-card__period').'<h3><a href="'.$url.'">'.$title.'</a></h3>'.ce_p(ce_display($row, 'technique')).ce_p(ce_display($row, 'size')).ce_p($price.($availability !== '' ? ' · '.$availability : ''), 'icon-card__price');
     }
     $url = '/articles/'.rawurlencode($row['slug']);
     if ($type === 'article-header') {

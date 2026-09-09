@@ -2,7 +2,7 @@ import { buildContactLinks } from '../lib/contacts.js';
 import { trackGoal } from '../lib/analytics.js';
 import { useContent } from '../content/ContentProvider.jsx';
 
-export function ConsultationLinks({ iconTitle, compact = false, includeViewing = false, topic, primaryLabel }) {
+export function ConsultationLinks({ iconTitle, compact = false, includeViewing = false, topic, primaryLabel, primaryOnly = false }) {
   const { bundle } = useContent();
   const contacts = bundle?.contacts ?? {};
   const links = buildContactLinks(contacts, iconTitle, topic);
@@ -20,13 +20,13 @@ export function ConsultationLinks({ iconTitle, compact = false, includeViewing =
           {primaryLabel || (topic === 'murals' ? 'Получить предварительную консультацию' : iconTitle ? 'Получить консультацию об иконе' : 'Написать в WhatsApp')}
         </a>
       ) : null}
-      {viewing?.whatsapp ? (
+      {!primaryOnly && viewing?.whatsapp ? (
         <a className="button button--quiet" href={viewing.whatsapp} target="_blank" rel="noreferrer" onClick={() => trackGoal('contact_whatsapp')}>
           Назначить личный просмотр
         </a>
       ) : null}
-      {links.phone ? <a className="consultation-links__secondary" href={links.phone} onClick={() => trackGoal('contact_phone')}>Позвонить: {contacts.phone}</a> : null}
-      {links.email ? <a className="consultation-links__secondary" href={links.email} onClick={() => trackGoal('contact_email')}>Написать: {contacts.email}</a> : null}
+      {!primaryOnly && links.phone ? <a className="consultation-links__secondary" href={links.phone} onClick={() => trackGoal('contact_phone')}>Позвонить: {contacts.phone}</a> : null}
+      {!primaryOnly && links.email ? <a className="consultation-links__secondary" href={links.email} onClick={() => trackGoal('contact_email')}>Написать: {contacts.email}</a> : null}
     </div>
   );
 }
