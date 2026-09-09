@@ -8,7 +8,8 @@ const sections = [
   ['Расчистка росписей', '/raschistka-hramovyh-rospisey'],
   ['Статьи', '/articles'],
   ['Видео', '/video'],
-  ['Контакты', '/contacts']
+  ['Контакты', '/contacts'],
+  ['Конфиденциальность и cookie', '/privacy']
 ];
 
 export function SiteFooter({ onNavigate }) {
@@ -42,6 +43,7 @@ export function SiteFooter({ onNavigate }) {
               {label}
             </a>
           ))}
+          <button type="button" className="privacy-settings-link" onClick={() => window.dispatchEvent(new Event('iconamaster:privacy-settings'))}>Настройки аналитики</button>
         </nav>
       </div>
     </footer>

@@ -2,7 +2,7 @@ import { buildContactLinks } from '../lib/contacts.js';
 import { trackGoal } from '../lib/analytics.js';
 import { useContent } from '../content/ContentProvider.jsx';
 
-export function ConsultationLinks({ iconTitle, compact = false, includeViewing = false, topic }) {
+export function ConsultationLinks({ iconTitle, compact = false, includeViewing = false, topic, primaryLabel }) {
   const { bundle } = useContent();
   const contacts = bundle?.contacts ?? {};
   const links = buildContactLinks(contacts, iconTitle, topic);
@@ -17,7 +17,7 @@ export function ConsultationLinks({ iconTitle, compact = false, includeViewing =
           if (topic === 'murals') trackGoal('murals_consultation');
           trackGoal('contact_whatsapp');
         }}>
-          {topic === 'murals' ? 'Получить предварительную консультацию' : iconTitle ? 'Получить консультацию об иконе' : 'Написать в WhatsApp'}
+          {primaryLabel || (topic === 'murals' ? 'Получить предварительную консультацию' : iconTitle ? 'Получить консультацию об иконе' : 'Написать в WhatsApp')}
         </a>
       ) : null}
       {viewing?.whatsapp ? (

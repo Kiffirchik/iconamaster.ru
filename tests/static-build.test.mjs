@@ -198,7 +198,7 @@ test('static build publishes every canonical page with crawlable Russian SEO met
   const publishedArticles = published(bundle.articles);
   const hasVideo = published(bundle.videos).length > 0;
   const hasContacts = Boolean(bundle.contacts);
-  const expectedRouteCount = 2
+  const expectedRouteCount = 3 // Home, collection and privacy.
     + publishedIcons.length
     + publishedPages.length
     + 1
@@ -212,7 +212,7 @@ test('static build publishes every canonical page with crawlable Russian SEO met
   assert.equal(hasVideo, true, 'current bundle must publish its video page');
   assert.equal(hasContacts, true, 'current bundle must publish its contacts page');
   assert.equal(expectedRouteCount, canonicalPaths.length, 'canonical paths must derive from published bundle records');
-  assert.equal(canonicalPaths.length, 120, 'current bundle must publish 120 canonical routes');
+  assert.equal(canonicalPaths.length, 121, 'current bundle must publish 121 canonical routes');
 
   const canonicalUrls = [];
   for (const pathname of canonicalPaths) {
@@ -234,11 +234,11 @@ test('static build publishes every canonical page with crawlable Russian SEO met
     canonicalUrls.push(url);
   }
 
-  assert.equal(new Set(canonicalUrls).size, 120, 'canonical pages must emit 120 unique canonical URLs');
+  assert.equal(new Set(canonicalUrls).size, 121, 'canonical pages must emit 121 unique canonical URLs');
 
   const sitemap = await readFile(path.join(clientRoot, 'sitemap.xml'), 'utf8');
   const urls = sitemapUrls(sitemap);
-  assert.equal(urls.length, 120, 'sitemap must contain every canonical URL exactly once');
+  assert.equal(urls.length, 121, 'sitemap must contain every canonical URL exactly once');
   assert.deepEqual(new Set(urls), new Set(canonicalUrls));
   for (const alias of Object.keys(bundle.aliases)) {
     assert.ok(!urls.includes(new URL(alias, `${siteUrl}/`).href), `sitemap must not include alias ${alias}`);

@@ -55,10 +55,25 @@ function renderMetrika(metrikaId) {
     throw new Error('Metrika ID must be a positive safe integer');
   }
   return `<script data-metrika="${metrikaId}">
+  (function(){
+  var started=false;
+  function start(){
+  if(started)return; started=true;
   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1;
   k.src=r;a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
-  ym(${metrikaId},'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+  ym(${metrikaId},'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:false});
+  }
+  window.addEventListener('iconamaster:analytics-choice',function(event){
+    if(event.detail==='granted')start();
+    if(event.detail==='denied'&&started){
+      ym(${metrikaId},'destruct'); started=false;
+      window.ym=undefined;
+      window.location.reload();
+    }
+  });
+  try{if(localStorage.getItem('iconamaster.analytics.v1')==='granted')start();}catch(e){}
+  })();
 </script>`;
 }
 
@@ -133,7 +148,7 @@ export function renderDocument(template, { pathname, appHtml, seo, metrikaId }) 
   document = replaceUniqueMarker(
     document,
     markers.noscript,
-    `<noscript><div><img src="https://mc.yandex.ru/watch/${metrikaId}" style="position:absolute; left:-9999px;" alt="" /></div></noscript>`,
+    '<noscript><p class="analytics-noscript">Без JavaScript аналитика не подключается.</p></noscript>',
   );
   return document;
 }

@@ -137,6 +137,12 @@ function descriptorFor(path, bundle) {
   const canonical = absoluteUrl(path);
   const route = { title: siteConfig.name, description: '', type: 'website', image: null, graph: [] };
 
+  if (path === '/privacy') {
+    route.title = `Конфиденциальность и cookie | ${siteConfig.name}`;
+    route.description = 'Использование данных на iconamaster.ru и настройки Яндекс Метрики.';
+    return route;
+  }
+
   if (path === '/') {
     route.description = 'Московская иконописная мастерская: иконы, реставрация и храмовые росписи.';
     route.graph.push(localBusiness(bundle?.contacts));
@@ -226,7 +232,7 @@ function descriptorFor(path, bundle) {
 }
 
 export function listCanonicalPaths(bundle) {
-  const paths = ['/', '/collection'];
+  const paths = ['/', '/collection', '/privacy'];
   for (const icon of Array.isArray(bundle?.icons) ? bundle.icons : []) {
     if (isPublished(icon) && icon?.slug) paths.push(`/icons/${icon.slug}`);
   }

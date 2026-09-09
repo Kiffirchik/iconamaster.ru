@@ -63,6 +63,7 @@ test('lists only published canonical paths in content order', () => {
   assert.deepEqual(listCanonicalPaths(bundle), [
     '/',
     '/collection',
+    '/privacy',
     '/icons/first-icon',
     '/icons/second-icon',
     '/workshop',

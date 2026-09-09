@@ -931,6 +931,24 @@ button {
   padding: 0.45rem 0.65rem;
 }
 
+.privacy-page { max-width: 56rem; }
+.privacy-page h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.15; }
+.privacy-page section { margin-top: 2rem; }
+.privacy-page a, .privacy-notice a { color: var(--gold); text-decoration: underline; }
+.privacy-settings-link { background: none; border: 0; padding: 0; text-align: left; font: inherit; color: inherit; cursor: pointer; min-height: 44px; }
+.privacy-notice { position: fixed; z-index: 90; inset: auto 1rem 1rem; max-width: 72rem; margin-inline: auto; padding: 1.2rem 1.5rem; background: #24251f; border: 1px solid var(--gold); box-shadow: 0 8px 40px #0009; display: flex; align-items: center; gap: 1.5rem; }
+.privacy-notice h2 { margin: 0 0 .4rem; font-size: 1.05rem; }
+.privacy-notice p { margin: 0; font-size: .9rem; line-height: 1.5; }
+.privacy-notice__actions { display: flex; gap: .65rem; flex-shrink: 0; }
+.privacy-notice .button { white-space: nowrap; }
+.privacy-notice .button--quiet { background: transparent; color: var(--alabaster); }
+.analytics-noscript { padding: 1rem; font-size: .9rem; }
+@media (max-width: 800px) {
+  .privacy-notice { inset: auto .5rem .5rem; flex-direction: column; align-items: stretch; gap: .8rem; padding: 1rem; }
+  .privacy-notice__actions { flex-wrap: wrap; }
+  .privacy-notice .button { flex: 1; padding-inline: .65rem; white-space: normal; }
+}
+
 .icon-detail-page {
   width: var(--content);
   margin-inline: auto;
@@ -939,17 +957,28 @@ button {
 
 .icon-detail-page__layout {
   display: grid;
+  grid-template-rows: min-content 1fr;
   grid-template-columns: minmax(0, 1.05fr) minmax(21rem, 0.95fr);
   gap: clamp(2rem, 6vw, 7rem);
   align-items: start;
 }
 
+.icon-detail-page__layout > .icon-gallery { grid-column: 1; grid-row: 1 / span 2; }
+.icon-detail-page__hero { grid-column: 2; grid-row: 1; display: grid; gap: 1rem; }
+.icon-detail-page__hero .eyebrow { margin: 0; }
+.icon-detail-page__hero .consultation-links { margin-top: 0.25rem; }
+.icon-detail-page__hero .button { width: 100%; }
+.icon-detail-page__availability { margin: 0; color: var(--alabaster); font-size: 1rem; }
+
 [data-live-slot^="icon-detail:"],
+[data-live-slot^="icon-description:"],
 [data-live-slot^="passport"] {
   display: contents;
 }
 
 .icon-detail-page__content {
+  grid-column: 2;
+  grid-row: 2;
   display: grid;
   align-content: start;
   gap: 1.5rem;
@@ -968,7 +997,7 @@ button {
 }
 
 .icon-detail-page h1 {
-  font-size: clamp(2.65rem, 4.5vw, 4.8rem);
+  font-size: clamp(2rem, 3.5vw, 3.8rem);
 }
 
 .icon-detail-page h2 {
@@ -1360,6 +1389,10 @@ button {
   .icon-detail-page__layout {
     gap: 2rem;
   }
+
+  .icon-detail-page__hero { grid-column: 1; grid-row: 1; }
+  .icon-detail-page__layout > .icon-gallery { grid-column: 1; grid-row: 2; }
+  .icon-detail-page__content { grid-column: 1; grid-row: 3; }
 
   .icon-gallery__grid {
     grid-template-columns: 1fr;
