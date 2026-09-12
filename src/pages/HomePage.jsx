@@ -7,7 +7,7 @@ import { homeContent } from '../data/home-content.js';
 
 export function HomePage({ icons = [], articles = [], onNavigate }) {
   const catalogIcons = publishedIcons({ icons });
-  const heroIcon = catalogIcons.find((icon) => icon.slug === 'archangel-michael') ?? catalogIcons[0] ?? null;
+  const heroIcon = catalogIcons.find((icon) => icon.slug === 'archangel-michael') ?? null;
   const featuredIcons = homeContent.featuredSlugs
     .map((slug) => catalogIcons.find((icon) => icon.slug === slug))
     .filter(Boolean);
@@ -29,6 +29,7 @@ export function HomePage({ icons = [], articles = [], onNavigate }) {
             {(renderedImage) => (
               <div
                 className="home-hero__image-wrap"
+                data-live-visible={heroIcon.slug}
                 style={{ aspectRatio: `${heroIcon.images[0].width} / ${heroIcon.images[0].height}` }}
               >
                 {renderedImage}
@@ -44,7 +45,7 @@ export function HomePage({ icons = [], articles = [], onNavigate }) {
             <a className="button button--primary" href="/collection" onClick={(event) => follow(event, '/collection')}>Открыть коллекцию</a>
             <a className="button button--quiet" href="/contacts" onClick={(event) => follow(event, '/contacts')}>Назначить личный просмотр</a>
           </div>
-          {heroIcon ? <IconPassport icon={heroIcon} /> : null}
+          {heroIcon ? <div data-live-visible={heroIcon.slug}><IconPassport icon={heroIcon} /></div> : null}
           <p className="home-hero__trust">Мастерская работает с {homeContent.established} года</p>
         </div>
       </section>

@@ -24,6 +24,26 @@ export function compileLiveTemplate(html) {
     cursor = end.index;
     slot.lastIndex = tags.lastIndex;
   }
+  return compileVisibility(output + html.slice(cursor));
+}
+
+function compileVisibility(html) {
+  const marker = /<([a-z][a-z0-9]*)\b[^>]*\bdata-live-visible="([a-z0-9-]+)"[^>]*>/g;
+  let output = '', cursor = 0, match;
+  while ((match = marker.exec(html))) {
+    const tags = new RegExp(`<(/?)${match[1]}\\b[^>]*>`, 'g');
+    tags.lastIndex = marker.lastIndex;
+    let depth = 1, end;
+    while ((end = tags.exec(html))) {
+      depth += end[1] ? -1 : 1;
+      if (!depth) break;
+    }
+    if (!end) throw new Error(`Unclosed visibility marker ${match[2]}`);
+    if (html.slice(marker.lastIndex, end.index).includes('data-live-visible=')) throw new Error(`Nested visibility marker ${match[2]}`);
+    output += html.slice(cursor, match.index) + `<!--VISIBLE:${match[2]}-->` + html.slice(match.index, tags.lastIndex) + `<!--/VISIBLE:${match[2]}-->`;
+    cursor = tags.lastIndex;
+    marker.lastIndex = cursor;
+  }
   return output + html.slice(cursor);
 }
 
@@ -53,11 +73,13 @@ export async function prepareLiveEditor(distRoot = path.join(root, 'dist/client'
   for (const file of ['editor.php','editor.css','store.php','render.php','pricing.php']) await copyFile(path.join(root,'server/text-editor',file), path.join(editorRoot,file));
   await writeFile(path.join(distRoot,'corona/admin/content.php'), "<?php\nrequire dirname(__FILE__).'/text-editor/editor.php';\n");
   await copyFile(path.join(root,'server/text-editor/content-page.php'), path.join(distRoot,'content-page.php'));
+  await copyFile(path.join(root,'server/text-editor/content-sitemap.php'), path.join(distRoot,'content-sitemap.php'));
   // Keep canonical redirects ahead of dispatch, preserve existing aliases and all legacy PHP.
   const apachePath = path.join(distRoot,'.htaccess');
   let apache = await readFile(apachePath,'utf8');
   const escaped = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const rules = [
+    'RewriteRule ^sitemap\\.xml$ content-sitemap.php [L]',
     'RewriteRule ^\\.(?:live-templates|editor-state)(?:/|$) - [F,L]',
     'RewriteCond %{QUERY_STRING} ^COM=articles_list$',
     'RewriteRule ^corona/admin/index\\.php$ /corona/admin/content.php?kind=articles [R=302,L]',

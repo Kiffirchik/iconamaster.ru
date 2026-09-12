@@ -52,7 +52,7 @@ export function IconDetailPage({ icon, icons, onNavigate }) {
           </div>
           <IconPassport icon={icon} headingId="passport-title" />
 
-          <nav className="icon-detail-page__navigation" aria-label="Навигация по коллекции">
+          <nav className="icon-detail-page__navigation" aria-label="Навигация по коллекции" data-live-slot={`icon-navigation:${icon.slug}`}>
             <a href="/collection" onClick={(event) => navigateTo(event, '/collection')}>← В каталог</a>
             {nextIcon ? <a href={`/icons/${nextIcon.slug}`} onClick={(event) => navigateTo(event, `/icons/${nextIcon.slug}`)}>
               Следующая икона →

@@ -90,15 +90,16 @@ function ce_updated($kind, $record, $input) {
     }
     return $record;
 }
-function ce_save($root, $kind, $slug, $revision, $input) {
+function ce_save($root, $kind, $slug, $revision, $input, $action = 'save') {
     ce_collection($kind);
+    if (!in_array($action, array('save','hide','show'), true) || ($action !== 'save' && $kind !== 'icons')) throw new InvalidArgumentException('Недоступное действие.');
     $state = $root.'/.editor-state';
     if (!is_dir($state)) throw new RuntimeException('Хранилище редактора не настроено.');
     $lock = fopen($state.'/write.lock', 'c');
     if (!$lock || !flock($lock, LOCK_EX)) throw new RuntimeException('Не удалось заблокировать сохранение.');
     $temp = null;
     try {
-        $result = ce_save_locked($root, $kind, $slug, $revision, $input, $temp);
+        $result = ce_save_locked($root, $kind, $slug, $revision, $input, $temp, $action);
     } catch (Exception $ex) {
         if ($temp && is_file($temp)) unlink($temp);
         flock($lock, LOCK_UN);
@@ -109,13 +110,15 @@ function ce_save($root, $kind, $slug, $revision, $input) {
     fclose($lock);
     return $result;
 }
-function ce_save_locked($root, $kind, $slug, $revision, $input, &$temp) {
+function ce_save_locked($root, $kind, $slug, $revision, $input, &$temp, $action = 'save') {
         $state = $root.'/.editor-state';
         $file = $root.'/content/'.$kind.'.json';
         $rows = ce_read($file);
         $i = ce_find($rows, $slug);
         if (!ce_equal(ce_revision($rows[$i]), $revision)) throw new RuntimeException('Запись уже изменена в другой вкладке. Скопируйте свой текст и откройте запись заново.');
-        $new = ce_updated($kind, $rows[$i], $input);
+        $new = $rows[$i];
+        if ($action === 'save') $new = ce_updated($kind, $new, $input);
+        else $new['published'] = $action === 'show';
         if ($new === $rows[$i]) return false;
         $rows[$i] = $new;
         $json = json_encode($rows);

@@ -38,7 +38,7 @@ try {
             $errorStatus = 403;
             throw new RuntimeException('Сессия формы устарела. Обновите страницу и повторите сохранение.');
         }
-        ce_save($root, $kind, $slug, isset($_POST['revision']) ? $_POST['revision'] : '', isset($_POST['fields']) ? $_POST['fields'] : null);
+        ce_save($root, $kind, $slug, isset($_POST['revision']) ? $_POST['revision'] : '', isset($_POST['fields']) ? $_POST['fields'] : null, isset($_POST['action']) ? $_POST['action'] : 'save');
         $_SESSION['content_saved'] = $kind.':'.$slug;
         header('Location: '.editor_url($kind, $slug), true, 303);
         exit;
@@ -53,8 +53,18 @@ unset($_SESSION['content_saved']);
 <?php if ($error): ?><div class="error" role="alert"><?=e($error)?></div><?php endif; ?>
 <?php if ($record): ?>
 <a href="<?=e(editor_url($kind))?>">← К списку</a><h1><?=e($record['title'])?></h1>
-<?php if ($saved && !$error): ?><div class="success" role="status">Сохранено. Изменения уже на сайте.</div><?php endif; ?>
-<p><a href="/<?=e($kind)?>/<?=e(rawurlencode($slug))?>" target="_blank" rel="noopener">Открыть эту страницу на сайте ↗</a></p>
+<?php if ($saved && !$error): ?><div class="success" role="status">Сохранено.</div><?php endif; ?>
+<?php if ($kind === 'icons'): $visible = !empty($record['published']); ?>
+<section class="visibility-panel" aria-label="Публикация иконы">
+<p><strong>Статус: <?=$visible ? 'На сайте' : 'Скрыта'?></strong></p>
+<p>Скрытая икона не показывается в каталоге, на главной и по прямой ссылке. Все данные и фотографии сохраняются.</p>
+<form method="post" action="<?=e(editor_url($kind, $slug))?>">
+<input type="hidden" name="csrf" value="<?=e($_SESSION['content_csrf'])?>"><input type="hidden" name="revision" value="<?=e(ce_revision($record))?>">
+<button name="action" value="<?=$visible ? 'hide' : 'show'?>"><?=$visible ? 'Скрыть с сайта' : 'Вернуть на сайт'?></button>
+<small>Действие применяется сразу. Если вы редактировали текст ниже, сначала нажмите «Сохранить».</small>
+</form></section>
+<?php endif; ?>
+<?php if ($kind !== 'icons' || !empty($record['published'])): ?><p><a href="/<?=e($kind)?>/<?=e(rawurlencode($slug))?>" target="_blank" rel="noopener">Открыть эту страницу на сайте ↗</a></p><?php endif; ?>
 <form method="post" action="<?=e(editor_url($kind, $slug))?>">
 <input type="hidden" name="csrf" value="<?=e($_SESSION['content_csrf'])?>"><input type="hidden" name="revision" value="<?=e(isset($_POST['revision']) && is_string($_POST['revision']) ? $_POST['revision'] : ce_revision($record))?>">
 <?php foreach (ce_fields($kind, $record) as $key=>$field): $value = isset($_POST['fields'][$key]) && is_string($_POST['fields'][$key]) ? $_POST['fields'][$key] : $field[2]; ?>
@@ -70,5 +80,5 @@ unset($_SESSION['content_saved']);
 <?php elseif (!$error): ?><h1><?=$kind === 'icons' ? 'Карточки икон' : 'Статьи'?></h1>
 <form class="search" method="get"><input type="hidden" name="kind" value="<?=e($kind)?>"><label for="q">Найти по названию</label><div><input id="q" name="q" value="<?=e($query)?>"><button>Найти</button></div></form>
 <ul class="records"><?php $count=0; foreach ($rows as $row): if ($query !== '' && mb_stripos($row['title'].' '.$row['slug'], $query, 0, 'UTF-8') === false) continue; $count++; ?>
-<li><div><a href="<?=e(editor_url($kind, $row['slug']))?>"><?=e($row['title'])?></a><small><?=e(isset($row['price']) ? $row['price'] : '')?> · <?=e($row['slug'])?></small></div><a class="edit" href="<?=e(editor_url($kind, $row['slug']))?>">Редактировать</a></li><?php endforeach; ?></ul>
+<li><div><a href="<?=e(editor_url($kind, $row['slug']))?>"><?=e($row['title'])?></a><?php if ($kind === 'icons' && empty($row['published'])): ?><strong class="visibility-badge">Скрыта</strong><?php endif; ?><small><?=e(isset($row['price']) ? $row['price'] : '')?> · <?=e($row['slug'])?></small></div><a class="edit" href="<?=e(editor_url($kind, $row['slug']))?>">Редактировать</a></li><?php endforeach; ?></ul>
 <p class="muted"><?=$count?> записей</p><?php endif; ?></main></body></html>

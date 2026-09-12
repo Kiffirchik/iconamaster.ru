@@ -10,3 +10,8 @@ test('live compiler fails closed on unclosed or nested slots', () => {
   assert.throws(() => compileLiveTemplate('<div data-live-slot="icon-card:sample">'), /Unclosed/);
   assert.throws(() => compileLiveTemplate('<div data-live-slot="icon-card:sample"><div data-live-slot="passport:sample"></div></div>'), /Nested/);
 });
+
+test('visibility boundaries include the whole card and its image, not only its text', () => {
+  const html = '<main><article data-live-visible="sample"><img src="/original.jpg"/><div data-live-slot="icon-card:sample">Old</div></article><p>Keep</p></main>';
+  assert.equal(compileLiveTemplate(html), '<main><!--VISIBLE:sample--><article data-live-visible="sample"><img src="/original.jpg"/><div data-live-slot="icon-card:sample"><!--LIVE:icon-card:sample--></div></article><!--/VISIBLE:sample--><p>Keep</p></main>');
+});

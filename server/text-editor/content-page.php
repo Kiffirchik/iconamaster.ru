@@ -8,9 +8,16 @@ try {
     $route = isset($_GET['route']) && is_string($_GET['route']) ? $_GET['route'] : '/';
     $routes = ce_read($root.'/.live-templates/routes.json');
     if (!isset($routes[$route])) { ce_status(404); readfile($root.'/404.html'); exit; }
+    $bundle = ce_bundle($root);
+    if (!ce_route_visible($route, $bundle)) {
+        ce_status(404);
+        header('X-Robots-Tag: noindex');
+        echo ce_render(file_get_contents($root.'/404.html'), '/404', $bundle);
+        exit;
+    }
     $template = file_get_contents($root.'/.live-templates/'.$routes[$route]);
     if ($template === false) throw new RuntimeException('Missing page template.');
-    echo ce_render($template, $route, ce_bundle($root));
+    echo ce_render($template, $route, $bundle);
 } catch (Exception $ex) {
     error_log('Content renderer: '.$ex->getMessage());
     ce_status(503);

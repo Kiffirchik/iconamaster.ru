@@ -4,6 +4,7 @@ import { PrivacyNotice } from './components/PrivacyNotice.jsx';
 import { PrivacyPage } from './pages/PrivacyPage.jsx';
 import { SiteHeader } from './components/SiteHeader.jsx';
 import { ContentProvider, useContent } from './content/ContentProvider.jsx';
+import { publishedIcons } from './content/schema.js';
 import { findIconBySlug } from './lib/catalog.js';
 import { selectBySlug } from './lib/content-selectors.js';
 import { navigate, parseRoute } from './lib/routing.js';
@@ -35,7 +36,7 @@ export function renderReadyRoute(route, bundle, onNavigate) {
   if (route.name === 'home') return <HomePage icons={bundle.icons} articles={bundle.articles} onNavigate={onNavigate} />;
   if (route.name === 'collection') return <CollectionPage icons={bundle.icons} onNavigate={onNavigate} />;
   if (route.name === 'icon') {
-    return <IconDetailPage icon={findIconBySlug(bundle.icons, route.slug)} icons={bundle.icons} onNavigate={onNavigate} />;
+    return <IconDetailPage icon={findIconBySlug(publishedIcons(bundle), route.slug)} icons={bundle.icons} onNavigate={onNavigate} />;
   }
   if (route.name === 'page') {
     const page = selectBySlug(bundle.pages, route.slug);

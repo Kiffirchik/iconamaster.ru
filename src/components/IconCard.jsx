@@ -36,7 +36,7 @@ export class IconCard extends Component {
     const availability = String(icon.availability || '').trim();
 
     return (
-      <article className="icon-card">
+      <article className="icon-card" data-live-visible={icon.slug}>
         <IconImage image={image} title={title} onError={this.handleImageError}>
           {(renderedImage) => (
             <a className="icon-card__image-link" href={path} onClick={this.follow}>

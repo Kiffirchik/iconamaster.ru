@@ -148,9 +148,21 @@ function ce_bundle($root) {
     foreach (array('icons','articles','pages','videos','contacts','aliases') as $key) $bundle[$key] = ce_read($root.'/content/'.$key.'.json');
     return $bundle;
 }
+function ce_icon_visible($row) { return !empty($row['published']) && !empty($row['images']); }
+function ce_route_visible($route, $bundle) {
+    if (!preg_match('~^/icons/([a-z0-9-]+)$~D', $route, $m)) return true;
+    foreach ($bundle['icons'] as $row) if ($row['slug'] === $m[1]) return ce_icon_visible($row);
+    return false;
+}
+function ce_visible_sitemap($xml, $bundle) {
+    $renderer = new CeSlots($bundle);
+    return preg_replace_callback('~<url>\s*<loc>https://iconamaster\.ru/icons/([a-z0-9-]+)</loc>.*?</url>\s*~s', array($renderer, 'sitemap'), $xml);
+}
 function ce_render($template, $route, $bundle) {
     $renderer = new CeSlots($bundle);
-    $html = preg_replace_callback('/<!--LIVE:([a-z-]+):([a-z0-9-]+)-->/D', array($renderer, 'slot'), $template);
+    $html = preg_replace_callback('~<!--VISIBLE:([a-z0-9-]+)-->(.*?)<!--/VISIBLE:\\1-->~s', array($renderer, 'visible'), $template);
+    if ($html === null) throw new RuntimeException('Invalid visibility template.');
+    $html = preg_replace_callback('/<!--LIVE:([a-z-]+):([a-z0-9-]+)-->/D', array($renderer, 'slot'), $html);
     if (preg_match('~^/(icons|articles)/([a-z0-9-]+)$~D', $route, $m)) $html = ce_seo($html, $route, $renderer->index[$m[1]][$m[2]]);
     $html = str_replace('id="root"', 'id="root" data-live-rendered="true"', $html);
     // A single response supplies both visible HTML and the exact React snapshot.
@@ -161,7 +173,21 @@ class CeSlots {
     function __construct($bundle) {
         foreach (array('icons','articles') as $kind) foreach ($bundle[$kind] as $row) $this->index[$kind][$row['slug']]=$row;
     }
+    function visible($m) { return isset($this->index['icons'][$m[1]]) && ce_icon_visible($this->index['icons'][$m[1]]) ? $m[2] : ''; }
+    function sitemap($m) { return isset($this->index['icons'][$m[1]]) && ce_icon_visible($this->index['icons'][$m[1]]) ? $m[0] : ''; }
+    function order($a, $b) { $left=isset($a['order']) ? $a['order'] : 0; $right=isset($b['order']) ? $b['order'] : 0; return $left == $right ? 0 : ($left < $right ? -1 : 1); }
+    function navigation($slug) {
+        $rows=array_values(array_filter($this->index['icons'], 'ce_icon_visible'));
+        usort($rows, array($this,'order'));
+        $html='<a href="/collection">← В каталог</a>';
+        foreach ($rows as $i=>$row) if ($row['slug'] === $slug) {
+            $next=$rows[($i+1)%count($rows)];
+            return $html.'<a href="/icons/'.rawurlencode($next['slug']).'">Следующая икона →</a>';
+        }
+        return $html;
+    }
     function slot($m) {
+        if ($m[1] === 'icon-navigation') return $this->navigation($m[2]);
         $kind = strpos($m[1], 'article-') === 0 ? 'articles' : 'icons';
         if (!isset($this->index[$kind][$m[2]])) throw new RuntimeException('Missing record.');
         return ce_slot($m[1], $this->index[$kind][$m[2]]);
