@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 import { publicRecoverySources, verifiedSources } from './icon-sources.mjs';
 import { legacyIconMap } from './data/legacy-icon-map.mjs';
+import { localIconSources } from './local-icon-sources.mjs';
 
 const sorted = (values) => [...values].sort();
 const compareCodeUnits = (left, right) => (left < right ? -1 : left > right ? 1 : 0);
@@ -145,6 +146,9 @@ function buildAllowedOwners(inventory, errors) {
     for (const original of icon.originals ?? []) add(original.sourceUrl, icon.sourcePath);
   }
   for (const source of verifiedSources) add(source.sourceUrl, source.legacyPath);
+  for (const icon of localIconSources) {
+    for (const original of icon.originals) add(original.sourceUrl, `/icons/${icon.slug}`);
+  }
   for (const source of publicRecoverySources) {
     for (const original of source.originals) add(original.sourceUrl, source.legacyPath);
   }

@@ -11,7 +11,7 @@ test('catalog provides a direct icon-specific contact beside price without hidin
   const { IconCard } = await server.ssrLoadModule('/src/components/IconCard.jsx');
   const { ContentProvider } = await server.ssrLoadModule('/src/content/ContentProvider.jsx');
   const icons = JSON.parse(await readFile('public/content/icons.json', 'utf8'));
-  const icon = { ...icons[0], title: 'Тестовая икона', price: '100 000 ₽', availability: 'Продано' };
+  const icon = { ...icons[0], title: 'Тестовая икона', price: '100 000 ₽', availability: 'Продано', discount: null, newPrice: null };
   const markup = renderToStaticMarkup(h(ContentProvider, { initialBundle: { contacts: { whatsapp: '79166554595', phone: '+79166554595', email: 'iconamaster@yandex.ru' } } }, h(IconCard, { icon })));
   assert.match(markup, /100 000 ₽ · Продано/u);
   const contact = markup.match(/<a[^>]+href="(https:\/\/wa\.me\/[^"]+)"[^>]*>Обсудить икону<\/a>/u);

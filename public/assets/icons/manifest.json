@@ -2168,5 +2168,215 @@
     "evidence": [
       "public-cargo-page-original"
     ]
+  },
+  {
+    "id": "angel-khranitel-kiot-1",
+    "file": "angel-khranitel-kiot.jpg",
+    "width": 960,
+    "height": 1280,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/angel-khranitel-kiot.jpg",
+    "bytes": 365003,
+    "sha256": "be09f17ec9af227f0f01a9f1ddec929c0600f2eb7518ad25152a8755722294d7",
+    "legacyPath": "/icons/angel-khranitel-kiot",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Ангел Хранитель/photo_5269738934927826044_y.jpg"
+    ]
+  },
+  {
+    "id": "angel-khranitel-kiot-2",
+    "file": "angel-khranitel-kiot-2.jpg",
+    "width": 960,
+    "height": 1280,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/angel-khranitel-kiot-2.jpg",
+    "bytes": 276229,
+    "sha256": "afa0e15a88594e4a0d3abae1b68162ee2553ca9bb0fa4daaaa4edf1b761e7371",
+    "legacyPath": "/icons/angel-khranitel-kiot",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Ангел Хранитель/photo_5269738934927826058_y.jpg"
+    ]
+  },
+  {
+    "id": "angel-khranitel-kiot-3",
+    "file": "angel-khranitel-kiot-3.jpg",
+    "width": 960,
+    "height": 1280,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/angel-khranitel-kiot-3.jpg",
+    "bytes": 295440,
+    "sha256": "287eac2b7b3d0be48edf7e8418210b4517c78220a15bba0ea2ff132ddacdf7a1",
+    "legacyPath": "/icons/angel-khranitel-kiot",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Ангел Хранитель/photo_5269738934927826043_y.jpg"
+    ]
+  },
+  {
+    "id": "angel-khranitel-kiot-4",
+    "file": "angel-khranitel-kiot-4.jpg",
+    "width": 1280,
+    "height": 960,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/angel-khranitel-kiot-4.jpg",
+    "bytes": 248480,
+    "sha256": "0ef3c8a249cc85e6541462f5035ef63c9052e7c384ce479fe08111009729727f",
+    "legacyPath": "/icons/angel-khranitel-kiot",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Ангел Хранитель/photo_5269738934927826045_y.jpg"
+    ]
+  },
+  {
+    "id": "angel-khranitel-kiot-5",
+    "file": "angel-khranitel-kiot-5.jpg",
+    "width": 960,
+    "height": 1280,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/angel-khranitel-kiot-5.jpg",
+    "bytes": 281657,
+    "sha256": "295fdf72a8b272354490a6d6827f14f580b926ad45acde77bbb3dc2a26d9239b",
+    "legacyPath": "/icons/angel-khranitel-kiot",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Ангел Хранитель/photo_5269738934927826062_y.jpg"
+    ]
+  },
+  {
+    "id": "angel-khranitel-kiot-6",
+    "file": "angel-khranitel-kiot-6.jpg",
+    "width": 891,
+    "height": 1280,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/angel-khranitel-kiot-6.jpg",
+    "bytes": 179347,
+    "sha256": "033bafee376080d2c926b66fc118fdc18aedf6b0dbb29f183a79c7e68d6e8408",
+    "legacyPath": "/icons/angel-khranitel-kiot",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Ангел Хранитель/photo_5269738934927826065_y.jpg"
+    ]
+  },
+  {
+    "id": "gospod-vsederzhitel-kiot-1",
+    "file": "gospod-vsederzhitel-kiot.jpg",
+    "width": 960,
+    "height": 1280,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/gospod-vsederzhitel-kiot.jpg",
+    "bytes": 342182,
+    "sha256": "60c5ef28b83e7946c852d791c5f6bf335e23fc03dd3fa22908e9a5d40d00aac6",
+    "legacyPath": "/icons/gospod-vsederzhitel-kiot",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Господь Вседержитель/photo_5269738934927826053_y.jpg"
+    ]
+  },
+  {
+    "id": "gospod-vsederzhitel-kiot-2",
+    "file": "gospod-vsederzhitel-kiot-2.jpg",
+    "width": 977,
+    "height": 1280,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/gospod-vsederzhitel-kiot-2.jpg",
+    "bytes": 273692,
+    "sha256": "cd4e4dcbc387bb61a93b503f270be41e15cc82fa06247479207ae2157592afa5",
+    "legacyPath": "/icons/gospod-vsederzhitel-kiot",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Господь Вседержитель/photo_5269738934927826050_y.jpg"
+    ]
+  },
+  {
+    "id": "gospod-vsederzhitel-kiot-3",
+    "file": "gospod-vsederzhitel-kiot-3.jpg",
+    "width": 960,
+    "height": 1280,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/gospod-vsederzhitel-kiot-3.jpg",
+    "bytes": 303180,
+    "sha256": "59ee3e72757b84282007795446fe50820c7d6b8597c16af5af82566eba8abb34",
+    "legacyPath": "/icons/gospod-vsederzhitel-kiot",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Господь Вседержитель/photo_5269738934927826051_y.jpg"
+    ]
+  },
+  {
+    "id": "gospod-vsederzhitel-kiot-4",
+    "file": "gospod-vsederzhitel-kiot-4.jpg",
+    "width": 840,
+    "height": 1280,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/gospod-vsederzhitel-kiot-4.jpg",
+    "bytes": 233668,
+    "sha256": "046e372ec012499a00582ca0a5629845c1ed045b0ca1e45c75bd6f11712e177f",
+    "legacyPath": "/icons/gospod-vsederzhitel-kiot",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Господь Вседержитель/photo_5269738934927826052_y.jpg"
+    ]
+  },
+  {
+    "id": "gospod-vsederzhitel-kiot-5",
+    "file": "gospod-vsederzhitel-kiot-5.jpg",
+    "width": 1024,
+    "height": 1280,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/gospod-vsederzhitel-kiot-5.jpg",
+    "bytes": 290954,
+    "sha256": "26aa42e98420dc526b8a9c3d1ec893198d74f7afae917875d09be407ddc6c973",
+    "legacyPath": "/icons/gospod-vsederzhitel-kiot",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Господь Вседержитель/photo_5269738934927826054_y.jpg"
+    ]
+  },
+  {
+    "id": "panteleimon-tselitel-kiot-1",
+    "file": "panteleimon-tselitel-kiot.jpg",
+    "width": 960,
+    "height": 1280,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/panteleimon-tselitel-kiot.jpg",
+    "bytes": 352792,
+    "sha256": "438f4134fec83c7dfaf35a5c31ff55cccdeff302af30f64a66bcb3da09f1a3f4",
+    "legacyPath": "/icons/panteleimon-tselitel-kiot",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Пантелеймон Целитель/photo_5269738934927826169_y.jpg"
+    ]
+  },
+  {
+    "id": "panteleimon-tselitel-kiot-2",
+    "file": "panteleimon-tselitel-kiot-2.jpg",
+    "width": 960,
+    "height": 1280,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/panteleimon-tselitel-kiot-2.jpg",
+    "bytes": 309530,
+    "sha256": "6437be21edc238dc296f9bd277f8c595e717869ee3426f6c7b09037b49b45b03",
+    "legacyPath": "/icons/panteleimon-tselitel-kiot",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Пантелеймон Целитель/photo_5269738934927826063_y.jpg"
+    ]
+  },
+  {
+    "id": "panteleimon-tselitel-kiot-3",
+    "file": "panteleimon-tselitel-kiot-3.jpg",
+    "width": 870,
+    "height": 1280,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/panteleimon-tselitel-kiot-3.jpg",
+    "bytes": 247578,
+    "sha256": "e9aa83413bbf1e00660ea16486480dff486baa995eb2fc0e2ced2e0f8ae0de7d",
+    "legacyPath": "/icons/panteleimon-tselitel-kiot",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Пантелеймон Целитель/photo_5269738934927826168_y.jpg"
+    ]
   }
 ]

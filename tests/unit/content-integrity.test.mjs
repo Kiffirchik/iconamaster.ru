@@ -518,14 +518,14 @@ test('clean checkout content, aliases, ownership inventories, and local assets p
   const result = await verifyProject(new URL('../../', import.meta.url));
   assert.deepEqual(result.errors, []);
   assert.deepEqual(result.summary, {
-    icons: 95,
-    publishedIcons: 95,
+    icons: 98,
+    publishedIcons: 98,
     pages: 8,
     articles: 18,
     videos: 2,
     aliases: 124,
-    referencedAssets: 445,
-    ownedAssets: 445,
+    referencedAssets: 459,
+    ownedAssets: 459,
   });
 });
 

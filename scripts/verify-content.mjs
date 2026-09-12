@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 import { legacyArticleMap } from './data/legacy-article-map.mjs';
 import { legacyIconMap } from './data/legacy-icon-map.mjs';
+import { localIconSources } from './local-icon-sources.mjs';
 import { legacyPageMap } from './data/legacy-page-map.mjs';
 import { parseRoute } from '../src/lib/routing.js';
 
@@ -1010,7 +1011,7 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
   errors.push(...verifyContent(bundle, diskFiles, {
     referencedFiles,
     expected: {
-      icons: legacyIconMap.map(({ slug }) => slug),
+      icons: [...legacyIconMap, ...localIconSources].map(({ slug }) => slug),
       pages: [
         ...legacyPageMap.map(({ slug }) => ({ slug, published: true })),
         { slug: 'raschistka-hramovyh-rospisey', published: true },
