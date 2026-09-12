@@ -63,6 +63,12 @@ export async function prepareLiveEditor(distRoot = path.join(root, 'dist/client'
     routes[route] = name;
   }
   await writeFile(path.join(templatesRoot,'routes.json'), JSON.stringify(routes));
+  // MTW nginx serves .xml directly, before Apache/PHP rewrites. Keep the full
+  // restore source private and publish a stable index pointing to the PHP map.
+  await copyFile(path.join(distRoot,'sitemap.xml'), path.join(templatesRoot,'sitemap.xml'));
+  await writeFile(path.join(distRoot,'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>https://iconamaster.ru/content-sitemap.php</loc></sitemap></sitemapindex>\n');
+  const robots = await readFile(path.join(distRoot,'robots.txt'), 'utf8');
+  await writeFile(path.join(distRoot,'robots.txt'), robots.replace('Sitemap: https://iconamaster.ru/sitemap.xml', 'Sitemap: https://iconamaster.ru/content-sitemap.php'));
   for (const directory of ['.live-templates', '.editor-state']) {
     await mkdir(path.join(distRoot, directory), {recursive:true});
     await writeFile(path.join(distRoot, directory, '.htaccess'), 'Deny from all\n');
@@ -79,7 +85,6 @@ export async function prepareLiveEditor(distRoot = path.join(root, 'dist/client'
   let apache = await readFile(apachePath,'utf8');
   const escaped = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const rules = [
-    'RewriteRule ^sitemap\\.xml$ content-sitemap.php [L]',
     'RewriteRule ^\\.(?:live-templates|editor-state)(?:/|$) - [F,L]',
     'RewriteCond %{QUERY_STRING} ^COM=articles_list$',
     'RewriteRule ^corona/admin/index\\.php$ /corona/admin/content.php?kind=articles [R=302,L]',

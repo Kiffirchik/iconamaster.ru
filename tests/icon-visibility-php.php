@@ -29,7 +29,7 @@ foreach(array('/','/collection') as $route){
   visibility_check(strpos($visible,'data-live-visible="archangel-michael"')===false,'whole hidden wrappers removed on '.$route);
   visibility_check(strpos($visible,'<h1')!==false,'main heading preserved on '.$route);
 }
-$sitemap=ce_visible_sitemap(file_get_contents($root.'/sitemap.xml'),$hidden);
+$sitemap=ce_visible_sitemap(file_get_contents($root.'/.live-templates/sitemap.xml'),$hidden);
 visibility_check(strpos($sitemap,'/icons/archangel-michael</loc>')===false,'hidden icon removed from sitemap');
 visibility_check(strpos($sitemap,'/collection</loc>')!==false,'other sitemap routes preserved');
 $navBundle=$bundle;$navBundle['icons']=array(
@@ -43,5 +43,5 @@ visibility_check(ce_save($root,'icons',$row['slug'],ce_revision($new),null,'show
 $restored=ce_bundle($root);
 visibility_check($restored['icons']===$bundle['icons'],'restore preserves exact data');
 visibility_check(ce_route_visible('/icons/archangel-michael',$restored),'restored route available');
-visibility_check(strpos(ce_visible_sitemap(file_get_contents($root.'/sitemap.xml'),$restored),'/icons/archangel-michael</loc>')!==false,'restored sitemap entry');
+visibility_check(strpos(ce_visible_sitemap(file_get_contents($root.'/.live-templates/sitemap.xml'),$restored),'/icons/archangel-michael</loc>')!==false,'restored sitemap entry');
 file_put_contents($root.'/content/icons.json',$original);

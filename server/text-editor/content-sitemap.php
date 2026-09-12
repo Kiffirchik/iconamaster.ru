@@ -5,7 +5,7 @@ header('X-Content-Type-Options: nosniff');
 $root=dirname(__FILE__);
 require $root.'/corona/admin/text-editor/render.php';
 try {
-    $xml=file_get_contents($root.'/sitemap.xml');
+    $xml=file_get_contents($root.'/.live-templates/sitemap.xml');
     if ($xml===false) throw new RuntimeException('Missing sitemap.');
     echo ce_visible_sitemap($xml,ce_bundle($root));
 } catch (Exception $ex) {
