@@ -48,6 +48,13 @@ function ce_sections($sections) {
     }
     return $html;
 }
+function ce_more_details($row) {
+    $text = isset($row['moreDetails']) && is_string($row['moreDetails']) ? str_replace(array("\r\n", "\r"), "\n", $row['moreDetails']) : '';
+    // Match JavaScript String.trim(), including invisible whitespace copied from documents.
+    $space = '[\x{0009}-\x{000d}\x{0020}\x{00a0}\x{1680}\x{2000}-\x{200a}\x{2028}\x{2029}\x{202f}\x{205f}\x{3000}\x{feff}]';
+    $text = preg_replace('/^'.$space.'+|'.$space.'+$/u', '', $text);
+    return $text === '' ? '' : '<details class="icon-more-details"><summary>Подробнее об иконе</summary><div class="icon-more-details__text">'.ce_html($text).'</div></details>';
+}
 function ce_slot($type, $row) {
     $title = ce_html($row['title']);
     if ($type === 'passport' || $type === 'passport-detail') return ce_passport($row, $type === 'passport-detail');
@@ -55,7 +62,7 @@ function ce_slot($type, $row) {
         $eyebrow = array_filter(array(ce_display($row, 'purpose'), ce_display($row, 'period')), 'strlen');
         return ce_p(implode(' · ', $eyebrow), 'eyebrow').'<h1>'.$title.'</h1>'.ce_price_html($row, 'icon-detail-page__price').ce_p(ce_display($row, 'availability') !== '' ? ce_display($row, 'availability') : 'Наличие уточняется', 'icon-detail-page__availability');
     }
-    if ($type === 'icon-description') return ce_p(ce_display($row, 'description'), 'icon-detail-page__description');
+    if ($type === 'icon-description') return ce_p(ce_display($row, 'description'), 'icon-detail-page__description').ce_more_details($row);
     if ($type === 'icon-card') {
         $url = '/icons/'.rawurlencode($row['slug']);
         $price = ce_text($row, 'price') !== '' ? ce_text($row, 'price') : 'Цена по запросу';

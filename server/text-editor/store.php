@@ -44,8 +44,8 @@ function ce_revision($record) { return hash('sha256', json_encode($record)); }
 function ce_fields($kind, $record) {
     $fields = array('title' => array('Название', 'text', $record['title']));
     if ($kind === 'icons') {
-        $labels = array('price'=>'Цена', 'discount'=>'Скидка (%)', 'newPrice'=>'Новая цена (руб.)', 'availability'=>'Наличие', 'description'=>'Описание', 'size'=>'Размер', 'period'=>'Период', 'purpose'=>'Назначение', 'technique'=>'Техника', 'condition'=>'Состояние', 'expertise'=>'Экспертное заключение');
-        foreach ($labels as $key => $label) $fields[$key] = array($label, in_array($key, array('description','expertise'), true) ? 'textarea' : 'text', isset($record[$key]) ? (string)$record[$key] : '');
+        $labels = array('price'=>'Цена', 'discount'=>'Скидка (%)', 'newPrice'=>'Новая цена (руб.)', 'availability'=>'Наличие', 'description'=>'Описание', 'moreDetails'=>'Подробнее об иконе', 'size'=>'Размер', 'period'=>'Период', 'purpose'=>'Назначение', 'technique'=>'Техника', 'condition'=>'Состояние', 'expertise'=>'Экспертное заключение');
+        foreach ($labels as $key => $label) $fields[$key] = array($label, in_array($key, array('description','moreDetails','expertise'), true) ? 'textarea' : 'text', isset($record[$key]) ? (string)$record[$key] : '');
     } else {
         $fields['summary'] = array('Краткое описание', 'textarea', isset($record['summary']) ? $record['summary'] : '');
         foreach (array('intro'=>'Вступление', 'excerpt'=>'Анонс') as $key=>$label) {

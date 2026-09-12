@@ -1,5 +1,6 @@
 import { ConsultationLinks } from '../components/ConsultationLinks.jsx';
 import { IconPrice } from '../components/IconPrice.jsx';
+import { IconMoreDetails } from '../components/IconMoreDetails.jsx';
 import { IconGallery } from '../components/IconGallery.jsx';
 import { IconPassport } from '../components/IconPassport.jsx';
 import { publishedIcons } from '../content/schema.js';
@@ -47,6 +48,7 @@ export function IconDetailPage({ icon, icons, onNavigate }) {
         <article className="icon-detail-page__content">
           <div data-live-slot={`icon-description:${icon.slug}`}>
             {getIconDisplayValue(icon.description) ? <p className="icon-detail-page__description">{icon.description}</p> : null}
+            <IconMoreDetails key={icon.slug} text={icon.moreDetails} />
           </div>
           <IconPassport icon={icon} headingId="passport-title" />
 

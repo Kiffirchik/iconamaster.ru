@@ -1,0 +1,13 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+const file=new URL('../public/content/icons.json',import.meta.url);
+const rows=JSON.parse(await readFile(file,'utf8'));
+for(const row of rows) if(!Object.hasOwn(row,'moreDetails')) row.moreDetails='';
+const bytes=JSON.stringify(rows,null,2)+'\n';
+await writeFile(file,bytes);
+const reportFile=new URL('../reports/icon-migration.json',import.meta.url);
+const report=JSON.parse(await readFile(reportFile,'utf8'));
+const output=report.outputs.find(x=>x.path==='public/content/icons.json');
+output.bytes=Buffer.byteLength(bytes); output.sha256=createHash('sha256').update(bytes).digest('hex');
+await writeFile(reportFile,JSON.stringify(report,null,2)+'\n');
+console.log(`Added empty moreDetails defaults to ${rows.length} icons; existing values preserved.`);

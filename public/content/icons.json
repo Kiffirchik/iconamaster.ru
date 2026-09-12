@@ -70,7 +70,8 @@
     "previewPosition": "50% 50%",
     "purpose": "Фасадная",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "apocalypse",
@@ -111,7 +112,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "apocalypse-vision-of-john",
@@ -152,7 +154,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "tsar-ivan-the-terrible",
@@ -193,7 +196,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "bogolyubskaya-with-saints",
@@ -226,7 +230,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "joy-of-all-who-sorrow-moscow",
@@ -259,7 +264,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "theotokos-feodorovskaya",
@@ -292,7 +298,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "theotokos-kazanskaya",
@@ -325,7 +332,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "theotokos-muromskaya",
@@ -374,7 +382,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "theotokos-petrovskaya-carved-kiot",
@@ -407,7 +416,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "theotokos-russkaya",
@@ -440,7 +450,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "theotokos-healer",
@@ -473,7 +484,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "theotokos-three-joys",
@@ -506,7 +518,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "theotokos-vzygranie-mladentsa",
@@ -539,7 +552,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "theotokos-znamenie-oak-kiot",
@@ -572,7 +586,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "joy-of-all-who-sorrow-gilded-oklad",
@@ -613,7 +628,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "boris-and-gleb",
@@ -646,7 +662,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "archangel-michael",
@@ -703,7 +720,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "miracle-of-george",
@@ -736,7 +754,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "miracle-of-saint-george",
@@ -769,7 +788,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "miracle-of-saint-george-variant",
@@ -810,7 +830,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "twelve-feasts-and-resurrection",
@@ -859,7 +880,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "nikita-besogon",
@@ -892,7 +914,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "saint-nicholas",
@@ -941,7 +964,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "saint-nicholas-with-life",
@@ -982,7 +1006,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "zosima-and-savvaty-solovetsky",
@@ -1015,7 +1040,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "alexander-peresvet",
@@ -1048,7 +1074,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "holy-trinity",
@@ -1113,7 +1140,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "nativity-of-the-theotokos",
@@ -1146,7 +1174,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "sergius-of-radonezh",
@@ -1187,7 +1216,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "synaxis-of-selected-saints",
@@ -1220,7 +1250,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "christ-pantocrator",
@@ -1253,7 +1284,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "christ-pantocrator-3",
@@ -1286,7 +1318,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "christ-pantocrator-4",
@@ -1319,7 +1352,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "christ-pantocrator-precious-oklad",
@@ -1352,7 +1386,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "christ-pantocrator-porcelain-oklad",
@@ -1393,7 +1428,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "christ-pantocrator-brass-oklad",
@@ -1442,7 +1478,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "sretenie",
@@ -1475,7 +1512,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "prince-vladislav-czech",
@@ -1516,7 +1554,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "saint-nicholas-wonderworker",
@@ -1549,7 +1588,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "peter-and-fevronia-of-murom",
@@ -1582,7 +1622,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "wedding-icons",
@@ -1615,7 +1656,8 @@
     "previewPosition": "50% 50%",
     "purpose": "Венчальная",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "folding-kiot",
@@ -1664,7 +1706,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "temple-icon-peter-and-paul",
@@ -1697,7 +1740,8 @@
     "previewPosition": "50% 50%",
     "purpose": "Храмовая",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "resurrection",
@@ -1746,7 +1790,8 @@
     "previewPosition": "50% 50%",
     "purpose": "Храмовая",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "antique-theotokos-burning-bush",
@@ -1779,7 +1824,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "antique-theotokos-vladimirskaya",
@@ -1812,7 +1858,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "antique-saint-nicholas",
@@ -1861,7 +1908,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "nativity-of-christ-17th-century",
@@ -1894,7 +1942,8 @@
     "previewPosition": "50% 50%",
     "purpose": "",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "sergius-appearance",
@@ -1935,7 +1984,8 @@
     "previewPosition": "50% 50%",
     "purpose": "Аналойная",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-cudo-georgiy-o-zmie-1",
@@ -1968,7 +2018,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-skladen-bogorodita-kazanskay",
@@ -2017,7 +2068,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-cudo-velikomucenika-dimitriy-solunskogo",
@@ -2050,7 +2102,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-presvytoi-troity",
@@ -2099,7 +2152,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-cudo-arkistratiga-mikaila",
@@ -2140,7 +2194,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-prepodobnay-mariy-kidanskay",
@@ -2173,7 +2228,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-prepodobnyi-serafim-sarovskii",
@@ -2206,7 +2262,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-fedorovskoi",
@@ -2239,7 +2296,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-varvara-velikomucenita-v-zitie",
@@ -2280,7 +2338,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-cudo-georgiy-o-zmie-5",
@@ -2313,7 +2372,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-ne-rydai-mene-mati",
@@ -2346,7 +2406,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-svytay-matrona-moskovskay",
@@ -2379,7 +2440,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-aleksandr-nevskii",
@@ -2412,7 +2474,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-spas-vsederzitel-v-starinnom-oklade-i-dubovom-kiote",
@@ -2445,7 +2508,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-kazanskay-1",
@@ -2478,7 +2542,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-utoli-moi-pecali",
@@ -2511,7 +2576,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-utoli-moi-pecali-1",
@@ -2544,7 +2610,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-utoli-moi-pecali-copy",
@@ -2577,7 +2644,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-prepodobnyi-sergii-radonezskii",
@@ -2610,7 +2678,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-cudo-georgiy-o-zmie-2",
@@ -2643,7 +2712,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-cudo-georgiy-o-zmie-3",
@@ -2676,7 +2746,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-cudo-mucenika-trifona-o-sokole",
@@ -2709,7 +2780,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-cudo-georgiy-o-zmie-4",
@@ -2750,7 +2822,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-il-y-muromet-v-zitii",
@@ -2791,7 +2864,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-cudo-svytogo-georgiy",
@@ -2824,7 +2898,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodita-vladimirskay",
@@ -2865,7 +2940,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-ognennoe-voskozdenie-il-i-proroka",
@@ -2898,7 +2974,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-svytitel-spiridon-trimifunskii",
@@ -2931,7 +3008,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-panteleimon-telitel",
@@ -2972,7 +3050,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-spas-nerukotvornyi",
@@ -3005,7 +3084,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-spas-nerukotvornyi-1",
@@ -3038,7 +3118,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-svytyk-boris-i-gleb",
@@ -3071,7 +3152,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-sporucnita-gresnyk",
@@ -3104,7 +3186,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-smolenskay",
@@ -3137,7 +3220,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-casa-neupivaemay-1",
@@ -3170,7 +3254,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-parsuna-blagovernyi-tar-ioann-groznyi",
@@ -3203,7 +3288,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-korsunskay",
@@ -3236,7 +3322,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-kazanskay-3",
@@ -3269,7 +3356,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-zivonosnyi-istocnik-1",
@@ -3310,7 +3398,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-znamenie",
@@ -3343,7 +3432,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-vladimirskay",
@@ -3376,7 +3466,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-spas-blagoe-molcanie-ili-angel-velikogo-soveta",
@@ -3409,7 +3500,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-korsunskay-1",
@@ -3450,7 +3542,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-russkay-ili-vzbrannay-voevoda",
@@ -3491,7 +3584,8 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   },
   {
     "id": "ikona-bogorodity-iverskay",
@@ -3524,6 +3618,7 @@
     "previewFit": "contain",
     "previewPosition": "50% 50%",
     "discount": null,
-    "newPrice": null
+    "newPrice": null,
+    "moreDetails": ""
   }
 ]

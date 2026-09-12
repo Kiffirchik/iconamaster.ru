@@ -51,6 +51,7 @@ export function validateContentBundle(bundle) {
     if (!icon.slug) errors.push('icon slug is required');
     if (slugs.has(icon.slug)) errors.push(`duplicate icon slug ${icon.slug}`);
     slugs.add(icon.slug);
+    if (icon.moreDetails != null && typeof icon.moreDetails !== 'string') errors.push(`icon ${icon.slug} moreDetails must be text or null`);
     for (const field of ['discount', 'newPrice']) {
       const value = icon[field];
       if (value != null && (typeof value !== 'number' || !Number.isFinite(value) || value < 0)) {

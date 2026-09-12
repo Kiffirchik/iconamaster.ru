@@ -63,6 +63,7 @@ unset($_SESSION['content_saved']);
 <?php else: ?><textarea id="<?=e($key)?>" name="fields[<?=e($key)?>]" rows="<?=$field[1] === 'paragraphs' ? 14 : 5?>"><?=e($value)?></textarea><?php endif; ?>
 <?php if ($field[1] === 'paragraphs'): ?><small>Разделяйте абзацы пустой строкой. Изображения между блоками сохраняются.</small><?php endif; ?>
 <?php if ($key === 'discount'): ?><small>Процент скидки: например, 10. Пустое поле или 0 отключает скидку.</small><?php endif; ?>
+<?php if ($key === 'moreDetails'): ?><small>Обычный текст, без HTML. Переносы строк сохраняются. Показывается под описанием по нажатию «Подробнее об иконе». Оставьте пустым, чтобы скрыть кнопку.</small><?php endif; ?>
 <?php if ($key === 'newPrice'): ?><small>Введите итоговую сумму в рублях, например 90 000. Показывается только при включённой скидке; должна быть меньше прежней цены.</small><?php endif; ?>
 </label><?php endforeach; ?>
 <div class="save"><button type="submit">Сохранить</button><span>Изменения появятся на сайте сразу после сохранения.</span></div></form>

@@ -817,6 +817,28 @@ button {
   border-block: 1px solid var(--line);
 }
 
+.icon-more-details { margin-block: 1.25rem; }
+.icon-more-details summary {
+  width: fit-content;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--line);
+  color: var(--gold);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.icon-more-details summary:hover,
+.icon-more-details[open] summary { background: var(--surface); }
+.icon-more-details summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.icon-more-details__text {
+  margin-top: 1rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.7;
+}
+
 .mural-service-page {
   padding-top: clamp(1.5rem, 3vw, 3rem);
 }
