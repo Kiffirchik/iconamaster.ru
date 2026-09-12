@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { IconPrice } from './IconPrice.jsx';
 import { IconImage } from './IconImage.jsx';
 import { ConsultationLinks } from './ConsultationLinks.jsx';
 import { getIconDisplayValue } from '../lib/catalog.js';
@@ -32,7 +33,6 @@ export class IconCard extends Component {
     const period = getIconDisplayValue(icon.period);
     const technique = getIconDisplayValue(icon.technique);
     const size = getIconDisplayValue(icon.size);
-    const price = String(icon.price || '').trim() || 'Цена по запросу';
     const availability = String(icon.availability || '').trim();
 
     return (
@@ -52,7 +52,7 @@ export class IconCard extends Component {
           {title ? <h3><a href={path} onClick={this.follow}>{title}</a></h3> : null}
           {technique ? <p>{technique}</p> : null}
           {size ? <p>{size}</p> : null}
-          <p className="icon-card__price">{price}{availability ? ` · ${availability}` : ''}</p>
+          <IconPrice icon={icon} className="icon-card__price" availability={availability} />
           </div>
           <ConsultationLinks iconTitle={title} compact primaryOnly primaryLabel="Обсудить икону" />
           <a className="icon-card__more" href={path} onClick={this.follow}>Подробнее</a>

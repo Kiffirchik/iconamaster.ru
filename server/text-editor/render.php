@@ -9,6 +9,13 @@ function ce_display($row, $key) {
     return preg_match('/^[-–—]+$/u', $normalized) || in_array($normalized, array('', 'уточняется при консультации', 'не указано', 'нет данных'), true) ? '' : $value;
 }
 function ce_p($text, $class = '') { return $text === '' ? '' : '<p'.($class !== '' ? ' class="'.$class.'"' : '').'>'.ce_html($text).'</p>'; }
+function ce_price_html($row, $class, $availability = '') {
+    $price = ce_text($row, 'price') !== '' ? ce_text($row, 'price') : 'Цена по запросу';
+    $discount = ce_discount($row);
+    $body = ce_html($price);
+    if ($discount !== null) $body = '<del class="icon-price__old" aria-label="Прежняя цена">'.$body.'</del><span class="icon-price__discount" aria-label="Скидка '.ce_html($discount['percent']).'%">%</span><strong class="icon-price__new" aria-label="Новая цена">'.ce_html(ce_format_price($discount['newPrice'])).'</strong>';
+    return '<p class="'.$class.'">'.$body.($availability !== '' ? ' · '.ce_html($availability) : '').'</p>';
+}
 function ce_passport($row, $detail) {
     $body = '';
     foreach (array('period'=>'Период','purpose'=>'Назначение','size'=>'Размер','technique'=>'Техника','condition'=>'Состояние','expertise'=>'Экспертное заключение') as $key=>$label) {
@@ -46,14 +53,14 @@ function ce_slot($type, $row) {
     if ($type === 'passport' || $type === 'passport-detail') return ce_passport($row, $type === 'passport-detail');
     if ($type === 'icon-detail') {
         $eyebrow = array_filter(array(ce_display($row, 'purpose'), ce_display($row, 'period')), 'strlen');
-        return ce_p(implode(' · ', $eyebrow), 'eyebrow').'<h1>'.$title.'</h1>'.ce_p(ce_text($row, 'price') !== '' ? ce_text($row, 'price') : 'Цена по запросу', 'icon-detail-page__price').ce_p(ce_display($row, 'availability') !== '' ? ce_display($row, 'availability') : 'Наличие уточняется', 'icon-detail-page__availability');
+        return ce_p(implode(' · ', $eyebrow), 'eyebrow').'<h1>'.$title.'</h1>'.ce_price_html($row, 'icon-detail-page__price').ce_p(ce_display($row, 'availability') !== '' ? ce_display($row, 'availability') : 'Наличие уточняется', 'icon-detail-page__availability');
     }
     if ($type === 'icon-description') return ce_p(ce_display($row, 'description'), 'icon-detail-page__description');
     if ($type === 'icon-card') {
         $url = '/icons/'.rawurlencode($row['slug']);
         $price = ce_text($row, 'price') !== '' ? ce_text($row, 'price') : 'Цена по запросу';
         $availability = ce_text($row, 'availability');
-        return ce_p(ce_display($row, 'period'), 'icon-card__period').'<h3><a href="'.$url.'">'.$title.'</a></h3>'.ce_p(ce_display($row, 'technique')).ce_p(ce_display($row, 'size')).ce_p($price.($availability !== '' ? ' · '.$availability : ''), 'icon-card__price');
+        return ce_p(ce_display($row, 'period'), 'icon-card__period').'<h3><a href="'.$url.'">'.$title.'</a></h3>'.ce_p(ce_display($row, 'technique')).ce_p(ce_display($row, 'size')).ce_price_html($row, 'icon-card__price', $availability);
     }
     $url = '/articles/'.rawurlencode($row['slug']);
     if ($type === 'article-header') {
@@ -112,6 +119,8 @@ class CeSeo {
             $graph[]=$node;
         }
         $priceText = preg_replace('/\s+/u', '', ce_text($record, 'price'));
+        $discount = ce_discount($record);
+        if ($discount !== null) $priceText = $discount['newPrice'].'руб.';
         if (strpos($route, '/icons/') === 0 && ce_text($record, 'availability') === 'В наличии' && preg_match('/^(\d+(?:[.,]\d{1,2})?)(?:руб\.?|₽)$/ui', $priceText, $price) && (float)str_replace(',', '.', $price[1]) > 0) {
             $node = array('@type'=>'Product','name'=>$record['title'],'description'=>$description,'offers'=>array('@type'=>'Offer','price'=>(float)str_replace(',', '.', $price[1]),'priceCurrency'=>'RUB','availability'=>'https://schema.org/InStock','url'=>'https://iconamaster.ru'.$route));
             if ($image) $node['image']=$image;

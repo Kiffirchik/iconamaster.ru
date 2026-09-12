@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__).'/pricing.php';
 // Compatible with the legacy Corona PHP runtime; no database or credentials required.
 function ce_random($bytes) {
     if (function_exists('random_bytes')) return random_bytes($bytes);
@@ -43,7 +44,7 @@ function ce_revision($record) { return hash('sha256', json_encode($record)); }
 function ce_fields($kind, $record) {
     $fields = array('title' => array('Название', 'text', $record['title']));
     if ($kind === 'icons') {
-        $labels = array('price'=>'Цена', 'availability'=>'Наличие', 'description'=>'Описание', 'size'=>'Размер', 'period'=>'Период', 'purpose'=>'Назначение', 'technique'=>'Техника', 'condition'=>'Состояние', 'expertise'=>'Экспертное заключение');
+        $labels = array('price'=>'Цена', 'discount'=>'Скидка (%)', 'newPrice'=>'Новая цена (руб.)', 'availability'=>'Наличие', 'description'=>'Описание', 'size'=>'Размер', 'period'=>'Период', 'purpose'=>'Назначение', 'technique'=>'Техника', 'condition'=>'Состояние', 'expertise'=>'Экспертное заключение');
         foreach ($labels as $key => $label) $fields[$key] = array($label, in_array($key, array('description','expertise'), true) ? 'textarea' : 'text', isset($record[$key]) ? (string)$record[$key] : '');
     } else {
         $fields['summary'] = array('Краткое описание', 'textarea', isset($record['summary']) ? $record['summary'] : '');
@@ -67,11 +68,25 @@ function ce_updated($kind, $record, $input) {
         $value = str_replace(array("\r\n", "\r"), "\n", $input[$key]);
         if (!preg_match('//u', $value) || strpos($value, "\0") !== false || strlen($value) > 200000) throw new InvalidArgumentException('Недопустимый текст или превышен размер поля.');
         if ($key === 'title' && (trim($value) === '' || strlen($value) > 1000)) throw new InvalidArgumentException('Укажите название (до 1000 байт).');
+        if ($kind === 'icons' && ($key === 'discount' || $key === 'newPrice')) {
+            $clean = trim($value);
+            if ($clean === '' || strtolower($clean) === 'null' || preg_match('/^0+(?:[.,]0+)?$/D', $clean)) $number = null;
+            else {
+                $number = ce_price_number($clean);
+                if ($number === null || ($key === 'discount' && $number >= 100)) throw new InvalidArgumentException($key === 'discount' ? 'Скидка: число больше 0 и меньше 100, либо пустое поле.' : 'Новая цена: положительная сумма в рублях, либо пустое поле.');
+            }
+            if ($number !== null && isset($record[$key]) && (is_int($record[$key]) || is_float($record[$key])) && $number == $record[$key]) continue;
+            if (array_key_exists($key, $record) || $number !== null) $record[$key] = $number;
+            continue;
+        }
         if ($value === $field[2]) continue; // A no-op preserves exact source text and optional keys.
         if (preg_match('/^(heading|paragraphs)_(\d+)$/D', $key, $m)) {
             if ($m[1] === 'heading') $record['sections'][(int)$m[2]]['heading'] = trim($value);
             else $record['sections'][(int)$m[2]]['paragraphs'] = trim($value) === '' ? array() : preg_split('/\n[ \t]*\n+/u', trim($value));
         } else $record[$key] = trim($value);
+    }
+    if ($kind === 'icons' && !empty($record['discount']) && ce_discount($record) === null) {
+        throw new InvalidArgumentException('Для скидки укажите прежнюю цену числом и новую цену больше нуля и меньше прежней.');
     }
     return $record;
 }

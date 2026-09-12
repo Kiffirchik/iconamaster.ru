@@ -6,7 +6,8 @@ import { filterIcons } from '../lib/catalog.js';
 
 const initialFilters = {
   period: 'all',
-  purpose: 'all'
+  purpose: 'all',
+  discountsOnly: false
 };
 
 export function CollectionPage({ icons = [], onNavigate }) {

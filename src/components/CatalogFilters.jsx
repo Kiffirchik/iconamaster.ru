@@ -6,7 +6,7 @@ const filterLabels = {
 };
 
 export function CatalogFilters({ items, filters, onChange, onReset }) {
-  const isFiltered = Object.values(filters).some((value) => value !== 'all');
+  const isFiltered = ['period', 'purpose'].some((key) => filters[key] && filters[key] !== 'all') || filters.discountsOnly === true;
 
   return (
     <form className="catalog-filters" onSubmit={(event) => event.preventDefault()}>
@@ -28,6 +28,11 @@ export function CatalogFilters({ items, filters, onChange, onReset }) {
       {isFiltered && (
         <button className="catalog-filters__reset" type="button" onClick={onReset}>Сбросить</button>
       )}
+      <button className="catalog-filters__discounts" type="button"
+        aria-pressed={filters.discountsOnly === true}
+        onClick={() => onChange({ discountsOnly: !filters.discountsOnly })}>
+        <span aria-hidden="true">%</span> Скидки
+      </button>
     </form>
   );
 }

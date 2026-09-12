@@ -50,7 +50,7 @@ export async function prepareLiveEditor(distRoot = path.join(root, 'dist/client'
   await writeFile(path.join(content, '.htaccess'), '<IfModule mod_headers.c>\nHeader set Cache-Control "no-cache, must-revalidate"\n</IfModule>\n<FilesMatch "^\\.">\nDeny from all\n</FilesMatch>\n');
   const editorRoot = path.join(distRoot, 'corona/admin/text-editor');
   await mkdir(editorRoot, {recursive:true});
-  for (const file of ['editor.php','editor.css','store.php','render.php']) await copyFile(path.join(root,'server/text-editor',file), path.join(editorRoot,file));
+  for (const file of ['editor.php','editor.css','store.php','render.php','pricing.php']) await copyFile(path.join(root,'server/text-editor',file), path.join(editorRoot,file));
   await writeFile(path.join(distRoot,'corona/admin/content.php'), "<?php\nrequire dirname(__FILE__).'/text-editor/editor.php';\n");
   await copyFile(path.join(root,'server/text-editor/content-page.php'), path.join(distRoot,'content-page.php'));
   // Keep canonical redirects ahead of dispatch, preserve existing aliases and all legacy PHP.

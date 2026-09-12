@@ -322,6 +322,47 @@ button {
   border-bottom: 1px solid var(--line);
 }
 
+.icon-price__old {
+  color: #a4a09a;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  margin-right: 0.65em;
+  display: inline-block;
+}
+
+.icon-price__discount {
+  color: #ff7770;
+  display: inline-block;
+  font-family: sans-serif;
+  font-weight: 700;
+  margin-right: 0.45em;
+}
+
+.icon-price__new {
+  color: var(--alabaster);
+  display: inline-block;
+  font-weight: 600;
+}
+
+.catalog-filters__discounts {
+  min-height: 44px;
+  align-self: end;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  order: 1;
+}
+
+.catalog-filters__discounts span { color: #ff7770; }
+.catalog-filters__discounts[aria-pressed="true"] {
+  border-color: #ff7770;
+  background: #ff777014;
+}
+.catalog-filters__reset { order: 2; }
+
 .object-passport dt {
   color: var(--muted);
   font-size: 0.78rem;
@@ -549,7 +590,7 @@ button {
 
 .catalog-filters {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) auto auto;
   gap: 1rem;
   align-items: end;
   padding-block: 1.5rem 2rem;

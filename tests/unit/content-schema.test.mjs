@@ -37,6 +37,18 @@ test('validates the canonical content bundle', () => {
   assert.deepEqual(validateContentBundle(validBundle), { ok: true, errors: [] });
 });
 
+test('discount fields support legacy rows, nullable defaults, and valid lower prices only', () => {
+  const bundle=structuredClone(validBundle);
+  Object.assign(bundle.icons[0], {price:'100 000 руб.', discount:10, newPrice:90000});
+  assert.equal(validateContentBundle(bundle).ok,true);
+  for (const fields of [{discount:100},{newPrice:100000},{newPrice:-1},{discount:'10'},{newPrice:Infinity}]) {
+    const bad=structuredClone(bundle); Object.assign(bad.icons[0],fields);
+    assert.equal(validateContentBundle(bad).ok,false);
+  }
+  Object.assign(bundle.icons[0], {discount:null,newPrice:null});
+  assert.equal(validateContentBundle(bundle).ok,true);
+});
+
 test('rejects a published icon without an image', () => {
   const bundle = structuredClone(validBundle);
   bundle.icons[0].images = [];

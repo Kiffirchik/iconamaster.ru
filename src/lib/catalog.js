@@ -1,3 +1,5 @@
+import { getDiscount } from './pricing.js';
+
 export function getIconDisplayValue(value) {
   if (typeof value !== 'string') return '';
   const text = value.trim();
@@ -10,7 +12,7 @@ export function getIconDisplayValue(value) {
 
 export function filterIcons(items, filters = {}) {
   // Legacy callers may still explicitly filter by type; the UI uses purpose only.
-  return items.filter((item) => ['purpose', 'type', 'period', 'availability'].every((key) => {
+  return items.filter((item) => (!filters.discountsOnly || Boolean(getDiscount(item))) && ['purpose', 'type', 'period', 'availability'].every((key) => {
     const selected = filters[key];
     if (selected == null || selected === 'all') return true;
     const value = getIconDisplayValue(selected);

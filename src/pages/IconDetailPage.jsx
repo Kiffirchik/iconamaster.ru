@@ -1,4 +1,5 @@
 import { ConsultationLinks } from '../components/ConsultationLinks.jsx';
+import { IconPrice } from '../components/IconPrice.jsx';
 import { IconGallery } from '../components/IconGallery.jsx';
 import { IconPassport } from '../components/IconPassport.jsx';
 import { publishedIcons } from '../content/schema.js';
@@ -23,7 +24,6 @@ export function IconDetailPage({ icon, icons, onNavigate }) {
     .map(getIconDisplayValue)
     .filter(Boolean)
     .join(' · ');
-  const price = String(icon.price || '').trim() || 'Цена по запросу';
 
   function navigateTo(event, path) {
     if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -38,7 +38,7 @@ export function IconDetailPage({ icon, icons, onNavigate }) {
           <div data-live-slot={`icon-detail:${icon.slug}`}>
           {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
           <h1>{icon.title}</h1>
-          <p className="icon-detail-page__price">{price}</p>
+          <IconPrice icon={icon} className="icon-detail-page__price" />
           <p className="icon-detail-page__availability">{getIconDisplayValue(icon.availability) || 'Наличие уточняется'}</p>
           </div>
           <ConsultationLinks iconTitle={icon.title} primaryLabel="Задать вопрос об иконе" />

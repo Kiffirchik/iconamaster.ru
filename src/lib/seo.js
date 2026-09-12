@@ -1,4 +1,5 @@
 import { siteConfig } from '../data/site-config.js';
+import { getDiscount } from './pricing.js';
 import { normalizePath } from './routing.js';
 
 const siteUrl = siteConfig.url.replace(/\/$/u, '');
@@ -114,7 +115,7 @@ function parseRubPrice(value) {
 }
 
 function productForIcon(icon, canonical, image, description) {
-  const price = parseRubPrice(icon.price);
+  const price = getDiscount(icon)?.newPrice ?? parseRubPrice(icon.price);
   const availability = saleAvailability.get(normalizeText(icon.availability));
   if (!price || !availability) return null;
 

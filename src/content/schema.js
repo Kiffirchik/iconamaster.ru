@@ -1,3 +1,5 @@
+import { getDiscount } from '../lib/pricing.js';
+
 const requiredCollections = ['icons', 'pages', 'articles', 'videos'];
 const contactFields = new Set(['whatsapp', 'phone', 'email', 'sourceUrl', 'mapUrl', 'address']);
 const addressFields = new Set(['display', 'streetAddress', 'addressLocality', 'addressRegion', 'addressCountry']);
@@ -49,6 +51,13 @@ export function validateContentBundle(bundle) {
     if (!icon.slug) errors.push('icon slug is required');
     if (slugs.has(icon.slug)) errors.push(`duplicate icon slug ${icon.slug}`);
     slugs.add(icon.slug);
+    for (const field of ['discount', 'newPrice']) {
+      const value = icon[field];
+      if (value != null && (typeof value !== 'number' || !Number.isFinite(value) || value < 0)) {
+        errors.push(`icon ${icon.slug} ${field} must be a non-negative number or null`);
+      }
+    }
+    if (icon.discount && !getDiscount(icon)) errors.push(`icon ${icon.slug} has an invalid discount or new price`);
     if (icon.published && !(icon.images?.length > 0)) {
       errors.push(`published icon ${icon.slug} has no images`);
     }
