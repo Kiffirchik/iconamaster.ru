@@ -51,10 +51,10 @@ const buildAllowedOwners = (inventory) => {
   return ownersByUrl;
 };
 
-test('catalog contains 95 migrated cards and 3 owner-supplied cards after duplicate review', async () => {
+test('catalog contains 95 migrated cards and 4 owner-supplied cards after duplicate review', async () => {
   const icons = await loadJson('../../public/content/icons.json');
-  assert.equal(icons.length, 98);
-  assert.equal(new Set(icons.map(({ slug }) => slug)).size, 98);
+  assert.equal(icons.length, 99);
+  assert.equal(new Set(icons.map(({ slug }) => slug)).size, 99);
 });
 
 test('migrated icon content preserves the original listed price and description', async () => {
@@ -171,7 +171,7 @@ test('every manifest URL has exactly one pinned owner and rejects global scaffol
   for (const [sourceUrl, owners] of ownersByUrl) {
     assert.equal(owners.size, 1, `ambiguous owner for ${sourceUrl}: ${[...owners.keys()].join(', ')}`);
   }
-  assert.equal(ownersByUrl.size, 158, 'the pinned allowlist includes Cargo and owner-supplied originals');
+  assert.equal(ownersByUrl.size, 160, 'the pinned allowlist includes Cargo and owner-supplied originals');
   assert.equal(new Set(manifest.map(({ sourceUrl }) => sourceUrl)).size, manifest.length, 'manifest URLs must be unique');
   assert.deepEqual(
     sorted(manifest.map(({ sourceUrl }) => sourceUrl)),
@@ -184,7 +184,7 @@ test('every manifest URL has exactly one pinned owner and rejects global scaffol
     assert.equal(owners.size, 1, `manifest URL has ambiguous ownership: ${asset.sourceUrl}`);
     assert.equal(asset.legacyPath, [...owners.keys()][0], asset.sourceUrl);
   }
-  assert.equal(manifest.length, 158, 'only individually owned originals belong in the manifest');
+  assert.equal(manifest.length, 160, 'only individually owned originals belong in the manifest');
 });
 
 test('icon images, manifest entries, and immutable files form a bijection', async () => {

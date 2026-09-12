@@ -9,9 +9,9 @@
     {
       "id": "icons",
       "path": "public/content/icons.json",
-      "records": 98,
-      "bytes": 204268,
-      "sha256": "f1da739fc29a33f0c303154e48a23d83ab0d0d996d51c825b0831c10cb67db32"
+      "records": 99,
+      "bytes": 216118,
+      "sha256": "7dea9e24e5842b88bdc09c0e166899204586b6b99b81b6da39449efc29f3c545"
     },
     {
       "id": "aliases",
@@ -23,21 +23,21 @@
     {
       "id": "asset-manifest",
       "path": "public/assets/icons/manifest.json",
-      "records": 158,
-      "bytes": 90382,
-      "sha256": "2092a7f5d624f454816f1f34de029e14b5ff65c20b7725b84ed5d52d58917d2e"
+      "records": 160,
+      "bytes": 91774,
+      "sha256": "0eb6db8f1293e2c15e2aa2c62e32333e270d9f4d8176656d738f3d389fe2c316"
     }
   ],
   "summary": {
     "mappedRecords": 95,
-    "uniqueSlugs": 98,
-    "publishedRecords": 98,
+    "uniqueSlugs": 99,
+    "publishedRecords": 99,
     "unpublishedRecords": 0,
-    "assetFiles": 158,
-    "assetBytes": 124940257,
+    "assetFiles": 160,
+    "assetBytes": 125426647,
     "recoveredRequiredRecords": 7,
     "unresolvedRecoveryRecords": 0,
-    "localAddedRecords": 3
+    "localAddedRecords": 4
   },
   "checksumPolicy": "Every local original is copied or downloaded without decoding or re-encoding, then recorded with its byte length and SHA-256 digest.",
   "thumbnailPolicy": "Catalog thumbnail URLs are evidence only. Migration uses Cargo t/original endpoints or page-proven original URLs and never stores thumbnail bytes as originals.",
@@ -2530,6 +2530,36 @@
       "provenance": "owner-supplied-original-20260912",
       "evidence": [
         "incoming/Новые иконы 1/Пантелеймон Целитель/photo_5269738934927826168_y.jpg"
+      ]
+    },
+    {
+      "id": "venchalnaya-para-vsederzhitel-kazanskaya-1",
+      "file": "venchalnaya-para-vsederzhitel-kazanskaya.jpg",
+      "width": 1280,
+      "height": 804,
+      "sourceUrl": "https://iconamaster.ru/assets/icons/venchalnaya-para-vsederzhitel-kazanskaya.jpg",
+      "bytes": 228453,
+      "sha256": "c12cb1aaac14fde7d5ca9a2b83063e9c3e2f627fde9316be3bc76346091608da",
+      "legacyPath": "/icons/venchalnaya-para-vsederzhitel-kazanskaya",
+      "role": "original",
+      "provenance": "owner-supplied-original-20260912",
+      "evidence": [
+        "incoming/Новые иконы 1/Господь Вседержитель и Богородица Казанская/photo_5269738934927826055_y.jpg"
+      ]
+    },
+    {
+      "id": "venchalnaya-para-vsederzhitel-kazanskaya-2",
+      "file": "venchalnaya-para-vsederzhitel-kazanskaya-2.jpg",
+      "width": 1280,
+      "height": 961,
+      "sourceUrl": "https://iconamaster.ru/assets/icons/venchalnaya-para-vsederzhitel-kazanskaya-2.jpg",
+      "bytes": 257937,
+      "sha256": "ab8ea4d9604037836a118195935b9f414a98e5879b8be68ef0f67c9073298051",
+      "legacyPath": "/icons/venchalnaya-para-vsederzhitel-kazanskaya",
+      "role": "original",
+      "provenance": "owner-supplied-original-20260912",
+      "evidence": [
+        "incoming/Новые иконы 1/Господь Вседержитель и Богородица Казанская/photo_5269738934927826048_y.jpg"
       ]
     }
   ],

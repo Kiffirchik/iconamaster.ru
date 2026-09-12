@@ -2378,5 +2378,35 @@
     "evidence": [
       "incoming/Новые иконы 1/Пантелеймон Целитель/photo_5269738934927826168_y.jpg"
     ]
+  },
+  {
+    "id": "venchalnaya-para-vsederzhitel-kazanskaya-1",
+    "file": "venchalnaya-para-vsederzhitel-kazanskaya.jpg",
+    "width": 1280,
+    "height": 804,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/venchalnaya-para-vsederzhitel-kazanskaya.jpg",
+    "bytes": 228453,
+    "sha256": "c12cb1aaac14fde7d5ca9a2b83063e9c3e2f627fde9316be3bc76346091608da",
+    "legacyPath": "/icons/venchalnaya-para-vsederzhitel-kazanskaya",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Господь Вседержитель и Богородица Казанская/photo_5269738934927826055_y.jpg"
+    ]
+  },
+  {
+    "id": "venchalnaya-para-vsederzhitel-kazanskaya-2",
+    "file": "venchalnaya-para-vsederzhitel-kazanskaya-2.jpg",
+    "width": 1280,
+    "height": 961,
+    "sourceUrl": "https://iconamaster.ru/assets/icons/venchalnaya-para-vsederzhitel-kazanskaya-2.jpg",
+    "bytes": 257937,
+    "sha256": "ab8ea4d9604037836a118195935b9f414a98e5879b8be68ef0f67c9073298051",
+    "legacyPath": "/icons/venchalnaya-para-vsederzhitel-kazanskaya",
+    "role": "original",
+    "provenance": "owner-supplied-original-20260912",
+    "evidence": [
+      "incoming/Новые иконы 1/Господь Вседержитель и Богородица Казанская/photo_5269738934927826048_y.jpg"
+    ]
   }
 ]

@@ -206,7 +206,7 @@ test('static build publishes every canonical page with crawlable Russian SEO met
     + Number(hasVideo)
     + Number(hasContacts);
 
-  assert.equal(publishedIcons.length, 98, 'current bundle must publish 98 icon pages');
+  assert.equal(publishedIcons.length, 99, 'current bundle must publish 99 icon pages');
   assert.equal(publishedPages.length, 8, 'current bundle must publish 8 standard pages');
   assert.equal(publishedArticles.length, 18, 'current bundle must publish 18 article pages');
   assert.equal(hasVideo, true, 'current bundle must publish its video page');
