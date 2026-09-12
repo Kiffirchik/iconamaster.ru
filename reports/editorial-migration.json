@@ -31,9 +31,9 @@
     {
       "id": "articles",
       "path": "public/content/articles.json",
-      "records": 15,
-      "bytes": 362846,
-      "sha256": "b2d9d852762459c4e1e4fb82b481be8ac7a5b6ef9ef73367ab8c1f40c0723bbe"
+      "records": 18,
+      "bytes": 485614,
+      "sha256": "013aaea0ef369764912dcc2c1a374f5c813c6e7dcc68501b3fe3211f97eb9915"
     },
     {
       "id": "videos",
@@ -60,7 +60,7 @@
   "summary": {
     "records": {
       "pages": 8,
-      "articles": 15,
+      "articles": 18,
       "videos": 2,
       "contacts": 1
     },

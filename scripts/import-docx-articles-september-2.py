@@ -36,6 +36,8 @@ EXPECTED_BASELINE_SLUGS = {
     'restoration-murals-cleaning',
     'georgievsky-church-iconostasis',
 }
+EXPECTED_ASSETS_TOTAL = 17
+REIMPORTABLE_SLUGS = set()
 
 jobs = [
     ('Ветковская школа иконописи..docx', 'vetka-icon-painting', 'Иконописная традиция Ветки', 49, 7, {4, 7, 11, 16, 21, 27, 33, 42, 48}),
@@ -54,6 +56,7 @@ TITLE_INDICES = {
     'palekh-icon-painting': {1},
     'peshekhonov-icon-painting': {2},
 }
+COVER_IMAGE_NUMBER_BY_SLUG = {}
 
 
 def sha256(data):
@@ -69,11 +72,12 @@ def save_json(path, value):
 
 
 def validate_baseline(baseline):
-    if not isinstance(baseline, list) or len(baseline) != 12:
-        raise ValueError('Baseline must contain exactly twelve articles')
+    expected_count = len(EXPECTED_BASELINE_SLUGS)
+    if not isinstance(baseline, list) or len(baseline) != expected_count:
+        raise ValueError(f'Baseline must contain exactly {expected_count} articles')
     slugs = [article.get('slug') for article in baseline if isinstance(article, dict)]
-    if len(slugs) != 12 or len(set(slugs)) != 12 or set(slugs) != EXPECTED_BASELINE_SLUGS:
-        raise ValueError('Baseline does not contain the exact twelve expected article slugs')
+    if len(slugs) != expected_count or len(set(slugs)) != expected_count or set(slugs) != EXPECTED_BASELINE_SLUGS:
+        raise ValueError('Baseline does not contain the exact expected article slugs')
     destination_slugs = [slug for _, slug, *_ in jobs]
     if len(set(destination_slugs)) != len(destination_slugs):
         raise ValueError('DOCX jobs contain duplicate destination slugs')
@@ -141,8 +145,9 @@ def parse_job(job, incoming, next_order):
     images = []
     assets = []
     writes = []
-    seen_targets = set()
+    images_by_target = {}
     seen_hashes = set()
+    source_paragraph_count = 0
 
     with zipfile.ZipFile(source_path) as archive:
         document = E.fromstring(archive.read('word/document.xml'))
@@ -158,18 +163,22 @@ def parse_job(job, incoming, next_order):
         for index, paragraph in enumerate(document.xpath('//*[local-name()="body"]//*[local-name()="p"]'), 1):
             text = paragraph_text(paragraph)
             if text:
+                source_paragraph_count += 1
                 cleaned = clean_paragraph(text, slug)
-                paragraphs.append((index, cleaned))
-                records.append(('text', index, cleaned))
+                if cleaned:
+                    paragraphs.append((index, cleaned))
+                    records.append(('text', index, cleaned))
 
             for node in paragraph.xpath('.//*[local-name()="blip" or local-name()="imagedata"]'):
                 if node.get(RELATIONSHIP + 'link'):
                     raise ValueError('External image relationship in ' + filename)
                 relationship_id = node.get(RELATIONSHIP + 'embed') or node.get(RELATIONSHIP + 'id')
                 member = safe_image_member(relationships.get(relationship_id), filename)
-                if member in seen_targets:
-                    raise ValueError('Duplicate embedded image target in ' + filename)
-                seen_targets.add(member)
+                if member in images_by_target:
+                    image = copy.deepcopy(images_by_target[member])
+                    images.append(image)
+                    records.append(('image', index, image))
+                    continue
                 payload = archive.read(member)
                 digest = sha256(payload)
                 if digest in seen_hashes:
@@ -179,7 +188,7 @@ def parse_job(job, incoming, next_order):
                     width, height = source_image.size
 
                 suffix = Path(member).suffix.lower().replace('.jpeg', '.jpg')
-                src = f'/assets/articles/docx/{slug}-{len(images) + 1}{suffix}'
+                src = f'/assets/articles/docx/{slug}-{len(assets) + 1}{suffix}'
                 destination = ROOT / 'public' / src.lstrip('/')
                 if destination.exists() and sha256(destination.read_bytes()) != digest:
                     raise ValueError('Refusing to overwrite different image bytes: ' + src)
@@ -203,11 +212,12 @@ def parse_job(job, incoming, next_order):
                     'width': width,
                     'height': height,
                 }
+                images_by_target[member] = copy.deepcopy(image)
                 images.append(image)
                 records.append(('image', index, image))
 
-    if len(paragraphs) != expected_paragraphs:
-        raise ValueError(f'Unexpected paragraph count for {filename}: {len(paragraphs)}')
+    if source_paragraph_count != expected_paragraphs:
+        raise ValueError(f'Unexpected paragraph count for {filename}: {source_paragraph_count}')
     if len(images) != expected_images:
         raise ValueError(f'Unexpected image count for {filename}: {len(images)}')
 
@@ -235,9 +245,16 @@ def parse_job(job, incoming, next_order):
     if any(section['type'] == 'gallery' and len(section['images']) > 3 for section in sections):
         raise AssertionError('Gallery exceeds three images for ' + slug)
 
+    cover_number = COVER_IMAGE_NUMBER_BY_SLUG.get(slug, 1)
+    if not isinstance(cover_number, int) or cover_number < 1 or cover_number > len(assets):
+        raise ValueError('Invalid cover image number for ' + slug)
+    cover_asset = assets[cover_number - 1]
     cover = {
-        **images[0],
-        'sha256': assets[0]['sha256'],
+        'src': cover_asset['src'],
+        'alt': cover_asset['alt'],
+        'width': cover_asset['width'],
+        'height': cover_asset['height'],
+        'sha256': cover_asset['sha256'],
         'provenance': 'docx-embedded-original',
     }
     article = {
@@ -256,8 +273,9 @@ def parse_job(job, incoming, next_order):
         'slug': slug,
         'sha256': sha256(source_path.read_bytes()),
         'paragraphs': len(paragraphs),
-        'images': len(images),
-        'embeddedImageSources': [image['src'] for image in images],
+        'images': len(assets),
+        'imagePlacements': len(images),
+        'embeddedImageSources': [asset['src'] for asset in assets],
     }
     return article, document_report, assets, writes
 
@@ -282,8 +300,18 @@ def main():
         entry.get('ownerSlug') for entry in report['assets'] if isinstance(entry, dict)
     }
     duplicates = destination_slugs.intersection(report_slugs)
+    unexpected_duplicates = duplicates.difference(REIMPORTABLE_SLUGS)
+    if unexpected_duplicates:
+        raise ValueError('Destination slugs already exist in DOCX report: ' + ', '.join(sorted(unexpected_duplicates)))
     if duplicates:
-        raise ValueError('Destination slugs already exist in DOCX report: ' + ', '.join(sorted(duplicates)))
+        report['assets'] = [
+            entry for entry in report['assets']
+            if not isinstance(entry, dict) or entry.get('ownerSlug') not in duplicates
+        ]
+        report['documents'] = [
+            entry for entry in report['documents']
+            if not isinstance(entry, dict) or entry.get('slug') not in duplicates
+        ]
 
     editorial_path = ROOT / 'reports/editorial-migration.json'
     editorial = json.loads(editorial_path.read_text(encoding='utf-8'))
@@ -312,8 +340,8 @@ def main():
     destinations = [destination for destination, _ in pending_writes]
     if len(destinations) != len(set(destinations)):
         raise ValueError('DOCX jobs produce duplicate asset destinations')
-    if len(new_assets) != 17:
-        raise AssertionError('Second DOCX batch must produce exactly seventeen assets')
+    if len(new_assets) != EXPECTED_ASSETS_TOTAL:
+        raise AssertionError(f'DOCX batch must produce exactly {EXPECTED_ASSETS_TOTAL} assets')
 
     final_articles = new_articles + copy.deepcopy(baseline)
     if final_articles[len(new_articles):] != baseline:
@@ -321,7 +349,10 @@ def main():
 
     for destination, payload in pending_writes:
         destination.parent.mkdir(parents=True, exist_ok=True)
-        if not destination.exists():
+        if destination.exists():
+            if destination.read_bytes() != payload:
+                raise ValueError('Existing DOCX asset differs from source: ' + str(destination))
+        else:
             destination.write_bytes(payload)
 
     report['assets'].extend(new_assets)

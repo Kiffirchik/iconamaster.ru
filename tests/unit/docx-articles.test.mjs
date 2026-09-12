@@ -24,6 +24,27 @@ const newDocxArticles = new Map([
   }],
 ]);
 
+const thirdDocxArticles = new Map([
+  ['moscow-icon-painting-school', {
+    title: 'Стилистические и технико-технологические признаки московской иконописной школы XIV–XVI веков',
+    sourceUrl: 'docx:moscow-icon-painting-school.docx',
+    imagePlacements: 5,
+    uniqueImages: 5,
+  }],
+  ['authentic-hallmarks-precious-metals', {
+    title: 'Признаки подлинных клейм используемых для защиты от фальсификации предметов из драгоценных металлов',
+    sourceUrl: 'docx:authentic-hallmarks-precious-metals.docx',
+    imagePlacements: 50,
+    uniqueImages: 50,
+  }],
+  ['history-assay-hallmarks', {
+    title: 'История пробы и клейма на ювелирных изделиях и слитках',
+    sourceUrl: 'docx:history-assay-hallmarks.docx',
+    imagePlacements: 16,
+    uniqueImages: 13,
+  }],
+]);
+
 test('DOCX source references are bound to approved articles, never service pages', async () => {
   const bundle = Object.fromEntries(await Promise.all(['icons', 'pages', 'articles', 'videos', 'contacts', 'aliases'].map(async name => [name,
     JSON.parse(await readFile(new URL(`../../public/content/${name}.json`, import.meta.url), 'utf8'))])));
@@ -78,5 +99,43 @@ test('second DOCX batch preserves reviewed prose, provenance, and every local im
 test('all DOCX assets have verified ownership and the expanded publication contract passes', async () => {
   const report = await verifyProject(new URL('../../', import.meta.url));
   assert.deepEqual(report.errors, []);
-  assert.equal(report.summary.articles, 15);
+  assert.equal(report.summary.articles, 18);
+});
+
+test('third DOCX batch preserves approved titles, all image placements, and omits editorial directives', async () => {
+  const [articles, report] = await Promise.all([
+    JSON.parse(await readFile(new URL('../../public/content/articles.json', import.meta.url), 'utf8')),
+    JSON.parse(await readFile(new URL('../../reports/docx-import.json', import.meta.url), 'utf8')),
+  ]);
+
+  assert.equal(articles.length, 18);
+  for (const [slug, expected] of thirdDocxArticles) {
+    const matches = articles.filter((article) => article.slug === slug);
+    assert.equal(matches.length, 1, `${slug} has exactly one article`);
+    const article = matches[0];
+    assert.equal(article.title, expected.title);
+    assert.equal(article.sourceUrl, expected.sourceUrl);
+    assert.equal(article.published, true);
+    const images = article.sections.flatMap((section) => (
+      section.type === 'image' ? [section.image] : section.images ?? []
+    ));
+    assert.equal(images.length, expected.imagePlacements, `${slug} preserves every image placement`);
+    assert.equal(new Set(images.map(({ src }) => src)).size, expected.uniqueImages);
+  }
+
+  const newAssets = report.assets.filter(({ ownerSlug }) => thirdDocxArticles.has(ownerSlug));
+  assert.equal(newAssets.length, 68);
+  assert.equal(new Set(newAssets.map(({ src }) => src)).size, 68);
+  assert.doesNotMatch(
+    JSON.stringify(articles.find(({ slug }) => slug === 'authentic-hallmarks-precious-metals')),
+    /(?:создать|созать|здать)(?:\s+карусель|\s+голландский левендальдер)?/iu,
+  );
+  assert.match(
+    JSON.stringify(articles.find(({ slug }) => slug === 'history-assay-hallmarks')),
+    /буквы «эр»/u,
+  );
+  assert.equal(
+    articles.find(({ slug }) => slug === 'history-assay-hallmarks').image.src,
+    '/assets/articles/docx/history-assay-hallmarks-3.jpg',
+  );
 });

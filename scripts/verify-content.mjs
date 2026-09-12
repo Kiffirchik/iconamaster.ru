@@ -24,6 +24,9 @@ const STATIC_ALIASES = {
   '/VIDEO': '/video',
 };
 const APPROVED_DOCX_ARTICLE_SOURCES = new Map([
+  ['moscow-icon-painting-school', 'docx:moscow-icon-painting-school.docx'],
+  ['authentic-hallmarks-precious-metals', 'docx:authentic-hallmarks-precious-metals.docx'],
+  ['history-assay-hallmarks', 'docx:history-assay-hallmarks.docx'],
   ['vetka-icon-painting', 'docx:vetka-icon-painting.docx'],
   ['palekh-icon-painting', 'docx:palekh-icon-painting.docx'],
   ['peshekhonov-icon-painting', 'docx:peshekhonov-icon-painting.docx'],
@@ -1021,6 +1024,9 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
         { slug: 'peshekhonov-icon-painting', published: true },
         { slug: 'history-of-cast-icons', published: true },
         { slug: 'cast-crosses', published: true },
+        { slug: 'moscow-icon-painting-school', published: true },
+        { slug: 'authentic-hallmarks-precious-metals', published: true },
+        { slug: 'history-assay-hallmarks', published: true },
       ],
       videos: [
         { provider: 'youtube', id: 'y10sw1KIOqQ', published: true },
