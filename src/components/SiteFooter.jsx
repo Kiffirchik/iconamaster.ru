@@ -12,7 +12,7 @@ const sections = [
   ['Конфиденциальность и cookie', '/privacy']
 ];
 
-export function SiteFooter({ onNavigate }) {
+export function SiteFooter({ onNavigate, route }) {
   const { bundle } = useContent();
   const address = bundle?.contacts?.address;
 
@@ -35,7 +35,7 @@ export function SiteFooter({ onNavigate }) {
         </div>
         <div>
           <p className="site-footer__label">Консультация</p>
-          <ConsultationLinks compact />
+          <ConsultationLinks compact whatsappTopic={route?.name === 'page' && route.slug === 'raschistka-hramovyh-rospisey' ? 'murals' : undefined} />
         </div>
         <nav className="site-footer__nav" aria-label="Разделы сайта">
           {sections.map(([label, path]) => (

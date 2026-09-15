@@ -74,6 +74,22 @@ test('server rendering returns the complete mural service route', async (context
   assert.doesNotMatch(result.html, /Загружаем коллекцию/u);
 });
 
+test('footer WhatsApp message follows only the mural service route without changing email or labels', async (context) => {
+  const { renderApp } = await loadServerEntry(context);
+  for (const [path, expected] of [
+    ['/raschistka-hramovyh-rospisey', 'Здравствуйте! Нужна консультация по расчистке настенных храмовых росписей.'],
+    ['/', 'Здравствуйте! Хочу получить консультацию об иконах мастерской.'],
+    ['/icons/example-icon', 'Здравствуйте! Хочу получить консультацию об иконах мастерской.'],
+  ]) {
+    const footer = renderApp(path, bundle).html.match(/<footer\b[\s\S]*?<\/footer>/u)?.[0];
+    assert.ok(footer);
+    const href = footer.match(/href="(https:\/\/wa\.me\/[^"]+)"/u)?.[1];
+    assert.equal(new URL(href.replaceAll('&amp;', '&')).searchParams.get('text'), expected, path);
+    assert.match(footer, />Написать в WhatsApp<\/a>/u);
+    assert.match(decodeURIComponent(footer), /Хочу получить консультацию об иконах мастерской/u, 'email remains unchanged');
+  }
+});
+
 test('server rendering returns a complete icon detail route', async (context) => {
   const { renderApp } = await loadServerEntry(context);
 

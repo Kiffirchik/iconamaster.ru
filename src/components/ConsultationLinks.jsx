@@ -2,10 +2,11 @@ import { buildContactLinks } from '../lib/contacts.js';
 import { trackGoal } from '../lib/analytics.js';
 import { useContent } from '../content/ContentProvider.jsx';
 
-export function ConsultationLinks({ iconTitle, compact = false, includeViewing = false, topic, primaryLabel, primaryOnly = false }) {
+export function ConsultationLinks({ iconTitle, compact = false, includeViewing = false, topic, whatsappTopic, primaryLabel, primaryOnly = false }) {
   const { bundle } = useContent();
   const contacts = bundle?.contacts ?? {};
   const links = buildContactLinks(contacts, iconTitle, topic);
+  const whatsappHref = whatsappTopic ? buildContactLinks(contacts, iconTitle, whatsappTopic).whatsapp : links.whatsapp;
   const viewing = includeViewing ? buildContactLinks(contacts, iconTitle, 'viewing') : null;
 
   if (!links.whatsapp && !links.phone && !links.email) return null;
@@ -13,7 +14,7 @@ export function ConsultationLinks({ iconTitle, compact = false, includeViewing =
   return (
     <div className={`consultation-links${compact ? ' consultation-links--compact' : ''}`}>
       {links.whatsapp ? (
-        <a className="button button--primary" href={links.whatsapp} target="_blank" rel="noreferrer" onClick={() => {
+        <a className="button button--primary" href={whatsappHref} target="_blank" rel="noreferrer" onClick={() => {
           if (topic === 'murals') trackGoal('murals_consultation');
           trackGoal('contact_whatsapp');
         }}>

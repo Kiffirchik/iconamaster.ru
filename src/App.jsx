@@ -109,7 +109,7 @@ export function AppView({ status, bundle, error, retry, route, onNavigate }) {
       <a className="skip-link" href="#main-content">Перейти к содержанию</a>
       <SiteHeader onNavigate={onNavigate} />
       {page}
-      <SiteFooter onNavigate={onNavigate} />
+      <SiteFooter onNavigate={onNavigate} route={route} />
       <PrivacyNotice />
     </div>
   );
