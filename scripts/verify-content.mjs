@@ -9,6 +9,7 @@ import { legacyIconMap } from './data/legacy-icon-map.mjs';
 import { localIconSources } from './local-icon-sources.mjs';
 import { legacyPageMap } from './data/legacy-page-map.mjs';
 import { parseRoute } from '../src/lib/routing.js';
+import { localVideoSource } from '../src/lib/local-video.js';
 
 const CONTENT_DOCUMENTS = ['icons', 'pages', 'articles', 'videos', 'contacts', 'aliases'];
 const CANONICAL_CONTACTS = {
@@ -44,7 +45,7 @@ const PUBLICATION_FIELDS = ['id', 'slug', 'title', 'published', 'order', 'source
 const SERVICE_PAGE_FIELDS = ['intro', 'template', 'consultationTopic', 'relatedArticleSlug'];
 const PAGE_FIELDS = new Set([...PUBLICATION_FIELDS, ...SERVICE_PAGE_FIELDS]);
 const ARTICLE_FIELDS = new Set([...PUBLICATION_FIELDS, 'summary', 'image']);
-const VIDEO_FIELDS = new Set(['provider', 'id', 'title', 'description', 'autoplay', 'published', 'sourceUrl']);
+const VIDEO_FIELDS = new Set(['provider', 'id', 'title', 'description', 'autoplay', 'published', 'sourceUrl', 'src', 'image', 'duration', 'width', 'height']);
 const CONTACT_FIELDS = new Set(['whatsapp', 'phone', 'email', 'sourceUrl', 'mapUrl', 'address']);
 const ADDRESS_FIELDS = new Set(['display', 'streetAddress', 'addressLocality', 'addressRegion', 'addressCountry']);
 const BLOCK_CONTAINER_FIELDS = ['children', 'sections', 'blocks', 'items'];
@@ -648,15 +649,28 @@ export function verifyContent(bundle, assetFiles = new Set(), options = {}) {
   for (const video of safeBundle.videos) {
     const label = `video ${video?.provider ?? '<missing>'}:${video?.id ?? '<missing>'}`;
     if (!validateKnownFields(video, VIDEO_FIELDS, label, errors)) continue;
-    if (!['youtube', 'vimeo'].includes(video.provider)) errors.push(`${label} field provider is unsupported`);
+    if (!['youtube', 'vimeo', 'local'].includes(video.provider)) errors.push(`${label} field provider is unsupported`);
     const idValid = video.provider === 'youtube'
       ? typeof video.id === 'string' && /^[A-Za-z0-9_-]{11}$/u.test(video.id)
-      : video.provider === 'vimeo' && typeof video.id === 'string' && /^\d+$/u.test(video.id);
+      : video.provider === 'vimeo' ? typeof video.id === 'string' && /^\d+$/u.test(video.id)
+        : video.provider === 'local' && typeof video.id === 'string' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/u.test(video.id);
     if (!idValid) errors.push(`${label} field id is invalid for provider ${video.provider ?? '<missing>'}`);
     for (const field of ['title', 'description']) validateNonEmptyString(video, field, label, errors);
     if (video.autoplay !== false) errors.push(`${label} must set autoplay to false`);
     if (typeof video.published !== 'boolean') errors.push(`${label} field published must be a boolean`);
-    if (!isCanonicalSourceUrl(video.sourceUrl)) {
+    if (video.provider === 'local') {
+      const src = localVideoSource(video);
+      if (!src) errors.push(`${label} field src must be a local MP4 asset`);
+      else {
+        referencedFiles.add(src);
+        if (!assetFiles.has(src)) errors.push(`${label} missing asset ${src}`);
+      }
+      for (const field of ['width', 'height', 'duration']) {
+        if (!Number.isFinite(video[field]) || video[field] <= 0) errors.push(`${label} field ${field} must be positive`);
+      }
+      validateImage(video.image, `${label} poster`, assetFiles, errors, referencedFiles);
+      if (video.sourceUrl !== `owner-video:${video.id}.mp4`) errors.push(`${label} field sourceUrl must identify the owner's video`);
+    } else if (!isCanonicalSourceUrl(video.sourceUrl)) {
       errors.push(`${label} field sourceUrl must be an HTTPS iconamaster.cargo.site URL`);
     }
     validateOwnerPolicies(video, label, errors);
@@ -755,7 +769,7 @@ export async function inspectContentDirectory(directory, errors) {
 async function inspectAssetDirectoryRoot(directory, errors) {
   const rootRealPath = await validateDirectoryRoot(directory, 'asset root', errors);
   if (!rootRealPath) return;
-  const expectedDirectories = new Set(['articles', 'icons', 'pages']);
+  const expectedDirectories = new Set(['articles', 'icons', 'pages', 'videos']);
   const entries = (await readdir(directory, { withFileTypes: true }))
     .sort((left, right) => compareCodeUnits(left.name, right.name));
   for (const entry of entries) {
@@ -1001,10 +1015,23 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
   validateSourceOwnershipFixture(editorialReport, sourceFixture, errors);
   const ownedFiles = validateOwnedMetadata(iconManifest, combinedEditorialReport, coverFixture, errors);
   errors.push(...await verifyEditorialAssetFiles({ publicDirectory, editorialReport: combinedEditorialReport }));
+  const videoReport = await readJson(path.join(projectDirectory, 'reports', 'video-import.json'));
+  const localVideos = await readJson(path.join(projectDirectory, 'scripts', 'data', 'local-videos.json'));
+  if (videoReport.schemaVersion !== 1 || !Array.isArray(videoReport.assets)) errors.push('invalid video import manifest');
+  for (const asset of videoReport.assets ?? []) {
+    if (!/^\/assets\/videos\/[a-z0-9-]+\.(mp4|jpg)$/.test(asset.src ?? '')
+      || !localVideos.some(video => video.id === asset.ownerId && asset.src.startsWith('/assets/videos/' + video.id + '.'))) {
+      errors.push('invalid video asset ownership: ' + asset.src);
+      continue;
+    }
+    if (ownedFiles.has(asset.src)) errors.push('duplicate video asset: ' + asset.src);
+    ownedFiles.add(asset.src);
+  }
+  errors.push(...await verifyEditorialAssetFiles({ publicDirectory, editorialReport: videoReport }));
 
   const diskFiles = new Set();
   await inspectAssetDirectoryRoot(path.join(publicDirectory, 'assets'), errors);
-  for (const directory of ['icons', 'pages', 'articles']) {
+  for (const directory of ['icons', 'pages', 'articles', 'videos']) {
     const files = await collectFiles(path.join(publicDirectory, 'assets', directory), publicDirectory, errors);
     for (const file of files) diskFiles.add(file);
   }
@@ -1036,6 +1063,7 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
         { slug: 'gold-leaf-gilding', published: true },
       ],
       videos: [
+        ...localVideos.map(({ id }) => ({ provider: 'local', id, published: true })),
         { provider: 'youtube', id: 'y10sw1KIOqQ', published: true },
         { provider: 'vimeo', id: '353365425', published: true },
       ],

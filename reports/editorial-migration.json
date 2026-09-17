@@ -38,9 +38,9 @@
     {
       "id": "videos",
       "path": "public/content/videos.json",
-      "records": 2,
-      "bytes": 870,
-      "sha256": "3bfe9cd82745fa32894cafe6d98cb766b3d00cb419463c4ed163d4490ffab344"
+      "records": 6,
+      "bytes": 3799,
+      "sha256": "ef9696167f3b4199a129c3c740cbf6a5142a3500fa55bd4fe521a1e5cd7cb801"
     },
     {
       "id": "contacts",
@@ -61,7 +61,7 @@
     "records": {
       "pages": 8,
       "articles": 21,
-      "videos": 2,
+      "videos": 6,
       "contacts": 1
     },
     "aliases": 78,

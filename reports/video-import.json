@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "method": "Lossless stream copy, faststart; original-frame JPEG posters with metadata rotation applied",
+  "sources": [
+    {
+      "id": "mineral-paints",
+      "filename": "Краски из минералов. Так пишутся настоящие иконы. Рассказывает И.Ю. Дрождин.mp4",
+      "sha256": "bc4364540501df286733ed949a2b9feec9f196704ef587b88aa7a9e5003a9d97",
+      "bytes": 7379314,
+      "rotation": -90,
+      "posterSeconds": 5
+    },
+    {
+      "id": "icon-attribution",
+      "filename": "Проблемы атрибуции древнерусской иконописи. Рассказывает И.Ю. Дрождин, главный эксперт НИИ Рускультурэкспертиза.mp4",
+      "sha256": "84b65c720fa2cb9d76aef7a5a62eaf446a6790ae8dfee4d66a9116a4ed7fe2e3",
+      "bytes": 42040300,
+      "rotation": -90,
+      "posterSeconds": 8
+    },
+    {
+      "id": "ilya-muromets",
+      "filename": "Житие святого богатыря Или Муромца. На основе анимации житийной иконы Московской Иконописной Мастерской.mp4",
+      "sha256": "fb8bcb87ef435f6279cf331fca029fceeb7c501d178f3febab2b8815d1059f15",
+      "bytes": 35578814,
+      "rotation": 0,
+      "posterSeconds": 12
+    },
+    {
+      "id": "mineral-gemstones",
+      "filename": "Минералы самоцветы как краски в иконописи. Рассказывает И.Ю. Дрождин.mp4",
+      "sha256": "fc4728c3323e0475dbf7fe4b449cabdc28f3b440195c8d7554d92ca6f6d6857e",
+      "bytes": 44723792,
+      "rotation": -90,
+      "posterSeconds": 8
+    }
+  ],
+  "assets": [
+    {
+      "src": "/assets/videos/mineral-paints.mp4",
+      "sha256": "b6de35fbcff3c7b999c31cd8951a32411843c6007a2777ffcc7c8b871b6aeacc",
+      "bytes": 7400998,
+      "ownerId": "mineral-paints"
+    },
+    {
+      "src": "/assets/videos/mineral-paints.jpg",
+      "sha256": "3c773125d2e9fada43615ada37afed555be2b3d70c5175dcf6e3cbadcc08f58d",
+      "bytes": 61468,
+      "ownerId": "mineral-paints"
+    },
+    {
+      "src": "/assets/videos/icon-attribution.mp4",
+      "sha256": "027e3973a38697f25b9fd1a62e18f2ed08919b1eb41e670b08c2f300dd6910ae",
+      "bytes": 42169288,
+      "ownerId": "icon-attribution"
+    },
+    {
+      "src": "/assets/videos/icon-attribution.jpg",
+      "sha256": "40888904098f768f67c08788b4669698fcdee009b3a03aa7d61da683323529f0",
+      "bytes": 76086,
+      "ownerId": "icon-attribution"
+    },
+    {
+      "src": "/assets/videos/ilya-muromets.mp4",
+      "sha256": "38333137550702fafe0c39e1a15138b8874a1a282b88b8407263f70b71b6e0b1",
+      "bytes": 35654746,
+      "ownerId": "ilya-muromets"
+    },
+    {
+      "src": "/assets/videos/ilya-muromets.jpg",
+      "sha256": "6837c53f79e5f0d7beb87dd555913ec854937320bb12d14df5ed9e1ef88322a7",
+      "bytes": 147813,
+      "ownerId": "ilya-muromets"
+    },
+    {
+      "src": "/assets/videos/mineral-gemstones.mp4",
+      "sha256": "7546c0ef63bc7ccb1ad6269b96fd02bb26219b9b142b45d0592112df3da94db5",
+      "bytes": 44862772,
+      "ownerId": "mineral-gemstones"
+    },
+    {
+      "src": "/assets/videos/mineral-gemstones.jpg",
+      "sha256": "534f2347c9624eb5824c2f566d9ab3fb4c39908d3ee648685bc76055ec825e0d",
+      "bytes": 78557,
+      "ownerId": "mineral-gemstones"
+    }
+  ]
+}

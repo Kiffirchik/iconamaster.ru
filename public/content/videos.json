@@ -1,5 +1,81 @@
 [
   {
+    "provider": "local",
+    "id": "mineral-paints",
+    "title": "Краски из минералов",
+    "description": "Так пишутся настоящие иконы. Рассказывает Игорь Юрьевич Дрождин.",
+    "autoplay": false,
+    "published": true,
+    "sourceUrl": "owner-video:mineral-paints.mp4",
+    "src": "/assets/videos/mineral-paints.mp4",
+    "duration": 40.96,
+    "width": 480,
+    "height": 848,
+    "image": {
+      "src": "/assets/videos/mineral-paints.jpg",
+      "width": 480,
+      "height": 848,
+      "alt": "Кадр из видео «Краски из минералов»"
+    }
+  },
+  {
+    "provider": "local",
+    "id": "icon-attribution",
+    "title": "Атрибуция древнерусской иконописи",
+    "description": "О проблемах атрибуции рассказывает Игорь Юрьевич Дрождин, главный эксперт НИИ «Рускультурэкспертиза».",
+    "autoplay": false,
+    "published": true,
+    "sourceUrl": "owner-video:icon-attribution.mp4",
+    "src": "/assets/videos/icon-attribution.mp4",
+    "duration": 246.085079,
+    "width": 480,
+    "height": 848,
+    "image": {
+      "src": "/assets/videos/icon-attribution.jpg",
+      "width": 480,
+      "height": 848,
+      "alt": "Кадр из видео «Атрибуция древнерусской иконописи»"
+    }
+  },
+  {
+    "provider": "local",
+    "id": "ilya-muromets",
+    "title": "Житие святого богатыря Ильи Муромца",
+    "description": "Фильм на основе анимации житийной иконы Московской иконописной мастерской.",
+    "autoplay": false,
+    "published": true,
+    "sourceUrl": "owner-video:ilya-muromets.mp4",
+    "src": "/assets/videos/ilya-muromets.mp4",
+    "duration": 144.996989,
+    "width": 736,
+    "height": 864,
+    "image": {
+      "src": "/assets/videos/ilya-muromets.jpg",
+      "width": 736,
+      "height": 864,
+      "alt": "Кадр из видео «Житие святого богатыря Ильи Муромца»"
+    }
+  },
+  {
+    "provider": "local",
+    "id": "mineral-gemstones",
+    "title": "Минералы-самоцветы в иконописи",
+    "description": "Минералы и самоцветы как краски в иконописи. Рассказывает Игорь Юрьевич Дрождин.",
+    "autoplay": false,
+    "published": true,
+    "sourceUrl": "owner-video:mineral-gemstones.mp4",
+    "src": "/assets/videos/mineral-gemstones.mp4",
+    "duration": 265.171882,
+    "width": 480,
+    "height": 848,
+    "image": {
+      "src": "/assets/videos/mineral-gemstones.jpg",
+      "width": 480,
+      "height": 848,
+      "alt": "Кадр из видео «Минералы-самоцветы в иконописи»"
+    }
+  },
+  {
     "provider": "youtube",
     "id": "y10sw1KIOqQ",
     "title": "Мастерская и иконопись",

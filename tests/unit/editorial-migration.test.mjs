@@ -108,7 +108,7 @@ test('editorial migration contains exactly the agreed records and contact policy
     articles.filter(({ sourceUrl }) => sourceUrl.startsWith('docx:')).map(({ slug, sourceUrl }) => [slug, sourceUrl]),
     [...approvedDocxSources],
   );
-  assert.deepEqual(videos.map(({ provider, id }) => `${provider}:${id}`), [
+  assert.deepEqual(videos.filter(({ provider }) => provider !== 'local').map(({ provider, id }) => `${provider}:${id}`), [
     'youtube:y10sw1KIOqQ',
     'vimeo:353365425',
   ]);
@@ -547,7 +547,7 @@ test('durable editorial report accounts for exclusions, omissions, encoding and 
   assert.deepEqual(report.summary.records, {
     pages: 8,
     articles: 21,
-    videos: 2,
+    videos: 6,
     contacts: 1,
   });
   assert.equal(report.summary.unresolvedMojibakeMarkers, 0);

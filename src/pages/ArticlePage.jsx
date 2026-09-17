@@ -12,6 +12,11 @@ export function ArticlePage({ article, onNavigate }) {
           {introduction ? <p className="editorial-page__intro">{introduction}</p> : null}
         </header>
         <ContentSections sections={article.sections} liveSlug={article.slug} />
+        {article.slug === 'icon-painting-pigments' ? (
+          <a className="button article-page__service-link" href="/video#mineral-paints">
+            Смотреть видео «Краски из минералов»
+          </a>
+        ) : null}
         {article.sourceUrl?.startsWith('https://dzen.ru/') ? (
           <p className="editorial-page__source">
             Материал также опубликован в <a href={article.sourceUrl} target="_blank" rel="noreferrer">Дзене</a>.

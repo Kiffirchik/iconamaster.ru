@@ -514,6 +514,24 @@ test('owned asset inventory reports missing, stale, unreferenced, and undeclared
   ]);
 });
 
+test('local video requires an owned MP4, poster and positive dimensions and duration', () => {
+  const local = videoRecord('local', 'mineral-paints', {
+    sourceUrl: 'owner-video:mineral-paints.mp4',
+    src: '/assets/videos/mineral-paints.mp4', width: 480, height: 848, duration: 41,
+    image: { src: '/assets/videos/mineral-paints.jpg', alt: 'Кадр', width: 480, height: 848 },
+  });
+  const files = new Set([local.src, local.image.src]);
+  const validErrors = verifyContent(bundle({ videos: [local] }), files);
+  assert.deepEqual(validErrors.filter(error => error.startsWith('video ')), []);
+  const invalid = verifyContent(bundle({ videos: [{ ...local, src: 'https://evil.test/a.mp4', duration: 0, width: 0 }] }), files);
+  assert.ok(invalid.some(error => /video .*src/.test(error)));
+  assert.ok(invalid.some(error => /video .*duration/.test(error)));
+  assert.ok(invalid.some(error => /video .*width/.test(error)));
+  const missing = verifyContent(bundle({ videos: [local] }), new Set());
+  assert.ok(missing.some(error => error.includes('mineral-paints.mp4')));
+  assert.ok(missing.some(error => error.includes('mineral-paints.jpg')));
+});
+
 test('clean checkout content, aliases, ownership inventories, and local assets pass together', async () => {
   const result = await verifyProject(new URL('../../', import.meta.url));
   assert.deepEqual(result.errors, []);
@@ -522,10 +540,10 @@ test('clean checkout content, aliases, ownership inventories, and local assets p
     publishedIcons: 99,
     pages: 8,
     articles: 21,
-    videos: 2,
+    videos: 6,
     aliases: 124,
-    referencedAssets: 475,
-    ownedAssets: 475,
+    referencedAssets: 483,
+    ownedAssets: 483,
   });
 });
 
