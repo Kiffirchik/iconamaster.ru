@@ -91,7 +91,7 @@ test('Metrica waits for permission, initializes once, and stops on withdrawal', 
   const script = html.match(/<script data-metrika="112185835">([\s\S]*?)<\/script>/u)[1];
   const events = new Map(), inserted = [];
   let reloads = 0;
-  const window = { addEventListener: (name, fn) => events.set(name, fn), location: { reload: () => reloads++ } };
+  const window = { addEventListener: (name, fn) => events.set(name, fn), location: { href: 'https://iconamaster.ru/', reload: () => reloads++ } };
   const context = vm.createContext({ window, Date, localStorage: { getItem: () => null }, document: {
     createElement: () => ({}), getElementsByTagName: () => [{ parentNode: { insertBefore: node => inserted.push(node) } }],
   } });
@@ -107,7 +107,7 @@ test('Metrica waits for permission, initializes once, and stops on withdrawal', 
   assert.equal(window.ym.a[0][2].webvisor, false);
   const queued = window.ym.a;
   events.get('iconamaster:analytics-choice')({ detail: 'denied' });
-  assert.equal(queued[1][1], 'destruct');
+  assert.equal(queued.at(-1)[1], 'destruct');
   assert.equal(window.ym, undefined);
   assert.equal(reloads, 1);
 });
@@ -116,7 +116,7 @@ test('Metrica honors saved permission and fails closed with blocked storage', ()
   const html = renderDocument(template, { pathname: '/', appHtml: '', seo, metrikaId: siteConfig.metrikaId });
   const script = html.match(/<script data-metrika="112185835">([\s\S]*?)<\/script>/u)[1];
   for (const choice of ['granted', 'denied', 'broken']) {
-    const inserted = [], window = { addEventListener() {} };
+    const inserted = [], window = { addEventListener() {}, location: { href: 'https://iconamaster.ru/' } };
     const context = vm.createContext({ window, Date, localStorage: { getItem() { if (choice === 'broken') throw new Error('blocked'); return choice; } }, document: {
       createElement: () => ({}), getElementsByTagName: () => [{ parentNode: { insertBefore: node => inserted.push(node) } }],
     } });

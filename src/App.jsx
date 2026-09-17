@@ -72,6 +72,8 @@ function AppContent({ initialPath }) {
     }
 
     updateManagedSeo(document, buildSeoDescriptor(window.location.pathname, bundle));
+    // The consent-gated counter deduplicates hydration and records SPA navigation.
+    window.dispatchEvent(new Event('iconamaster:pageview'));
   }, [status, bundle, route]);
 
   return (
