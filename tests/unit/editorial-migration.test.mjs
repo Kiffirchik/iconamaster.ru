@@ -22,6 +22,9 @@ const expectedArticleTitles = [
 ];
 
 const approvedDocxSources = new Map([
+  ['icon-painting-pigments', 'docx:icon-painting-pigments.docx'],
+  ['levkas', 'docx:levkas.docx'],
+  ['gold-leaf-gilding', 'docx:gold-leaf-gilding.docx'],
   ['moscow-icon-painting-school', 'docx:moscow-icon-painting-school.docx'],
   ['authentic-hallmarks-precious-metals', 'docx:authentic-hallmarks-precious-metals.docx'],
   ['history-assay-hallmarks', 'docx:history-assay-hallmarks.docx'],
@@ -543,7 +546,7 @@ test('durable editorial report accounts for exclusions, omissions, encoding and 
   assert.equal(report.schemaVersion, 1);
   assert.deepEqual(report.summary.records, {
     pages: 8,
-    articles: 18,
+    articles: 21,
     videos: 2,
     contacts: 1,
   });

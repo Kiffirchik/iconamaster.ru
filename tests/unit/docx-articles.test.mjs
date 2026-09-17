@@ -99,7 +99,7 @@ test('second DOCX batch preserves reviewed prose, provenance, and every local im
 test('all DOCX assets have verified ownership and the expanded publication contract passes', async () => {
   const report = await verifyProject(new URL('../../', import.meta.url));
   assert.deepEqual(report.errors, []);
-  assert.equal(report.summary.articles, 18);
+  assert.equal(report.summary.articles, 21);
 });
 
 test('third DOCX batch preserves approved titles, all image placements, and omits editorial directives', async () => {
@@ -108,7 +108,7 @@ test('third DOCX batch preserves approved titles, all image placements, and omit
     JSON.parse(await readFile(new URL('../../reports/docx-import.json', import.meta.url), 'utf8')),
   ]);
 
-  assert.equal(articles.length, 18);
+  assert.equal(articles.length, 21);
   for (const [slug, expected] of thirdDocxArticles) {
     const matches = articles.filter((article) => article.slug === slug);
     assert.equal(matches.length, 1, `${slug} has exactly one article`);

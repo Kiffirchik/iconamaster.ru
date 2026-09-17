@@ -25,6 +25,9 @@ const STATIC_ALIASES = {
   '/VIDEO': '/video',
 };
 const APPROVED_DOCX_ARTICLE_SOURCES = new Map([
+  ['icon-painting-pigments', 'docx:icon-painting-pigments.docx'],
+  ['levkas', 'docx:levkas.docx'],
+  ['gold-leaf-gilding', 'docx:gold-leaf-gilding.docx'],
   ['moscow-icon-painting-school', 'docx:moscow-icon-painting-school.docx'],
   ['authentic-hallmarks-precious-metals', 'docx:authentic-hallmarks-precious-metals.docx'],
   ['history-assay-hallmarks', 'docx:history-assay-hallmarks.docx'],
@@ -1028,6 +1031,9 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
         { slug: 'moscow-icon-painting-school', published: true },
         { slug: 'authentic-hallmarks-precious-metals', published: true },
         { slug: 'history-assay-hallmarks', published: true },
+        { slug: 'icon-painting-pigments', published: true },
+        { slug: 'levkas', published: true },
+        { slug: 'gold-leaf-gilding', published: true },
       ],
       videos: [
         { provider: 'youtube', id: 'y10sw1KIOqQ', published: true },

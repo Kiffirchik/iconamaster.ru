@@ -1405,6 +1405,188 @@
       "ownerType": "article",
       "ownerSlug": "history-assay-hallmarks",
       "order": 16
+    },
+    {
+      "src": "/assets/articles/docx/icon-painting-pigments-1.jpg",
+      "alt": "Краски в иконописи",
+      "width": 1200,
+      "height": 800,
+      "bytes": 190285,
+      "sha256": "337acb7ea6431eb3c10a1e81b5bfa226bd85ca92ca33a5a11a820ffb166b974d",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Краски в иконописи.docx#/word/media/image1.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-pigments",
+      "order": 1
+    },
+    {
+      "src": "/assets/articles/docx/icon-painting-pigments-2.jpg",
+      "alt": "Краски в иконописи",
+      "width": 545,
+      "height": 360,
+      "bytes": 37934,
+      "sha256": "c0b0b1226e0fd23ef6a9f3f2f44abbb539148344f48519f90afed9457917c507",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Краски в иконописи.docx#/word/media/image2.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-pigments",
+      "order": 2
+    },
+    {
+      "src": "/assets/articles/docx/icon-painting-pigments-3.jpg",
+      "alt": "Краски в иконописи",
+      "width": 1600,
+      "height": 830,
+      "bytes": 164887,
+      "sha256": "d284bede394e4a26561297ce4196c0a5e071216a455ea6a64c6bb2a8bbae7035",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Краски в иконописи.docx#/word/media/image3.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-pigments",
+      "order": 3
+    },
+    {
+      "src": "/assets/articles/docx/icon-painting-pigments-4.jpg",
+      "alt": "Краски в иконописи",
+      "width": 768,
+      "height": 576,
+      "bytes": 49327,
+      "sha256": "4ed2576cc04f3a3e9c8fb6d97a138a6589d65dddc0ce434d92812171478e2e92",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Краски в иконописи.docx#/word/media/image4.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-pigments",
+      "order": 4
+    },
+    {
+      "src": "/assets/articles/docx/icon-painting-pigments-5.jpg",
+      "alt": "Краски в иконописи",
+      "width": 500,
+      "height": 375,
+      "bytes": 27103,
+      "sha256": "56addfa9f94f4c2c283b10e55f686096c2c1529db3b36b3dbea42e5898a121fc",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Краски в иконописи.docx#/word/media/image5.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-pigments",
+      "order": 5
+    },
+    {
+      "src": "/assets/articles/docx/icon-painting-pigments-6.png",
+      "alt": "Краски в иконописи",
+      "width": 920,
+      "height": 1145,
+      "bytes": 2071277,
+      "sha256": "31a6d4366442d656ade2f79fb8af3959294acac8cee1c889e5e23d4ef0e3d069",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Краски в иконописи.docx#/word/media/image6.png",
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-pigments",
+      "order": 6
+    },
+    {
+      "src": "/assets/articles/docx/icon-painting-pigments-7.jpg",
+      "alt": "Краски в иконописи",
+      "width": 768,
+      "height": 547,
+      "bytes": 77891,
+      "sha256": "97ea614ad2db32fbd3d3afbd2311fc44f6dca6a49221f6f2f1c51f68d525c322",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Краски в иконописи.docx#/word/media/image7.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-pigments",
+      "order": 7
+    },
+    {
+      "src": "/assets/articles/docx/icon-painting-pigments-8.jpg",
+      "alt": "Краски в иконописи",
+      "width": 387,
+      "height": 258,
+      "bytes": 26970,
+      "sha256": "d1d22e1673ba7aaab26379f3f6cb6edfb5d2de8810df1b6cdd1143c0a8b9d8cf",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Краски в иконописи.docx#/word/media/image8.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-pigments",
+      "order": 8
+    },
+    {
+      "src": "/assets/articles/docx/icon-painting-pigments-9.jpg",
+      "alt": "Краски в иконописи",
+      "width": 330,
+      "height": 303,
+      "bytes": 17730,
+      "sha256": "df2f5ec741341184743c908eec962db9e2e1bf8b5c32450cd8b0804d1742c2d9",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Краски в иконописи.docx#/word/media/image9.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-pigments",
+      "order": 9
+    },
+    {
+      "src": "/assets/articles/docx/icon-painting-pigments-10.jpg",
+      "alt": "Краски в иконописи",
+      "width": 1200,
+      "height": 800,
+      "bytes": 194668,
+      "sha256": "2e6682720c0701417707af1694a34009181a987e16be65c95b2727861c64f721",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Краски в иконописи.docx#/word/media/image10.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-pigments",
+      "order": 10
+    },
+    {
+      "src": "/assets/articles/docx/icon-painting-pigments-11.jpg",
+      "alt": "Краски в иконописи",
+      "width": 316,
+      "height": 316,
+      "bytes": 7490,
+      "sha256": "2f2f3e2e346113c031583936cc71c561fd8fc3b8b0e3430c9ca33ccd129fb55d",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Краски в иконописи.docx#/word/media/image11.jpeg",
+      "ownerType": "article",
+      "ownerSlug": "icon-painting-pigments",
+      "order": 11
+    },
+    {
+      "src": "/assets/articles/docx/levkas-1.png",
+      "alt": "Левкас",
+      "width": 581,
+      "height": 1080,
+      "bytes": 1091148,
+      "sha256": "406b5659bb0ed704d87d2cbdda493c87143e5be4bf79624ec54737fabb7be566",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Левкас.docx#/word/media/image1.png",
+      "ownerType": "article",
+      "ownerSlug": "levkas",
+      "order": 1
+    },
+    {
+      "src": "/assets/articles/docx/levkas-2.png",
+      "alt": "Левкас",
+      "width": 604,
+      "height": 884,
+      "bytes": 1079581,
+      "sha256": "b4da716028966fb2c572832349c04a5864b7a0d4c966cf2d40e49bf77d40f0d2",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Левкас.docx#/word/media/image2.png",
+      "ownerType": "article",
+      "ownerSlug": "levkas",
+      "order": 2
+    },
+    {
+      "src": "/assets/articles/docx/gold-leaf-gilding-1.png",
+      "alt": "Техники золочения икон листовым золотом: мордан, полимент, ассист",
+      "width": 603,
+      "height": 966,
+      "bytes": 1198368,
+      "sha256": "6492613f0c1c43d388f117f51f5313dcd22e3b1b507bec9e78b8f16669f2070b",
+      "provenance": "docx-embedded-original",
+      "sourceRef": "docx:Техника золочения листовым золотом, Мардан, Полимен, Ассист.docx#/word/media/image1.png",
+      "ownerType": "article",
+      "ownerSlug": "gold-leaf-gilding",
+      "order": 1
     }
   ],
   "documents": [
@@ -1602,6 +1784,53 @@
         "/assets/articles/docx/history-assay-hallmarks-12.jpg",
         "/assets/articles/docx/history-assay-hallmarks-13.jpg"
       ]
+    },
+    {
+      "filename": "Краски в иконописи.docx",
+      "slug": "icon-painting-pigments",
+      "sha256": "1dec984ebbd9f5b6c2078cfaae6f6614a23c66484a0acbaad05f1c866197e01e",
+      "paragraphs": 265,
+      "images": 11,
+      "imagePlacements": 12,
+      "embeddedImageSources": [
+        "/assets/articles/docx/icon-painting-pigments-1.jpg",
+        "/assets/articles/docx/icon-painting-pigments-2.jpg",
+        "/assets/articles/docx/icon-painting-pigments-3.jpg",
+        "/assets/articles/docx/icon-painting-pigments-4.jpg",
+        "/assets/articles/docx/icon-painting-pigments-5.jpg",
+        "/assets/articles/docx/icon-painting-pigments-6.png",
+        "/assets/articles/docx/icon-painting-pigments-7.jpg",
+        "/assets/articles/docx/icon-painting-pigments-8.jpg",
+        "/assets/articles/docx/icon-painting-pigments-9.jpg",
+        "/assets/articles/docx/icon-painting-pigments-10.jpg",
+        "/assets/articles/docx/icon-painting-pigments-11.jpg"
+      ],
+      "tablesReflowed": 3
+    },
+    {
+      "filename": "Левкас.docx",
+      "slug": "levkas",
+      "sha256": "e6e6a613e6ff787d76e2dfb55c6381cfe2828afc91b68eb0866f319eb5485145",
+      "paragraphs": 33,
+      "images": 2,
+      "imagePlacements": 2,
+      "embeddedImageSources": [
+        "/assets/articles/docx/levkas-1.png",
+        "/assets/articles/docx/levkas-2.png"
+      ],
+      "tablesReflowed": 0
+    },
+    {
+      "filename": "Техника золочения листовым золотом, Мардан, Полимен, Ассист.docx",
+      "slug": "gold-leaf-gilding",
+      "sha256": "00a412a4649fd70cdc37509b169e35873bf153f73efa282cedc685a05eb2b7eb",
+      "paragraphs": 96,
+      "images": 1,
+      "imagePlacements": 1,
+      "embeddedImageSources": [
+        "/assets/articles/docx/gold-leaf-gilding-1.png"
+      ],
+      "tablesReflowed": 2
     }
   ]
 }
