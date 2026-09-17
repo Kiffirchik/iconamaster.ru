@@ -895,6 +895,19 @@ button {
   width: calc(100% + clamp(1.25rem, 3vw, 2rem) * 2);
 }
 
+/* Owner-approved display crops: preserve the original Levkas photograph. */
+.article-card > img[src="/assets/articles/docx/levkas-1.png"] {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.content-gallery__item img[src="/assets/articles/docx/levkas-1.png"] {
+  aspect-ratio: 6 / 7;
+  object-fit: cover;
+  object-position: center top;
+}
+
 .article-card__content {
   display: grid;
   gap: 0.75rem;
