@@ -193,13 +193,18 @@ export function outputPathForRoute(distRoot, pathname) {
   return candidate;
 }
 
-export function buildApacheConfig(baseTemplate, { canonicalPaths, aliases, siteUrl }) {
+export function buildApacheConfig(baseTemplate, { canonicalPaths, aliases, siteUrl, unpublishedPaths = [] }) {
   const redirectOrigin = requireHttpsOrigin(siteUrl, 'Apache redirect site URL');
   const canonical = new Set();
   for (const pathname of canonicalPaths) {
     validateCleanLocalPath(pathname, 'Canonical route');
     if (canonical.has(pathname)) throw new Error(`Duplicate canonical route: ${pathname}`);
     canonical.add(pathname);
+  }
+  const unpublished = new Set(unpublishedPaths);
+  for (const pathname of unpublished) {
+    validateCleanLocalPath(pathname, 'Unpublished route');
+    if (canonical.has(pathname)) throw new Error(`Unpublished route is canonical: ${pathname}`);
   }
 
   const routeRules = [...canonical]
@@ -220,11 +225,14 @@ export function buildApacheConfig(baseTemplate, { canonicalPaths, aliases, siteU
   }
   const aliasRules = Object.entries(aliases)
     .sort(([left], [right]) => left < right ? -1 : left > right ? 1 : 0)
-    .map(([source, target]) => {
+    .flatMap(([source, target]) => {
       validateCleanLocalPath(source, 'Alias source');
       validateCleanLocalPath(target, 'Alias target');
-      if (!canonical.has(target)) throw new Error(`Alias target is not canonical: ${target}`);
       if (canonical.has(source)) throw new Error(`Alias source is already canonical: ${source}`);
+      // Owner-hidden records must not break builds or gain redirect exposure.
+      // Unknown targets still fail validation rather than being silently dropped.
+      if (unpublished.has(target)) return [];
+      if (!canonical.has(target)) throw new Error(`Alias target is not canonical: ${target}`);
       return `RewriteRule ^${escapeRewritePattern(source.slice(1))}$ ${redirectOrigin}${target} [R=301,L,NE]`;
     })
     .join('\n');

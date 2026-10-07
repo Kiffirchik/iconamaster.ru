@@ -1,4 +1,6 @@
 import { getDiscount } from './pricing.js';
+import { getIconSubjects, iconSubjects } from '../data/icon-subjects.js';
+import { publishedIcons } from '../content/schema.js';
 
 export function getIconDisplayValue(value) {
   if (typeof value !== 'string') return '';
@@ -12,7 +14,9 @@ export function getIconDisplayValue(value) {
 
 export function filterIcons(items, filters = {}) {
   // Legacy callers may still explicitly filter by type; the UI uses purpose only.
-  return items.filter((item) => (!filters.discountsOnly || Boolean(getDiscount(item))) && ['purpose', 'type', 'period', 'availability'].every((key) => {
+  return items.filter((item) => (!filters.discountsOnly || Boolean(getDiscount(item))) &&
+    (!filters.subject || filters.subject === 'all' || getIconSubjects(item).includes(filters.subject)) &&
+    ['purpose', 'type', 'period', 'availability'].every((key) => {
     const selected = filters[key];
     if (selected == null || selected === 'all') return true;
     const value = getIconDisplayValue(selected);
@@ -21,11 +25,25 @@ export function filterIcons(items, filters = {}) {
 }
 
 export function getFilterOptions(items, key) {
+  if (key === 'subject') {
+    const represented = new Set(items.flatMap(getIconSubjects));
+    return ['all', ...iconSubjects.map(([label]) => label).filter((label) => represented.has(label))];
+  }
   const values = items
     .map((item) => getIconDisplayValue(item?.[key]))
     .filter(Boolean);
 
   return ['all', ...new Set(values)];
+}
+
+export function getHomeCatalogIcons(items, preferredSlugs = []) {
+  const published = publishedIcons({ icons: items });
+  const bySlug = new Map(published.map((icon) => [icon.slug, icon]));
+  const preferred = new Set(preferredSlugs);
+  return [
+    ...[...preferred].map((slug) => bySlug.get(slug)).filter(Boolean),
+    ...published.filter((icon) => !preferred.has(icon.slug)),
+  ];
 }
 
 export function findIconBySlug(items, slug) {

@@ -5,6 +5,7 @@ import { publishedIcons } from '../content/schema.js';
 import { filterIcons } from '../lib/catalog.js';
 
 const initialFilters = {
+  subject: 'all',
   period: 'all',
   purpose: 'all',
   discountsOnly: false
@@ -30,6 +31,7 @@ export function CollectionPage({ icons = [], onNavigate }) {
           onChange={(nextFilter) => setFilters((current) => ({ ...current, ...nextFilter }))}
           onReset={() => setFilters(initialFilters)}
         />
+        <p className="catalog-result-count" role="status">Найдено работ: {filteredIcons.length}</p>
         {filteredIcons.length > 0 ? (
           <div className="collection-grid">
             {filteredIcons.map((icon) => <IconCard key={icon.slug} icon={icon} onNavigate={onNavigate} />)}

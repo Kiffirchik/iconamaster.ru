@@ -83,6 +83,7 @@ export async function generateStaticSite({
   await writeFile(path.join(clientRoot, '.htaccess'), buildApacheConfig(apacheTemplate, {
     canonicalPaths,
     aliases: bundle.aliases,
+    unpublishedPaths: bundle.icons.filter((icon) => !icon.published).map((icon) => `/icons/${icon.slug}`),
     siteUrl: siteConfig.url,
   }));
 

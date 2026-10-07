@@ -37,7 +37,7 @@ export class IconCard extends Component {
 
     return (
       <article className="icon-card" data-live-visible={icon.slug}>
-        <IconImage image={image} title={title} onError={this.handleImageError}>
+        <IconImage image={image} title={title} eager={this.props.eager} onError={this.handleImageError}>
           {(renderedImage) => (
             <a className="icon-card__image-link" href={path} onClick={this.follow}>
               <span className="icon-card__image-frame" style={{ aspectRatio: `${image.width} / ${image.height}` }}>

@@ -10,6 +10,8 @@ import { localIconSources } from './local-icon-sources.mjs';
 import { legacyPageMap } from './data/legacy-page-map.mjs';
 import { parseRoute } from '../src/lib/routing.js';
 import { localVideoSource } from '../src/lib/local-video.js';
+import { homeContent } from '../src/data/home-content.js';
+import { workshopAssets } from './data/workshop-assets.mjs';
 
 const CONTENT_DOCUMENTS = ['icons', 'pages', 'articles', 'videos', 'contacts', 'aliases'];
 const CANONICAL_CONTACTS = {
@@ -769,7 +771,7 @@ export async function inspectContentDirectory(directory, errors) {
 async function inspectAssetDirectoryRoot(directory, errors) {
   const rootRealPath = await validateDirectoryRoot(directory, 'asset root', errors);
   if (!rootRealPath) return;
-  const expectedDirectories = new Set(['articles', 'icons', 'pages', 'videos']);
+  const expectedDirectories = new Set(['articles', 'icons', 'pages', 'videos', 'workshop']);
   const entries = (await readdir(directory, { withFileTypes: true }))
     .sort((left, right) => compareCodeUnits(left.name, right.name));
   for (const entry of entries) {
@@ -1028,16 +1030,21 @@ export async function verifyProject(projectRoot = new URL('../', import.meta.url
     ownedFiles.add(asset.src);
   }
   errors.push(...await verifyEditorialAssetFiles({ publicDirectory, editorialReport: videoReport }));
+  for (const asset of workshopAssets) {
+    if (ownedFiles.has(asset.src)) errors.push('duplicate workshop asset: ' + asset.src);
+    ownedFiles.add(asset.src);
+  }
+  errors.push(...await verifyEditorialAssetFiles({ publicDirectory, editorialReport: { assets: workshopAssets } }));
 
   const diskFiles = new Set();
   await inspectAssetDirectoryRoot(path.join(publicDirectory, 'assets'), errors);
-  for (const directory of ['icons', 'pages', 'articles', 'videos']) {
+  for (const directory of ['icons', 'pages', 'articles', 'videos', 'workshop']) {
     const files = await collectFiles(path.join(publicDirectory, 'assets', directory), publicDirectory, errors);
     for (const file of files) diskFiles.add(file);
   }
   diskFiles.delete('/assets/icons/manifest.json');
 
-  const referencedFiles = new Set();
+  const referencedFiles = new Set([homeContent.blessing.image]);
   errors.push(...verifyContent(bundle, diskFiles, {
     referencedFiles,
     expected: {

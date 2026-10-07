@@ -5,13 +5,28 @@
     "archiveName": "pre-optimized-publish-20260818",
     "inventorySchemaVersion": 2
   },
+  "liveContentReconciliation": {
+    "date": "2026-10-07",
+    "sourceUrl": "https://iconamaster.ru/content/icons.json",
+    "scope": "Read-only synchronization into the local preview; no production writes",
+    "preservedOwnerEdits": {
+      "theotokos-kazanskaya": ["price", "discount", "newPrice", "moreDetails"],
+      "christ-pantocrator": ["price"],
+      "christ-pantocrator-4": ["published"],
+      "peter-and-fevronia-of-murom": ["purpose"],
+      "ikona-bogorodity-utoli-moi-pecali": ["size", "description", "price", "discount", "newPrice"],
+      "ikona-bogorodity-utoli-moi-pecali-1": ["availability"],
+      "ikona-bogorodity-utoli-moi-pecali-copy": ["availability"],
+      "ikona-panteleimon-telitel": ["published"]
+    }
+  },
   "outputs": [
     {
       "id": "icons",
       "path": "public/content/icons.json",
       "records": 99,
-      "bytes": 216118,
-      "sha256": "7dea9e24e5842b88bdc09c0e166899204586b6b99b81b6da39449efc29f3c545"
+      "bytes": 220815,
+      "sha256": "87aab2ed48b2e2a7d44c3511cdd3ce48ee8a10e82502bde59bb0869dbd8aac5f"
     },
     {
       "id": "aliases",

@@ -221,6 +221,19 @@ test('buildApacheConfig emits every external redirect on the canonical HTTPS ori
   assert.match(config, /^RewriteRule \^legacy-collection\$ https:\/\/iconamaster\.ru\/collection \[R=301,L,NE\]$/m);
 });
 
+test('buildApacheConfig omits redirects to explicitly unpublished records but still rejects unknown targets', () => {
+  const options = {
+    canonicalPaths: ['/', '/collection'], unpublishedPaths: ['/icons/hidden'],
+    aliases: { '/OLD-HIDDEN': '/icons/hidden', '/OLD-CATALOG': '/collection' },
+    siteUrl: apacheSiteUrl,
+  };
+  const config = buildApacheConfig(apacheTemplate, options);
+  assert.doesNotMatch(config, /OLD-HIDDEN|icons\/hidden/u);
+  assert.match(config, /OLD-CATALOG/u);
+  assert.throws(() => buildApacheConfig(apacheTemplate, { ...options, aliases: { '/OLD': '/icons/unknown' } }), /not canonical/u);
+  assert.throws(() => buildApacheConfig(apacheTemplate, { ...options, unpublishedPaths: ['/bad\npath'] }), /path|route/iu);
+});
+
 test('buildApacheConfig rejects a redirect origin that is not a bare HTTPS origin', () => {
   for (const siteUrl of ['http://iconamaster.ru', 'https://iconamaster.ru/path', 'https://user@iconamaster.ru']) {
     assert.throws(

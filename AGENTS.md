@@ -10,6 +10,16 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 ## Iconamaster prototype constraints
 
+### Approved local shop preview — 7 October 2026
+
+- The owner approved publication of this reviewed shop preview to MTW on 7 October 2026. Commit and push the verified source first, preserve live editable data and a rollback copy. Do not change ads. Purchase, payment and delivery changes are deferred.
+- Retain the dark museum styling and compact introduction before the homepage catalog strip and editorial material. The strip includes all published, illustrated catalog works, with the eight curated slugs first and the rest in catalog order. Default to «В наличии» and offer «Все работы» and the actual availability states. Do not invent prices or availability; never include hidden works. Keep the separate full catalog unchanged.
+- Add an «Образ / святой» filter to the selection and catalog. Multi-subject works belong to each relevant subject; distinguish namesakes and iconographic meanings.
+- Use the horizontal strip on desktop and mobile: roughly 3–4 cards plus a next-card edge on wide screens, one large card plus an edge on phones. Desktop buttons advance by the visible group; mobile buttons advance one card. Keep a visible range counter, keyboard controls, no autoplay, no hijacking of vertical scrolling, reduced-motion support and reset on filter changes. Show compact homepage cards (photo, full title, price/availability and contact/detail links), leaving specifications on detail pages and in the separate catalog. Load images beyond the first group lazily.
+- Use the owner's «Дом мастерская русского иконописца.docx» for a short family-workshop history, not a long biography or awards list.
+- Show the original Blessing.jpeg with the precise description: Patriarch Alexy II's certificate given to the workshop collective on 14 May 2007. Do not imply a blanket endorsement of every item. Link to the complete original photograph.
+- Public content/icons.json was reconciled read-only into the local preview on 7 October; preserve those live-editor prices, availability, purpose, description and publication edits in any future reconciliation.
+
 - The approved dark museum mock controls layout and visual hierarchy, not icon content.
 - Icon files are immutable originals. Do not use ImageGen, pixel editing, generative fill, or handcrafted replacements on them.
 - Preview crops may remove only incidental photographic background; full images always use `object-fit: contain`.

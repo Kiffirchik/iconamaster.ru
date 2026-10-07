@@ -537,14 +537,20 @@ test('clean checkout content, aliases, ownership inventories, and local assets p
   assert.deepEqual(result.errors, []);
   assert.deepEqual(result.summary, {
     icons: 99,
-    publishedIcons: 99,
+    publishedIcons: 97,
     pages: 8,
     articles: 21,
     videos: 6,
     aliases: 124,
-    referencedAssets: 483,
-    ownedAssets: 483,
+    referencedAssets: 484,
+    ownedAssets: 484,
   });
+});
+
+test('hidden live catalog records retain verified originals for later restoration', async () => {
+  const result = await verifyIconAssetProject();
+  assert.deepEqual(result.errors, []);
+  assert.ok(result.summary.assets > 0);
 });
 
 test('icon asset verifier streams hashes and rejects missing, stale, and unowned originals', async (context) => {

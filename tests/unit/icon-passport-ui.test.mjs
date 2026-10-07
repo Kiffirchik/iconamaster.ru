@@ -36,9 +36,9 @@ function render(Page, item) {
   return renderToStaticMarkup(createElement(Page, { icon: item, icons: [item], onNavigate() {} }));
 }
 
-test('home and detail passports show real period, purpose, size and meaningful supporting facts', async (context) => {
-  const { HomePage, IconDetailPage } = await loadUI(context);
-  for (const Page of [HomePage, IconDetailPage]) {
+test('detail passport shows real period, purpose, size and meaningful supporting facts', async (context) => {
+  const { IconDetailPage } = await loadUI(context);
+  for (const Page of [IconDetailPage]) {
     const markup = render(Page, icon);
     for (const [label, value] of [
       ['Период', 'XIX век'], ['Назначение', 'Храмовая'], ['Размер', '30 × 40 см'],
@@ -66,9 +66,9 @@ test('blank and placeholder facts leave no empty passport, heading, eyebrow or c
 });
 
 test('mixed passport fields omit only unavailable facts', async (context) => {
-  const { HomePage, IconDetailPage } = await loadUI(context);
+  const { IconDetailPage } = await loadUI(context);
   const item = { ...icon, purpose: '', size: 'Уточняется при консультации', condition: '—', expertise: null };
-  for (const Page of [HomePage, IconDetailPage]) {
+  for (const Page of [IconDetailPage]) {
     const markup = render(Page, item);
     assert.match(markup, /<dt>Период<\/dt><dd>XIX век<\/dd>/);
     assert.match(markup, /<dt>Техника<\/dt><dd>Яичная темпера<\/dd>/);
@@ -76,7 +76,7 @@ test('mixed passport fields omit only unavailable facts', async (context) => {
   }
 });
 
-test('catalog exposes only period then purpose, combines choices and resets without hiding sold cards', async (context) => {
+test('catalog exposes subject, period and purpose, combines choices and resets without hiding sold cards', async (context) => {
   const { CatalogFilters, CollectionPage } = await loadUI(context);
   const items = [icon, { ...icon, slug: 'home', purpose: 'Домашняя', period: 'XX век', availability: 'Продано' }];
   let filters = { period: 'all', purpose: 'all' };
@@ -88,7 +88,7 @@ test('catalog exposes only period then purpose, combines choices and resets with
   const markup = renderToStaticMarkup(createElement(CollectionPage, { icons: items }));
   assert.match(markup, /<label for="catalog-filter-purpose">Назначение<\/label>/);
   assert.match(markup, /<option value="Храмовая">Храмовая<\/option>/);
-  assert.deepEqual([...markup.matchAll(/<select[^>]* name="([^"]+)"/g)].map((match) => match[1]), ['period', 'purpose']);
+  assert.deepEqual([...markup.matchAll(/<select[^>]* name="([^"]+)"/g)].map((match) => match[1]), ['subject', 'period', 'purpose']);
   assert.doesNotMatch(markup, /Тип иконы|Авторские|catalog-filter-type|catalog-filter-availability/);
   assert.match(markup, /Продано/);
   assert.equal((markup.match(/class="icon-card"/g) ?? []).length, 2);

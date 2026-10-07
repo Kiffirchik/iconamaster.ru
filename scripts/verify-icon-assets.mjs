@@ -170,7 +170,8 @@ function validateContentOwnership(icons, manifest, errors) {
   for (const icon of icons) {
     const images = Array.isArray(icon.images) ? icon.images : [];
     if (icon.published && images.length === 0) errors.push(`published icon has no originals: ${icon.slug}`);
-    if (!icon.published && images.length > 0) errors.push(`unpublished icon owns public originals: ${icon.slug}`);
+    // Corona can temporarily hide a work; keep verifying its owned originals
+    // so the owner can restore it without losing photographs.
     let sourcePath;
     try {
       sourcePath = new URL(icon.sourceUrl).pathname;

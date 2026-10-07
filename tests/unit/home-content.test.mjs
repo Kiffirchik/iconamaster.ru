@@ -6,7 +6,13 @@ test('defines approved homepage content and anchors', () => {
   assert.equal(homeContent.established, '1991');
   assert.match(homeContent.materials, /минеральн/i);
   assert.match(homeContent.materials, /сусальн/i);
-  assert.deepEqual(homeContent.featuredSlugs, ['archangel-michael', 'sergius-appearance', 'facade-george']);
+  assert.equal(homeContent.headline, 'Рукописные иконы в наличии');
+  assert.equal(homeContent.saleSlugs.length, 8);
+  assert.equal(new Set(homeContent.saleSlugs).size, 8);
+  assert.ok(homeContent.saleSlugs.includes('venchalnaya-para-vsederzhitel-kazanskaya'));
+  assert.match(homeContent.atelier.text, /Игорь Дрождин/u);
+  assert.match(homeContent.atelier.history, /1998/u);
+  assert.match(homeContent.blessing.text, /14 мая 2007/u);
   assert.deepEqual(homeContent.featuredArticleSlugs, [
     'restoration-murals-cleaning',
     'georgievsky-church-iconostasis',

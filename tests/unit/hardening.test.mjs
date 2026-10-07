@@ -202,8 +202,9 @@ test('home and collection compose safely from the published catalog', async (con
   assert.doesNotThrow(() => {
     homeMarkup = renderToStaticMarkup(createElement(HomePage, { icons: [], onNavigate() {} }));
   });
-  assert.match(homeMarkup, /<h1[^>]*>Иконы для молитвы/);
-  assert.doesNotMatch(homeMarkup, /<img/);
+  assert.match(homeMarkup, /<h1[^>]*>Рукописные иконы в наличии/);
+  assert.doesNotMatch(homeMarkup, /class="icon-card"/);
+  assert.match(homeMarkup, /Сейчас в каталоге нет доступных работ/);
 
   const collectionMarkup = renderToStaticMarkup(createElement(CollectionPage, {
     icons: [{ ...icon, slug: 'hidden', title: 'Скрытая икона', published: false }],
