@@ -245,6 +245,15 @@ button {
   color: var(--muted);
 }
 
+.home-shop-intro__materials-link {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 44px;
+  margin-top: .35rem;
+  color: var(--gold);
+}
+
 .home-sale { padding-bottom: clamp(2.5rem, 5vw, 4.5rem); }
 .home-sale__heading,
 .home-sale__footer {

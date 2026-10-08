@@ -10,6 +10,13 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 ## Iconamaster prototype constraints
 
+### Approved materials copy publication — 8 October 2026
+
+- The owner approved the homepage introduction «Рукописные иконы Московской мастерской» explaining that the workshop prepares paints by hand from mineral pigments, and a «Как мы готовим краски для икон →» link to `/articles/icon-painting-pigments`.
+- Add the approved «Минеральные краски в нашей мастерской» opening to that article before its original illustrated historical content. Preserve all historical prose, images and their order; do not imply that every pigment described historically is used by the workshop today.
+- The owner approved publication of this reviewed copy to MTW on 8 October 2026. Commit and push the verified source first, preserve live editor data, and retain a rollback copy. No basket, payment flow or order form is included: the existing order link opens WhatsApp, and the workshop receives a message only after the visitor sends it.
+- In the same request the owner approved tightening advertising exclusions and price keywords, and preparing separate product and catalogue campaigns. Do not activate either campaign or assign a new test budget/date before agreement.
+
 ### Approved local shop preview — 7 October 2026
 
 - The owner approved publication of this reviewed shop preview to MTW on 7 October 2026. Commit and push the verified source first, preserve live editable data and a rollback copy. Do not change ads. Purchase, payment and delivery changes are deferred.

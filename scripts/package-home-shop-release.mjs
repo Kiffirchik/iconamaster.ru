@@ -13,26 +13,41 @@ const assetRefs = html => ['js', 'css'].map(ext => {
   return match[0];
 });
 
-export async function prepareHomeShopRelease({ baselineRoot, buildRoot, outputRoot }) {
+export async function prepareHomeShopRelease({ baselineRoot, buildRoot, outputRoot, approvedRoutes = ['/', '/collection'], approvedArticlePrefix = null }) {
   await mkdir(path.dirname(outputRoot), { recursive: true });
   await mkdir(outputRoot); // Fail closed if a payload already exists.
   const oldRefs = assetRefs(await read(path.join(baselineRoot, 'index.html')));
   const newRefs = assetRefs(await read(path.join(buildRoot, 'index.html')));
   const before = [], after = [];
+  let approvedArticleBytes;
   for (const name of await readdir(path.join(baselineRoot, 'content'))) {
     if (!name.endsWith('.json')) continue;
     const relative = 'content/' + name;
     const bytes = await readFile(path.join(baselineRoot, relative));
-    assert.deepEqual(JSON.parse(await read(path.join(buildRoot, relative))), JSON.parse(bytes), 'Content differs: ' + relative);
+    const builtBytes = await readFile(path.join(buildRoot, relative));
+    const built = JSON.parse(builtBytes), live = JSON.parse(bytes);
+    if (relative === 'content/articles.json' && approvedArticlePrefix) {
+      const target = built.find(article => article.slug === 'icon-painting-pigments');
+      assert.ok(target, 'Missing pigments article');
+      assert.deepEqual(target.sections[0], approvedArticlePrefix, 'Unapproved article introduction');
+      const withoutPrefix = built.map(article => article === target ? { ...article, sections: article.sections.slice(1) } : article);
+      assert.deepEqual(withoutPrefix, live, 'Content differs beyond approved article introduction');
+      approvedArticleBytes = builtBytes;
+    } else {
+      assert.deepEqual(built, live, 'Content differs: ' + relative);
+    }
     before.push(hash(bytes) + '  ' + relative);
   }
-  const liveRoutes = JSON.parse(await read(path.join(baselineRoot, '.live-templates/routes.json')));
+  const liveRouteBytes = await readFile(path.join(baselineRoot, '.live-templates/routes.json'));
+  const liveRoutes = JSON.parse(liveRouteBytes);
+  before.push(hash(liveRouteBytes) + '  .live-templates/routes.json');
   const routes = JSON.parse(await read(path.join(buildRoot, '.live-templates/routes.json')));
-  for (const route of ['/', '/collection']) {
+  for (const route of approvedRoutes) {
+    assert.match(route, /^\/(?:[a-z0-9-]+(?:\/[a-z0-9-]+)*)?$/);
     assert.equal(routes[route], liveRoutes[route], 'Live route mapping differs: ' + route);
     assert.match(routes[route], /^[a-zA-Z0-9-]+\.html$/);
   }
-  const replacements = new Set(['index.html', 'collection/index.html', '.live-templates/' + routes['/'], '.live-templates/' + routes['/collection']]);
+  const replacements = new Set(approvedRoutes.flatMap(route => [route === '/' ? 'index.html' : route.slice(1) + '/index.html', '.live-templates/' + routes[route]]));
   const icons = JSON.parse(await read(path.join(baselineRoot, 'content/icons.json')));
   let htmlCount = 0;
   const write = async (relative, bytes) => {
@@ -56,7 +71,7 @@ export async function prepareHomeShopRelease({ baselineRoot, buildRoot, outputRo
       for (let index = 0; index < oldRefs.length; index++) updated = updated.replaceAll(oldRefs[index], newRefs[index]);
       if (replacements.has(relative)) {
         updated = await read(path.join(buildRoot, relative));
-        if (relative === '.live-templates/' + routes['/collection']) {
+        if (approvedRoutes.includes('/collection') && relative === '.live-templates/' + routes['/collection']) {
           // Hidden records must remain restorable by Corona without rebuilding.
           const retained = [];
           for (const icon of icons) {
@@ -84,7 +99,8 @@ export async function prepareHomeShopRelease({ baselineRoot, buildRoot, outputRo
   }
   await walk(baselineRoot);
   assert.equal(replacements.size, 0, 'Every approved page must exist in the live snapshot');
-  for (const asset of [...newRefs, '/assets/workshop/blessing-2007.jpeg']) {
+  if (approvedArticleBytes) await write('content/articles.json', approvedArticleBytes);
+  for (const asset of [...newRefs, ...(approvedRoutes.includes('/collection') ? ['/assets/workshop/blessing-2007.jpeg'] : [])]) {
     await write(asset.slice(1), await readFile(path.join(buildRoot, asset.slice(1))));
   }
   await writeFile(path.join(outputRoot, 'before.sha256'), before.sort().join('\n') + '\n');

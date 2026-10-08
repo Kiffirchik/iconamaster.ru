@@ -32,8 +32,8 @@
       "id": "articles",
       "path": "public/content/articles.json",
       "records": 21,
-      "bytes": 579811,
-      "sha256": "16a95faf4a97c866eee08bf1d0c56542ba890b986239194465cb7ddc3cedebbe"
+      "bytes": 580685,
+      "sha256": "4e25fbc091f4e7046e16b8d7ff884f69bbe331387f70ce0f10f5463a3c9210e9"
     },
     {
       "id": "videos",

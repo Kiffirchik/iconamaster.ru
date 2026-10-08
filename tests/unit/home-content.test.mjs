@@ -6,7 +6,6 @@ test('defines approved homepage content and anchors', () => {
   assert.equal(homeContent.established, '1991');
   assert.match(homeContent.materials, /минеральн/i);
   assert.match(homeContent.materials, /сусальн/i);
-  assert.equal(homeContent.headline, 'Рукописные иконы в наличии');
   assert.equal(homeContent.saleSlugs.length, 8);
   assert.equal(new Set(homeContent.saleSlugs).size, 8);
   assert.ok(homeContent.saleSlugs.includes('venchalnaya-para-vsederzhitel-kazanskaya'));

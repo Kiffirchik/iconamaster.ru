@@ -42,3 +42,43 @@ test('shop release replaces only approved pages and preserves live content and u
   await put('build/content/icons.json', '[]');
   await assert.rejects(prepareHomeShopRelease({ ...args, outputRoot: path.join(root, 'different-content') }), /Content differs/);
 });
+
+test('materials release permits only one approved article prefix and leaves the collection body untouched', async t => {
+  const { prepareHomeShopRelease } = await import('../../scripts/package-home-shop-release.mjs');
+  const root = await mkdtemp(path.join(tmpdir(), 'materials-release-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const put = async (file, value) => {
+    const target = path.join(root, file);
+    await mkdir(path.dirname(target), { recursive: true });
+    await writeFile(target, typeof value === 'string' ? value : JSON.stringify(value));
+  };
+  const old = '<script src="/assets/index-old.js"></script><link href="/assets/index-old.css">';
+  const current = '<script src="/assets/index-new.js"></script><link href="/assets/index-new.css">';
+  const routes = { '/': 'home.html', '/articles/icon-painting-pigments': 'pigments.html' };
+  const original = [{ slug: 'icon-painting-pigments', title: 'Live title', sections: [{ type: 'text', text: 'Owner history' }] }, { slug: 'another', sections: [{ text: 'Unchanged' }] }];
+  const prefix = { type: 'text', text: 'Approved workshop introduction' };
+  const articles = [{ ...original[0], sections: [prefix, ...original[0].sections] }, original[1]];
+  for (const kind of ['live', 'build']) {
+    await put(kind + '/content/articles.json', kind === 'live' ? original : articles);
+    await put(kind + '/content/icons.json', []);
+    await put(kind + '/.live-templates/routes.json', routes);
+    for (const relative of ['index.html', 'articles/icon-painting-pigments/index.html', '.live-templates/home.html', '.live-templates/pigments.html']) {
+      await put(kind + '/' + relative, (kind === 'live' ? old + 'Old body' : current + 'Approved body'));
+    }
+  }
+  await put('live/collection/index.html', old + 'LIVE hidden works and owner edits');
+  await put('build/collection/index.html', current + 'STALE collection');
+  await put('build/assets/index-new.js', 'js');
+  await put('build/assets/index-new.css', 'css');
+  const args = { baselineRoot: path.join(root, 'live'), buildRoot: path.join(root, 'build'), outputRoot: path.join(root, 'out'), approvedRoutes: ['/', '/articles/icon-painting-pigments'], approvedArticlePrefix: prefix };
+  await prepareHomeShopRelease(args);
+  assert.deepEqual(JSON.parse(await readFile(path.join(root, 'out/site/content/articles.json'), 'utf8')), articles);
+  assert.equal(await readFile(path.join(root, 'out/site/collection/index.html'), 'utf8'), current + 'LIVE hidden works and owner edits');
+  assert.equal(await readFile(path.join(root, 'out/site/.live-templates/pigments.html'), 'utf8'), current + 'Approved body');
+  assert.match(await readFile(path.join(root, 'out/after.sha256'), 'utf8'), /content\/articles.json/);
+  assert.match(await readFile(path.join(root, 'out/before.sha256'), 'utf8'), /\.live-templates\/routes.json/);
+  await put('build/content/articles.json', [{ ...articles[0], title: 'Unapproved new title' }, original[1]]);
+  await assert.rejects(prepareHomeShopRelease({ ...args, outputRoot: path.join(root, 'bad-title') }), /Content differs/);
+  await put('build/content/articles.json', [{ ...original[0], sections: [prefix, { type: 'text', text: 'LOST HISTORY' }] }, original[1]]);
+  await assert.rejects(prepareHomeShopRelease({ ...args, outputRoot: path.join(root, 'bad-history') }), /Content differs/);
+});

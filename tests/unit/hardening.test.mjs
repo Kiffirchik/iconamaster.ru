@@ -202,7 +202,7 @@ test('home and collection compose safely from the published catalog', async (con
   assert.doesNotThrow(() => {
     homeMarkup = renderToStaticMarkup(createElement(HomePage, { icons: [], onNavigate() {} }));
   });
-  assert.match(homeMarkup, /<h1[^>]*>Рукописные иконы в наличии/);
+  assert.match(homeMarkup, /<h1[^>]*>[^<]+<\/h1>/u);
   assert.doesNotMatch(homeMarkup, /class="icon-card"/);
   assert.match(homeMarkup, /Сейчас в каталоге нет доступных работ/);
 

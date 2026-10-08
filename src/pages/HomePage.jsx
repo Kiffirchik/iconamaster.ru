@@ -132,7 +132,12 @@ export function HomePage({ icons = [], articles = [], onNavigate }) {
       <section className="home-shop-intro" aria-labelledby="home-title">
         <p className="eyebrow">{homeContent.eyebrow}</p>
         <h1 id="home-title">{homeContent.headline}</h1>
-        <p>{homeContent.intro}</p>
+        <p>
+          {homeContent.intro}
+          <a className="home-shop-intro__materials-link" href="/articles/icon-painting-pigments" onClick={(event) => follow(event, '/articles/icon-painting-pigments')}>
+            Как мы готовим краски для икон →
+          </a>
+        </p>
       </section>
 
       <section className="home-sale" aria-labelledby="sale-title">
