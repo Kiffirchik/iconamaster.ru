@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-08",
+  "status": "local preview only; not published",
+  "baseCommit": "3bf5bb0",
+  "preview": "http://127.0.0.1:5178/",
+  "sourceChanges": ["src/styles.css", "AGENTS.md"],
+  "approvedDesign": "Pointer cursor and subtle brightening for active order buttons; thin muted-gold certificate frame with dark inset, no photograph editing or cropping",
+  "browserRedGreen": {
+    "cursorBefore": "Fail: active order button computed cursor default",
+    "cursorAfter": "Pass: same button computed cursor pointer",
+    "frameBefore": "Fail: no border, 0px padding",
+    "frameAfter": "Pass: solid border, 8px padding, image object-fit contain",
+    "keyboardFocus": "Visible solid outline retained; background rgb(197, 170, 112); closing the form restores focus to opener",
+    "desktopWidth": 1280,
+    "mobileWidth": 390,
+    "mobileImage": "174.67 by 277.52 CSS px; original 1007 by 1600 aspect ratio preserved; no page overflow",
+    "mobileDialog": "352px wide at 390px viewport; scrollWidth equals clientWidth (335px)",
+    "emailsSent": 0
+  },
+  "verification": {
+    "unitTests": "256 passed, 0 failed",
+    "buildMtw": "Passed: 132 static pages, 121 live templates",
+    "mtwTests": "4 passed",
+    "originalAssets": "160 SHA-256 hashes verified unchanged",
+    "independentReview": "No findings; CSS guards preserve disabled/submitting state and image proportions",
+    "diffCheck": "Passed"
+  },
+  "screenshots": ["output/certificate-frame-desktop-20261008.jpg", "output/certificate-frame-mobile-20261008.jpg", "output/order-button-mobile-20261008.jpg"],
+  "publicationAuthorized": false
+}

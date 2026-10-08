@@ -191,6 +191,10 @@ button {
   color: var(--alabaster) !important;
 }
 
+button.button:not(:disabled) {
+  cursor: pointer;
+}
+
 .site-header__menu-button {
   display: none;
   min-height: 2.75rem;
@@ -356,6 +360,12 @@ button {
   grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
   gap: clamp(2rem, 5vw, 5rem);
   align-items: center;
+}
+.home-blessing__image {
+  display: block;
+  padding: 0.5rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
 }
 .home-blessing__image img { display: block; width: 100%; height: auto; object-fit: contain; }
 .home-blessing > div { max-width: 45rem; }
@@ -1176,6 +1186,11 @@ button {
   background: var(--gold);
   color: var(--ink);
   font-weight: 700;
+}
+
+button.button--primary:not(:disabled):is(:hover, :focus-visible) {
+  background: #c5aa70;
+  border-color: #c5aa70;
 }
 
 .consultation-links__secondary {

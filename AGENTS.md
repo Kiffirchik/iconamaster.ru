@@ -10,6 +10,12 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 ## Iconamaster prototype constraints
 
+### Small visual polish — 8 October 2026
+
+- The owner approved a local-only preview: active order buttons use a pointer cursor and subtle brightening on hover; disabled/submitting controls retain their distinct state.
+- Frame the homepage certificate preview with a thin muted-gold border and a small dark inset. Keep the original image, full aspect ratio and full-photo link unchanged.
+- After reviewing the desktop/mobile preview, the owner approved publishing this exact variant on 8 October 2026. Use a CSS-only overlay from a fresh live snapshot, preserve order records, content, scripts and authentication, and retain rollback.
+
 ### Order enquiries — 8 October 2026
 
 - The owner requested a real «Заказать икону» form with email notification to the workshop. Prepare it for review; this is a new feature after the separately approved materials-copy publication.
