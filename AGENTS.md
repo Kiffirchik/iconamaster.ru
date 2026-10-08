@@ -10,6 +10,14 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 ## Iconamaster prototype constraints
 
+### Order enquiries — 8 October 2026
+
+- The owner requested a real «Заказать икону» form with email notification to the workshop. Prepare it for review; this is a new feature after the separately approved materials-copy publication.
+- Use the selected published, in-stock icon and current server-side catalogue details. Collect a name, one callback contact (phone or email), optional comment and explicit consent for handling the enquiry.
+- Keep enquiries private and preserve them across releases. Local previews must clearly state that they do not send email. A request is an enquiry pending workshop confirmation, not payment or an automatic reservation.
+- The owner approved production publication on 8 October and confirmed `iconamaster@yandex.ru` as the notification recipient. Preserve live content, existing authentication and rollback; send one clearly labelled test and distinguish mail-server acceptance from confirmed inbox delivery.
+- After the account rejected a catalogue budget below 3,500 RUB for seven days, the owner approved 7,000 RUB total for 9–15 October 2026: 3,500 RUB per campaign, current schedule, stop after the period. The owner was told that the balance needs topping up; no payment or overdraft is authorized.
+
 ### Approved materials copy publication — 8 October 2026
 
 - The owner approved the homepage introduction «Рукописные иконы Московской мастерской» explaining that the workshop prepares paints by hand from mineral pigments, and a «Как мы готовим краски для икон →» link to `/articles/icon-painting-pigments`.

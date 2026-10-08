@@ -5,6 +5,7 @@ const allowedGoals = Object.freeze(new Set([
   'contact_phone',
   'contact_email',
   'murals_consultation',
+  'order_request_sent',
 ]));
 
 export function trackGoal(goal, windowLike = globalThis.window) {

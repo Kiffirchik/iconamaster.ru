@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
+import { orderPreviewPlugin } from './scripts/order-preview-plugin.mjs';
 
 const qaContactInstrumentation = `<script data-qa-contact-instrument>
 (() => {
@@ -94,5 +95,5 @@ export default defineConfig(({ isSsrBuild }) => ({
       clientFiles: ["./src/main.jsx"],
     },
   },
-  plugins: [react(), cleanStaticPreviewRoutes()],
+  plugins: [react(), orderPreviewPlugin(), cleanStaticPreviewRoutes()],
 }));

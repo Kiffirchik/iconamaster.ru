@@ -3,6 +3,7 @@ import { IconPrice } from '../components/IconPrice.jsx';
 import { IconMoreDetails } from '../components/IconMoreDetails.jsx';
 import { IconGallery } from '../components/IconGallery.jsx';
 import { IconPassport } from '../components/IconPassport.jsx';
+import { OrderRequestButton } from '../components/OrderRequestButton.jsx';
 import { publishedIcons } from '../content/schema.js';
 import { getIconDisplayValue, getNextIcon } from '../lib/catalog.js';
 
@@ -42,7 +43,8 @@ export function IconDetailPage({ icon, icons, onNavigate }) {
           <IconPrice icon={icon} className="icon-detail-page__price" />
           <p className="icon-detail-page__availability">{getIconDisplayValue(icon.availability) || 'Наличие уточняется'}</p>
           </div>
-          <ConsultationLinks iconTitle={icon.title} primaryLabel="Задать вопрос об иконе" />
+          <OrderRequestButton key={icon.slug} icon={icon} />
+          <ConsultationLinks iconTitle={icon.title} primaryLabel="Задать вопрос в WhatsApp" />
         </div>
         <IconGallery images={icon.images ?? []} title={icon.title} />
         <article className="icon-detail-page__content">

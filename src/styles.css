@@ -221,6 +221,34 @@ button {
   overflow: hidden;
 }
 
+.order-dialog { width: min(560px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); padding: 32px; border: 1px solid var(--line); background: var(--surface); color: var(--alabaster); overflow-y: auto; box-shadow: 0 20px 80px #0008; }
+.order-dialog::backdrop { background: #090806c9; }
+.order-dialog h2 { margin: 0 36px 16px 0; font-family: var(--serif); font-size: 2rem; line-height: 1.15; font-weight: 400; }
+.order-dialog .eyebrow { margin-top: 0; font-size: .7rem; }
+.order-dialog__close { position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; padding: 0; background: transparent; border: 0; font-size: 2rem; cursor: pointer; }
+.order-dialog__icon { border-block: 1px solid var(--line); padding-block: 12px; margin-bottom: 16px; }
+.order-dialog__icon p { margin: 4px 0 0; color: var(--gold); }
+.order-dialog__intro, .order-dialog__alternatives { font-size: .88rem; color: var(--muted); line-height: 1.5; }
+.order-dialog fieldset { padding: 0; border: 0; margin: 0; display: grid; gap: 14px; min-width: 0; }
+.order-dialog label { display: grid; gap: 6px; font-size: .9rem; }
+.order-dialog label > span { color: var(--muted); }
+.order-dialog input:not([type=checkbox]), .order-dialog textarea { width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 0; background: var(--ink); color: var(--alabaster); padding: 10px 12px; font: inherit; font-size: 16px; }
+.order-dialog textarea { resize: vertical; }
+.order-dialog .order-dialog__consent { display: flex; gap: 10px; align-items: flex-start; font-size: .78rem; line-height: 1.5; }
+.order-dialog__consent input { flex: 0 0 18px; width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--gold); }
+.order-dialog a { color: var(--gold); }
+.order-dialog .order-dialog__trap { display: none; }
+.order-dialog__submit { width: 100%; margin-top: 20px; }
+.order-dialog__error { border-left: 3px solid #c5826b; padding-left: 12px; color: #ffd4c7; font-size: .9rem; }
+.order-dialog__preview { background: var(--surface-soft); padding: 8px 12px; font-size: .8rem; color: var(--gold); }
+.order-dialog__alternatives { display: flex; flex-wrap: wrap; column-gap: 14px; row-gap: 8px; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--line); }
+.order-dialog__alternatives > span { width: 100%; }
+.order-dialog__result { padding-block: 8px; }
+.order-dialog__result h3 { margin-top: 0; }
+.order-dialog button:disabled { opacity: .55; cursor: wait; }
+.icon-detail-page__hero > .button { margin-bottom: 12px; }
+@media (max-width: 560px) { .order-dialog { padding: 24px 18px; } .order-dialog h2 { font-size: 1.75rem; } }
+
 .home-shop-intro,
 .home-sale {
   width: var(--content);

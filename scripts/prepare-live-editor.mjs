@@ -2,6 +2,7 @@ import { readFile, writeFile, mkdir, copyFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { prepareOrders } from './prepare-orders.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -101,6 +102,7 @@ export async function prepareLiveEditor(distRoot = path.join(root, 'dist/client'
   ];
   apache = apache.replace('RewriteEngine On', 'RewriteEngine On\n\n# Live text from local content; query strings cannot override the route.\n'+rules.join('\n'));
   await writeFile(apachePath, apache);
+  await prepareOrders(distRoot);
   return paths.length;
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) console.log(`Prepared ${await prepareLiveEditor()} live content pages and Corona editor.`);

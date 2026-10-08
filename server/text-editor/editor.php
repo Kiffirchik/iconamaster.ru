@@ -49,7 +49,7 @@ unset($_SESSION['content_saved']);
 ?>
 <!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Редактор — Московская иконописная мастерская</title><link rel="stylesheet" href="/corona/admin/text-editor/editor.css"></head><body>
 <header class="bar"><a class="brand" href="<?=e(editor_url('icons'))?>">Мастерская · Редактор</a><a href="/" target="_blank" rel="noopener">Открыть сайт ↗</a></header>
-<main><nav class="tabs" aria-label="Разделы редактора"><a <?= $kind === 'icons' ? 'aria-current="page"' : '' ?> href="<?=e(editor_url('icons'))?>">Карточки икон</a><a <?= $kind === 'articles' ? 'aria-current="page"' : '' ?> href="<?=e(editor_url('articles'))?>">Статьи</a></nav>
+<main><nav class="tabs" aria-label="Разделы редактора"><a <?= $kind === 'icons' ? 'aria-current="page"' : '' ?> href="<?=e(editor_url('icons'))?>">Карточки икон</a><a <?= $kind === 'articles' ? 'aria-current="page"' : '' ?> href="<?=e(editor_url('articles'))?>">Статьи</a><a href="/corona/admin/orders.php">Заявки на иконы</a></nav>
 <?php if ($error): ?><div class="error" role="alert"><?=e($error)?></div><?php endif; ?>
 <?php if ($record): ?>
 <a href="<?=e(editor_url($kind))?>">← К списку</a><h1><?=e($record['title'])?></h1>

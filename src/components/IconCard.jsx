@@ -2,6 +2,8 @@ import { Component } from 'react';
 import { IconPrice } from './IconPrice.jsx';
 import { IconImage } from './IconImage.jsx';
 import { ConsultationLinks } from './ConsultationLinks.jsx';
+import { OrderRequestButton } from './OrderRequestButton.jsx';
+import { canRequestIcon } from '../lib/order-requests.js';
 import { getIconDisplayValue } from '../lib/catalog.js';
 
 export class IconCard extends Component {
@@ -54,7 +56,7 @@ export class IconCard extends Component {
           {size ? <p>{size}</p> : null}
           <IconPrice icon={icon} className="icon-card__price" availability={availability} />
           </div>
-          <ConsultationLinks iconTitle={title} compact primaryOnly primaryLabel="Обсудить икону" />
+          {canRequestIcon(icon) ? <OrderRequestButton icon={icon} /> : <ConsultationLinks iconTitle={title} compact primaryOnly primaryLabel="Обсудить икону" />}
           <a className="icon-card__more" href={path} onClick={this.follow}>Подробнее</a>
         </div>
       </article>
