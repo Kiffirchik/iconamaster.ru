@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-08",
+  "status": "published and verified",
+  "url": "https://iconamaster.ru/",
+  "sourceCommit": "d87846d8b9eb3a7f3683b0ea84253246de3c200b",
+  "sourcePushedBeforeDeployment": true,
+  "release": "polish-css-20261008",
+  "scope": "CSS only: active button pointer/brightening, certificate border and dark inset",
+  "updatedFiles": "258 live HTML/template stylesheet references and one CSS asset",
+  "css": "/assets/index-BWKHlgbu.css",
+  "unchangedJavascript": "/assets/index-DY8fmRwq.js",
+  "payloadSha256": "aef454dd98a9d36fc5c1b2f175895db84eb1d76c0bc024433c05ac681e7a9d93",
+  "rollbackDirectory": "/www/vhosts/27769/iconamaster.ru.rollback-before-polish-css-20261008",
+  "backupArchive": "/www/vhosts/27769/iconamaster.ru.before-polish-css-20261008.tar.gz",
+  "backupSha256": "29d059fc1207608feecf1bd9d54a7dc35d37a6eddcf0d761076818826ea8c9e3",
+  "preserved": ["All existing non-HTML files byte-for-byte", "Live content and original HTML text", "JavaScript", "Corona authentication", "Editor state", "Order endpoint", "Private order records outside document root", "Original certificate image and full-photo link"],
+  "checks": {
+    "buildMtw": "Passed:132 static pages,121 templates",
+    "freshFocusedTests": "10 passed: CSS release, order requests, MTW deployment",
+    "previewFullSuite": "256 passed in previous preview turn; no subsequent product code changes",
+    "originalAssets": "160 SHA-256 hashes unchanged",
+    "payload": "Every HTML equals fresh baseline with only stylesheet reference replaced",
+    "server": "All manifest hashes matched; live icon restore and home/catalog checks passed",
+    "http": "New CSS matches build hash; existing JS reference retained; order endpoint initializes",
+    "browser": "Active order cursor pointer; certificate solid border/8px inset/contain; live order dialog opens and initializes",
+    "independentDeploymentReview": "No blockers"
+  },
+  "emailsSentThisRelease": 0,
+  "advertisingChanged": false,
+  "screenshot": "output/polish-publication-20261008/live-certificate-frame.jpg"
+}
