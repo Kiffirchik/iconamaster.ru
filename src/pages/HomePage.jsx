@@ -14,6 +14,8 @@ export class HomeIconGallery extends Component {
     if (typeof ResizeObserver !== 'undefined' && this.trackRef.current) {
       this.resizeObserver = new ResizeObserver(this.syncActiveCard);
       this.resizeObserver.observe(this.trackRef.current);
+      // Text wrapping and font loading can change a card without changing track width.
+      for (const card of this.trackRef.current.children) this.resizeObserver.observe(card);
     }
     if (typeof MutationObserver !== 'undefined' && this.trackRef.current) {
       this.cardObserver = new MutationObserver(this.syncActiveCard);
@@ -31,7 +33,7 @@ export class HomeIconGallery extends Component {
     if (!track) return;
     const rects = [...track.children].map((card) => card.getBoundingClientRect());
     if (!rects.length) {
-      this.setState({ activeIndex: 0, endIndex: 0, itemCount: 0, atStart: true, atEnd: true });
+      this.setState({ activeIndex: 0, endIndex: 0, itemCount: 0, atStart: true, atEnd: true, activeCardHeight: 0, visibleCardHeight: 0, scrollbarHeight: 0 });
       return;
     }
     const left = track.getBoundingClientRect().left;
@@ -57,6 +59,9 @@ export class HomeIconGallery extends Component {
       itemCount: rects.length,
       atStart: track.scrollLeft <= 1,
       atEnd: track.scrollLeft >= track.scrollWidth - track.clientWidth - 1,
+      activeCardHeight: rects[activeIndex].height || 0,
+      visibleCardHeight: Math.max(0, ...rects.filter((rect) => rect.right > left + 1 && rect.left < right - 1).map((rect) => rect.height || 0)),
+      scrollbarHeight: Math.max(0, (track.offsetHeight || 0) - (track.clientHeight || 0)),
     };
     if (Object.keys(nextState).some((key) => nextState[key] !== this.state[key])) this.setState(nextState);
   };
@@ -87,12 +92,13 @@ export class HomeIconGallery extends Component {
 
   render() {
     const { icons, onNavigate } = this.props;
-    const { activeIndex, endIndex, atStart, atEnd } = this.state;
+    const { activeIndex, endIndex, atStart, atEnd, activeCardHeight, visibleCardHeight, scrollbarHeight } = this.state;
     const itemCount = this.state.itemCount ?? icons.length;
     if (!icons.length) return null;
     return (
       <>
         <div id="home-sale-gallery" className="home-sale__grid" ref={this.trackRef}
+          style={{ '--home-card-height': activeCardHeight ? `${activeCardHeight}px` : undefined, '--home-visible-card-height': visibleCardHeight ? `${visibleCardHeight}px` : undefined, '--home-scrollbar-height': `${scrollbarHeight || 0}px` }}
           role="group" aria-label="Иконы в подборке" tabIndex={icons.length > 1 ? 0 : undefined}
           onScroll={this.syncActiveCard} onKeyDown={this.handleKeyDown}>
           {icons.map((icon, index) => <IconCard key={icon.slug} icon={icon} onNavigate={onNavigate} eager={index < 4} />)}

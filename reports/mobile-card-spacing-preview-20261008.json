@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-08",
+  "status": "local-preview-only",
+  "request": "Match the bottom inset of mobile homepage icon cards to the top inset.",
+  "cause": "The horizontal grid stretched every card to the tallest title among all catalogue cards.",
+  "changes": [
+    "Mobile cards use their natural height.",
+    "The mobile track follows the active card height, with padding and native scrollbar space accounted for.",
+    "ResizeObserver watches cards so font loading and text wrapping are remeasured.",
+    "Desktop layout is unchanged."
+  ],
+  "verification": {
+    "regression": "Observed failing test before implementation; focused test passed after implementation.",
+    "unit_tests": { "passed": 257, "failed": 0 },
+    "build_mtw": "passed",
+    "test_mtw": { "passed": 4, "failed": 0 },
+    "browser": {
+      "mobile_widths": [356, 390],
+      "top_padding_px": 16,
+      "bottom_distance_including_border_px": 16.67,
+      "long_title_filter": "Иоанн Богослов — complete, not clipped",
+      "keyboard_short_to_long": "Tab navigation preserved; scrollTop 0; focused card not clipped",
+      "last_card": "90 of 90; no clipping",
+      "desktop_1280": "Equal-height cards preserved; no page horizontal overflow"
+    },
+    "review": "Independent review found no confirmed blocking issues; requested keyboard check completed successfully.",
+    "screenshot": "output/mobile-card-spacing-356-20261008.jpg"
+  },
+  "publication": "Not deployed. No production site or advertising settings changed."
+}

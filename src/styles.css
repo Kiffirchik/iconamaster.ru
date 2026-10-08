@@ -306,9 +306,12 @@ button.button:not(:disabled) {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: clamp(16rem, calc((100% - 7rem) / 4), 22rem);
+  align-items: start;
+  height: calc(var(--home-visible-card-height) + var(--home-scrollbar-height, 0px) + .5rem);
   gap: 1.25rem;
   min-width: 0;
   overflow-x: auto;
+  overflow-y: hidden;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
@@ -1775,6 +1778,7 @@ button.button--primary:not(:disabled):is(:hover, :focus-visible) {
   .home-sale__grid {
     grid-auto-columns: min(86%, 24rem);
     gap: 1rem;
+    height: calc(var(--home-card-height) + var(--home-scrollbar-height, 0px) + .5rem);
   }
   .home-sale__grid .icon-card__image-frame { height: 16rem; }
   .home-workshop { grid-template-columns: 1fr; gap: 1.5rem; }

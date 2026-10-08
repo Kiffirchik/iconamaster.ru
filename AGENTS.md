@@ -10,6 +10,12 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 ## Iconamaster prototype constraints
 
+### Mobile homepage card spacing — 8 October 2026
+
+- The owner requested matching top and bottom insets inside homepage icon cards on mobile. Do not stretch short cards to the tallest title in the entire catalogue; keep long titles complete and fit the mobile strip to the active card so the gap is not merely moved below it. Preserve desktop layout, filtering and swipe/button/keyboard navigation. Show a local preview before publication.
+- The owner subsequently requested the same compact insets on desktop. Use natural card heights there too; fit the strip to the tallest currently visible card, including a partially visible next card, so other visible titles are not clipped and offscreen titles do not inflate the strip. Preserve mobile behavior and show this extension in the local preview without publishing.
+- On 9 October 2026 the owner approved publishing both spacing fixes. Use a fresh-live-snapshot bundle-reference overlay, preserve every HTML text and all content/order/authentication files, push the verified source first, and retain rollback.
+
 ### Small visual polish — 8 October 2026
 
 - The owner approved a local-only preview: active order buttons use a pointer cursor and subtle brightening on hover; disabled/submitting controls retain their distinct state.

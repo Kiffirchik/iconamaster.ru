@@ -181,3 +181,75 @@ test('desktop gallery advances by the visible group and disables next at the las
   assert.match(renderToStaticMarkup(gallery.render()), />1–8 из 8</u);
   assert.match(renderToStaticMarkup(gallery.render()), /aria-label="Следующая икона"[^>]*disabled/u);
 });
+
+test('mobile gallery height follows the active card, including text resize and scrollbar space', async context => {
+  const server = await createServer({ appType: 'custom', logLevel: 'silent', server: { middlewareMode: true } });
+  context.after(() => server.close());
+  const { HomeIconGallery } = await server.ssrLoadModule('/src/pages/HomePage.jsx');
+  const icons = [{ slug: 'short' }, { slug: 'long' }, { slug: 'last' }];
+  const heights = [460, 530, 480];
+  const gallery = new HomeIconGallery({ icons }, undefined, {
+    enqueueSetState(instance, update) { instance.state = { ...instance.state, ...update }; },
+  });
+  const track = {
+    scrollLeft: 0, clientWidth: 350, scrollWidth: 940, offsetHeight: 548, clientHeight: 538,
+    getBoundingClientRect: () => ({ left: 16 }),
+    children: icons.map((_, index) => ({ getBoundingClientRect: () => ({
+      left: 16 + index * 320 - track.scrollLeft, right: 316 + index * 320 - track.scrollLeft,
+      width: 300, height: heights[index],
+    }) })),
+  };
+  gallery.trackRef.current = track;
+  const renderedHeight = () => gallery.render().props.children[0].props.style?.['--home-card-height'];
+  gallery.syncActiveCard();
+  assert.equal(renderedHeight(), '460px', 'a tall offscreen title must not inflate the first card');
+  assert.equal(gallery.render().props.children[0].props.style['--home-scrollbar-height'], '10px');
+  track.scrollLeft = 320;
+  gallery.syncActiveCard();
+  assert.equal(renderedHeight(), '530px', 'the long active title must remain fully visible');
+  heights[1] = 555;
+  gallery.syncActiveCard();
+  assert.equal(renderedHeight(), '555px', 're-measure after wrapping, font loading or viewport resize');
+  track.scrollLeft = 590;
+  gallery.syncActiveCard();
+  assert.equal(renderedHeight(), '480px', 'the last card is fitted even without leading-edge alignment');
+});
+
+test('desktop gallery fits visible cards without inheriting the tallest offscreen title', async context => {
+  const server = await createServer({ appType: 'custom', logLevel: 'silent', server: { middlewareMode: true } });
+  context.after(() => server.close());
+  const { HomeIconGallery } = await server.ssrLoadModule('/src/pages/HomePage.jsx');
+  const icons = Array.from({ length: 6 }, (_, index) => ({ slug: `icon-${index}` }));
+  const heights = [460, 530, 480, 550, 600, 510];
+  const gallery = new HomeIconGallery({ icons }, undefined, {
+    enqueueSetState(instance, update) { instance.state = { ...instance.state, ...update }; },
+  });
+  const track = {
+    scrollLeft: 0, clientWidth: 1000, scrollWidth: 1900, offsetHeight: 628, clientHeight: 618,
+    getBoundingClientRect: () => ({ left: 16 }),
+    children: icons.map((_, index) => ({ getBoundingClientRect: () => ({
+      left: 16 + index * 320 - track.scrollLeft, right: 316 + index * 320 - track.scrollLeft,
+      width: 300, height: heights[index],
+    }) })),
+  };
+  gallery.trackRef.current = track;
+  const renderedHeight = () => gallery.render().props.children[0].props.style?.['--home-visible-card-height'];
+  gallery.syncActiveCard();
+  assert.equal(renderedHeight(), '550px', 'fit every visible card, including the next-card edge, but not offscreen cards');
+  track.scrollLeft = 900;
+  gallery.syncActiveCard();
+  assert.equal(renderedHeight(), '600px', 'the taller card must fit when it enters the viewport');
+  heights[4] = 500;
+  gallery.syncActiveCard();
+  assert.equal(renderedHeight(), '550px', 'the track must shrink again after text reflows');
+  track.clientWidth = 300;
+  track.scrollLeft = 1600;
+  gallery.syncActiveCard();
+  assert.equal(renderedHeight(), '510px', 'cards fully outside the viewport do not affect the last card');
+  track.children = [];
+  gallery.syncActiveCard();
+  const emptyTrack = gallery.render().props.children[0];
+  assert.equal(emptyTrack.props.style['--home-visible-card-height'], undefined, 'failed images must not leave a fixed-height empty track');
+  assert.equal(emptyTrack.props.style['--home-card-height'], undefined);
+  assert.equal(emptyTrack.props.style['--home-scrollbar-height'], '0px');
+});
