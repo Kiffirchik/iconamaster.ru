@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-08",
+  "launchPerformed": true,
+  "originalCampaign": 714449033,
+  "newCopiedCampaign": 715197300,
+  "changesApplied": {
+    "originalCampaignNegativeCount": 73,
+    "productGroups": "All 7 original groups retained; 6 product-type exclusions added per group; price keys narrowed to quoted handwritten-icon phrases",
+    "originalCatalog": 5801152169,
+    "originalCatalogStatus": "Stopped and archived on 2026-10-08; history retained; absent from original campaign All Except Archived grid after reload",
+    "newCatalogCopyToKeep": 5810477526,
+    "copiedProductGroupsArchived": [5810477519, 5810477520, 5810477521, 5810477522, 5810477523, 5810477524, 5810477525],
+    "originalProductGroupsRetained": [5799188879, 5799199425, 5799207571, 5799211545, 5799216585, 5799218321, 5799219719],
+    "newCampaignActiveStructure": "Only catalogue group 5810477526 remains outside archive; campaign scheduled for 9 October after owner-authorized launch",
+    "catalogTargetingVerified": "12 quoted keys and 7 product-routing negatives retained. Narrow, broad, accompanying and alternative queries remain excluded, as are competitor-brand queries."
+  },
+  "authorizedPermanentDeletion": {
+    "groups": [5810442604, 5810477527],
+    "result": "Both deleted; original groups and history retained",
+    "recoverable": false
+  },
+  "unfinished": ["Owner to top up balance for full test; no payment or overdraft performed"],
+  "approvedTest": {
+    "from": "2026-10-09", "to": "2026-10-15", "totalRubExVat": 7000,
+    "productBudgetRubExVat": 3500, "catalogBudgetRubExVat": 3500,
+    "afterPeriod": "Stop impressions", "existingSchedulePreserved": true,
+    "scheduleMoscow": "Thursday 09:00–19:00; other days 11:00–19:00; 58 hours/week",
+    "balanceObservedRub": 5048.79, "shortfallRubExVat": 1951.21,
+    "paymentPerformed": false, "overdraftEnabled": false,
+    "minimumBudgetCorrection": "The account rejected the initially proposed catalogue budget of 1000 RUB for seven days. The owner explicitly approved increasing total to 7000 RUB, 3500 each."
+  },
+  "approvalBlock": null,
+  "nameChangeApproval": "Owner explicitly replied Разрешаю to saving only the two campaign names while retaining stopped status and all existing budget/date settings. Both saves completed and persisted names/statuses were verified in the campaign grid on 2026-10-08.",
+  "persistedNames": {
+    "714449033": "Иконы | Товарные группы | Поиск | Россия",
+    "715197300": "Иконы | Каталог | Поиск | Россия"
+  },
+  "copiedDefaultsNotApprovedForLaunch": {"budgetRub": 6000, "from": "2026-10-08", "to": "2026-10-09", "note": "Owner approved leaving these existing values unchanged during name-only save, not starting a test with these settings."},
+  "verificationEvidence": "output/orders-publication-20261008/direct-scheduled-7000.jpg",
+  "status": "Both campaigns show Показы начнутся 09.10.2026 / Приостановлена, 3500 RUB per period 09.10.2026–15.10.2026. Catalogue launched after successful production form test. Murals campaign remains stopped with previous end date 27 September. No actual impressions for new period claimed."
+}

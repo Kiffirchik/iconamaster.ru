@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-08",
+  "status": "historical-local-preview; superseded by orders-production-20261008.json",
+  "previewUrl": "http://127.0.0.1:5178/",
+  "sourceBase": "c9e8f49ddf8498b56249bd87ae6b708b4ff22ecb",
+  "feature": {
+    "type": "Order enquiry, not payment or automatic reservation",
+    "fields": ["selected icon", "name", "phone or email", "optional comment", "explicit enquiry-data consent"],
+    "privateStore": "../.iconamaster-order-requests outside the document root",
+    "inbox": "/corona/admin/orders.php, existing Corona authentication",
+    "recipientSource": "current content/contacts.json email",
+    "proposedRecipient": "iconamaster@yandex.ru",
+    "recipientConfirmed": false,
+    "realEmailsSent": false,
+    "productionFilesChanged": false,
+    "analyticsEvent": "order_request_sent, only after non-preview accepted response; Metrika goal not created"
+  },
+  "verified": {
+    "fullUnitSuite": "255 passed, 0 failed; final full run outside sandbox after confirming temporary Git/localhost permission restrictions",
+    "php52Store": "21 checks passed on MTW in a private test directory using a fake mail transport, no real emails",
+    "focusedUnitTests": "5 passed, including package layout and malformed success rejection",
+    "staticBuild": "132 canonical pages generated; 6 static tests passed with local-network permission",
+    "mtwPackage": "121 live templates generated; 4 MTW tests passed",
+    "content": "99 icons, 8 pages, 21 articles, 6 videos, 124 aliases, 484 assets validated",
+    "originalImages": "160 original files verified by SHA-256",
+    "browser": ["desktop and 390x844 mobile", "no horizontal dialog overflow", "invalid contact rejected", "consent required", "preview success explicitly says no email sent", "Escape closes dialog", "focus returns to order button", "homepage and detail-page icon context correct"]
+  },
+  "beforeProduction": [
+    "Confirm notification recipient with owner",
+    "Approve and deploy exact verified source with live content/editor state preserved",
+    "Check real PHP endpoint sessions, CSRF, web-user private-directory permissions and authenticated inbox on target host",
+    "Send one clearly labelled test enquiry and have owner confirm inbox delivery, including spam folder",
+    "Do not claim mail delivery from PHP mail() acceptance alone"
+  ],
+  "knownLimitations": [
+    "Normal network retries retain the same enquiry and avoid repeat accepted notifications; a crash between mail acceptance and state persistence can still repeat the email under the same reference",
+    "Availability-edited PHP markup can briefly retain the old CTA until the React replacement; server always validates current availability",
+    "Inbox lists the latest 100 requests; no editing or deletion UI is included"
+  ],
+  "independentReview": "No critical or important findings for local review. Malformed-response issue corrected and regression-tested. Production delivery not claimed."
+}
