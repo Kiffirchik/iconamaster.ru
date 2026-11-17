@@ -72,6 +72,7 @@ function localBusiness(contacts = {}) {
     url: `${siteUrl}/`,
     ...(contacts.phone ? { telephone: contacts.phone } : {}),
     ...(contacts.email ? { email: contacts.email } : {}),
+    ...(contacts.mapUrl ? { hasMap: contacts.mapUrl } : {}),
     ...(address ? {
       address: {
         '@type': 'PostalAddress',

@@ -48,6 +48,7 @@ const bundle = {
   contacts: {
     phone: '+79166554595',
     email: 'iconamaster@yandex.ru',
+    mapUrl: 'https://yandex.com/maps/-/CTT2bAoq',
     address: {
       display: 'Московская область, д. Брёхово, Ромашковая ул., 16',
       streetAddress: 'Ромашковая ул., 16',
@@ -103,6 +104,15 @@ test('builds canonical descriptors and structured data for every route type', ()
 test('serializes JSON-LD without allowing a script close tag', () => {
   assert.equal(JSON.parse(serializeJsonLd({ text: '</script>' })).text, '</script>');
   assert.doesNotMatch(serializeJsonLd({ text: '</script>' }), /<\/script>/u);
+});
+
+test('uses the contacts map URL for the LocalBusiness on home and contacts', () => {
+  for (const path of ['/', '/contacts']) {
+    const business = buildSeoDescriptor(path, bundle).structuredData['@graph']
+      .find(node => node['@type'] === 'LocalBusiness');
+    assert.equal(business.hasMap, 'https://yandex.com/maps/-/CTT2bAoq');
+    assert.equal(business.address.streetAddress, 'Ромашковая ул., 16');
+  }
 });
 
 test('does not treat descriptive text containing rubles as a numeric sale price', () => {
