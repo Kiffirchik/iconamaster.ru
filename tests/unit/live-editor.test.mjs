@@ -19,13 +19,21 @@ test('visibility boundaries include the whole card and its image, not only its t
   assert.equal(compileLiveTemplate(html), '<main><!--VISIBLE:sample--><article data-live-visible="sample"><img src="/original.jpg"/><div data-live-slot="icon-card:sample"><!--LIVE:icon-card:sample--></div></article><!--/VISIBLE:sample--><p>Keep</p></main>');
 });
 
-test('MTW publishes a stable sitemap index pointing to the uncached live PHP endpoint', async context => {
+test('MTW publishes the live Sitemap index and dispatches icon aliases through PHP', async context => {
   const root=await mkdtemp(path.join(tmpdir(),'iconamaster-visibility-'));
   context.after(()=>rm(root,{recursive:true,force:true}));
   for(const dir of ['content','collection','articles'])await mkdir(path.join(root,dir));
   for(const route of ['','collection','articles'])await writeFile(path.join(root,route,'index.html'),'<main><h1>Site</h1></main>');
   for(const kind of ['icons','articles'])await writeFile(path.join(root,'content',kind+'.json'),'[]');
-  await writeFile(path.join(root,'.htaccess'),'RewriteEngine On\n');
+  const aliases = {
+    '/OLD.ICON': '/icons/sample',
+    '/OLD-HIDDEN': '/icons/hidden',
+    '/OLD-ARTICLE': '/articles/article',
+  };
+  await writeFile(path.join(root,'content','aliases.json'),JSON.stringify(aliases));
+  const oldIconRule = 'RewriteRule ^OLD\\.ICON$ https://iconamaster.ru/icons/sample [R=301,L,NE]';
+  const articleRule = 'RewriteRule ^OLD-ARTICLE$ https://iconamaster.ru/articles/article [R=301,L,NE]';
+  await writeFile(path.join(root,'.htaccess'),`DirectoryIndex index.html\r\nRewriteEngine On\n${oldIconRule}\n${articleRule}\r\n`);
   await writeFile(path.join(root,'robots.txt'),'User-agent: *\nSitemap: https://iconamaster.ru/sitemap.xml\n');
   const xml='<urlset><url><loc>https://iconamaster.ru/collection</loc></url></urlset>';
   await writeFile(path.join(root,'sitemap.xml'),xml);
@@ -36,4 +44,10 @@ test('MTW publishes a stable sitemap index pointing to the uncached live PHP end
   assert.match(index,/<loc>https:\/\/iconamaster.ru\/content-sitemap.php<\/loc>/);
   assert.doesNotMatch(index,/<url>/);
   assert.match(await readFile(path.join(root,'robots.txt'),'utf8'),/Sitemap: https:\/\/iconamaster.ru\/content-sitemap.php/);
+  const rewrites = await readFile(path.join(root,'.htaccess'),'utf8');
+  assert.ok(rewrites.includes('RewriteRule ^OLD\\.ICON$ content-page.php?icon_alias=1 [L]'));
+  assert.ok(rewrites.includes('RewriteRule ^OLD-HIDDEN$ content-page.php?icon_alias=1 [L]'));
+  assert.ok(!rewrites.includes(oldIconRule));
+  assert.ok(rewrites.includes('DirectoryIndex index.html\r\n'));
+  assert.ok(rewrites.includes(articleRule + '\r\n'));
 });
