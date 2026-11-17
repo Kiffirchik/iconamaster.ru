@@ -78,6 +78,9 @@ export async function prepareLiveEditor(distRoot = path.join(root, 'dist/client'
   const editorRoot = path.join(distRoot, 'corona/admin/text-editor');
   await mkdir(editorRoot, {recursive:true});
   for (const file of ['editor.php','editor.css','store.php','render.php','pricing.php']) await copyFile(path.join(root,'server/text-editor',file), path.join(editorRoot,file));
+  const searchCopy = await readFile(path.join(root,'src/data/icon-search-copy.json'), 'utf8');
+  // Same source as the React/prerender descriptor; PHP serves no data when the file is opened directly.
+  await writeFile(path.join(editorRoot, 'icon-search-copy.php'), "<?php\nreturn json_decode(base64_decode('" + Buffer.from(searchCopy, 'utf8').toString('base64') + "'), true);\n");
   await writeFile(path.join(distRoot,'corona/admin/content.php'), "<?php\nrequire dirname(__FILE__).'/text-editor/editor.php';\n");
   await copyFile(path.join(root,'server/text-editor/content-page.php'), path.join(distRoot,'content-page.php'));
   await copyFile(path.join(root,'server/text-editor/content-sitemap.php'), path.join(distRoot,'content-sitemap.php'));

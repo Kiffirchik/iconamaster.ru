@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { readFileSync } from 'node:fs';
 import { buildSeoDescriptor, listCanonicalPaths, serializeJsonLd, updateManagedSeo } from '../../src/lib/seo.js';
 
 const image = {
@@ -113,6 +114,47 @@ test('uses the contacts map URL for the LocalBusiness on home and contacts', () 
     assert.equal(business.hasMap, 'https://yandex.com/maps/-/CTT2bAoq');
     assert.equal(business.address.streetAddress, 'Ромашковая ул., 16');
   }
+});
+
+const catalogueForSeo = JSON.parse(readFileSync(new URL('../../public/content/icons.json', import.meta.url), 'utf8'));
+const iconSeo = (slug, icons = catalogueForSeo) => buildSeoDescriptor('/icons/' + slug, { icons });
+
+test('published icon pages have distinct search titles and snippets without changing artwork names', () => {
+  const visible = catalogueForSeo.filter(icon => icon.published !== false);
+  const descriptors = visible.map(icon => iconSeo(icon.slug));
+  for (const field of ['title', 'description']) {
+    const repeats = descriptors.filter((d, i) => descriptors.findIndex(x => x[field] === d[field]) !== i);
+    assert.deepEqual(repeats.map(d => d.canonical), [], 'Duplicate icon ' + field);
+  }
+  const sample = iconSeo('ikona-bogorodity-utoli-moi-pecali-copy');
+  assert.equal(sample.title, 'Икона «Утоли мои печали» на светло-зелёном фоне | Московская иконописная мастерская');
+  assert.match(sample.description, /светло-зелёном фоне/u);
+  assert.equal(sample.openGraph.title, sample.title);
+  assert.equal(sample.openGraph.description, sample.description);
+  assert.equal(sample.structuredData['@graph'][0].name, 'Икона Богородицы Утоли мои печали.');
+});
+
+test('a live editorial description takes priority over a snippet based on a photo', () => {
+  const icon = structuredClone(catalogueForSeo.find(item => item.slug === 'ikona-bogorodity-utoli-moi-pecali-copy'));
+  icon.description = 'Уточнённое мастерской описание образа на светло-зелёном фоне.';
+  const current = iconSeo(icon.slug, [icon]);
+  assert.equal(current.description, icon.description);
+  assert.match(current.title, /на светло-зелёном фоне/u);
+});
+
+test('search title falls back to the latest record if a documented detail changes', () => {
+  const icon = structuredClone(catalogueForSeo.find(item => item.slug === 'ikona-spas-nerukotvornyi-1'));
+  assert.match(iconSeo(icon.slug, [icon]).title, /60 × 50 см/u);
+  icon.size = '61 × 51 см';
+  assert.equal(iconSeo(icon.slug, [icon]).title, 'Икона Спас Нерукотворный. | Московская иконописная мастерская');
+});
+
+test('a correction later in the workshop description supersedes the prepared search copy', () => {
+  const icon = structuredClone(catalogueForSeo.find(item => item.slug === 'gospod-vsederzhitel-kiot'));
+  assert.match(iconSeo(icon.slug, [icon]).description, /масло и сусальное золото/u);
+  icon.description = icon.description.replace('масло', 'яичная темпера');
+  const seo = iconSeo(icon.slug, [icon]);
+  assert.doesNotMatch(seo.description, /масло/u);
 });
 
 test('does not treat descriptive text containing rubles as a numeric sale price', () => {

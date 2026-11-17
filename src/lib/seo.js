@@ -1,4 +1,5 @@
 import { siteConfig } from '../data/site-config.js';
+import iconSearchCopy from '../data/icon-search-copy.json' with { type: 'json' };
 import { getDiscount } from './pricing.js';
 import { normalizePath } from './routing.js';
 
@@ -61,6 +62,19 @@ function findPublished(records, slug) {
   return (Array.isArray(records) ? records : []).find(
     (record) => record?.slug === slug && isPublished(record)
   ) ?? null;
+}
+
+function searchCopyForIcon(icon) {
+  if (!Object.hasOwn(iconSearchCopy, icon.slug)) return {};
+  const copy = iconSearchCopy[icon.slug];
+  for (const [field, expected] of Object.entries(copy.when)) {
+    const actual = field === 'image' ? icon.images?.[0]?.src : icon[field];
+    if (typeof actual !== 'string' || actual.trim() !== expected) return {};
+  }
+  const description = typeof icon.description === 'string' ? icon.description.trim() : '';
+  const descriptionMatches = copy.sourceDescription === description;
+  const title = !copy.titleBasedOnDescription || descriptionMatches ? copy.title : undefined;
+  return { title, description: descriptionMatches ? copy.description : undefined };
 }
 
 function localBusiness(contacts = {}) {
@@ -180,8 +194,9 @@ function descriptorFor(path, bundle) {
   if (iconMatch) {
     const icon = findPublished(bundle?.icons, iconMatch[1]);
     if (!icon) return null;
-    route.title = `${normalizeText(icon.title)} | ${siteConfig.name}`;
-    route.description = recordDescription(icon, icon.title);
+    const copy = searchCopyForIcon(icon);
+    route.title = `${copy.title || normalizeText(icon.title)} | ${siteConfig.name}`;
+    route.description = copy.description || recordDescription(icon, icon.title);
     route.image = recordImage(icon);
     route.graph.push({
       '@type': 'VisualArtwork',

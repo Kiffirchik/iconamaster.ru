@@ -89,9 +89,30 @@ function ce_description($record) {
     if ($text === '') $text = $record['title'];
     $text = trim(preg_replace('/\s+/u', ' ', strip_tags($text)));
     if (mb_strlen($text, 'UTF-8') <= 160) return $text;
-    $short = mb_substr($text, 0, 159, 'UTF-8');
-    $last = mb_strrpos($short, ' ', 0, 'UTF-8');
-    return ($last ? mb_substr($short, 0, $last, 'UTF-8') : $short).'…';
+    $window = mb_substr($text, 0, 160, 'UTF-8');
+    $last = mb_strrpos($window, ' ', 0, 'UTF-8');
+    return mb_substr($window, 0, $last ? $last : 159, 'UTF-8').'…';
+}
+function ce_icon_search_copy($record) {
+    static $rows = null;
+    if ($rows === null) {
+        $file = dirname(__FILE__).'/icon-search-copy.php';
+        $rows = array();
+        if (is_file($file)) $rows = require $file;
+    }
+    $slug = ce_text($record, 'slug');
+    if (!isset($rows[$slug])) return array();
+    $copy = $rows[$slug];
+    foreach ($copy['when'] as $field => $expected) {
+        $actual = $field === 'image' ? (isset($record['images'][0]) ? ce_text($record['images'][0], 'src') : '') : ce_text($record, $field);
+        if ($actual !== $expected) return array();
+    }
+    $description = ce_text($record, 'description');
+    $out = array();
+    $descriptionMatches = isset($copy['sourceDescription']) && $description === $copy['sourceDescription'];
+    if (isset($copy['title']) && (empty($copy['titleBasedOnDescription']) || $descriptionMatches)) $out['title'] = $copy['title'];
+    if (isset($copy['description']) && $descriptionMatches) $out['description'] = $copy['description'];
+    return $out;
 }
 function ce_seo($html, $route, $record) {
     $renderer = new CeSeo($route, $record);
@@ -103,8 +124,9 @@ class CeSeo {
     var $record, $route, $titleText, $description, $value;
     function __construct($route, $record) {
         $this->record = $record; $this->route = $route;
-        $this->titleText = $record['title'].' | Московская иконописная мастерская';
-        $this->description = ce_description($record);
+        $copy = strpos($route, '/icons/') === 0 ? ce_icon_search_copy($record) : array();
+        $this->titleText = (isset($copy['title']) ? $copy['title'] : $record['title']).' | Московская иконописная мастерская';
+        $this->description = isset($copy['description']) ? $copy['description'] : ce_description($record);
     }
     function title($m) { return '<title data-seo-managed="true">'.ce_html($this->titleText).'</title>'; }
     function content($m) { return 'content="'.ce_html($this->value).'"'; }
