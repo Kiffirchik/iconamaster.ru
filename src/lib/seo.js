@@ -48,8 +48,11 @@ function firstTextSection(sections) {
   return '';
 }
 
-function recordDescription(record, fallback) {
-  return truncateDescription(record?.intro || record?.description || firstTextSection(record?.sections) || fallback);
+function recordDescription(record, fallback, summary = '') {
+  return truncateDescription(
+    normalizeText(record?.intro) || normalizeText(record?.description) || normalizeText(summary)
+      || firstTextSection(record?.sections) || fallback
+  );
 }
 
 function recordImage(record) {
@@ -214,7 +217,7 @@ function descriptorFor(path, bundle) {
     const article = findPublished(bundle?.articles, articleMatch[1]);
     if (!article) return null;
     route.title = `${normalizeText(article.title)} | ${siteConfig.name}`;
-    route.description = recordDescription(article, article.title);
+    route.description = recordDescription(article, article.title, article.summary);
     route.type = 'article';
     route.image = recordImage(article);
     route.graph.push({
@@ -232,7 +235,10 @@ function descriptorFor(path, bundle) {
     const page = findPublished(bundle?.pages, pageMatch[1]);
     if (!page) return null;
     route.title = `${normalizeText(page.title)} | ${siteConfig.name}`;
-    route.description = recordDescription(page, page.title);
+    const fallback = path === '/kiots'
+      ? 'Фотогалерея мастерской с примерами киотов для икон и декоративной резьбы.'
+      : page.title;
+    route.description = recordDescription(page, fallback);
     route.image = recordImage(page);
     if (page.template === 'service') {
       route.graph.push({

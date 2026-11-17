@@ -119,6 +119,32 @@ test('uses the contacts map URL for the LocalBusiness on home and contacts', () 
 const catalogueForSeo = JSON.parse(readFileSync(new URL('../../public/content/icons.json', import.meta.url), 'utf8'));
 const iconSeo = (slug, icons = catalogueForSeo) => buildSeoDescriptor('/icons/' + slug, { icons });
 
+test('published descriptions add information beyond the page title', () => {
+  const content = { ...bundle, icons: catalogueForSeo };
+  for (const key of ['articles', 'pages', 'videos', 'contacts']) {
+    content[key] = JSON.parse(readFileSync(new URL(`../../public/content/${key}.json`, import.meta.url), 'utf8'));
+  }
+  const normalize = (value) => value.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '');
+  const descriptions = listCanonicalPaths(content).map(path => buildSeoDescriptor(path, content));
+  const titleOnly = descriptions.filter(({ title, description }) =>
+    normalize(title.split(' | ')[0]) === normalize(description));
+  assert.deepEqual(titleOnly.map(page => new URL(page.canonical).pathname), []);
+  assert.equal(new Set(descriptions.map(page => page.description)).size, descriptions.length);
+});
+
+test('article descriptions use the current editorial introduction or summary before section headings', () => {
+  const article = {
+    ...bundle.articles[0],
+    summary: 'Аннотация о промыслах и традициях города.',
+    sections: [{ type: 'text', heading: bundle.articles[0].title, paragraphs: ['Основной текст статьи.'] }],
+  };
+  const describe = () => buildSeoDescriptor('/articles/first-article', { articles: [article] });
+  assert.equal(describe().description, article.summary);
+  assert.equal(describe().structuredData['@graph'][0].description, article.summary);
+  article.intro = 'Новое вступление, написанное мастерской.';
+  assert.equal(describe().description, article.intro);
+});
+
 test('published icon pages have distinct search titles and snippets without changing artwork names', () => {
   const visible = catalogueForSeo.filter(icon => icon.published !== false);
   const descriptors = visible.map(icon => iconSeo(icon.slug));

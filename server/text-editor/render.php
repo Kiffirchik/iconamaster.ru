@@ -79,8 +79,8 @@ function ce_slot($type, $row) {
     if ($type === 'article-feature') return '<p class="eyebrow">Материал мастерской</p><h3><a href="'.$url.'">'.$title.'</a></h3><p>'.ce_html(ce_text($row, 'summary')).'</p><a class="home-story-card__more" href="'.$url.'">Читать материал →</a>';
     throw new RuntimeException('Unknown content slot.');
 }
-function ce_description($record) {
-    $text = ce_first(array(ce_text($record, 'intro'), ce_text($record, 'description')));
+function ce_description($record, $summary) {
+    $text = ce_first(array(ce_text($record, 'intro'), ce_text($record, 'description'), $summary));
     if ($text === '' && isset($record['sections'])) foreach ($record['sections'] as $section) {
         if ($section['type'] !== 'text') continue;
         $values = array_merge(array(ce_text($section, 'heading')), isset($section['paragraphs']) ? $section['paragraphs'] : array());
@@ -124,9 +124,11 @@ class CeSeo {
     var $record, $route, $titleText, $description, $value;
     function __construct($route, $record) {
         $this->record = $record; $this->route = $route;
-        $copy = strpos($route, '/icons/') === 0 ? ce_icon_search_copy($record) : array();
+        $isIcon = strpos($route, '/icons/') === 0;
+        $copy = $isIcon ? ce_icon_search_copy($record) : array();
+        $summary = $isIcon ? '' : ce_text($record, 'summary');
         $this->titleText = (isset($copy['title']) ? $copy['title'] : $record['title']).' | Московская иконописная мастерская';
-        $this->description = isset($copy['description']) ? $copy['description'] : ce_description($record);
+        $this->description = isset($copy['description']) ? $copy['description'] : ce_description($record, $summary);
     }
     function title($m) { return '<title data-seo-managed="true">'.ce_html($this->titleText).'</title>'; }
     function content($m) { return 'content="'.ce_html($this->value).'"'; }

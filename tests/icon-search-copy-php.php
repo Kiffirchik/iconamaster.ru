@@ -21,7 +21,7 @@ function snippet_fields($html) {
     snippet_expect(preg_match('~<script type="application/ld\+json"[^>]*>(.*?)</script>~s', $html, $ld), 'Missing JSON-LD');
     $value = json_decode($ld[1], true);
     foreach ($value['@graph'] as $node) {
-        if ($node['@type'] === 'VisualArtwork' || $node['@type'] === 'Product') snippet_expect($node['description'] === $fields[1], 'Mismatched JSON-LD description');
+        if (in_array($node['@type'], array('VisualArtwork', 'Product', 'Article'))) snippet_expect($node['description'] === $fields[1], 'Mismatched JSON-LD description');
         if ($node['@type'] === 'BreadcrumbList') snippet_expect($node['itemListElement'][1]['name'] === $fields[0], 'Mismatched breadcrumb title');
     }
     return $fields;
@@ -65,3 +65,28 @@ foreach ($bundle['icons'] as $index => $icon) {
 }
 snippet_expect($count > 0, 'Missing catalogue');
 echo 'PASS distinct PHP metadata for '.$count." published icon routes\n";
+
+$articleCount = 0;
+foreach ($bundle['articles'] as $index => $article) {
+    if (isset($article['published']) && !$article['published']) continue;
+    $route = '/articles/'.$article['slug'];
+    snippet_expect(isset($routes[$route]), 'Missing article route '.$route);
+    $template = file_get_contents($root.'/.live-templates/'.$routes[$route]);
+    $static = file_get_contents($root.$route.'/index.html');
+    list($title, $description) = snippet_fields(ce_render($template, $route, $bundle));
+    snippet_expect(snippet_fields($static) === array($title, $description), 'Static/PHP snippet divergence: '.$route);
+    snippet_expect($description !== $article['title'] && !isset($descriptions[$description]), 'Thin or duplicate description: '.$route);
+    $descriptions[$description] = true;
+    $articleCount++;
+    if ($article['slug'] === 'kineshma-icon-painting') {
+        $edited = $bundle;
+        $edited['articles'][$index]['summary'] = 'Уточнённая аннотация о традиции иконописи в Кинешме.';
+        list($unusedTitle, $updatedDescription) = snippet_fields(ce_render($template, $route, $edited));
+        snippet_expect($updatedDescription === $edited['articles'][$index]['summary'], 'Current article summary must win');
+    }
+}
+snippet_expect($articleCount > 0, 'Missing articles');
+echo 'PASS distinct PHP metadata for '.$articleCount." published articles\n";
+
+list($title, $description) = snippet_fields(file_get_contents($root.'/kiots/index.html'));
+snippet_expect(strpos($description, 'Фотогалерея мастерской') === 0, 'Missing gallery description');

@@ -1,4 +1,24 @@
 {
+  "ikona-aleksandr-nevskii": {
+    "when": {"title":"Икона Александр Невский.","image":"/assets/icons/ikona-aleksandr-nevskii-cargo-47800231.jpg"},
+    "description": "Александр Невский с крестом в руке, в красном узорчатом одеянии. Фотография иконы с арочным верхом.",
+    "sourceDescription": ""
+  },
+  "ikona-bogorodity-fedorovskoi": {
+    "when": {"title":"Икона Богородицы Федоровской.","image":"/assets/icons/ikona-bogorodity-fedorovskoi-cargo-47799488.jpg"},
+    "description": "Феодоровская икона Божией Матери с Младенцем в тёмном киоте с резным орнаментом и крестами.",
+    "sourceDescription": ""
+  },
+  "ikona-prepodobnyi-sergii-radonezskii": {
+    "when": {"title":"Икона Преподобный Сергий Радонежский.","image":"/assets/icons/ikona-prepodobnyi-sergii-radonezskii-cargo-47833814.jpg"},
+    "description": "Сергий Радонежский со свитком и благословляющим жестом на светло-зелёном фоне.",
+    "sourceDescription": ""
+  },
+  "ikona-varvara-velikomucenita-v-zitie": {
+    "when": {"title":"Икона Варвара Великомученица в житие.","image":"/assets/icons/ikona-varvara-velikomucenita-v-zitie-cargo-47799916.jpg"},
+    "description": "Образ великомученицы Варвары со сценами жития в фигурном киоте золотистого цвета.",
+    "sourceDescription": ""
+  },
   "theotokos-kazanskaya": {
     "when": {"title":"Икона Богородицы Казанская.","size":"21 × 17 см; киот 35 × 30 см"},
     "title": "Казанская икона Божией Матери 21 × 17 см в дубовом киоте",
